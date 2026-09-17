@@ -13,8 +13,15 @@ from __future__ import annotations
 
 import json
 import re
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+README = ROOT / "README.md"
+INDEX = ROOT / "index.json"
+
+# 统一用东八区展示（用户在东八区，cron 也按北京时间跑）。
+_TZ8 = timezone(timedelta(hours=8))
 
 ROOT = Path(__file__).resolve().parent.parent
 README = ROOT / "README.md"
@@ -43,7 +50,7 @@ def _block(sections: dict[str, int], scanned_at: str) -> str:
         START,
         NOTE,
         f"- 素材总数：{total}（{breakdown}）",
-        f"- 最近扫描：{scanned_at}（UTC）",
+        f"- 最近扫描：{scanned_at}（北京时间）",
         f"- 清单：`https://cdn.jsdelivr.net/gh/{REPO}@main/index.json`",
         END,
     ]
@@ -51,8 +58,8 @@ def _block(sections: dict[str, int], scanned_at: str) -> str:
 
 
 def _scan_time() -> str:
-    """本次运行的时刻（UTC，秒级）。每轮都变 ⇒ 每轮都有一次 README 提交。"""
-    return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+    """本次运行的时刻（东八区，秒级）。每轮都变 ⇒ 每轮都有一次 README 提交。"""
+    return datetime.now(_TZ8).replace(microsecond=0).isoformat()
 
 
 def main() -> int:

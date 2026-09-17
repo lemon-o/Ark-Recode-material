@@ -15,7 +15,7 @@ from __future__ import annotations
 
 import hashlib
 import json
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -67,7 +67,10 @@ def main() -> int:
         return 0
 
     document: dict[str, object] = {
-        "updated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        # 时间戳统一东八区（与 README「最近扫描」、cron 的北京时间口径一致）。
+        "updated": datetime.now(timezone(timedelta(hours=8)))
+        .replace(microsecond=0)
+        .isoformat(),
         "count": total,
     }
     document.update(payload)
