@@ -96,15 +96,16 @@ UI_ICONS = {
 #   skills  Icon_Skill_<ID>_<nnn>      技能图标
 #   icons   Assets/Game/Icon/{Function,Constellation}  功能/星座图标
 #
-# 两个捕获组：1=资产 ID（做 --ids 过滤与重映射），2=输出文件名。
+# 两个捕获组：1=资产 ID（做 --ids 过滤与重映射），2=输出文件名（含 .png，
+# 吃过一次亏：把 .png 放在组外，落盘的文件没有扩展名，glob("*.png") 一张都看不见）。
 HERO_ICON_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
     (
         "heads",
-        re.compile(r"^Assets/Game/Hero/([A-Z]\d+)/Img/(Icon_Head_[BLMS]_[A-Z]*\d[\w-]*?)\.png$"),
+        re.compile(r"^Assets/Game/Hero/([A-Z]\d+)/Img/(Icon_Head_[BLMS]_[A-Z]*\d[\w-]*?\.png)$"),
     ),
     (
         "skills",
-        re.compile(r"^Assets/Game/Hero/([A-Z]\d+)/Img/(Icon_Skill_[A-Z]*\d[\w-]*?)\.png$"),
+        re.compile(r"^Assets/Game/Hero/([A-Z]\d+)/Img/(Icon_Skill_[A-Z]*\d[\w-]*?\.png)$"),
     ),
 )
 GAME_ICON_PATTERN = re.compile(
