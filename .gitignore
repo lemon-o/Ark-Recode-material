@@ -1,0 +1,9 @@
+# 运行时 clone 进来的 lucima-tools（脚本来源，不入库）
+_lucima/
+
+# workflow 落下的扫描报告
+report.txt
+
+# Python
+__pycache__/
+*.py[cod]
