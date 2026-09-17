@@ -22,7 +22,8 @@ concurrency:
 jobs:
   sync:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    # 首轮要一次抓 ~2100 张（heads/skills/icons 全量），之后每轮只增量。
+    timeout-minutes: 60
 
     # 本仓库完全自包含：脚本、端点常量、输出目录都在自己这里，
     # 不 clone 任何外部仓库，也不需要任何 PAT。
@@ -84,8 +85,11 @@ jobs:
         run: |
           set -o pipefail
           mkdir -p build
+          # 家族清单：avatars=角色头像，heads=四尺寸头像框，skills=技能图标，
+          # icons=功能/星座图标。全部是 `Icon` 白名单——CG/立绘/羁绊（18+）一律
+          # 不在白名单里，结构上就抓不进来。
           python tools/fetch_assets.py \
-            --only avatars \
+            --only avatars,heads,skills,icons \
             --target "$GITHUB_WORKSPACE" \
             ${{ inputs.dry_run && '--dry-run' || '' }} | tee build/report.txt
           {

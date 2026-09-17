@@ -1,5 +1,7 @@
-"""扫描 avatars/ 生成 index.json —— 客户端靠它判断自己缺哪些头像。
+"""扫描各素材目录生成 index.json —— 客户端靠它判断自己缺哪些图。
 
+每个分区（avatars / heads / skills / icons）各出一个键，键是文件 stem：
+    avatars 键即角色 ID（H193），其余家族键是完整图标名（Icon_Head_B_H193）。
 不直接让客户端列 GitHub 目录：那要走 REST API，未认证时每小时只有 60 次配额。
 index.json 是纯静态文件，走 CDN，随便拉。
 
@@ -17,8 +19,15 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-AVATARS = ROOT / "avatars"
 INDEX = ROOT / "index.json"
+
+# index.json 里的键 -> 仓库目录。加新家族在这里登记一行即可。
+SECTIONS: tuple[tuple[str, str], ...] = (
+    ("avatars", "avatars"),
+    ("heads", "heads"),
+    ("skills", "skills"),
+    ("icons", "icons"),
+)
 
 
 def _sha256(path: Path) -> str:
@@ -29,33 +38,43 @@ def _sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def _entries() -> dict[str, dict[str, object]]:
+def _entries(folder: Path) -> dict[str, dict[str, object]]:
     return {
         png.stem: {"file": png.name, "bytes": png.stat().st_size, "sha256": _sha256(png)}
-        for png in sorted(AVATARS.glob("*.png"))
+        for png in sorted(folder.glob("*.png"))
     }
 
 
 def main() -> int:
-    entries = _entries()
-
-    previous: object = None
+    payload: dict[str, object] = {}
+    changed = False
+    previous_all: dict = {}
     if INDEX.exists():
         try:
-            previous = (json.loads(INDEX.read_text(encoding="utf-8")) or {}).get("avatars")
+            previous_all = json.loads(INDEX.read_text(encoding="utf-8")) or {}
         except (OSError, ValueError):
-            previous = None
-    if previous == entries:
-        print(f"index.json 无变化（{len(entries)} 个头像）")
+            previous_all = {}
+    for key, folder in SECTIONS:
+        entries = _entries(ROOT / folder)
+        payload[key] = entries
+        if previous_all.get(key) != entries:
+            changed = True
+        print(f"{key}: {len(entries)} 张")
+
+    total = sum(len(v) for k, v in payload.items() if isinstance(v, dict))
+    if not changed:
+        print(f"index.json 无变化（共 {total} 张）")
         return 0
 
-    payload = {
+    document: dict[str, object] = {
         "updated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "count": len(entries),
-        "avatars": entries,
+        "count": total,
     }
-    INDEX.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"index.json 已更新：{len(entries)} 个头像")
+    document.update(payload)
+    INDEX.write_text(
+        json.dumps(document, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
+    print(f"index.json 已更新：共 {total} 张")
     return 0
 
 

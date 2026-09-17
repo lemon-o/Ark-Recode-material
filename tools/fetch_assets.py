@@ -85,6 +85,32 @@ UI_ICONS = {
     "store.png": "Lobby_Shop",
 }
 
+# ---------------------------------------------------------------- 图标白名单
+#
+# catalog 里 7000+ 张 PNG 大半是 CG / 立绘 / 羁绊图（`*_Sex_LoveTalk.png`、
+# `Assets/Game/CG/A*/`、`CG_H*.png`），那些是 18+ 内容，绝不能进素材仓库。
+# 这里用**白名单**而不是黑名单：只收文件名以 `Icon` 开头、且路径落在 Hero/Img
+# 或 Icon/ 下的资产——CG 与羁绊图从来不叫这个名字，白名单天然碰不到它们。
+#
+#   heads   Icon_Head_{S,M,L,B}_<ID>   四种尺寸的头像框（S=已有 avatars 家族）
+#   skills  Icon_Skill_<ID>_<nnn>      技能图标
+#   icons   Assets/Game/Icon/{Function,Constellation}  功能/星座图标
+#
+# 两个捕获组：1=资产 ID（做 --ids 过滤与重映射），2=输出文件名。
+HERO_ICON_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
+    (
+        "heads",
+        re.compile(r"^Assets/Game/Hero/([A-Z]\d+)/Img/(Icon_Head_[BLMS]_[A-Z]*\d[\w-]*?)\.png$"),
+    ),
+    (
+        "skills",
+        re.compile(r"^Assets/Game/Hero/([A-Z]\d+)/Img/(Icon_Skill_[A-Z]*\d[\w-]*?)\.png$"),
+    ),
+)
+GAME_ICON_PATTERN = re.compile(
+    r"^Assets/Game/Icon/(?:Function|Constellation)/([A-Za-z][\w]*)\.png$"
+)
+
 
 def _config_constants() -> dict[str, object]:
     """Read the game endpoints out of `backend/config.py` without importing it.
@@ -451,6 +477,68 @@ def _avatar_family(catalog: ContentCatalog, wanted: set[str] | None) -> Family:
     return Family("avatars", addresses, note=note)
 
 
+def _hero_icon_family(
+    catalog: ContentCatalog,
+    wanted: set[str] | None,
+    category: str,
+    pattern: re.Pattern[str],
+) -> Family:
+    """按白名单正则收集 ``Hero/*/Img`` 下的图标类资产（heads / skills）。
+
+    结构与 :func:`_avatar_family` 同构：重映射条目优先（资产 ``H801`` 的头图其实
+    是 ``H804`` 的，重映射改写输出文件名后，原始同名条目让位）；``--ids`` 过滤
+    按**资产 ID** 判（该 ID 目录下的所有图标，含皮肤 SH*，一并命中）。
+    """
+    remap = _avatar_id_remap()
+    matches: list[tuple[str, str, str]] = []
+    for address in catalog._ids:  # noqa: SLF001 — match() 只吐一个捕获组，这里要两个
+        found = pattern.fullmatch(address)
+        if found:
+            matches.append((found.group(1), found.group(2), address))
+
+    addresses: dict[str, str] = {}
+    applied: list[str] = []
+    skipped: list[str] = []
+    # 重映射优先：`not in remap` 为 False 的排前面（与 _avatar_family 同一招）。
+    for asset_id, name, address in sorted(
+        matches, key=lambda item: (item[0] not in remap, item[0], item[1])
+    ):
+        if wanted is not None and not (
+            asset_id in wanted or (asset_id in remap and remap[asset_id] in wanted)
+        ):
+            continue
+        output_name = name
+        if asset_id in remap:
+            output_name = name.replace(asset_id, remap[asset_id], 1)
+            if output_name != name:
+                applied.append(f"{asset_id} -> {output_name}")
+        if output_name in addresses:
+            skipped.append(output_name)
+            continue
+        addresses[output_name] = address
+
+    note = ""
+    if applied:
+        note = "remapped: " + ", ".join(applied)
+    if skipped:
+        note += ("" if not note else "; ") + "skipped, output already taken: " + ", ".join(skipped)
+    return Family(category, addresses, note=note)
+
+
+def _game_icon_family(catalog: ContentCatalog) -> Family:
+    """收集 ``Assets/Game/Icon/{Function,Constellation}`` 的功能/星座图标。"""
+    addresses = {}
+    for address in catalog._ids:  # noqa: SLF001
+        found = GAME_ICON_PATTERN.fullmatch(address)
+        if found:
+            addresses[found.group(1) + ".png"] = address
+    return Family(
+        "icons",
+        addresses,
+        note="whitelist: Function + Constellation only",
+    )
+
+
 def _ui_family(catalog: ContentCatalog) -> Family:
     addresses = {}
     for output_name, asset_name in UI_ICONS.items():
@@ -507,6 +595,13 @@ def main() -> int:
 
             families = {
                 "avatars": lambda: _avatar_family(catalog, _read_target_id_list(args.ids)),
+                "heads": lambda: _hero_icon_family(
+                    catalog, _read_target_id_list(args.ids), "heads", HERO_ICON_PATTERNS[0][1]
+                ),
+                "skills": lambda: _hero_icon_family(
+                    catalog, _read_target_id_list(args.ids), "skills", HERO_ICON_PATTERNS[1][1]
+                ),
+                "icons": lambda: _game_icon_family(catalog),
                 "ui": lambda: _ui_family(catalog),
             }
             selected = [name for name in args.only.split(",") if name] or list(families)
