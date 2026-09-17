@@ -41,6 +41,7 @@ _LABELS = {
     "items": "道具图标",
     "equip": "装备图标",
     "equipset": "套装图标",
+    "uiconz": "赛季框",
 }
 
 

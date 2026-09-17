@@ -113,13 +113,33 @@ GAME_ICON_PATTERN = re.compile(
     r"^Assets/Game/Icon/(?:Function|Constellation)/([A-Za-z][\w]*)\.png$"
 )
 
-# 图集家族：道具/装备/套装图标不是独立 .png，而是 Icon/*.spriteatlas 的子资源
+# 图集家族：道具/装备/套装/赛季框图标不是独立 .png，而是 *.spriteatlas 的子资源
 # （catalog 里只有图集本身的地址，单个图标按 Sprite 名索引）。所以这一族按
 # "整包下载、枚举 Sprite 导出"的方式解包，输出名 = Sprite 名（游戏自己的
-# 图标键，如 45StarHeroTicket / E001_1 / Attack；与 Item.txt 的 Icon 列
-# `Icon/Item[<名字>]` 对应）。键=图集名，值=输出目录。
-ATLAS_ADDRESS_PATTERN = re.compile(r"^Assets/Game/Icon/(Item|Equip|EquipSet)\.spriteatlas$")
-ATLAS_CATEGORIES = {"Item": "items", "Equip": "equip", "EquipSet": "equipset"}
+# 图标键；与 Item.txt 的 Icon 列 `Icon/Item[<名字>]`、`UI/Image/UI_iconz[<名字>]`
+# 对应）。键=图集名，值=输出目录。
+ATLAS_SOURCES: dict[str, str] = {
+    "Item": "Assets/Game/Icon/Item.spriteatlas",
+    "Equip": "Assets/Game/Icon/Equip.spriteatlas",
+    "EquipSet": "Assets/Game/Icon/EquipSet.spriteatlas",
+    # 赛季头像框（⚑ Frame031 的 Icon 列 = UI/Image/UI_iconz[Frame_031]）
+    "UI_iconz": "Assets/Game/UI/Image/UI_iconz.spriteatlas",
+}
+ATLAS_CATEGORIES = {
+    "Item": "items",
+    "Equip": "equip",
+    "EquipSet": "equipset",
+    "UI_iconz": "uiconz",
+}
+# Item.txt 的 Icon 列前缀 -> 输出目录（图集键 -> 分区）。
+# `Icon/Item[X]` = 道具图集，`UI/Image/UI_iconz[X]` = 赛季框等 UI 图标。
+ICON_COLUMN_SECTIONS: dict[str, str] = {
+    "Icon/Item": "items",
+    "Icon/Equip": "equip",
+    "Icon/EquipSet": "equipset",
+    "UI/Image/UI_iconz": "uiconz",
+}
+ICON_COLUMN_PATTERN = re.compile(r"^([A-Za-z_/]+)\[([^\]]+)\]$")
 
 # 道具图标映射表：WebGL 自带的 StaticData/Item.txt 里 ID 列就是服务端 StaticID
 # （实测与前端 959 个道具图标名 100% 对应），Icon 列给出图集键
@@ -610,12 +630,14 @@ def _game_icon_family(catalog: ContentCatalog) -> Family:
 
 
 def _atlas_family(catalog: ContentCatalog) -> Family:
-    """道具/装备/套装图标：整包下载后按 Sprite 名逐个导出。"""
-    discovered = catalog.match(ATLAS_ADDRESS_PATTERN)
-    addresses = {
-        f"{name}.spriteatlas": address for name, address in sorted(discovered.items())
-    }
-    missing = sorted(set(ATLAS_CATEGORIES) - set(discovered))
+    """道具/装备/套装/赛季框图标：整包下载后按 Sprite 名逐个导出。"""
+    addresses: dict[str, str] = {}
+    missing: list[str] = []
+    for name, address in ATLAS_SOURCES.items():
+        if catalog.entries_for(address):
+            addresses[f"{name}.spriteatlas"] = address
+        else:
+            missing.append(name)
     note = f"missing: {', '.join(missing)}" if missing else ""
     return Family("atlas", addresses, note=note)
 
@@ -911,15 +933,18 @@ def _download_data(
         name_at = header.index("Name")
         desc_at = header.index("Description")
         mapping: dict[str, dict[str, str]] = {}
-        icon_format = re.compile(r"^Icon/Item\[([^\]]+)\]$")
         for line in lines[1:]:
             columns = line.split("@")
             if len(columns) <= max(id_at, icon_at, name_at, desc_at):
                 continue
             entry: dict[str, str] = {}
-            found = icon_format.fullmatch(columns[icon_at])
+            found = ICON_COLUMN_PATTERN.fullmatch(columns[icon_at])
             if found:
-                entry["icon"] = found.group(1)
+                section = ICON_COLUMN_SECTIONS.get(found.group(1))
+                if section:
+                    # icon=图集里的 Sprite 名，section=它在哪个分区目录
+                    entry["icon"] = found.group(2)
+                    entry["icon_section"] = section
             if columns[name_at]:
                 entry["name"] = columns[name_at]
             if columns[desc_at]:
