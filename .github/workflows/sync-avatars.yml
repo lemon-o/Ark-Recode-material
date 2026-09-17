@@ -25,16 +25,21 @@ jobs:
     timeout-minutes: 30
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       # 抓图脚本不往本仓库复制一份：fetch_assets.py 会用 ast 去读
       # backend/config.py 里的游戏地址常量，watch_new_units.py 又靠自身位置
       # 定位 tools/fetch_assets.py。整仓 clone 过来，两个依赖都满足，
       # 也就不用维护第二份副本去跟 lucima-tools 对齐。
-      - uses: actions/checkout@v4
+      #
+      # lucima-tools 是私有仓库，默认的 github.token 只覆盖本仓库，
+      # 因此必须挂一个只读 PAT（secret 名 LUCIMA_TOKEN，fine-grained，
+      # 只授 lucima-tools 的 Contents: Read）。缺这个 secret 本步会直接报 404。
+      - uses: actions/checkout@v5
         with:
           repository: lemon-o/lucima-tools
           path: _lucima
+          token: ${{ secrets.LUCIMA_TOKEN }}
 
       - uses: actions/setup-python@v5
         with:

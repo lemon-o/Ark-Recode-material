@@ -36,6 +36,22 @@
 
 **为什么走 jsDelivr 而不是 raw.githubusercontent.com**：后者在中国大陆经常连不上，而这套东西的消费方包括手机端。jsDelivr 在境内有节点，同一个文件两个地址都可用，客户端按顺序回退即可。
 
+## 首次配置（一次性）
+
+workflow 需要 clone 私有的 `lemon-o/lucima-tools` 才能拿到抓图脚本，而 Actions 默认的 `github.token` 只覆盖本仓库，所以得挂一个只读凭证：
+
+1. 打开 https://github.com/settings/personal-access-tokens/new
+2. **Repository access** 选 `Only select repositories` -> `lucima-tools`
+3. **Permissions** -> Repository permissions -> `Contents` 设为 **Read-only**
+4. 生成并复制 token
+5. 存进本仓库的 secret：
+
+       gh secret set LUCIMA_TOKEN -R lemon-o/Ark-Recode-material
+
+   交互式提示里粘贴即可，别用 `--body`，免得 token 留在命令历史里。
+
+没配这个 secret 的话，第二次 checkout 会直接报 404。
+
 ## 手动触发 / 本地复现
 
 Actions 页 -> Sync Avatars -> Run workflow，勾 `dry_run` 只扫描不抓取。
