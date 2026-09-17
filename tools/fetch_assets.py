@@ -98,10 +98,11 @@ UI_ICONS = {
 #
 # 两个捕获组：1=资产 ID（做 --ids 过滤与重映射），2=输出文件名（含 .png，
 # 吃过一次亏：把 .png 放在组外，落盘的文件没有扩展名，glob("*.png") 一张都看不见）。
+# 尺寸只收 L/M/S——B（最大号，~160KB/张）按用户要求排除，heads 体量砍掉约 1/4。
 HERO_ICON_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
     (
         "heads",
-        re.compile(r"^Assets/Game/Hero/([A-Z]\d+)/Img/(Icon_Head_[BLMS]_[A-Z]*\d[\w-]*?\.png)$"),
+        re.compile(r"^Assets/Game/Hero/([A-Z]\d+)/Img/(Icon_Head_[LMS]_[A-Z]*\d[\w-]*?\.png)$"),
     ),
     (
         "skills",
