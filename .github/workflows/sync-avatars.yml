@@ -1,0 +1,79 @@
+name: Sync Avatars
+
+on:
+  schedule:
+    # 每天两次。catalog 的刷新没有固定时刻，早晚各扫一次足够覆盖。
+    - cron: "0 11 * * *"   # 北京 19:00
+    - cron: "0 23 * * *"   # 北京 07:00
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "只扫描不抓取"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-avatars
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+
+    # 本仓库完全自包含：脚本、端点常量、输出目录都在自己这里，
+    # 不 clone 任何外部仓库，也不需要任何 PAT。
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # UnityPy 只装在这一处：它带的那几个原生扩展在 Android 上没有 wheel，
+      # 正是把抓图从客户端挪到 runner 的起因。
+      - name: 安装依赖
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "httpx==0.28.1" UnityPy
+
+      # 真相来源是游戏自己的 Addressables catalog：每项 address 就是资源路径
+      # （Assets/Game/Hero/H193/Img/Icon_Head_S_H193.png），新角色上线即多出新条目。
+      #
+      # 刻意不走 miraheze 的 Events/Banners：它挂在 Cloudflare 后面，对 GitHub
+      # 数据中心 IP 一律 403 —— 实测 7 种 UA 与端点组合（含 api.php、rest.php、
+      # 完整浏览器头）全部被挡。catalog 既更权威，也少一个第三方依赖。
+      #
+      # set -o pipefail 不能省：`python ... | tee` 的退出码取自 tee，
+      # 脚本抛错会被吞掉、步骤照样显示成功，cron 就静默失效了。
+      - name: 从 CDN 同步头像
+        run: |
+          set -o pipefail
+          mkdir -p build
+          python tools/fetch_assets.py \
+            --only avatars \
+            --target "$GITHUB_WORKSPACE" \
+            ${{ inputs.dry_run && '--dry-run' || '' }} | tee build/report.txt
+          {
+            echo '## Sync Avatars'
+            echo '```'
+            cat build/report.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: 生成清单并提交
+        if: ${{ !inputs.dry_run }}
+        run: |
+          python tools/build_index.py
+          if [ -z "$(git status --porcelain avatars index.json)" ]; then
+            echo "没有新头像，无需提交。" >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add avatars index.json
+          git commit -m "chore(素材): 同步新团员首发头像 [skip ci]"
+          git push
