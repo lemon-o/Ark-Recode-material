@@ -121,6 +121,12 @@ GAME_ICON_PATTERN = re.compile(
 ATLAS_ADDRESS_PATTERN = re.compile(r"^Assets/Game/Icon/(Item|Equip|EquipSet)\.spriteatlas$")
 ATLAS_CATEGORIES = {"Item": "items", "Equip": "equip", "EquipSet": "equipset"}
 
+# 道具图标映射表：WebGL 自带的 StaticData/Item.txt 里 ID 列就是服务端 StaticID
+# （实测与前端 959 个道具图标名 100% 对应），Icon 列给出图集键
+# `Icon/Item[<Sprite名>]`。把它蒸馏成 {StaticID: 图标键} 的 JSON 一并发布，
+# 客户端即可把"前端引用的道具图"对应到 CDN 上的 atlas 家族文件。
+ITEM_TABLE_ADDRESS = "Assets/Game/StaticData/Item.txt"
+
 
 def _config_constants() -> dict[str, object]:
     """Read the game endpoints out of `backend/config.py` without importing it.
@@ -420,6 +426,17 @@ def _import_unitypy():
     return UnityPy
 
 
+def _safe_data_image(data):
+    """Safely get PIL image from UnityPy object, avoiding directory permission errors."""
+    try:
+        if hasattr(data, "m_StreamData") and data.m_StreamData is not None:
+            if not data.m_StreamData.path and not getattr(data, "image_data", None):
+                return None
+        return data.image
+    except Exception:
+        return None
+
+
 def extract_texture(bundles: list[Path], asset_name: str):
     """Return a PIL image for ``asset_name``, preferring the Texture2D variant.
 
@@ -428,17 +445,50 @@ def extract_texture(bundles: list[Path], asset_name: str):
     """
     environment = _import_unitypy().load(*[str(path) for path in bundles])
     fallback = None
+    case_insensitive_fallback = None
+    single_candidate = None
+    valid_candidates_count = 0
+
+    target_name_lower = asset_name.lower()
+    texture_type_name = TEXTURE_TYPE.rsplit(".", 1)[1]
+    sprite_type_name = SPRITE_TYPE.rsplit(".", 1)[1]
+
     for obj in environment.objects:
         kind = obj.type.name
-        if kind not in (TEXTURE_TYPE.rsplit(".", 1)[1], SPRITE_TYPE.rsplit(".", 1)[1]):
+        if kind not in (texture_type_name, sprite_type_name):
             continue
-        data = obj.read()
-        if getattr(data, "m_Name", "") != asset_name:
+        try:
+            data = obj.read()
+        except Exception:
             continue
-        if kind == "Texture2D":
-            return data.image
-        fallback = fallback or data.image
-    return fallback
+
+        obj_name = getattr(data, "m_Name", "")
+        if not obj_name:
+            continue
+
+        valid_candidates_count += 1
+        if obj_name == asset_name:
+            img = _safe_data_image(data)
+            if img is not None:
+                if kind == texture_type_name:
+                    return img
+                if fallback is None:
+                    fallback = img
+        elif obj_name.lower() == target_name_lower and case_insensitive_fallback is None:
+            img = _safe_data_image(data)
+            if img is not None:
+                case_insensitive_fallback = img
+
+        if single_candidate is None and valid_candidates_count == 1:
+            single_candidate = data
+
+    if fallback is not None:
+        return fallback
+    if case_insensitive_fallback is not None:
+        return case_insensitive_fallback
+    if valid_candidates_count == 1 and single_candidate is not None:
+        return _safe_data_image(single_candidate)
+    return None
 
 
 class Family:
@@ -578,13 +628,19 @@ def extract_atlas_sprites(bundles: list[Path]) -> dict[str, bytes]:
     for obj in environment.objects:
         if obj.type.name != sprite_kind:
             continue
-        sprite = obj.read()
-        name = getattr(sprite, "m_Name", "")
-        if not name:
+        try:
+            sprite = obj.read()
+            name = getattr(sprite, "m_Name", "")
+            if not name:
+                continue
+            img = _safe_data_image(sprite)
+            if img is None:
+                continue
+            stream = BytesIO()
+            img.save(stream, format="PNG")
+            exported[f"{name}.png"] = stream.getvalue()
+        except Exception:
             continue
-        stream = BytesIO()
-        sprite.image.save(stream, format="PNG")
-        exported[f"{name}.png"] = stream.getvalue()
     return exported
 
 
@@ -652,6 +708,8 @@ def main() -> int:
                 ),
                 "icons": lambda: _game_icon_family(catalog),
                 "atlas": lambda: _atlas_family(catalog),
+                "data": lambda: Family("data", {"Item.txt": ITEM_TABLE_ADDRESS},
+                                       note="StaticData/Item.txt -> data/item-icons.json"),
                 "ui": lambda: _ui_family(catalog),
             }
             selected = [name for name in args.only.split(",") if name] or list(families)
@@ -674,13 +732,21 @@ def main() -> int:
                 return 0
 
             # atlas 家族走独立的"整包枚举 Sprite"管线（_download_atlas），
-            # 不能进常规管线——那里按地址名找资产，图集里没有叫这个名字的。
-            regular_jobs = [job for job in jobs if job[0] != "atlas"]
+            # data 家族走独立的"TextAsset 蒸馏"管线（_download_data）——
+            # 都不能进常规管线（那里按地址名找图片资产）。
+            regular_jobs = [
+                job for job in jobs if job[0] not in ("atlas", "data")
+            ]
             atlas_jobs = [job for job in jobs if job[0] == "atlas"]
+            data_jobs = [job for job in jobs if job[0] == "data"]
             results = _download(catalog, server, base, regular_jobs, args.jobs)
             if atlas_jobs:
                 results.update(
                     _download_atlas(catalog, server, base, atlas_jobs, args.jobs)
+                )
+            if data_jobs:
+                results.update(
+                    _download_data(catalog, server, base, data_jobs, args.jobs)
                 )
         return _write(args.target, results)
     except (RuntimeError, httpx.HTTPError, OSError) as exc:
@@ -800,6 +866,68 @@ def _download_atlas(
                     # 应用侧装备图标约定不带下划线（E001_1 -> E0011.png）。
                     sprite_name = sprite_name.replace("_", "")
                 results[(category, sprite_name)] = payload
+    return results
+
+
+def _download_data(
+    catalog: ContentCatalog,
+    server: PatchServer,
+    base: str,
+    jobs: list[tuple[str, str, str]],
+    workers: int,
+) -> dict[tuple[str, str], bytes | None]:
+    """取 StaticData/Item.txt 并蒸馏成 {StaticID: 图标键} JSON（data 家族专用）。"""
+    results: dict[tuple[str, str], bytes | None] = {}
+
+    def run(item: tuple[str, str, str]):
+        _category, output_name, address = item
+        bundles = catalog.bundles_for(address)
+        if not bundles:
+            return output_name, None, "no bundle"
+        try:
+            paths = [server.fetch_bundle(base, internal) for internal in bundles]
+        except (httpx.HTTPError, OSError, RuntimeError) as exc:
+            return output_name, None, str(exc)
+        try:
+            environment = _import_unitypy().load(*[str(path) for path in paths])
+            text = None
+            for obj in environment.objects:
+                if obj.type.name != "TextAsset":
+                    continue
+                data = obj.read()
+                if data.m_Name == "Item":
+                    raw = data.m_Script
+                    text = raw if isinstance(raw, str) else raw.decode("utf-8", "replace")
+                    break
+            if text is None:
+                return output_name, None, "TextAsset 'Item' missing from bundle"
+        except Exception as exc:  # UnityPy raises a wide range of errors
+            return output_name, None, str(exc)
+
+        lines = text.splitlines()
+        header = lines[0].split("@")
+        id_at, icon_at = header.index("ID"), header.index("Icon")
+        mapping: dict[str, str] = {}
+        icon_format = re.compile(r"^Icon/Item\[([^\]]+)\]$")
+        for line in lines[1:]:
+            columns = line.split("@")
+            if len(columns) <= max(id_at, icon_at):
+                continue
+            found = icon_format.fullmatch(columns[icon_at])
+            if found:
+                mapping[columns[id_at]] = found.group(1)
+        if not mapping:
+            return output_name, None, "Item.txt parsed to an empty mapping"
+        payload = json.dumps(mapping, ensure_ascii=False, sort_keys=True, indent=1).encode("utf-8")
+        return output_name, payload, None
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=max(1, workers)) as pool:
+        for output_name, payload, error in pool.map(run, jobs):
+            if error:
+                print(f"  data {output_name}: {error}", file=sys.stderr)
+                results[("data", output_name)] = None
+                continue
+            results[("data", "item-icons.json")] = payload
     return results
 
 

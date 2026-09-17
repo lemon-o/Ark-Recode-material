@@ -90,7 +90,7 @@ jobs:
           # （Icon/{Item,Equip,EquipSet}.spriteatlas 整包枚举 Sprite）。
           # 全部是 `Icon` 白名单——CG/立绘/羁绊（18+）一律不在白名单里。
           python tools/fetch_assets.py \
-            --only avatars,heads,skills,icons,atlas \
+            --only avatars,heads,skills,icons,atlas,data \
             --target "$GITHUB_WORKSPACE" \
             ${{ inputs.dry_run && '--dry-run' || '' }} | tee build/report.txt
           {
