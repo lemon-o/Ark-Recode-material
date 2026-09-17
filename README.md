@@ -84,3 +84,12 @@ Actions 页 -> Sync Avatars -> Run workflow，勾 `dry_run` 只扫描不抓取�
     python tools/build_index.py
 
 首次运行会把 catalog 里的头像一次性补齐，之后每次只增量抓新增的。
+
+## 当前状态
+
+<!-- SYNC-STATS:START -->
+<!-- 本块由 sync-avatars 工作流自动更新，请勿手改 -->
+- 头像总数：227
+- 最近同步：2026-09-17T05:47:42+00:00（UTC）
+- 清单：`https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/index.json`
+<!-- SYNC-STATS:END -->

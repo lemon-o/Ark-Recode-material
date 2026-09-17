@@ -99,12 +99,18 @@ jobs:
         if: ${{ !inputs.dry_run }}
         run: |
           python tools/build_index.py
-          if [ -z "$(git status --porcelain avatars index.json)" ]; then
+          # 头像总数/最近同步时间回写进 README 的「当前状态」标记块。
+          # update_readme.py 幂等：块内容没变就不写盘，所以这里不会凭空多出提交。
+          python tools/update_readme.py
+          # README 必须一起纳入检查与提交：只写不提交的话，统计块永远发不出去；
+          # 而三处一起判空、一起 add，才不会出现「有变更却没 stage -> git commit 报
+          # nothing to commit -> 步骤失败 -> 机器人挂掉」。
+          if [ -z "$(git status --porcelain avatars index.json README.md)" ]; then
             echo "没有新头像，无需提交。" >> "$GITHUB_STEP_SUMMARY"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add avatars index.json
+          git add avatars index.json README.md
           git commit -m "chore(素材): 同步新团员首发头像 [skip ci]"
           git push
