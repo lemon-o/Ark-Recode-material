@@ -4,8 +4,8 @@
 
 <!-- SYNC-STATS:START -->
 <!-- 本块由 sync-avatars 工作流自动更新，请勿手改 -->
-- 素材总数：261（头像 227 / 头像框 0 / 技能图标 0 / 功能图标 34）
-- 最近扫描：2026-09-17T07:15:22+00:00（UTC）
+- 素材总数：2321（头像 227 / 头像框 1371 / 技能图标 689 / 功能图标 34）
+- 最近扫描：2026-09-17T07:23:20+00:00（UTC）
 - 清单：`https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/index.json`
 <!-- SYNC-STATS:END -->
 
