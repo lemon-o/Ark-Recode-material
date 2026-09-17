@@ -8,7 +8,19 @@
 
 这里用的是游戏自己发布的补丁 CDN：走 WebGL 客户端同一条链路（bootstrap 拿补丁域名 → 拉 Addressables catalog → 用 UnityPy 从 AssetBundle 里解出原图）。
 
-抓取脚本来自 [lucima-tools](https://github.com/lemon-o/lucima-tools) 的 `tools/`。运行时不复制进本仓库，而是整仓 clone 过来执行 —— 因为 `fetch_assets.py` 要用 ast 读那边的 `backend/config.py` 拿游戏地址，`watch_new_units.py` 又要靠自身位置定位它。整仓带上，这两个依赖自然满足，也就不用维护第二份副本来对齐。
+## 脚本来源（快照，会漂移）
+
+`tools/` 与 `backend/config.py` 是从 [lucima-tools](https://github.com/lemon-o/lucima-tools) 同步过来的**快照**，不是 submodule、也不是运行时 clone。
+
+之所以用快照：lucima-tools 是私有仓库，本仓库的 Actions 默认 token 只能访问自己，跨仓库取脚本就得挂一个会过期的 PAT。抓图脚本本身改动不频繁，快照更省事。
+
+**代价是漂移** —— 主仓库改了脚本，这里不会自动跟上。同步方式：
+
+    cp ../lucima-tools/tools/watch_new_units.py ../lucima-tools/tools/fetch_assets.py tools/
+    # config.py 只需保留下面这 4 个端点常量，其余内容抓图用不到
+    cp ../lucima-tools/backend/config.py backend/config.py
+
+`backend/config.py` 是必需的：`fetch_assets.py` 的 `_config_constants()` 会用 ast 解析它取 `GAME_ROUTER` / `GAME_ORIGIN` / `GAME_REFERER` / `HTTP_TIMEOUT`。
 
 ## 怎么判断「新」
 
@@ -23,7 +35,8 @@
 
     avatars/     头像 PNG，文件名即角色 ID（H193.png）
     index.json   清单：ID -> 文件名 / 字节数 / sha256
-    tools/       本仓库自有的小工具（目前只有生成清单这一个）
+    tools/       抓图脚本快照 + 生成清单的小工具
+    backend/     仅 config.py，供抓图脚本读取端点常量
 
 ## 客户端怎么用
 
@@ -34,23 +47,7 @@
 
 单张 20KB 上下。
 
-**为什么走 jsDelivr 而不是 raw.githubusercontent.com**：后者在中国大陆经常连不上，而这套东西的消费方包括手机端。jsDelivr 在境内有节点，同一个文件两个地址都可用，客户端按顺序回退即可。
-
-## 首次配置（一次性）
-
-workflow 需要 clone 私有的 `lemon-o/lucima-tools` 才能拿到抓图脚本，而 Actions 默认的 `github.token` 只覆盖本仓库，所以得挂一个只读凭证：
-
-1. 打开 https://github.com/settings/personal-access-tokens/new
-2. **Repository access** 选 `Only select repositories` -> `lucima-tools`
-3. **Permissions** -> Repository permissions -> `Contents` 设为 **Read-only**
-4. 生成并复制 token
-5. 存进本仓库的 secret：
-
-       gh secret set LUCIMA_TOKEN -R lemon-o/Ark-Recode-material
-
-   交互式提示里粘贴即可，别用 `--body`，免得 token 留在命令历史里。
-
-没配这个 secret 的话，第二次 checkout 会直接报 404。
+**为什么走 jsDelivr 而不是 raw.githubusercontent.com**：后者在中国大陆的连通性不稳定，而这套东西的消费方包括手机端。jsDelivr 境内有节点，两个地址都保留、按顺序回退最稳。
 
 ## 手动触发 / 本地复现
 
@@ -58,8 +55,7 @@ Actions 页 -> Sync Avatars -> Run workflow，勾 `dry_run` 只扫描不抓取�
 
 本地跑一遍（需要 Python 3.12 与 `pip install httpx UnityPy`）：
 
-    git clone https://github.com/lemon-o/lucima-tools _lucima
-    python _lucima/tools/watch_new_units.py --target . --include-existing
+    python tools/watch_new_units.py --target . --include-existing
     python tools/build_index.py
 
 首次运行会把 Wiki 上已发布的团员一次性补齐（`--include-existing` 加空仓库 = 全量 backfill），之后每次只增量抓新增的。

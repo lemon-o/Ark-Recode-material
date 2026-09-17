@@ -1,7 +1,5 @@
-# 运行时 clone 进来的 lucima-tools（脚本来源，不入库）
-_lucima/
-
-# workflow 落下的扫描报告
+# 抓图缓存与运行报告
+build/
 report.txt
 
 # Python

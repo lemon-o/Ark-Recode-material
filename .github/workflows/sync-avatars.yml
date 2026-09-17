@@ -27,38 +27,24 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      # 抓图脚本不往本仓库复制一份：fetch_assets.py 会用 ast 去读
-      # backend/config.py 里的游戏地址常量，watch_new_units.py 又靠自身位置
-      # 定位 tools/fetch_assets.py。整仓 clone 过来，两个依赖都满足，
-      # 也就不用维护第二份副本去跟 lucima-tools 对齐。
-      #
-      # lucima-tools 是私有仓库，默认的 github.token 只覆盖本仓库，
-      # 因此必须挂一个只读 PAT（secret 名 LUCIMA_TOKEN，fine-grained，
-      # 只授 lucima-tools 的 Contents: Read）。缺这个 secret 本步会直接报 404。
-      - uses: actions/checkout@v5
-        with:
-          repository: lemon-o/lucima-tools
-          path: _lucima
-          token: ${{ secrets.LUCIMA_TOKEN }}
-
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
-      # UnityPy 只装在这一处：它带的原生扩展在 Android 上没有 wheel，
+      # UnityPy 只装在这一处：它带的那几个原生扩展在 Android 上没有 wheel，
       # 正是把抓图挪到 runner 上跑的起因。
       - name: 安装依赖
         run: |
           python -m pip install --upgrade pip
           python -m pip install "httpx==0.28.1" UnityPy
 
-      # --target 必须给绝对路径：脚本内部调 fetch_assets.py 时把 cwd 设在
-      # _lucima，相对路径会被解析到那边去。
+      # --target 给绝对路径：脚本内部调 fetch_assets.py 时会把 cwd 换到脚本
+      # 所在目录，相对路径会被解析到那边去。
       # 本仓库里已有的 PNG 就是「已知」集合，所以不需要状态文件；
-      # 没有缺口时脚本不会发出任何 CDN 请求。
+      # 没有缺口时脚本连 CDN 都不会碰。
       - name: 扫描 wiki 并抓取新头像
         run: |
-          python _lucima/tools/watch_new_units.py \
+          python tools/watch_new_units.py \
             --target "$GITHUB_WORKSPACE" \
             --include-existing \
             ${{ inputs.dry_run && '--dry-run' || '' }} | tee report.txt
