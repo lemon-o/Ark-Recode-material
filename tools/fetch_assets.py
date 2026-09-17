@@ -491,6 +491,10 @@ def _hero_icon_family(
     按**资产 ID** 判（该 ID 目录下的所有图标，含皮肤 SH*，一并命中）。
     """
     remap = _avatar_id_remap()
+    # 重映射**目标**目录（如 H804）的内容与角色表对不上——那正是错位的另一半：
+    # H804 目录里的文件名都带着 H801（Icon_Head_B_H801.png 之类），是另一个
+    # 未知角色的图。整目录不收，只留重映射改写后的产物。
+    untrusted = set(remap.values())
     matches: list[tuple[str, str, str]] = []
     for address in catalog._ids:  # noqa: SLF001 — match() 只吐一个捕获组，这里要两个
         found = pattern.fullmatch(address)
@@ -500,10 +504,14 @@ def _hero_icon_family(
     addresses: dict[str, str] = {}
     applied: list[str] = []
     skipped: list[str] = []
+    excluded = 0
     # 重映射优先：`not in remap` 为 False 的排前面（与 _avatar_family 同一招）。
     for asset_id, name, address in sorted(
         matches, key=lambda item: (item[0] not in remap, item[0], item[1])
     ):
+        if asset_id in untrusted:
+            excluded += 1
+            continue
         if wanted is not None and not (
             asset_id in wanted or (asset_id in remap and remap[asset_id] in wanted)
         ):
@@ -519,8 +527,10 @@ def _hero_icon_family(
         addresses[output_name] = address
 
     note = ""
+    if excluded:
+        note = f"excluded {excluded} files in untrusted dirs {sorted(untrusted)}"
     if applied:
-        note = "remapped: " + ", ".join(applied)
+        note += ("" if not note else "; ") + "remapped: " + ", ".join(applied)
     if skipped:
         note += ("" if not note else "; ") + "skipped, output already taken: " + ", ".join(skipped)
     return Family(category, addresses, note=note)
