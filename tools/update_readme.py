@@ -38,6 +38,9 @@ _LABELS = {
     "heads": "头像框",
     "skills": "技能图标",
     "icons": "功能图标",
+    "items": "道具图标",
+    "equip": "装备图标",
+    "equipset": "套装图标",
 }
 
 

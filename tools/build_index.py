@@ -27,6 +27,9 @@ SECTIONS: tuple[tuple[str, str], ...] = (
     ("heads", "heads"),
     ("skills", "skills"),
     ("icons", "icons"),
+    ("items", "items"),
+    ("equip", "equip"),
+    ("equipset", "equipset"),
 )
 
 

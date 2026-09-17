@@ -113,6 +113,14 @@ GAME_ICON_PATTERN = re.compile(
     r"^Assets/Game/Icon/(?:Function|Constellation)/([A-Za-z][\w]*)\.png$"
 )
 
+# 图集家族：道具/装备/套装图标不是独立 .png，而是 Icon/*.spriteatlas 的子资源
+# （catalog 里只有图集本身的地址，单个图标按 Sprite 名索引）。所以这一族按
+# "整包下载、枚举 Sprite 导出"的方式解包，输出名 = Sprite 名（游戏自己的
+# 图标键，如 45StarHeroTicket / E001_1 / Attack；与 Item.txt 的 Icon 列
+# `Icon/Item[<名字>]` 对应）。键=图集名，值=输出目录。
+ATLAS_ADDRESS_PATTERN = re.compile(r"^Assets/Game/Icon/(Item|Equip|EquipSet)\.spriteatlas$")
+ATLAS_CATEGORIES = {"Item": "items", "Equip": "equip", "EquipSet": "equipset"}
+
 
 def _config_constants() -> dict[str, object]:
     """Read the game endpoints out of `backend/config.py` without importing it.
@@ -551,6 +559,35 @@ def _game_icon_family(catalog: ContentCatalog) -> Family:
     )
 
 
+def _atlas_family(catalog: ContentCatalog) -> Family:
+    """道具/装备/套装图标：整包下载后按 Sprite 名逐个导出。"""
+    discovered = catalog.match(ATLAS_ADDRESS_PATTERN)
+    addresses = {
+        f"{name}.spriteatlas": address for name, address in sorted(discovered.items())
+    }
+    missing = sorted(set(ATLAS_CATEGORIES) - set(discovered))
+    note = f"missing: {', '.join(missing)}" if missing else ""
+    return Family("atlas", addresses, note=note)
+
+
+def extract_atlas_sprites(bundles: list[Path]) -> dict[str, bytes]:
+    """枚举图集里的每个 Sprite，导出成 ``<Sprite名>.png``。"""
+    environment = _import_unitypy().load(*[str(path) for path in bundles])
+    exported: dict[str, bytes] = {}
+    sprite_kind = SPRITE_TYPE.rsplit(".", 1)[1]
+    for obj in environment.objects:
+        if obj.type.name != sprite_kind:
+            continue
+        sprite = obj.read()
+        name = getattr(sprite, "m_Name", "")
+        if not name:
+            continue
+        stream = BytesIO()
+        sprite.image.save(stream, format="PNG")
+        exported[f"{name}.png"] = stream.getvalue()
+    return exported
+
+
 def _ui_family(catalog: ContentCatalog) -> Family:
     addresses = {}
     for output_name, asset_name in UI_ICONS.items():
@@ -614,6 +651,7 @@ def main() -> int:
                     catalog, _read_target_id_list(args.ids), "skills", HERO_ICON_PATTERNS[1][1]
                 ),
                 "icons": lambda: _game_icon_family(catalog),
+                "atlas": lambda: _atlas_family(catalog),
                 "ui": lambda: _ui_family(catalog),
             }
             selected = [name for name in args.only.split(",") if name] or list(families)
@@ -635,7 +673,15 @@ def main() -> int:
                     print(f"  would fetch {category}/{output_name} <- {address}")
                 return 0
 
-            results = _download(catalog, server, base, jobs, args.jobs)
+            # atlas 家族走独立的"整包枚举 Sprite"管线（_download_atlas），
+            # 不能进常规管线——那里按地址名找资产，图集里没有叫这个名字的。
+            regular_jobs = [job for job in jobs if job[0] != "atlas"]
+            atlas_jobs = [job for job in jobs if job[0] == "atlas"]
+            results = _download(catalog, server, base, regular_jobs, args.jobs)
+            if atlas_jobs:
+                results.update(
+                    _download_atlas(catalog, server, base, atlas_jobs, args.jobs)
+                )
         return _write(args.target, results)
     except (RuntimeError, httpx.HTTPError, OSError) as exc:
         parser.error(str(exc))
@@ -707,6 +753,53 @@ def _download(
         print(f"  {message}", file=sys.stderr)
     if len(errors) > 20:
         print(f"  ... and {len(errors) - 20} more", file=sys.stderr)
+    return results
+
+
+def _download_atlas(
+    catalog: ContentCatalog,
+    server: PatchServer,
+    base: str,
+    jobs: list[tuple[str, str, str]],
+    workers: int,
+) -> dict[tuple[str, str], bytes | None]:
+    """下载图集 bundle 并枚举其中的 Sprite（atlas 家族专用）。
+
+    结果键是 ``(图集对应目录, "<Sprite名>.png")``，图集抓取失败时记
+    ``(目录, "<Atlas名>.spriteatlas")`` = None，让 ``_write`` 计一次失败。
+    """
+    results: dict[tuple[str, str], bytes | None] = {}
+
+    def run(item: tuple[str, str, str]):
+        _category, output_name, address = item
+        bundles = catalog.bundles_for(address)
+        if not bundles:
+            return output_name, None, "no bundle"
+        try:
+            paths = [server.fetch_bundle(base, internal) for internal in bundles]
+        except (httpx.HTTPError, OSError, RuntimeError) as exc:
+            return output_name, None, str(exc)
+        try:
+            return output_name, extract_atlas_sprites(paths), None
+        except Exception as exc:  # UnityPy raises a wide range of errors
+            return output_name, None, str(exc)
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=max(1, workers)) as pool:
+        for output_name, sprites, error in pool.map(run, jobs):
+            category = ATLAS_CATEGORIES[output_name.rsplit(".", 1)[0]]
+            if error:
+                print(f"  atlas {output_name}: {error}", file=sys.stderr)
+                results[(category, output_name)] = None
+                continue
+            if not sprites:
+                print(f"  atlas {output_name}: no sprites", file=sys.stderr)
+                results[(category, output_name)] = None
+                continue
+            for sprite_name, payload in sprites.items():
+                if category == "equip":
+                    # 应用侧装备图标约定不带下划线（E001_1 -> E0011.png）。
+                    sprite_name = sprite_name.replace("_", "")
+                results[(category, sprite_name)] = payload
     return results
 
 

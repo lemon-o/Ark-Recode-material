@@ -85,11 +85,12 @@ jobs:
         run: |
           set -o pipefail
           mkdir -p build
-          # 家族清单：avatars=角色头像，heads=四尺寸头像框，skills=技能图标，
-          # icons=功能/星座图标。全部是 `Icon` 白名单——CG/立绘/羁绊（18+）一律
-          # 不在白名单里，结构上就抓不进来。
+          # 家族清单：avatars=角色头像，heads=三尺寸头像框（B 大号不收），
+          # skills=技能图标，icons=功能/星座图标，atlas=道具/装备/套装图标
+          # （Icon/{Item,Equip,EquipSet}.spriteatlas 整包枚举 Sprite）。
+          # 全部是 `Icon` 白名单——CG/立绘/羁绊（18+）一律不在白名单里。
           python tools/fetch_assets.py \
-            --only avatars,heads,skills,icons \
+            --only avatars,heads,skills,icons,atlas \
             --target "$GITHUB_WORKSPACE" \
             ${{ inputs.dry_run && '--dry-run' || '' }} | tee build/report.txt
           {

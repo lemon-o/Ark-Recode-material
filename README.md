@@ -79,9 +79,12 @@ catalog 里 7000+ 张 PNG 大半是 CG / 立绘 / 羁绊图（`*_Sex_LoveTalk.pn
 ## 目录
 
     avatars/     角色头像（Icon_Head_S_<ID>，文件名即角色 ID，H193.png）
-    heads/       四种尺寸头像框（Icon_Head_{B,L,M,S}_<ID>.png，B=大 L=横 M=中 S=方）
+    heads/       三种尺寸头像框（Icon_Head_{L,M,S}_<ID>.png，B=大 不收）
     skills/      技能图标（Icon_Skill_<ID>_<nnn>.png）
     icons/       功能/星座图标（Assets/Game/Icon/{Function,Constellation}）
+    items/       道具图标（Item.spriteatlas 里的 Sprite，按游戏图标键命名，如 45StarHeroTicket）
+    equip/       装备图标（Equip.spriteatlas，名字去掉下划线以对齐应用约定，E001_1 -> E0011）
+    equipset/    套装图标（EquipSet.spriteatlas，Attack / Critical / ...）
     index.json   清单：分区 -> 键 -> 文件名 / 字节数 / sha256
     tools/       fetch_assets.py（抓图）、build_index.py（生成清单）、update_readme.py（回写「当前状态」）、sync_assets.py（供读取 AVATAR_ID_REMAP，在此仓库从不执行）
     backend/     config.py：抓图脚本要用的四个端点常量（GAME_ROUTER / GAME_ORIGIN / GAME_REFERER / HTTP_TIMEOUT）
