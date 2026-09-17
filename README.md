@@ -91,5 +91,6 @@ Actions 页 -> Sync Avatars -> Run workflow，勾 `dry_run` 只扫描不抓取�
 <!-- 本块由 sync-avatars 工作流自动更新，请勿手改 -->
 - 头像总数：227
 - 最近同步：2026-09-17T05:47:42+00:00（UTC）
+- 最近活动：2026-09-17
 - 清单：`https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/index.json`
 <!-- SYNC-STATS:END -->
