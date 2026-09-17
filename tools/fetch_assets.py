@@ -58,7 +58,7 @@ import httpx
 
 ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_TARGET = ROOT / "assets"
-DEFAULT_CACHE = ROOT / "build" / "asset-fetch-cache"
+DEFAULT_CACHE = ROOT / "Asset Cache"
 
 BOOTSTRAP_ROUTE = "GameServerDBSettingHandler.QueryBulletinInfoResult"
 PATCH_DOMAIN_PLACEHOLDER = "PatchDomain"
@@ -709,7 +709,7 @@ def main() -> int:
                 "icons": lambda: _game_icon_family(catalog),
                 "atlas": lambda: _atlas_family(catalog),
                 "data": lambda: Family("data", {"Item.txt": ITEM_TABLE_ADDRESS},
-                                       note="StaticData/Item.txt -> data/item-icons.json"),
+                                       note="StaticData/Item.txt -> data/item-meta.json"),
                 "ui": lambda: _ui_family(catalog),
             }
             selected = [name for name in args.only.split(",") if name] or list(families)
@@ -906,16 +906,26 @@ def _download_data(
 
         lines = text.splitlines()
         header = lines[0].split("@")
-        id_at, icon_at = header.index("ID"), header.index("Icon")
-        mapping: dict[str, str] = {}
+        id_at = header.index("ID")
+        icon_at = header.index("Icon")
+        name_at = header.index("Name")
+        desc_at = header.index("Description")
+        mapping: dict[str, dict[str, str]] = {}
         icon_format = re.compile(r"^Icon/Item\[([^\]]+)\]$")
         for line in lines[1:]:
             columns = line.split("@")
-            if len(columns) <= max(id_at, icon_at):
+            if len(columns) <= max(id_at, icon_at, name_at, desc_at):
                 continue
+            entry: dict[str, str] = {}
             found = icon_format.fullmatch(columns[icon_at])
             if found:
-                mapping[columns[id_at]] = found.group(1)
+                entry["icon"] = found.group(1)
+            if columns[name_at]:
+                entry["name"] = columns[name_at]
+            if columns[desc_at]:
+                entry["desc"] = columns[desc_at]
+            if entry:
+                mapping[columns[id_at]] = entry
         if not mapping:
             return output_name, None, "Item.txt parsed to an empty mapping"
         payload = json.dumps(mapping, ensure_ascii=False, sort_keys=True, indent=1).encode("utf-8")
@@ -927,7 +937,7 @@ def _download_data(
                 print(f"  data {output_name}: {error}", file=sys.stderr)
                 results[("data", output_name)] = None
                 continue
-            results[("data", "item-icons.json")] = payload
+            results[("data", "item-meta.json")] = payload
     return results
 
 
