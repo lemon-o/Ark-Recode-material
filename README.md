@@ -5,7 +5,7 @@
 <!-- SYNC-STATS:START -->
 <!-- 本块由 sync-avatars 工作流自动更新，请勿手改 -->
 - 素材总数：3427（头像 227 / 头像框 1051 / 技能图标 689 / 功能图标 34 / 道具图标 800 / 装备图标 609 / 套装图标 17）
-- 最近扫描：2026-09-17T17:17:08+08:00（北京时间）
+- 最近扫描：2026-09-17T18:18:04+08:00（北京时间）
 - 清单：`https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/index.json`
 <!-- SYNC-STATS:END -->
 
