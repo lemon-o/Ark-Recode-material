@@ -5,3 +5,9 @@ report.txt
 # Python
 __pycache__/
 *.py[cod]
+
+# AssetStudio 等工具的缓存（验证图集时不要在仓库目录里跑）
+Asset Cache/
+
+# AssetStudio 等工具的缓存（验证图集时不要在仓库目录里跑）
+Asset Cache/
