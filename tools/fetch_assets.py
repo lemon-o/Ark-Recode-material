@@ -953,7 +953,21 @@ def _download_data(
                 mapping[columns[id_at]] = entry
         if not mapping:
             return output_name, None, "Item.txt parsed to an empty mapping"
-        payload = json.dumps(mapping, ensure_ascii=False, sort_keys=True, indent=1).encode("utf-8")
+        # 带 updated 时间戳：客户端两个源（jsDelivr 有缓存 / raw 实时）都能拉，
+        # 按时间戳取最新的那份，避免吃到旧版映射（格式升级时尤其要紧）。
+        from datetime import datetime, timedelta, timezone
+
+        payload = json.dumps(
+            {
+                "updated": datetime.now(timezone(timedelta(hours=8)))
+                .replace(microsecond=0)
+                .isoformat(),
+                "items": mapping,
+            },
+            ensure_ascii=False,
+            sort_keys=True,
+            indent=1,
+        ).encode("utf-8")
         return output_name, payload, None
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=max(1, workers)) as pool:
