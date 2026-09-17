@@ -1,0 +1,39 @@
+name: Probe Wiki
+
+on: workflow_dispatch
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 探测 miraheze 各端点
+        run: |
+          FF="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
+          RAW="https://arkrecodewiki.miraheze.org/w/index.php?title=Events/Banners&action=raw"
+          API="https://arkrecodewiki.miraheze.org/w/api.php?action=parse&page=Events/Banners&prop=wikitext&format=json"
+          REST="https://arkrecodewiki.miraheze.org/w/rest.php/v1/page/Events%2FBanners"
+          HTML="https://arkrecodewiki.miraheze.org/wiki/Events/Banners"
+
+          probe () {
+            label="$1"; shift
+            code=$(curl -s -o /tmp/body -w "%{http_code}" --max-time 30 "$@")
+            echo "=== $label -> HTTP $code ($(wc -c < /tmp/body) bytes)"
+            head -c 220 /tmp/body | tr '\n' ' '
+            echo
+            echo
+          }
+
+          probe "raw / curl 默认 UA" "$RAW"
+          probe "raw / 浏览器 UA" -A "$FF" "$RAW"
+          probe "raw / 浏览器 UA + 完整头" -A "$FF" \
+            -H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" \
+            -H "Accept-Language: en-US,en;q=0.9" \
+            -H "Referer: https://arkrecodewiki.miraheze.org/wiki/Events/Banners" \
+            "$RAW"
+          probe "api.php / 浏览器 UA" -A "$FF" "$API"
+          probe "rest.php / 浏览器 UA" -A "$FF" "$REST"
+          probe "HTML 页面 / 浏览器 UA" -A "$FF" "$HTML"
+          probe "raw / python-httpx UA" -A "python-httpx/0.28.1" "$RAW"
+
+          echo "=== runner 出口 IP ==="
+          curl -s --max-time 20 https://api.ipify.org; echo

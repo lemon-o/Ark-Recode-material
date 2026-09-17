@@ -42,8 +42,11 @@ jobs:
       # 所在目录，相对路径会被解析到那边去。
       # 本仓库里已有的 PNG 就是「已知」集合，所以不需要状态文件；
       # 没有缺口时脚本连 CDN 都不会碰。
+      # set -o pipefail 不能省：`python ... | tee` 的退出码取自 tee，
+      # 脚本抛错会被吞掉、步骤照样显示成功，cron 就静默失效了。
       - name: 扫描 wiki 并抓取新头像
         run: |
+          set -o pipefail
           python tools/watch_new_units.py \
             --target "$GITHUB_WORKSPACE" \
             --include-existing \
