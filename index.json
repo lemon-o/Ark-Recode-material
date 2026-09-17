@@ -1,6 +1,6 @@
 {
-  "updated": "2026-09-17T07:23:20+00:00",
-  "count": 2321,
+  "updated": "2026-09-17T07:55:34+00:00",
+  "count": 2320,
   "avatars": {
     "H001": {
       "file": "H001.png",
@@ -7988,11 +7988,6 @@
       "file": "Icon_Head_S_SH613.png",
       "bytes": 146873,
       "sha256": "fb46fd2e69e0e689ed70ea7eb3a1abceefa64f2671b4110a7d5b9f2c883b8eaf"
-    },
-    "Icon_Head_S_SH804": {
-      "file": "Icon_Head_S_SH804.png",
-      "bytes": 160854,
-      "sha256": "ecfc5a3b5e64a12e1d85a256a0efece16b218b400a1340cb36b29f61a0a45df5"
     }
   },
   "skills": {
