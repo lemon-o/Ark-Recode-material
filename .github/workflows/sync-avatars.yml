@@ -40,6 +40,37 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install "httpx==0.28.1" UnityPy
 
+      # 必须先确认重映射表读得到。fetch_assets.py 靠 ast 从本仓库的
+      # tools/sync_assets.py 里读 AVATAR_ID_REMAP，而"读不到"是**静默降级**：
+      # 表为空时不报错、只是不重映射，于是 H801（蜜娜的图）被原样写成 H801.png、
+      # 游戏 catalog 里那条对不上任何角色的 H804 又被写成 H804.png —— 仓库看起来
+      # 一切正常，实际发出去一张错图和一张废图。2026-09-17 踩过一次，加这道门。
+      - name: 校验头像 ID 重映射表可读
+        run: |
+          python - <<'PY'
+          import ast, pathlib, sys
+
+          path = pathlib.Path("tools/sync_assets.py")
+          if not path.is_file():
+              sys.exit("缺少 tools/sync_assets.py：AVATAR_ID_REMAP 读不到，"
+                       "头像会按资产 ID 输出（H801 而不是 H804）")
+          for node in ast.parse(path.read_text(encoding="utf-8")).body:
+              if not isinstance(node, ast.Assign):
+                  continue
+              if not any(
+                  isinstance(t, ast.Name) and t.id == "AVATAR_ID_REMAP"
+                  for t in node.targets
+              ):
+                  continue
+              table = ast.literal_eval(node.value)
+              if not isinstance(table, dict) or not table:
+                  sys.exit("AVATAR_ID_REMAP 为空表：重映射等于没做")
+              print("AVATAR_ID_REMAP =", table)
+              break
+          else:
+              sys.exit("tools/sync_assets.py 里找不到 AVATAR_ID_REMAP")
+          PY
+
       # 真相来源是游戏自己的 Addressables catalog：每项 address 就是资源路径
       # （Assets/Game/Hero/H193/Img/Icon_Head_S_H193.png），新角色上线即多出新条目。
       #

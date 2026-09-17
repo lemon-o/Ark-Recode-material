@@ -24,16 +24,18 @@ catalog 是游戏客户端自己用来定位资源的索引，每一项的 addre
 
 ## 脚本来源（快照，会漂移）
 
-`tools/` 与 `backend/config.py` 是从 [lucima-tools](https://github.com/lemon-o/lucima-tools) 同步过来的**快照**。
+`tools/` 与 `backend/config.py` 源自 [lucima-tools](https://github.com/lemon-o/lucima-tools)，但**本仓库完全自包含**：Actions 不 checkout 任何其它仓库、不需要任何 PAT，删掉 lucima-tools 这套脚本照样每天自己跑。
 
 之所以用快照：lucima-tools 是私有仓库，本仓库的 Actions 默认 token 只能访问自己，跨仓库取脚本就得挂一个会过期的 PAT。抓图脚本改动不频繁，快照更省事。
 
 **代价是漂移** —— 主仓库改了脚本，这里不会自动跟上。同步方式：
 
     cp ../lucima-tools/tools/fetch_assets.py tools/
+    cp ../lucima-tools/tools/sync_assets.py tools/
     cp ../lucima-tools/backend/config.py backend/config.py
 
-`backend/config.py` 是必需的：`fetch_assets.py` 的 `_config_constants()` 会用 ast 解析它取 `GAME_ROUTER` / `GAME_ORIGIN` / `GAME_REFERER` / `HTTP_TIMEOUT` 四个常量。
+- `backend/config.py` 是必需的：`fetch_assets.py` 的 `_config_constants()` 会用 ast 解析它取 `GAME_ROUTER` / `GAME_ORIGIN` / `GAME_REFERER` / `HTTP_TIMEOUT` 四个常量。
+- `tools/sync_assets.py` 也是必需的，但**在这里从不被执行**：`fetch_assets.py` 只用 ast 从它读 `AVATAR_ID_REMAP`（资产 ID -> 角色 ID）。少了它，重映射会**静默**失效——2026-09-17 实际翻过车：蜜娜的图（资产 `H801`）被原样写成 `H801.png`，而游戏 catalog 里那条对不上任何角色的 `H804` 被写成了 `H804.png`，仓库看起来一切正常、实际发出去一张废图和一张错图。现在 workflow 里有一道「校验重映射表可读」的门，读不到直接红。
 
 主仓库的 `tools/watch_new_units.py` **没有同步过来** —— 它依赖 miraheze，在 Actions 里必然 403，留在这儿是死代码。
 
@@ -41,7 +43,7 @@ catalog 是游戏客户端自己用来定位资源的索引，每一项的 addre
 
     avatars/     头像 PNG，文件名即角色 ID（H193.png）
     index.json   清单：ID -> 文件名 / 字节数 / sha256
-    tools/       fetch_assets.py（抓图）、build_index.py（生成清单）
+    tools/       fetch_assets.py（抓图）、sync_assets.py（只读它的 AVATAR_ID_REMAP）、build_index.py（生成清单）
     backend/     仅 config.py，供抓图脚本读取端点常量
 
 ## 客户端怎么用
@@ -51,9 +53,9 @@ catalog 是游戏客户端自己用来定位资源的索引，每一项的 addre
     index   https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/index.json
     avatar  https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/avatars/<ID>.png
 
-单张 20KB 上下。
+单张 20KB 上下。LucimaTools 客户端（桌面与 Android）已内置这条通道：`backend/material_sync.py` 在主程序启动后自动比对并补齐缺图，判「更新」用的是**上次下载时 index 里记的 sha256**，而不是本地文件的 sha256——两边 PNG 编码器不同、字节必然不同，拿本地 sha 比对会把存量全部误判成需要更新。
 
-**为什么走 jsDelivr 而不是 raw.githubusercontent.com**：后者在中国大陆的连通性不稳定，而这套东西的消费方包括手机端。jsDelivr 境内有节点，两个地址都保留、按顺序回退最稳。
+**为什么走 jsDelivr 而不是 raw.githubusercontent.com**：后者在中国大陆的连通性不稳定，而这套东西的消费方包括手机端。jsDelivr 境内有节点，两个地址都保留、按顺序回退最稳。注意 jsDelivr 对**分支引用**有约 12 小时缓存，新提交可能晚点才出现——客户端两个源都试、取条目多的那份，正好互补。
 
 ## 手动触发 / 本地复现
 
