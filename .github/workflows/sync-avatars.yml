@@ -107,14 +107,15 @@ jobs:
           # 头像总数/最近同步时间回写进 README 的「当前状态」标记块。
           # update_readme.py 幂等：块内容没变就不写盘，所以这里不会凭空多出提交。
           python tools/update_readme.py
-          # 四个家族目录 + 清单 + README 一起判空、一起 add：少一个就会出现
-          # 「有变更却没 stage -> git commit 报 nothing to commit -> 步骤失败」。
-          if [ -z "$(git status --porcelain avatars heads skills icons index.json README.md)" ]; then
+          # 判空与 add 都对整棵工作树做（build/ 已被 .gitignore 排除）：按目录
+          # 枚举的写法每加一个家族就要记得改这里，漏了就是"抓到了却没进仓库"——
+          # heads/skills 与 items/equip/equipset 各踩过一次。
+          if [ -z "$(git status --porcelain)" ]; then
             echo "没有新素材，无需提交。" >> "$GITHUB_STEP_SUMMARY"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add avatars heads skills icons index.json README.md
+          git add -A
           git commit -m "chore(素材): 同步新团员首发头像 [skip ci]"
           git push
