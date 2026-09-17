@@ -1,0 +1,9 @@
+# 统一 LF 行尾。
+# workflow 里 run: | 的多行 bash 若带 CRLF，在 runner 上会因行尾的 \r 报
+# "$'\r': command not found"；Windows 上默认的 core.autocrlf 正好会干这件事。
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.ico binary
+*.webp binary
