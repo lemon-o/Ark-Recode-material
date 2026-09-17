@@ -6,34 +6,51 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: 探测 miraheze 各端点
+      - name: 探测 miraheze 与游戏 CDN
         run: |
           FF="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
           RAW="https://arkrecodewiki.miraheze.org/w/index.php?title=Events/Banners&action=raw"
-          API="https://arkrecodewiki.miraheze.org/w/api.php?action=parse&page=Events/Banners&prop=wikitext&format=json"
-          REST="https://arkrecodewiki.miraheze.org/w/rest.php/v1/page/Events%2FBanners"
-          HTML="https://arkrecodewiki.miraheze.org/wiki/Events/Banners"
 
           probe () {
             label="$1"; shift
             code=$(curl -s -o /tmp/body -w "%{http_code}" --max-time 30 "$@")
             echo "=== $label -> HTTP $code ($(wc -c < /tmp/body) bytes)"
-            head -c 220 /tmp/body | tr '\n' ' '
-            echo
-            echo
+            head -c 200 /tmp/body | tr '\n' ' '
+            echo; echo
           }
 
-          probe "raw / curl 默认 UA" "$RAW"
-          probe "raw / 浏览器 UA" -A "$FF" "$RAW"
-          probe "raw / 浏览器 UA + 完整头" -A "$FF" \
-            -H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" \
-            -H "Accept-Language: en-US,en;q=0.9" \
-            -H "Referer: https://arkrecodewiki.miraheze.org/wiki/Events/Banners" \
-            "$RAW"
-          probe "api.php / 浏览器 UA" -A "$FF" "$API"
-          probe "rest.php / 浏览器 UA" -A "$FF" "$REST"
-          probe "HTML 页面 / 浏览器 UA" -A "$FF" "$HTML"
-          probe "raw / python-httpx UA" -A "python-httpx/0.28.1" "$RAW"
+          probe "wiki raw / 浏览器 UA" -A "$FF" "$RAW"
+          probe "wiki api.php / 浏览器 UA" -A "$FF" \
+            "https://arkrecodewiki.miraheze.org/w/api.php?action=parse&page=Events/Banners&prop=wikitext&format=json"
 
           echo "=== runner 出口 IP ==="
           curl -s --max-time 20 https://api.ipify.org; echo
+          echo
+
+          echo "=== 游戏 CDN：bootstrap ==="
+          ROUTER="https://game-arkre-labs.ecchi.xxx/Router/RouterHandler.ashx"
+          code=$(curl -s -o /tmp/boot -w "%{http_code}" --max-time 30 -X PUT \
+            -H "Content-Type: application/json" \
+            -d '{"data":{},"route":"GameServerDBSettingHandler.QueryBulletinInfoResult"}' \
+            "$ROUTER")
+          echo "bootstrap -> HTTP $code"
+          head -c 400 /tmp/boot; echo; echo
+
+          DOMAIN=$(grep -o '"PathDomain":"[^"]*"' /tmp/boot | head -1 | cut -d'"' -f4)
+          FIX=$(grep -o '"PatchPosFix":"[^"]*"' /tmp/boot | head -1 | cut -d'"' -f4)
+          CAT=$(grep -o '"NewCatalogName":"[^"]*"' /tmp/boot | head -1 | cut -d'"' -f4)
+          echo "PathDomain=$DOMAIN  PatchPosFix=$FIX  catalog=$CAT"
+          echo
+
+          echo "=== 游戏 CDN：WebGL 入口 ==="
+          curl -s -o /dev/null -w "webgl index -> HTTP %{http_code} (%{size_download} bytes)\n" \
+            --max-time 30 "https://game-arkre-labs.ecchi.xxx/WebGL/index.html"
+
+          echo "=== 游戏 CDN：补丁 catalog（取前 1KB）==="
+          CATURL="${DOMAIN}${FIX}/WebGL/${CAT}.json"
+          echo "catalog url: $CATURL"
+          curl -s -o /dev/null -w "catalog -> HTTP %{http_code} speed=%{speed_download}B/s\n" \
+            --max-time 90 -r 0-1024 "$CATURL"
+
+          echo "=== 游戏 CDN：补丁目录连通性（HEAD）==="
+          curl -s -o /dev/null -w "patch root -> HTTP %{http_code}\n" --max-time 30 -I "${DOMAIN}${FIX}/"
