@@ -87,10 +87,12 @@ jobs:
           mkdir -p build
           # 家族清单：avatars=角色头像，heads=三尺寸头像框（B 大号不收），
           # skills=技能图标，icons=功能/星座图标，atlas=道具/装备/套装图标
-          # （Icon/{Item,Equip,EquipSet}.spriteatlas 整包枚举 Sprite）。
-          # 全部是 `Icon` 白名单——CG/立绘/羁绊（18+）一律不在白名单里。
+          # （Icon/{Item,Equip,EquipSet}.spriteatlas 整包枚举 Sprite），
+          # banner=卡池横幅（Banner/BN_Summon_NNN 每池一个 bundle，整包枚举
+          # 简中 Texture2D）。全部是 `Icon`/`Banner` 白名单——CG/立绘/羁绊
+          # （18+）一律不在白名单里，活动宣传图 BN_Activity_* 也不收。
           python tools/fetch_assets.py \
-            --only avatars,heads,skills,icons,atlas,data \
+            --only avatars,heads,skills,icons,atlas,banner,data \
             --target "$GITHUB_WORKSPACE" \
             ${{ inputs.dry_run && '--dry-run' || '' }} | tee build/report.txt
           {

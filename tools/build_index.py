@@ -31,6 +31,7 @@ SECTIONS: tuple[tuple[str, str], ...] = (
     ("equip", "equip"),
     ("equipset", "equipset"),
     ("uiconz", "uiconz"),
+    ("banners", "banners"),
 )
 
 

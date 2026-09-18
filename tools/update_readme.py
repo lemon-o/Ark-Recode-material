@@ -42,6 +42,7 @@ _LABELS = {
     "equip": "装备图标",
     "equipset": "套装图标",
     "uiconz": "赛季框",
+    "banners": "卡池横幅",
 }
 
 

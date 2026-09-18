@@ -1,11 +1,11 @@
 # Ark Recode Material
 
-《Ark Re:Code》游戏素材的自动同步仓库。GitHub Actions 定时抓取，无人值守，游戏上新后新素材会自动出现在对应目录里（当前收角色头像、头像框、技能图标、功能图标）。
+《Ark Re:Code》游戏素材的自动同步仓库。GitHub Actions 定时抓取，无人值守，游戏上新后新素材会自动出现在对应目录里（当前收角色头像、头像框、技能图标、功能图标、道具/装备/套装图标、赛季框、卡池横幅）。
 
 <!-- SYNC-STATS:START -->
 <!-- 本块由 sync-avatars 工作流自动更新，请勿手改 -->
-- 素材总数：3577（头像 228 / 头像框 1051 / 技能图标 689 / 功能图标 34 / 道具图标 800 / 装备图标 609 / 套装图标 17 / 赛季框 149）
-- 最近扫描：2026-09-18T22:56:31+08:00（北京时间）
+- 素材总数：3715（头像 228 / 头像框 1051 / 技能图标 689 / 功能图标 34 / 道具图标 800 / 装备图标 609 / 套装图标 17 / 赛季框 149 / 卡池横幅 138）
+- 最近扫描：2026-09-19T00:24:40+08:00（北京时间）
 - 清单：`https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/index.json`
 <!-- SYNC-STATS:END -->
 
@@ -74,7 +74,7 @@ remapped: H801 -> H804.png; skipped, output already taken: H804 -> H804.png
 
 ### 6. 18+ 防线：白名单，不是黑名单
 
-catalog 里 7000+ 张 PNG 大半是 CG / 立绘 / 羁绊图（`*_Sex_LoveTalk.png`、`Assets/Game/CG/A*/` 羁绊 CG、`Hero/<ID>/<ID>/CG_*.png`），那些是 18+ 内容。脚本用**白名单**收图：只收文件名以 `Icon` 开头、且路径落在 `Hero/*/Img` 或 `Assets/Game/Icon/` 下的资产——CG 与羁绊图从来不叫这个名字，白名单结构上就碰不到它们。新增家族时必须维持这条纪律。
+catalog 里 7000+ 张 PNG 大半是 CG / 立绘 / 羁绊图（`*_Sex_LoveTalk.png`、`Assets/Game/CG/A*/` 羁绊 CG、`Hero/<ID>/<ID>/CG_*.png`），那些是 18+ 内容。脚本用**白名单**收图：只收文件名以 `Icon` 开头、且路径落在 `Hero/*/Img` 或 `Assets/Game/Icon/` 下的资产；卡池横幅单独走 `Assets/Game/Banner/BN_Summon_*` 白名单前缀，同一目录树下的**活动宣传图 `BN_Activity_*` 不收**（那是运营物料，不是卡池横幅）。CG 与羁绊图从来不叫这些名字，白名单结构上就碰不到它们。新增家族时必须维持这条纪律。
 
 ## 目录
 
@@ -85,6 +85,9 @@ catalog 里 7000+ 张 PNG 大半是 CG / 立绘 / 羁绊图（`*_Sex_LoveTalk.pn
     items/       道具图标（Item.spriteatlas 里的 Sprite，按游戏图标键命名，如 45StarHeroTicket）
     equip/       装备图标（Equip.spriteatlas，名字去掉下划线以对齐应用约定，E001_1 -> E0011）
     equipset/    套装图标（EquipSet.spriteatlas，Attack / Critical / ...）
+    uiconz/      赛季头像框（UI_iconz.spriteatlas，如 Frame_031）
+    banners/     卡池横幅（Banner/BN_Summon_NNN 每池一个 bundle，512x256 简中图，
+                 命名 BN_Summon_H804.png；卡池通用图如 MultiSummonMystic 同目录）
     index.json   清单：分区 -> 键 -> 文件名 / 字节数 / sha256
     tools/       fetch_assets.py（抓图）、build_index.py（生成清单）、update_readme.py（回写「当前状态」）、sync_assets.py（供读取 AVATAR_ID_REMAP，在此仓库从不执行）
     backend/     config.py：抓图脚本要用的四个端点常量（GAME_ROUTER / GAME_ORIGIN / GAME_REFERER / HTTP_TIMEOUT）
@@ -97,7 +100,7 @@ Actions 页 -> Sync Avatars -> Run workflow，勾 `dry_run` 只扫描不抓取�
 
 本地跑一遍（需要 Python 3.12 与 `pip install httpx UnityPy`）：
 
-    python tools/fetch_assets.py --only avatars,heads,skills,icons --target .
+    python tools/fetch_assets.py --only avatars,heads,skills,icons,atlas,banner,data --target .
     python tools/build_index.py
 
 首次运行会把 catalog 里的白名单素材一次性补齐（~2100 张），之后每次只增量抓新增的。

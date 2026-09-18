@@ -147,6 +147,30 @@ ICON_COLUMN_PATTERN = re.compile(r"^([A-Za-z_/]+)\[([^\]]+)\]$")
 # 客户端即可把"前端引用的道具图"对应到 CDN 上的 atlas 家族文件。
 ITEM_TABLE_ADDRESS = "Assets/Game/StaticData/Item.txt"
 
+# ---------------------------------------------------------------- 卡池 banner
+#
+# 卡池 banner 是 `Assets/Game/Banner/BN_Summon_NNN/BN_Summon_H###_<LANG>.prefab`
+# —— prefab 自己不是图，它引用同 bundle 里的 `Texture2D`/`Sprite`：
+#
+#   * 一个 prefab bundle 装的是**整个池**的 banner，不是单张。BN_Summon_001 的
+#     bundle 里躺着 H001~H010 共 10 张贴图，BN_Summon_009 里有 H183~H196 +
+#     H804/H806 共 16 张。所以按 prefab 逐条抓会重复下载同一个 bundle 十几次，
+#     这里改成**按池**抓：每池取一个代表 prefab，解析出 bundle 集，整包枚举。
+#   * 每张贴图带 10 个语言变体（CHS/CHT/DEU/ENG/FRA/JPN/KOR/SPA/THA/VIE），
+#     名字形如 `BN_Summon_H804_CHS`，512x256。仓库只收简中：其余语言是同一张
+#     底图的文字替换件，存下来只是体积；真要别的语言，改 BANNER_LANGUAGE 即可。
+#   * 输出名去掉语言后缀 -> `BN_Summon_H804.png`。语言标记在文件名里其实是
+#     冗余信息（整棵仓库只有一种语言），去掉了反而更好对应角色 ID `H804`。
+BANNER_LANGUAGE = "CHS"
+BANNER_POOL_PATTERN = re.compile(
+    r"^Assets/Game/Banner/(BN_Summon_\d+)/(BN_Summon_[\w]+)_CHS\.prefab$"
+)
+# 贴图名尾部语言标记：只认 catalog 里真实出现过的写法（含 007 池约定俗成的
+# FR/JAP 简写，以及 MultiSummonNormal 那张把 DEU 写成了 DE 的错拼）。
+_BANNER_SUFFIX_PATTERN = re.compile(
+    r"_(CHS|CHT|DEU|DE|ENG|FRA|FR|JPN|JAP|KOR|SPA|THA|VIE)$"
+)
+
 
 def _config_constants() -> dict[str, object]:
     """Read the game endpoints out of `backend/config.py` without importing it.
@@ -642,6 +666,104 @@ def _atlas_family(catalog: ContentCatalog) -> Family:
     return Family("atlas", addresses, note=note)
 
 
+def _banner_family(catalog: ContentCatalog) -> Family:
+    """卡池 banner：每池取一个代表 prefab，整包枚举出该池的全部简中贴图。
+
+    一个池的 banner 贴图全在它**自己那个** prefab bundle 里（跨池不共享），
+    所以每池登记一条代表地址就够。代表地址取该池排序最靠前的 CHS prefab：
+    Addressables 的 `bundles_for()` 会把这个 prefab 的依赖 bundle 集一并给出，
+    其中包含真正装着贴图的那一个（001/003/005 池还带一个 duplicate group 兄弟）。
+    """
+    pools: dict[str, str] = {}
+    for address in catalog._ids:  # noqa: SLF001 — 要按池归并，match() 只吐一个捕获组
+        found = BANNER_POOL_PATTERN.fullmatch(address)
+        if found:
+            pool = found.group(1)
+            if pool not in pools or address < pools[pool]:
+                pools[pool] = address
+    return Family(
+        "banner",
+        {f"{pool}.bannerbundle": address for pool, address in sorted(pools.items())},
+        note=f"{len(pools)} pools, language {BANNER_LANGUAGE}",
+    )
+
+
+def extract_banner_textures(bundles: list[Path]) -> dict[str, bytes]:
+    """从一个池的 bundle 里枚举出该池全部简中 banner 贴图。
+
+    只认名字以 ``_<BANNER_LANGUAGE>`` 结尾的 `Texture2D`——Sprite 副本是同一张
+    底图的切图视图（多一圈 505x256 的 padding），用 Texture2D 才能拿到完整
+    512x256 原图。输出名去掉语言后缀。
+    """
+    environment = _import_unitypy().load(*[str(path) for path in bundles])
+    exported: dict[str, bytes] = {}
+    suffix = f"_{BANNER_LANGUAGE}"
+    for obj in environment.objects:
+        if obj.type.name != TEXTURE_TYPE.rsplit(".", 1)[1]:
+            continue
+        try:
+            data = obj.read()
+            name = getattr(data, "m_Name", "")
+            if not name or not name.endswith(suffix):
+                continue
+            # 去掉语言后缀，顺带挡住"名字里恰好含 _CHS 但不在结尾"的误伤。
+            base = _BANNER_SUFFIX_PATTERN.sub("", name)
+            if base == name:
+                continue
+            image = _safe_data_image(data)
+            if image is None:
+                continue
+            stream = BytesIO()
+            image.save(stream, format="PNG")
+            exported[f"{base}.png"] = stream.getvalue()
+        except Exception:
+            continue
+    return exported
+
+
+def _download_banner(
+    catalog: ContentCatalog,
+    server: PatchServer,
+    base: str,
+    jobs: list[tuple[str, str, str]],
+    workers: int,
+) -> dict[tuple[str, str], bytes | None]:
+    """下载每个池的 bundle 并枚举其中的 banner 贴图（banner 家族专用）。
+
+    结果键是 ``("banners", "<BN_Summon_H###>.png")``。某池失败时只记
+    ``(目录, "<池名>.bannerbundle")`` = None，让 ``_write`` 计一次失败。
+    """
+    results: dict[tuple[str, str], bytes | None] = {}
+
+    def run(item: tuple[str, str, str]):
+        _category, output_name, address = item
+        bundles = catalog.bundles_for(address)
+        if not bundles:
+            return output_name, None, "no bundle"
+        try:
+            paths = [server.fetch_bundle(base, internal) for internal in bundles]
+        except (httpx.HTTPError, OSError, RuntimeError) as exc:
+            return output_name, None, str(exc)
+        try:
+            return output_name, extract_banner_textures(paths), None
+        except Exception as exc:  # UnityPy raises a wide range of errors
+            return output_name, None, str(exc)
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=max(1, workers)) as pool:
+        for output_name, textures, error in pool.map(run, jobs):
+            if error:
+                print(f"  banner {output_name}: {error}", file=sys.stderr)
+                results[("banners", output_name)] = None
+                continue
+            if not textures:
+                print(f"  banner {output_name}: no {BANNER_LANGUAGE} textures", file=sys.stderr)
+                results[("banners", output_name)] = None
+                continue
+            for banner_name, payload in textures.items():
+                results[("banners", banner_name)] = payload
+    return results
+
+
 def extract_atlas_sprites(bundles: list[Path]) -> dict[str, bytes]:
     """枚举图集里的每个 Sprite，导出成 ``<Sprite名>.png``。"""
     environment = _import_unitypy().load(*[str(path) for path in bundles])
@@ -730,6 +852,7 @@ def main() -> int:
                 ),
                 "icons": lambda: _game_icon_family(catalog),
                 "atlas": lambda: _atlas_family(catalog),
+                "banner": lambda: _banner_family(catalog),
                 "data": lambda: Family("data", {"Item.txt": ITEM_TABLE_ADDRESS},
                                        note="StaticData/Item.txt -> data/item-meta.json"),
                 "ui": lambda: _ui_family(catalog),
@@ -754,17 +877,23 @@ def main() -> int:
                 return 0
 
             # atlas 家族走独立的"整包枚举 Sprite"管线（_download_atlas），
+            # banner 家族走"整包枚举 Texture2D"管线（_download_banner），
             # data 家族走独立的"TextAsset 蒸馏"管线（_download_data）——
             # 都不能进常规管线（那里按地址名找图片资产）。
             regular_jobs = [
-                job for job in jobs if job[0] not in ("atlas", "data")
+                job for job in jobs if job[0] not in ("atlas", "banner", "data")
             ]
             atlas_jobs = [job for job in jobs if job[0] == "atlas"]
+            banner_jobs = [job for job in jobs if job[0] == "banner"]
             data_jobs = [job for job in jobs if job[0] == "data"]
             results = _download(catalog, server, base, regular_jobs, args.jobs)
             if atlas_jobs:
                 results.update(
                     _download_atlas(catalog, server, base, atlas_jobs, args.jobs)
+                )
+            if banner_jobs:
+                results.update(
+                    _download_banner(catalog, server, base, banner_jobs, args.jobs)
                 )
             if data_jobs:
                 results.update(
