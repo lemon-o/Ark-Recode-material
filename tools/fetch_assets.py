@@ -1124,10 +1124,20 @@ def _download_data(
     return results
 
 
+# 官方表里**没写** LocalizationBanner 的常驻池 —— 用仓库自备封面（用户自绘，512x256，
+# 与官方横幅同规格）。键是卡池 StaticID，值是 banners/ 下的文件名（不含扩展名）。
+# 只补官方没给图的这几个常驻池，**绝不覆盖**官方映射。
+SUMMON_BANNER_FALLBACK: dict[str, str] = {
+    "NormalSummon": "BN_Summon_NormalSummon",
+    "GalaxySummon": "BN_Summon_GalaxySummon",
+}
+
+
 def _distill_summon_commodities(text: str) -> tuple[dict[str, str], dict[str, dict]] | None:
     """Commodity.txt -> (banners, pools)。
 
-    banners: {StaticID: "BN_Summon_XXX"}（LocalizationBanner 末段，无 banner 的档位不进）
+    banners: {StaticID: "BN_Summon_XXX"}（官方 LocalizationBanner 末段；官方没给图的
+             常驻池按 SUMMON_BANNER_FALLBACK 补自备封面）
     pools:   {StaticID: {type, cap?, activityId?, banner?}} —— 卡池档位注册表，
              客户端用它判定"排期里的哪些 ActivityID 才是真卡池"。
 
@@ -1165,7 +1175,11 @@ def _distill_summon_commodities(text: str) -> tuple[dict[str, str], dict[str, di
             found = BANNER_PATH_NAME.search(banner_path)
             if found:
                 banner = found.group(1)
-                banners[sid] = banner
+        if not banner:
+            # 官方没给横幅（常规/银河招募等常驻池）→ 落到仓库自备封面
+            banner = SUMMON_BANNER_FALLBACK.get(sid)
+        if banner:
+            banners[sid] = banner
         entry: dict[str, object] = {"type": _summon_pool_type_name(sid)}
         activity_id = cols[activity_at]
         if activity_id and activity_id != sid:

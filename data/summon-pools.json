@@ -475,6 +475,7 @@
    "type": "友情招募卡池"
   },
   "GalaxySummon": {
+   "banner": "BN_Summon_GalaxySummon",
    "type": "银河招募卡池"
   },
   "MultiSummon1st": {
@@ -736,6 +737,7 @@
    "type": "神秘招募卡池"
   },
   "NormalSummon": {
+   "banner": "BN_Summon_NormalSummon",
    "cap": 180,
    "type": "常规招募卡池"
   },
@@ -746,5 +748,5 @@
    "type": "新手招募卡池"
   }
  },
- "updated": "2026-09-19T13:07:01+08:00"
+ "updated": "2026-09-19T16:30:57+08:00"
 }

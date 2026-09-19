@@ -96,6 +96,7 @@
   "AcyivitySummonH804": "BN_Summon_H804",
   "FriendSummon": "BN_Summon_H810",
   "FriendSummon2026": "BN_Summon_H811",
+  "GalaxySummon": "BN_Summon_GalaxySummon",
   "MultiSummon1st": "BN_Summon_MultiSummon1st",
   "MultiSummonLimit1": "BN_Summon_MultiSummonLimit",
   "MultiSummonLimit1DMM": "BN_Summon_MultiSummonLimit",
@@ -148,7 +149,8 @@
   "MysticSummonH190": "BN_Summon_H190",
   "MysticSummonH191": "BN_Summon_H191",
   "MysticSummonH196": "BN_Summon_H196",
-  "MysticSummonH806": "BN_Summon_H806"
+  "MysticSummonH806": "BN_Summon_H806",
+  "NormalSummon": "BN_Summon_NormalSummon"
  },
- "updated": "2026-09-19T13:07:01+08:00"
+ "updated": "2026-09-19T16:30:57+08:00"
 }
