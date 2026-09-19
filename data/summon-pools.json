@@ -1,0 +1,750 @@
+{
+ "pools": {
+  "ActivitySummonComboH122H149H153": {
+   "banner": "BN_Summon_MultiSummonLimit",
+   "type": "限定组合卡池"
+  },
+  "ActivitySummonComboH123H146H148": {
+   "banner": "BN_Summon_MultiSummonLimit",
+   "type": "限定组合卡池"
+  },
+  "ActivitySummonComboH142H147H152": {
+   "banner": "BN_Summon_MultiSummonLimit",
+   "type": "限定组合卡池"
+  },
+  "ActivitySummonComboH148H151H167": {
+   "banner": "BN_Summon_MultiSummonLimit",
+   "type": "限定组合卡池"
+  },
+  "AcyivitySummon0.5Anniversary": {
+   "banner": "BN_Summon_0_5FES",
+   "type": "限定卡池"
+  },
+  "AcyivitySummon2025Summer": {
+   "banner": "BN_Summon_MultiSummonLimit",
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH001": {
+   "banner": "BN_Summon_H001",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH002": {
+   "banner": "BN_Summon_H002",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH003": {
+   "banner": "BN_Summon_H003",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH004": {
+   "banner": "BN_Summon_H004",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH005": {
+   "banner": "BN_Summon_H005",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH006": {
+   "banner": "BN_Summon_H006",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH007": {
+   "banner": "BN_Summon_H007",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH008": {
+   "banner": "BN_Summon_H008",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH009": {
+   "banner": "BN_Summon_H009",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH010": {
+   "banner": "BN_Summon_H010",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH011": {
+   "banner": "BN_Summon_H011",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH012": {
+   "banner": "BN_Summon_H012",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH013": {
+   "banner": "BN_Summon_H013",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH014": {
+   "banner": "BN_Summon_H014",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH015": {
+   "banner": "BN_Summon_H015",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH016": {
+   "banner": "BN_Summon_H016",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH017": {
+   "banner": "BN_Summon_H017",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH018": {
+   "banner": "BN_Summon_H018",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH106": {
+   "banner": "BN_Summon_H106",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH107": {
+   "banner": "BN_Summon_H107",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH109": {
+   "banner": "BN_Summon_H109",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH110": {
+   "banner": "BN_Summon_H110",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH111": {
+   "banner": "BN_Summon_H111",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH112": {
+   "banner": "BN_Summon_H112",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH117": {
+   "banner": "BN_Summon_H117",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH118": {
+   "banner": "BN_Summon_H118",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH119": {
+   "banner": "BN_Summon_H119",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH120": {
+   "banner": "BN_Summon_H120",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH121": {
+   "banner": "BN_Summon_H121",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH122": {
+   "banner": "BN_Summon_H122",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH123": {
+   "banner": "BN_Summon_H123",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH129": {
+   "banner": "BN_Summon_H129",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH130": {
+   "banner": "BN_Summon_H130",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH131": {
+   "banner": "BN_Summon_H131",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH132": {
+   "banner": "BN_Summon_H132",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH135": {
+   "banner": "BN_Summon_H135",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH136": {
+   "banner": "BN_Summon_H136",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH139": {
+   "banner": "BN_Summon_H139",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH141": {
+   "banner": "BN_Summon_H141",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH142": {
+   "banner": "BN_Summon_H142",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH143": {
+   "banner": "BN_Summon_H143",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH144": {
+   "banner": "BN_Summon_H144",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH145": {
+   "banner": "BN_Summon_H145",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH146": {
+   "banner": "BN_Summon_H146",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH147": {
+   "banner": "BN_Summon_H147",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH148": {
+   "banner": "BN_Summon_H148",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH149": {
+   "banner": "BN_Summon_H149",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH151": {
+   "banner": "BN_Summon_H151",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH152": {
+   "banner": "BN_Summon_H152",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH153": {
+   "banner": "BN_Summon_H153",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH156": {
+   "banner": "BN_Summon_H156",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH157": {
+   "banner": "BN_Summon_H157",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH158": {
+   "banner": "BN_Summon_H158",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH159": {
+   "banner": "BN_Summon_H159",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH162": {
+   "banner": "BN_Summon_H162",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH163": {
+   "banner": "BN_Summon_H163",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH164": {
+   "banner": "BN_Summon_H164",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH167": {
+   "banner": "BN_Summon_H167",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH168": {
+   "banner": "BN_Summon_H168",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH169": {
+   "banner": "BN_Summon_H169",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH172": {
+   "banner": "BN_Summon_H172",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH173": {
+   "banner": "BN_Summon_H173",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH174": {
+   "banner": "BN_Summon_H174",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH175": {
+   "banner": "BN_Summon_H175",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH176": {
+   "banner": "BN_Summon_H176",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH177": {
+   "banner": "BN_Summon_H177",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH178": {
+   "banner": "BN_Summon_H178",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH179": {
+   "banner": "BN_Summon_H179",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH180": {
+   "banner": "BN_Summon_H180",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH187": {
+   "banner": "BN_Summon_H187",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH188": {
+   "banner": "BN_Summon_H188",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH189": {
+   "banner": "BN_Summon_H189",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH192": {
+   "banner": "BN_Summon_H192",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH193": {
+   "banner": "BN_Summon_H193",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH194": {
+   "banner": "BN_Summon_H194",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH195": {
+   "banner": "BN_Summon_H195",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH601": {
+   "banner": "BN_Summon_H601",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH602": {
+   "banner": "BN_Summon_H602",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH604": {
+   "banner": "BN_Summon_H604",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH605": {
+   "banner": "BN_Summon_H605",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH606": {
+   "banner": "BN_Summon_H606",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH607": {
+   "banner": "BN_Summon_H607",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH608": {
+   "banner": "BN_Summon_H608",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH609": {
+   "banner": "BN_Summon_H609",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH610": {
+   "banner": "BN_Summon_H610",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH612": {
+   "banner": "BN_Summon_H612",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH613": {
+   "banner": "BN_Summon_H613",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "AcyivitySummonH804": {
+   "banner": "BN_Summon_H804",
+   "cap": 120,
+   "type": "限定卡池"
+  },
+  "FriendSummon": {
+   "activityId": "Version_FrIendSummon",
+   "banner": "BN_Summon_H810",
+   "type": "友情招募卡池"
+  },
+  "FriendSummon2026": {
+   "activityId": "Version_FrIendSummon2026",
+   "banner": "BN_Summon_H811",
+   "type": "友情招募卡池"
+  },
+  "GalaxySummon": {
+   "type": "银河招募卡池"
+  },
+  "MultiSummon1st": {
+   "banner": "BN_Summon_MultiSummon1st",
+   "type": "限定组合卡池"
+  },
+  "MultiSummonLimit1": {
+   "banner": "BN_Summon_MultiSummonLimit",
+   "type": "限定组合卡池"
+  },
+  "MultiSummonLimit1DMM": {
+   "banner": "BN_Summon_MultiSummonLimit",
+   "type": "限定组合卡池"
+  },
+  "MultiSummonLimit1NU": {
+   "banner": "BN_Summon_MultiSummonLimit",
+   "type": "限定组合卡池"
+  },
+  "MultiSummonMystic": {
+   "banner": "BN_Summon_MultiSummonMysticLight",
+   "cap": 200,
+   "type": "神秘组合卡池"
+  },
+  "MultiSummonMystic1": {
+   "banner": "BN_Summon_MultiSummonMystic",
+   "cap": 200,
+   "type": "神秘组合卡池"
+  },
+  "MultiSummonMysticDMM": {
+   "banner": "BN_Summon_MultiSummonMystic",
+   "cap": 200,
+   "type": "神秘组合卡池"
+  },
+  "MultiSummonMysticDark": {
+   "banner": "BN_Summon_MultiSummonMysticDark",
+   "cap": 200,
+   "type": "神秘组合卡池"
+  },
+  "MultiSummonMysticNU": {
+   "banner": "BN_Summon_MultiSummonMystic",
+   "cap": 200,
+   "type": "神秘组合卡池"
+  },
+  "MultiSummonNewbie": {
+   "banner": "BN_Summon_MultiSummonNewbie",
+   "type": "限定组合卡池"
+  },
+  "MultiSummonNewbieLimit": {
+   "banner": "BN_Summon_MultiSummonNewbieLimit",
+   "type": "限定组合卡池"
+  },
+  "MultiSummonNormal": {
+   "banner": "BN_Summon_MultiSummonNormal",
+   "type": "限定组合卡池"
+  },
+  "MysticSummon1st": {
+   "banner": "BN_Summon_MysticSummon1st",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH019": {
+   "banner": "BN_Summon_H019",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH020": {
+   "banner": "BN_Summon_H020",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH021": {
+   "banner": "BN_Summon_H021",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH022": {
+   "banner": "BN_Summon_H022",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH023": {
+   "banner": "BN_Summon_H023",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH024": {
+   "banner": "BN_Summon_H024",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH025": {
+   "banner": "BN_Summon_H025",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH055": {
+   "banner": "BN_Summon_H055",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH108": {
+   "banner": "BN_Summon_H108",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH113": {
+   "banner": "BN_Summon_H113",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH114": {
+   "banner": "BN_Summon_H114",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH115": {
+   "banner": "BN_Summon_H115",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH116": {
+   "banner": "BN_Summon_H116",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH124": {
+   "banner": "BN_Summon_H124",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH125": {
+   "banner": "BN_Summon_H125",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH126": {
+   "banner": "BN_Summon_H126",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH127": {
+   "banner": "BN_Summon_H127",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH128": {
+   "banner": "BN_Summon_H128",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH133": {
+   "banner": "BN_Summon_H133",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH134": {
+   "banner": "BN_Summon_H134",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH137": {
+   "banner": "BN_Summon_H137",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH138": {
+   "banner": "BN_Summon_H138",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH140": {
+   "banner": "BN_Summon_H140",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH150": {
+   "banner": "BN_Summon_H150",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH160": {
+   "banner": "BN_Summon_H160",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH161": {
+   "banner": "BN_Summon_H161",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH165": {
+   "banner": "BN_Summon_H165",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH166": {
+   "banner": "BN_Summon_H166",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH170": {
+   "banner": "BN_Summon_H170",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH171": {
+   "banner": "BN_Summon_H171",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH181": {
+   "banner": "BN_Summon_H181",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH182": {
+   "banner": "BN_Summon_H182",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH183": {
+   "banner": "BN_Summon_H183",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH184": {
+   "banner": "BN_Summon_H184",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH185": {
+   "banner": "BN_Summon_H185",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH186": {
+   "banner": "BN_Summon_H186",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH190": {
+   "banner": "BN_Summon_H190",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH191": {
+   "banner": "BN_Summon_H191",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH196": {
+   "banner": "BN_Summon_H196",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "MysticSummonH806": {
+   "banner": "BN_Summon_H806",
+   "cap": 200,
+   "type": "神秘招募卡池"
+  },
+  "NormalSummon": {
+   "cap": 180,
+   "type": "常规招募卡池"
+  },
+  "NormalSummon_1": {
+   "type": "常规招募卡池"
+  },
+  "SummonNewbie": {
+   "type": "新手招募卡池"
+  }
+ },
+ "updated": "2026-09-19T12:12:26+08:00"
+}

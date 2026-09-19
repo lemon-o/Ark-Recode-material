@@ -146,6 +146,18 @@ ICON_COLUMN_PATTERN = re.compile(r"^([A-Za-z_/]+)\[([^\]]+)\]$")
 # `Icon/Item[<Sprite名>]`。把它蒸馏成 {StaticID: 图标键} 的 JSON 一并发布，
 # 客户端即可把"前端引用的道具图"对应到 CDN 上的 atlas 家族文件。
 ITEM_TABLE_ADDRESS = "Assets/Game/StaticData/Item.txt"
+# 卡池档位注册表真源：Commodity.txt 里 `Store == Summon` 的行就是全部卡池档位
+# （2026-09-19 核准 163 行）。它一次性给出 ID / ActivityID / GuaranteedCount / LocalizationBanner，
+# 比 Activity.txt 的 `Type==SummonPickUp`（只有 95 条、漏掉整族 MysticSummon/MultiSummon）全，
+# 且 ID 列直接就是快照 `StoreRecordContainer` 的 StaticID。
+COMMODITY_TABLE_ADDRESS = "Assets/Game/StaticData/Commodity.txt"
+SUMMON_STORE_ID = "Summon"
+# 非卡池档位：测试用档（TestSummon1~9），不进产物。
+SUMMON_EXCLUDED_PREFIXES = ("TestSummon",)
+# LocalizationBanner 形如 "Banner/BN_Summon_006/BN_Summon_MultiSummonLimit"，
+# 取末段即 CDN 上 banners/ 的文件名（不含扩展名）——CDN 图是从 prefab 抽贴图保留原名，
+# 同一命名空间天然对齐，故精确查表 100% 命中，无需任何文件名猜测规则。
+BANNER_PATH_NAME = re.compile(r"/([^/]+)$")
 
 # ---------------------------------------------------------------- 卡池 banner
 #
@@ -899,6 +911,9 @@ def main() -> int:
                 results.update(
                     _download_data(catalog, server, base, data_jobs, args.jobs)
                 )
+                results.update(
+                    _download_summon_banners(catalog, server, base, args.jobs)
+                )
         return _write(args.target, results)
     except (RuntimeError, httpx.HTTPError, OSError) as exc:
         parser.error(str(exc))
@@ -1106,6 +1121,164 @@ def _download_data(
                 results[("data", output_name)] = None
                 continue
             results[("data", "item-meta.json")] = payload
+    return results
+
+
+def _distill_summon_commodities(text: str) -> tuple[dict[str, str], dict[str, dict]] | None:
+    """Commodity.txt -> (banners, pools)。
+
+    banners: {StaticID: "BN_Summon_XXX"}（LocalizationBanner 末段，无 banner 的档位不进）
+    pools:   {StaticID: {type, cap?, activityId?, banner?}} —— 卡池档位注册表，
+             客户端用它判定"排期里的哪些 ActivityID 才是真卡池"。
+
+    只收 `Store == Summon` 且不属于测试档的行。cap 直接取官方 `GuaranteedCount`
+    （空字符串 = 该池本就无保底，不写 cap 键）。
+    """
+    lines = text.splitlines()
+    if not lines:
+        return None
+    header = lines[0].split("@")
+    try:
+        id_at = header.index("ID")
+        store_at = header.index("Store")
+        activity_at = header.index("ActivityID")
+        guaranteed_at = header.index("GuaranteedCount")
+        banner_at = header.index("LocalizationBanner")
+    except ValueError:
+        return None
+
+    limit = max(id_at, store_at, activity_at, guaranteed_at, banner_at)
+    banners: dict[str, str] = {}
+    pools: dict[str, dict] = {}
+    for line in lines[1:]:
+        cols = line.split("@")
+        if len(cols) <= limit:
+            continue
+        if cols[store_at] != SUMMON_STORE_ID:
+            continue
+        sid = cols[id_at]
+        if not sid or any(sid.startswith(p) for p in SUMMON_EXCLUDED_PREFIXES):
+            continue
+        banner_path = cols[banner_at]
+        banner = None
+        if banner_path:
+            found = BANNER_PATH_NAME.search(banner_path)
+            if found:
+                banner = found.group(1)
+                banners[sid] = banner
+        entry: dict[str, object] = {"type": _summon_pool_type_name(sid)}
+        activity_id = cols[activity_at]
+        if activity_id and activity_id != sid:
+            entry["activityId"] = activity_id
+        guaranteed = cols[guaranteed_at]
+        if guaranteed.isdigit():
+            entry["cap"] = int(guaranteed)
+        if banner:
+            entry["banner"] = banner
+        pools[sid] = entry
+    if not pools:
+        return None
+    return banners, pools
+
+
+# 卡池类型名按 ID 前缀（口径与 backend/tasks.py 的 SUMMON_POOL_FAMILIES 一致）。
+# 顺序敏感：MultiSummonMystic 必须排在 MultiSummon 前，否则会被更短的前缀吃掉。
+SUMMON_POOL_TYPES: tuple[tuple[str, str], ...] = (
+    ("AcyivitySummon", "限定卡池"),
+    ("ActivitySummonCombo", "限定组合卡池"),
+    ("MysticSummon", "神秘招募卡池"),
+    ("MultiSummonMystic", "神秘组合卡池"),
+    ("MultiSummon", "限定组合卡池"),
+    ("NormalSummon", "常规招募卡池"),
+    ("GalaxySummon", "银河招募卡池"),
+    ("FriendSummon", "友情招募卡池"),
+    ("SummonNewbie", "新手招募卡池"),
+)
+
+
+def _summon_pool_type_name(sid: str) -> str:
+    for head, name in SUMMON_POOL_TYPES:
+        if sid.startswith(head):
+            return name
+    return "未分类"
+
+
+def _download_summon_banners(
+    catalog: ContentCatalog,
+    server: PatchServer,
+    base: str,
+    workers: int,
+) -> dict[tuple[str, str], bytes | None]:
+    """取 StaticData/Commodity.txt，蒸馏成两份 data 产物：
+
+      * data/summon-banners.json —— {StaticID: banner 文件名}，供客户端出卡池横幅图
+      * data/summon-pools.json   —— 卡池档位注册表，供客户端判定"排期里的真卡池"
+
+    与 _download_data 并列、互不干扰：同一 bundle 里另找名为 Commodity 的 TextAsset。
+    两份产物都在 data 分区（不进 index.json），客户端走 material_sync 的 HTTP 直拉 + TTL。
+
+    [为什么从 Activity.txt 换成 Commodity.txt] 旧源按 `Type==SummonPickUp` 只捞到 95 条，
+    漏掉整族 MysticSummon*(40) / MultiSummon*(8) / ActivitySummonCombo*(4)，导致神秘池
+    没横幅（实测 MysticSummonH185 缺图）。Commodity.txt 的 Store==Summon 有 163 行、
+    152 条带 banner，且 ID 列就是快照 StaticID，无需任何映射猜测。
+    """
+    results: dict[tuple[str, str], bytes | None] = {}
+    bundles = catalog.bundles_for(COMMODITY_TABLE_ADDRESS)
+    if not bundles:
+        print("  summon-banners: no bundle", file=sys.stderr)
+        results[("data", "summon-banners.json")] = None
+        results[("data", "summon-pools.json")] = None
+        return results
+    try:
+        paths = [server.fetch_bundle(base, internal) for internal in bundles]
+    except (httpx.HTTPError, OSError, RuntimeError) as exc:
+        print(f"  summon-banners: {exc}", file=sys.stderr)
+        results[("data", "summon-banners.json")] = None
+        results[("data", "summon-pools.json")] = None
+        return results
+
+    text = None
+    try:
+        environment = _import_unitypy().load(*[str(path) for path in paths])
+        for obj in environment.objects:
+            if obj.type.name != "TextAsset":
+                continue
+            data = obj.read()
+            if data.m_Name == "Commodity":
+                raw = data.m_Script
+                text = raw if isinstance(raw, str) else raw.decode("utf-8", "replace")
+                break
+    except Exception as exc:  # UnityPy raises a wide range of errors
+        print(f"  summon-banners: {exc}", file=sys.stderr)
+        results[("data", "summon-banners.json")] = None
+        results[("data", "summon-pools.json")] = None
+        return results
+
+    distilled = _distill_summon_commodities(text) if text else None
+    if not distilled:
+        print("  summon-banners: Commodity.txt parsed to an empty mapping", file=sys.stderr)
+        results[("data", "summon-banners.json")] = None
+        results[("data", "summon-pools.json")] = None
+        return results
+
+    banners, pools = distilled
+    from datetime import datetime, timedelta, timezone
+
+    stamp = (
+        datetime.now(timezone(timedelta(hours=8))).replace(microsecond=0).isoformat()
+    )
+    results[("data", "summon-banners.json")] = json.dumps(
+        {"updated": stamp, "banners": banners},
+        ensure_ascii=False,
+        sort_keys=True,
+        indent=1,
+    ).encode("utf-8")
+    results[("data", "summon-pools.json")] = json.dumps(
+        {"updated": stamp, "pools": pools},
+        ensure_ascii=False,
+        sort_keys=True,
+        indent=1,
+    ).encode("utf-8")
     return results
 
 
