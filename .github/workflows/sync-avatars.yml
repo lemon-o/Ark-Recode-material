@@ -110,6 +110,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          CATALOG_TAG="${{ steps.check.outputs.catalog || 'latest' }}"
-          git commit -m "chore(素材): 同步游戏更新素材 (catalog: ${CATALOG_TAG}) [skip ci]"
+          TITLE="${{ steps.check.outputs.notice_title || steps.check.outputs.catalog || 'latest' }}"
+          git commit -m "chore(素材): 自动同步游戏更新素材 - ${TITLE} [skip ci]"
           git push
