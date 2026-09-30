@@ -1804,6 +1804,12 @@
    "icon_section": "items",
    "name": "T_Item_Name_AH188"
   },
+  "AH189": {
+   "desc": "T_Item_Description_AH001",
+   "icon": "AH189",
+   "icon_section": "items",
+   "name": "T_Item_Name_AH189"
+  },
   "AH192": {
    "desc": "T_Item_Description_AH001",
    "icon": "AH192",
@@ -10487,6 +10493,12 @@
    "icon_section": "items",
    "name": "T_Item_Name_TH188"
   },
+  "TH189": {
+   "desc": "T_Item_Description_TH189",
+   "icon": "Contract_H189",
+   "icon_section": "items",
+   "name": "T_Item_Name_TH189"
+  },
   "TH192": {
    "desc": "T_Item_Description_TH192",
    "icon": "Contract_H192",
@@ -10814,5 +10826,5 @@
    "name": "T_Item_Name_VIPPoint"
   }
  },
- "updated": "2026-09-30T09:56:34+08:00"
+ "updated": "2026-09-30T21:34:42+08:00"
 }
