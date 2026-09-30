@@ -1,32 +1,36 @@
-name: Sync Avatars
+name: Sync Assets
 
 on:
   schedule:
-    # 每天两次。catalog 的刷新没有固定时刻，早晚各扫一次足够覆盖。
-    - cron: "0 11 * * *"   # 北京 19:00
-    - cron: "0 23 * * *"   # 北京 07:00
+    # 1. 周三游戏维护日（北京时间 14:00 - 20:00，对应 UTC 06:00 - 12:00）：每 20 分钟高频探测
+    - cron: "*/20 6-12 * * 3"
+    # 2. 其余日常时间段：每 2 小时轻量探活一次
+    - cron: "0 */2 * * *"
   workflow_dispatch:
     inputs:
-      dry_run:
-        description: "只扫描不抓取"
+      force:
+        description: "强制全量扫描抓取（跳过 Catalog 变动检查）"
         type: boolean
         default: false
+      dry_run:
+        description: "只扫描不写入与提交"
+        type: boolean
+        default: false
+  repository_dispatch:
+    types: [game_updated, catalog_updated, sync_assets]
 
 permissions:
   contents: write
 
 concurrency:
-  group: sync-avatars
+  group: sync-assets
   cancel-in-progress: false
 
 jobs:
   sync:
     runs-on: ubuntu-latest
-    # 首轮要一次抓 ~2100 张（heads/skills/icons 全量），之后每轮只增量。
     timeout-minutes: 60
 
-    # 本仓库完全自包含：脚本、端点常量、输出目录都在自己这里，
-    # 不 clone 任何外部仓库，也不需要任何 PAT。
     steps:
       - uses: actions/checkout@v5
 
@@ -34,19 +38,24 @@ jobs:
         with:
           python-version: "3.12"
 
-      # UnityPy 只装在这一处：它带的那几个原生扩展在 Android 上没有 wheel，
-      # 正是把抓图从客户端挪到 runner 的起因。
-      - name: 安装依赖
+      - name: 安装轻量检测依赖
         run: |
           python -m pip install --upgrade pip
-          python -m pip install "httpx==0.28.1" UnityPy
+          python -m pip install "httpx==0.28.1"
 
-      # 必须先确认重映射表读得到。fetch_assets.py 靠 ast 从本仓库的
-      # tools/sync_assets.py 里读 AVATAR_ID_REMAP，而"读不到"是**静默降级**：
-      # 表为空时不报错、只是不重映射，于是 H801（蜜娜的图）被原样写成 H801.png、
-      # 游戏 catalog 里那条对不上任何角色的 H804 又被写成 H804.png —— 仓库看起来
-      # 一切正常，实际发出去一张错图和一张废图。2026-09-17 踩过一次，加这道门。
+      - name: 检查游戏 Catalog 版本变动
+        id: check
+        run: |
+          FORCE_FLAG="${{ (inputs.force || github.event_name == 'repository_dispatch') && '--force' || '' }}"
+          python tools/check_version.py $FORCE_FLAG
+
+      - name: 安装完整提取依赖 (仅版本有变动或强制运行)
+        if: ${{ steps.check.outputs.changed == 'true' || inputs.force || github.event_name == 'repository_dispatch' }}
+        run: |
+          python -m pip install UnityPy
+
       - name: 校验头像 ID 重映射表可读
+        if: ${{ steps.check.outputs.changed == 'true' || inputs.force || github.event_name == 'repository_dispatch' }}
         run: |
           python - <<'PY'
           import ast, pathlib, sys
@@ -72,52 +81,35 @@ jobs:
               sys.exit("tools/sync_assets.py 里找不到 AVATAR_ID_REMAP")
           PY
 
-      # 真相来源是游戏自己的 Addressables catalog：每项 address 就是资源路径
-      # （Assets/Game/Hero/H193/Img/Icon_Head_S_H193.png），新角色上线即多出新条目。
-      #
-      # 刻意不走 miraheze 的 Events/Banners：它挂在 Cloudflare 后面，对 GitHub
-      # 数据中心 IP 一律 403 —— 实测 7 种 UA 与端点组合（含 api.php、rest.php、
-      # 完整浏览器头）全部被挡。catalog 既更权威，也少一个第三方依赖。
-      #
-      # set -o pipefail 不能省：`python ... | tee` 的退出码取自 tee，
-      # 脚本抛错会被吞掉、步骤照样显示成功，cron 就静默失效了。
-      - name: 从 CDN 同步头像
+      - name: 从 CDN 提取最新素材
+        if: ${{ steps.check.outputs.changed == 'true' || inputs.force || github.event_name == 'repository_dispatch' }}
         run: |
           set -o pipefail
           mkdir -p build
-          # 家族清单：avatars=角色头像，heads=三尺寸头像框（B 大号不收），
-          # skills=技能图标，icons=功能/星座图标，atlas=道具/装备/套装图标
-          # （Icon/{Item,Equip,EquipSet}.spriteatlas 整包枚举 Sprite），
-          # banner=卡池横幅（Banner/BN_Summon_NNN 每池一个 bundle，整包枚举
-          # 简中 Texture2D）。全部是 `Icon`/`Banner` 白名单——CG/立绘/羁绊
-          # （18+）一律不在白名单里，活动宣传图 BN_Activity_* 也不收。
           python tools/fetch_assets.py \
             --only avatars,heads,skills,icons,atlas,banner,data \
             --target "$GITHUB_WORKSPACE" \
             ${{ inputs.dry_run && '--dry-run' || '' }} | tee build/report.txt
           {
-            echo '## Sync Avatars'
+            echo '## Sync Assets Report'
             echo '```'
             cat build/report.txt
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: 生成清单并提交
-        if: ${{ !inputs.dry_run }}
+        if: ${{ !inputs.dry_run && (steps.check.outputs.changed == 'true' || inputs.force || github.event_name == 'repository_dispatch') }}
         run: |
+          python tools/check_version.py --save
           python tools/build_index.py
-          # 头像总数/最近同步时间回写进 README 的「当前状态」标记块。
-          # update_readme.py 幂等：块内容没变就不写盘，所以这里不会凭空多出提交。
           python tools/update_readme.py
-          # 判空与 add 都对整棵工作树做（build/ 已被 .gitignore 排除）：按目录
-          # 枚举的写法每加一个家族就要记得改这里，漏了就是"抓到了却没进仓库"——
-          # heads/skills 与 items/equip/equipset 各踩过一次。
           if [ -z "$(git status --porcelain)" ]; then
-            echo "没有新素材，无需提交。" >> "$GITHUB_STEP_SUMMARY"
+            echo "没有新素材变动，无需提交。" >> "$GITHUB_STEP_SUMMARY"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -m "chore(素材): 同步新团员首发头像 [skip ci]"
+          CATALOG_TAG="${{ steps.check.outputs.catalog || 'latest' }}"
+          git commit -m "chore(素材): 同步游戏更新素材 (catalog: ${CATALOG_TAG}) [skip ci]"
           git push
