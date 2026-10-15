@@ -1858,6 +1858,12 @@
    "icon_section": "items",
    "name": "T_Item_Name_AH606"
   },
+  "AH610": {
+   "desc": "T_Item_Description_AH001",
+   "icon": "AH610",
+   "icon_section": "items",
+   "name": "T_Item_Name_AH610"
+  },
   "AH612": {
    "desc": "T_Item_Description_AH001",
    "icon": "AH612",
@@ -2593,6 +2599,14 @@
   "Background17": {
    "desc": "T_Item_Description_Background01",
    "name": "T_Item_Name_Background17"
+  },
+  "Background174": {
+   "desc": "T_Item_Description_Background01",
+   "name": "T_Item_Name_Background174"
+  },
+  "Background175": {
+   "desc": "T_Item_Description_Background01",
+   "name": "T_Item_Name_Background175"
   },
   "Background18": {
    "desc": "T_Item_Description_Background01",
@@ -5120,6 +5134,12 @@
    "icon_section": "equip",
    "name": "T_Item_Name_E0467"
   },
+  "E0468": {
+   "desc": "T_Item_Description_E0468",
+   "icon": "E046_8",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E0468"
+  },
   "E0501": {
    "desc": "T_Item_Description_E0501",
    "icon": "E050_1",
@@ -6817,6 +6837,42 @@
    "icon": "E114_6",
    "icon_section": "equip",
    "name": "T_Item_Name_E1146"
+  },
+  "E1151": {
+   "desc": "T_Item_Description_E1151",
+   "icon": "E115_1",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1151"
+  },
+  "E1152": {
+   "desc": "T_Item_Description_E1152",
+   "icon": "E115_2",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1152"
+  },
+  "E1153": {
+   "desc": "T_Item_Description_E1153",
+   "icon": "E115_3",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1153"
+  },
+  "E1154": {
+   "desc": "T_Item_Description_E1154",
+   "icon": "E115_4",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1154"
+  },
+  "E1155": {
+   "desc": "T_Item_Description_E1155",
+   "icon": "E115_5",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1155"
+  },
+  "E1156": {
+   "desc": "T_Item_Description_E1156",
+   "icon": "E115_6",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1156"
   },
   "E2001": {
    "desc": "T_Item_Description_E2001",
@@ -10559,6 +10615,12 @@
    "icon_section": "items",
    "name": "T_Item_Name_TH606"
   },
+  "TH610": {
+   "desc": "T_Item_Description_TH610",
+   "icon": "Contract_H610",
+   "icon_section": "items",
+   "name": "T_Item_Name_TH610"
+  },
   "TH612": {
    "desc": "T_Item_Description_TH612",
    "icon": "Contract_H612",
@@ -10826,5 +10888,5 @@
    "name": "T_Item_Name_VIPPoint"
   }
  },
- "updated": "2026-09-30T21:34:42+08:00"
+ "updated": "2026-10-15T20:31:04+08:00"
 }
