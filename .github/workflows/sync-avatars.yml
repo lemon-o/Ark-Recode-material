@@ -113,3 +113,21 @@ jobs:
           TITLE="${{ steps.check.outputs.notice_title || steps.check.outputs.catalog || 'latest' }}"
           git commit -m "chore(素材): 自动同步游戏更新素材 - ${TITLE} [skip ci]"
           git push
+
+      # 版本没变也要刷新 README 的「最近扫描」：那行显示的是本轮探活时刻，
+      # 不是「最近一次抓到新素材」的时刻。缺了这步，无更新的日子里时间会一直冻住
+      # （表现为「仓库不自动更新了」），顺带也保住了仓库的活跃度。
+      - name: 探活心跳：刷新最近扫描时间
+        if: ${{ !inputs.dry_run && !inputs.force && github.event_name != 'repository_dispatch' && steps.check.outputs.changed != 'true' }}
+        run: |
+          python tools/update_readme.py
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "README 无变化，无需提交。" >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          STAMP="$(TZ=Asia/Shanghai date '+%Y-%m-%d %H:%M')"
+          git commit -m "chore(扫描): 刷新最近扫描时间（${STAMP}）[skip ci]"
+          git push
