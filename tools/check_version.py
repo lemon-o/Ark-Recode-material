@@ -4,6 +4,8 @@
 1. 官方公告时段抓取（同 lucima-tools）：
    请求 EROLABS 官方公告 API，提取星陨计划最新的停机维护时段（如 "09/30 14:00 - 17:00 (UTC+8)"）；
    若发现新的维护公告且当前时间已过维护起始点，判定为有版本更新；
+   查询参数必须是 ``hgameId=32``（``gameIdList=32`` 服务端会静默忽略，返回全站公告），
+   并且要翻页——别的游戏公告一多，星陨的维护公告就会被挤出第一页；
 2. 游戏 Catalog 物理变动探针：
    请求游戏网关 QueryBulletinInfoResult 获取激活的 NewCatalogName，
    HEAD 请求 CDN 比对 ETag、Last-Modified 与文件大小。即使官方临时热更未发公告，亦能精准捕获；
@@ -36,9 +38,21 @@ BOOTSTRAP_ROUTE = "GameServerDBSettingHandler.QueryBulletinInfoResult"
 GAME_TZ = timezone(timedelta(hours=8))
 
 ANNOUNCEMENT_URLS = [
+    # 主站会 301 到 www.ero-labs.com（旧别名 www.ero-labs.love 会再跳回来，别用）。
     "https://www.erolabs.com/api/v2/announcement/news",
-    "https://www.ero-labs.love/api/v2/announcement/news",
+    "https://www.ero-labs.com/api/v2/announcement/news",
 ]
+
+# 星陨计划的 hgameId。注意参数名是 hgameId：写成 gameIdList 服务端会静默忽略，
+# 返回全站点公告，星陨的公告会被别的游戏顶上第一页。
+ANNOUNCEMENT_GAME_ID = 32
+ANNOUNCEMENT_PAGE_SIZE = 20
+# 星陨的公告被顶上第一页后会一直往后挪，翻几页够抓到最近一次维护公告。
+ANNOUNCEMENT_MAX_PAGES = 6
+# 超过这个天数的旧维护公告不再当作「新维护」送进判定，避免翻页翻出前两个月的公告
+# 被误判成有更新（真更新由 Catalog 探针兜底）。取 14 天 = 星陨一个活动档期的长度，
+# 这样活动第二周日志里仍能看到最近一次维护公告。
+NOTICE_MAX_AGE_DAYS = 14
 
 ANNOUNCEMENT_HEADERS = {
     "User-Agent": (
@@ -97,45 +111,73 @@ def parse_maintenance_time(text: str, default_year: int) -> dict[str, str | floa
         return None
 
 
-def fetch_maintenance_notice(timeout: float = 12.0) -> dict | None:
-    """抓取 EROLABS 官方星陨计划最新的维护公告。"""
+def _iter_announcements(client: httpx.Client, url: str):
+    """按页吐出星陨计划的公告条目（新→旧）。
+
+    服务端用 ``hgameId`` 过滤；``count`` 上限 20，热门档期光别的游戏公告就能把
+    星陨的维护公告挤到第二、三页，所以这里必须翻页，不能只看第一页。
+    """
     params = {
         "lang": "zh",
         "noticeType": -1,
-        "nowPage": 1,
-        "count": 20,
-        "gameIdList": "32",
+        "hgameId": ANNOUNCEMENT_GAME_ID,
+        "count": ANNOUNCEMENT_PAGE_SIZE,
     }
+    for page in range(1, ANNOUNCEMENT_MAX_PAGES + 1):
+        resp = client.get(
+            url,
+            params={**params, "nowPage": page},
+            headers=ANNOUNCEMENT_HEADERS,
+        )
+        if resp.status_code != 200:
+            return
+        body = resp.json() or {}
+        data = body.get("data") or {}
+        news = data.get("news") or []
+        if not news:
+            return
+        for item in news:
+            yield item
+        total = data.get("total")
+        if isinstance(total, int) and page * ANNOUNCEMENT_PAGE_SIZE >= total:
+            return
+
+
+def fetch_maintenance_notice(timeout: float = 12.0) -> dict | None:
+    """抓取 EROLABS 官方星陨计划最新的维护公告。"""
+    now_dt = datetime.now(GAME_TZ)
+    now_ts = now_dt.timestamp()
     for url in ANNOUNCEMENT_URLS:
         try:
             with httpx.Client(timeout=timeout, follow_redirects=True) as client:
-                resp = client.get(url, params=params, headers=ANNOUNCEMENT_HEADERS)
-                if resp.status_code != 200:
-                    continue
-                news = (resp.json() or {}).get("data", {}).get("news") or []
-                now_dt = datetime.now(GAME_TZ)
-                for item in news:
+                for item in _iter_announcements(client, url):
                     hid = item.get("hgameId")
                     gname = item.get("gameName") or ""
-                    if str(hid) != "32" and "星" not in gname and "Ark" not in gname:
-                        continue
+                    if hid is not None and str(hid) != str(ANNOUNCEMENT_GAME_ID):
+                        if "星" not in gname and "Ark" not in gname:
+                            continue
                     title = item.get("name") or ""
                     intro = item.get("intro") or ""
                     combined = f"{title} {intro}"
                     if not any(k in combined for k in ("維護", "维护", "停機", "停机", "關機", "关机")):
                         continue
                     parsed = parse_maintenance_time(combined, now_dt.year)
-                    if parsed:
-                        return {
-                            "id": item.get("newsId"),
-                            "title": title,
-                            "window": parsed["raw"],
-                            "startTime": parsed["start"],
-                            "endTime": parsed["end"],
-                            "startTimestamp": parsed["startTimestamp"],
-                            "endTimestamp": parsed["endTimestamp"],
-                            "intro": intro[:200],
-                        }
+                    if not parsed:
+                        continue
+                    # 翻页会翻到上几个月的维护公告：太旧的当作历史，不算「新维护」。
+                    # 未来的维护预告（start 还没到）保留，由判定侧比较时间后再决定。
+                    if now_ts - parsed["startTimestamp"] > NOTICE_MAX_AGE_DAYS * 86400:
+                        continue
+                    return {
+                        "id": item.get("newsId"),
+                        "title": title,
+                        "window": parsed["raw"],
+                        "startTime": parsed["start"],
+                        "endTime": parsed["end"],
+                        "startTimestamp": parsed["startTimestamp"],
+                        "endTimestamp": parsed["endTimestamp"],
+                        "intro": intro[:200],
+                    }
         except Exception:
             continue
     return None
