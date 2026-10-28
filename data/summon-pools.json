@@ -464,6 +464,11 @@
    "cap": 120,
    "type": "限定卡池"
   },
+  "AcyivitySummonH806": {
+   "banner": "BN_Summon_H806",
+   "cap": 120,
+   "type": "限定卡池"
+  },
   "FriendSummon": {
    "activityId": "Version_FrIendSummon",
    "banner": "BN_Summon_H810",
@@ -748,5 +753,5 @@
    "type": "新手招募卡池"
   }
  },
- "updated": "2026-10-15T22:44:22+08:00"
+ "updated": "2026-10-28T15:58:03+08:00"
 }

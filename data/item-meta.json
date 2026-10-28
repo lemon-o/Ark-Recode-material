@@ -1368,6 +1368,9 @@
   "A0461": {
    "name": "T_Item_Name_A0461"
   },
+  "A0464": {
+   "name": "T_Item_Name_A0464"
+  },
   "A0473": {
    "name": "T_Item_Name_A0473"
   },
@@ -1881,6 +1884,12 @@
    "icon": "AH804",
    "icon_section": "items",
    "name": "T_Item_Name_AH804"
+  },
+  "AH806": {
+   "desc": "T_Item_Description_AH001",
+   "icon": "AH806",
+   "icon_section": "items",
+   "name": "T_Item_Name_AH806"
   },
   "B001": {
    "desc": "T_Item_Description_B001",
@@ -2595,6 +2604,14 @@
   "Background166": {
    "desc": "T_Item_Description_Background01",
    "name": "T_Item_Name_Background166"
+  },
+  "Background167": {
+   "desc": "T_Item_Description_Background01",
+   "name": "T_Item_Name_Background167"
+  },
+  "Background168": {
+   "desc": "T_Item_Description_Background01",
+   "name": "T_Item_Name_Background168"
   },
   "Background17": {
    "desc": "T_Item_Description_Background01",
@@ -5140,6 +5157,12 @@
    "icon_section": "equip",
    "name": "T_Item_Name_E0468"
   },
+  "E0471": {
+   "desc": "T_Item_Description_E0471",
+   "icon": "E047_1",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E0471"
+  },
   "E0501": {
    "desc": "T_Item_Description_E0501",
    "icon": "E050_1",
@@ -6873,6 +6896,42 @@
    "icon": "E115_6",
    "icon_section": "equip",
    "name": "T_Item_Name_E1156"
+  },
+  "E1181": {
+   "desc": "T_Item_Description_E1181",
+   "icon": "E118_1",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1181"
+  },
+  "E1182": {
+   "desc": "T_Item_Description_E1182",
+   "icon": "E118_2",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1182"
+  },
+  "E1183": {
+   "desc": "T_Item_Description_E1183",
+   "icon": "E118_3",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1183"
+  },
+  "E1184": {
+   "desc": "T_Item_Description_E1184",
+   "icon": "E118_4",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1184"
+  },
+  "E1185": {
+   "desc": "T_Item_Description_E1185",
+   "icon": "E118_5",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1185"
+  },
+  "E1186": {
+   "desc": "T_Item_Description_E1186",
+   "icon": "E118_6",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1186"
   },
   "E2001": {
    "desc": "T_Item_Description_E2001",
@@ -9155,6 +9214,9 @@
   "H804": {
    "name": "T_Item_Name_H804"
   },
+  "H806": {
+   "name": "T_Item_Name_H806"
+  },
   "H809": {
    "name": "T_Item_Name_H809"
   },
@@ -10099,6 +10161,10 @@
    "desc": "T_Item_Description_SH804",
    "name": "T_Item_Name_SH804"
   },
+  "SH806": {
+   "desc": "T_Item_Description_SH806",
+   "name": "T_Item_Name_SH806"
+  },
   "Sticker01": {
    "name": "T_Item_Name_Sticker01"
   },
@@ -10639,6 +10705,12 @@
    "icon_section": "items",
    "name": "T_Item_Name_TH804"
   },
+  "TH806": {
+   "desc": "T_Item_Description_TH806",
+   "icon": "Contract_H806",
+   "icon_section": "items",
+   "name": "T_Item_Name_TH806"
+  },
   "THMulti": {
    "desc": "T_Item_Description_THMulti",
    "icon": "Contract_Multi",
@@ -10888,5 +10960,5 @@
    "name": "T_Item_Name_VIPPoint"
   }
  },
- "updated": "2026-10-15T22:44:22+08:00"
+ "updated": "2026-10-28T15:58:03+08:00"
 }

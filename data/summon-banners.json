@@ -94,6 +94,7 @@
   "AcyivitySummonH612": "BN_Summon_H612",
   "AcyivitySummonH613": "BN_Summon_H613",
   "AcyivitySummonH804": "BN_Summon_H804",
+  "AcyivitySummonH806": "BN_Summon_H806",
   "FriendSummon": "BN_Summon_H810",
   "FriendSummon2026": "BN_Summon_H811",
   "GalaxySummon": "BN_Summon_GalaxySummon",
@@ -152,5 +153,5 @@
   "MysticSummonH806": "BN_Summon_H806",
   "NormalSummon": "BN_Summon_NormalSummon"
  },
- "updated": "2026-10-15T22:44:22+08:00"
+ "updated": "2026-10-28T15:58:03+08:00"
 }
