@@ -112,6 +112,14 @@ HERO_ICON_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
 GAME_ICON_PATTERN = re.compile(
     r"^Assets/Game/Icon/(?:Function|Constellation)/([A-Za-z][\w]*)\.png$"
 )
+# 羁绊小图白名单：128x128 方块小图（对应游戏内羁绊卡/神器图标）
+# 仅收录 Assets/Game/CG/<ID>/Img/ 下且文件名与该 ID 严格匹配的正方形小图：
+#   * A\d+ 羁绊：Icon_Head_S_A###.png
+#   * Carnival 羁绊：Icon_Carnival###_S.png
+# 排除 18+ 原大图 CG (IMG_*)、长条横幅 (Icon_Head_M_*)、剧情封面 (*_LoveTalk) 以及 512x512 突破魂石 (SA*)。
+BOND_PATTERN = re.compile(
+    r"^Assets/Game/CG/([A-Za-z0-9_]+)/Img/(Icon_(?:Head_S_\1|\1_S)\.png)$"
+)
 
 # 图集家族：道具/装备/套装/赛季框图标不是独立 .png，而是 *.spriteatlas 的子资源
 # （catalog 里只有图集本身的地址，单个图标按 Sprite 名索引）。所以这一族按
@@ -665,6 +673,37 @@ def _game_icon_family(catalog: ContentCatalog) -> Family:
     )
 
 
+def _bond_family(catalog: ContentCatalog, wanted: set[str] | None = None) -> Family:
+    """收集羁绊小图（128x128 正方形头像，对应游戏内羁绊卡/神器图标）。
+
+    收录 Assets/Game/CG/<ID>/Img/ 下的正方形小图（Icon_Head_S_<ID>.png 与 Icon_Carnival###_S.png）。
+    为同时兼容 ID 索引与官方原始资产名，输出：
+    1. <ID>.png（如 A0413.png, Carnival006.png）
+    2. 官方资产原名（如 Icon_Head_S_A0413.png, Icon_Carnival006_S.png）
+    两者内容 100% 一致。
+    """
+    discovered: dict[str, tuple[str, str]] = {}
+    for address in catalog._ids:  # noqa: SLF001
+        found = BOND_PATTERN.fullmatch(address)
+        if found:
+            bond_id = found.group(1)
+            official_name = found.group(2)
+            discovered[bond_id] = (official_name, address)
+
+    addresses: dict[str, str] = {}
+    for bond_id, (official_name, address) in sorted(discovered.items()):
+        if wanted is not None and not (bond_id in wanted or official_name in wanted):
+            continue
+        addresses[f"{bond_id}.png"] = address
+        addresses[official_name] = address
+
+    return Family(
+        "bonds",
+        addresses,
+        note=f"{len(discovered)} unique bonds (ID + official alias: {len(addresses)} files)",
+    )
+
+
 def _atlas_family(catalog: ContentCatalog) -> Family:
     """道具/装备/套装/赛季框图标：整包下载后按 Sprite 名逐个导出。"""
     addresses: dict[str, str] = {}
@@ -865,6 +904,9 @@ def main() -> int:
                 "icons": lambda: _game_icon_family(catalog),
                 "atlas": lambda: _atlas_family(catalog),
                 "banner": lambda: _banner_family(catalog),
+                "bonds": lambda: _bond_family(
+                    catalog, _read_target_id_list(args.ids)
+                ),
                 "data": lambda: Family("data", {"Item.txt": ITEM_TABLE_ADDRESS},
                                        note="StaticData/Item.txt -> data/item-meta.json"),
                 "ui": lambda: _ui_family(catalog),
@@ -1089,6 +1131,12 @@ def _download_data(
                     # icon=图集里的 Sprite 名，section=它在哪个分区目录
                     entry["icon"] = found.group(2)
                     entry["icon_section"] = section
+            elif columns[icon_at].startswith("CG/") and (
+                "/Img/Icon_Head_S_" in columns[icon_at] or columns[icon_at].endswith("_S")
+            ):
+                entry["icon"] = columns[id_at]
+                entry["icon_section"] = "bonds"
+                entry["asset_name"] = columns[icon_at].rsplit("/", 1)[-1]
             if columns[name_at]:
                 entry["name"] = columns[name_at]
             if columns[desc_at]:

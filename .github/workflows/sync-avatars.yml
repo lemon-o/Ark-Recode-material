@@ -87,7 +87,7 @@ jobs:
           set -o pipefail
           mkdir -p build
           python tools/fetch_assets.py \
-            --only avatars,heads,skills,icons,atlas,banner,data \
+            --only avatars,heads,skills,icons,atlas,banner,data,bonds \
             --target "$GITHUB_WORKSPACE" \
             ${{ inputs.dry_run && '--dry-run' || '' }} | tee build/report.txt
           {

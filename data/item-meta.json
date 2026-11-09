@@ -964,430 +964,856 @@
    "name": "T_Item_Name_91"
   },
   "A0001": {
+   "asset_name": "Icon_Head_S_A0001",
+   "icon": "A0001",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0001"
   },
   "A0002": {
+   "asset_name": "Icon_Head_S_A0002",
+   "icon": "A0002",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0002"
   },
   "A0003": {
+   "asset_name": "Icon_Head_S_A0003",
+   "icon": "A0003",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0003"
   },
   "A0004": {
+   "asset_name": "Icon_Head_S_A0004",
+   "icon": "A0004",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0004"
   },
   "A0005": {
+   "asset_name": "Icon_Head_S_A0005",
+   "icon": "A0005",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0005"
   },
   "A0006": {
+   "asset_name": "Icon_Head_S_A0006",
+   "icon": "A0006",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0006"
   },
   "A0007": {
+   "asset_name": "Icon_Head_S_A0007",
+   "icon": "A0007",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0007"
   },
   "A0008": {
+   "asset_name": "Icon_Head_S_A0008",
+   "icon": "A0008",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0008"
   },
   "A0009": {
+   "asset_name": "Icon_Head_S_A0009",
+   "icon": "A0009",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0009"
   },
   "A0010": {
+   "asset_name": "Icon_Head_S_A0010",
+   "icon": "A0010",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0010"
   },
   "A0011": {
+   "asset_name": "Icon_Head_S_A0011",
+   "icon": "A0011",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0011"
   },
   "A0012": {
+   "asset_name": "Icon_Head_S_A0012",
+   "icon": "A0012",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0012"
   },
   "A0013": {
+   "asset_name": "Icon_Head_S_A0013",
+   "icon": "A0013",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0013"
   },
   "A0014": {
+   "asset_name": "Icon_Head_S_A0014",
+   "icon": "A0014",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0014"
   },
   "A0015": {
+   "asset_name": "Icon_Head_S_A0015",
+   "icon": "A0015",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0015"
   },
   "A0016": {
+   "asset_name": "Icon_Head_S_A0016",
+   "icon": "A0016",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0016"
   },
   "A0017": {
+   "asset_name": "Icon_Head_S_A0017",
+   "icon": "A0017",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0017"
   },
   "A0018": {
+   "asset_name": "Icon_Head_S_A0018",
+   "icon": "A0018",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0018"
   },
   "A0019": {
+   "asset_name": "Icon_Head_S_A0019",
+   "icon": "A0019",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0019"
   },
   "A0020": {
+   "asset_name": "Icon_Head_S_A0020",
+   "icon": "A0020",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0020"
   },
   "A0021": {
+   "asset_name": "Icon_Head_S_A0021",
+   "icon": "A0021",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0021"
   },
   "A0022": {
+   "asset_name": "Icon_Head_S_A0022",
+   "icon": "A0022",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0022"
   },
   "A0023": {
+   "asset_name": "Icon_Head_S_A0023",
+   "icon": "A0023",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0023"
   },
   "A0024": {
+   "asset_name": "Icon_Head_S_A0024",
+   "icon": "A0024",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0024"
   },
   "A0025": {
+   "asset_name": "Icon_Head_S_A0025",
+   "icon": "A0025",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0025"
   },
   "A0026": {
+   "asset_name": "Icon_Head_S_A0026",
+   "icon": "A0026",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0026"
   },
   "A0027": {
+   "asset_name": "Icon_Head_S_A0027",
+   "icon": "A0027",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0027"
   },
   "A0028": {
+   "asset_name": "Icon_Head_S_A0028",
+   "icon": "A0028",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0028"
   },
   "A0029": {
+   "asset_name": "Icon_Head_S_A0029",
+   "icon": "A0029",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0029"
   },
   "A0030": {
+   "asset_name": "Icon_Head_S_A0030",
+   "icon": "A0030",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0030"
   },
   "A0031": {
+   "asset_name": "Icon_Head_S_A0031",
+   "icon": "A0031",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0031"
   },
   "A0032": {
+   "asset_name": "Icon_Head_S_A0032",
+   "icon": "A0032",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0032"
   },
   "A0033": {
+   "asset_name": "Icon_Head_S_A0033",
+   "icon": "A0033",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0033"
   },
   "A0034": {
+   "asset_name": "Icon_Head_S_A0034",
+   "icon": "A0034",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0034"
   },
   "A0035": {
+   "asset_name": "Icon_Head_S_A0035",
+   "icon": "A0035",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0035"
   },
   "A0036": {
+   "asset_name": "Icon_Head_S_A0036",
+   "icon": "A0036",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0036"
   },
   "A0037": {
+   "asset_name": "Icon_Head_S_A0037",
+   "icon": "A0037",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0037"
   },
   "A0038": {
+   "asset_name": "Icon_Head_S_A0038",
+   "icon": "A0038",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0038"
   },
   "A0039": {
+   "asset_name": "Icon_Head_S_A0039",
+   "icon": "A0039",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0039"
   },
   "A0040": {
+   "asset_name": "Icon_Head_S_A0040",
+   "icon": "A0040",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0040"
   },
   "A0041": {
+   "asset_name": "Icon_Head_S_A0041",
+   "icon": "A0041",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0041"
   },
   "A0042": {
+   "asset_name": "Icon_Head_S_A0042",
+   "icon": "A0042",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0042"
   },
   "A0043": {
+   "asset_name": "Icon_Head_S_A0043",
+   "icon": "A0043",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0043"
   },
   "A0044": {
+   "asset_name": "Icon_Head_S_A0044",
+   "icon": "A0044",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0044"
   },
   "A0045": {
+   "asset_name": "Icon_Head_S_A0045",
+   "icon": "A0045",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0045"
   },
   "A0046": {
+   "asset_name": "Icon_Head_S_A0046",
+   "icon": "A0046",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0046"
   },
   "A0047": {
+   "asset_name": "Icon_Head_S_A0047",
+   "icon": "A0047",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0047"
   },
   "A0048": {
+   "asset_name": "Icon_Head_S_A0048",
+   "icon": "A0048",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0048"
   },
   "A0049": {
+   "asset_name": "Icon_Head_S_A0049",
+   "icon": "A0049",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0049"
   },
   "A0050": {
+   "asset_name": "Icon_Head_S_A0050",
+   "icon": "A0050",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0050"
   },
   "A0051": {
+   "asset_name": "Icon_Head_S_A0051",
+   "icon": "A0051",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0051"
   },
   "A0052": {
+   "asset_name": "Icon_Head_S_A0052",
+   "icon": "A0052",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0052"
   },
   "A0053": {
+   "asset_name": "Icon_Head_S_A0053",
+   "icon": "A0053",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0053"
   },
   "A0054": {
+   "asset_name": "Icon_Head_S_A0054",
+   "icon": "A0054",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0054"
   },
   "A0055": {
+   "asset_name": "Icon_Head_S_A0055",
+   "icon": "A0055",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0055"
   },
   "A0056": {
+   "asset_name": "Icon_Head_S_A0056",
+   "icon": "A0056",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0056"
   },
   "A0057": {
+   "asset_name": "Icon_Head_S_A0057",
+   "icon": "A0057",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0057"
   },
   "A0058": {
+   "asset_name": "Icon_Head_S_A0058",
+   "icon": "A0058",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0058"
   },
   "A0122": {
+   "asset_name": "Icon_Head_S_A0122",
+   "icon": "A0122",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0122"
   },
   "A0125": {
+   "asset_name": "Icon_Head_S_A0125",
+   "icon": "A0125",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0125"
   },
   "A0131": {
+   "asset_name": "Icon_Head_S_A0131",
+   "icon": "A0131",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0131"
   },
   "A0142": {
+   "asset_name": "Icon_Head_S_A0142",
+   "icon": "A0142",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0142"
   },
   "A0153": {
+   "asset_name": "Icon_Head_S_A0153",
+   "icon": "A0153",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0153"
   },
   "A0156": {
+   "asset_name": "Icon_Head_S_A0156",
+   "icon": "A0156",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0156"
   },
   "A0159": {
+   "asset_name": "Icon_Head_S_A0159",
+   "icon": "A0159",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0159"
   },
   "A0160": {
+   "asset_name": "Icon_Head_S_A0162",
+   "icon": "A0160",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0160"
   },
   "A0162": {
+   "asset_name": "Icon_Head_S_A0165",
+   "icon": "A0162",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0162"
   },
   "A0168": {
+   "asset_name": "Icon_Head_S_A0168",
+   "icon": "A0168",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0168"
   },
   "A0171": {
+   "asset_name": "Icon_Head_S_A0171",
+   "icon": "A0171",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0171"
   },
   "A0174": {
+   "asset_name": "Icon_Head_S_A0174",
+   "icon": "A0174",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0174"
   },
   "A0177": {
+   "asset_name": "Icon_Head_S_A0177",
+   "icon": "A0177",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0177"
   },
   "A0192": {
+   "asset_name": "Icon_Head_S_A0192",
+   "icon": "A0192",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0192"
   },
   "A0201": {
+   "asset_name": "Icon_Head_S_A0201",
+   "icon": "A0201",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0201"
   },
   "A0204": {
+   "asset_name": "Icon_Head_S_A0204",
+   "icon": "A0204",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0204"
   },
   "A0207": {
+   "asset_name": "Icon_Head_S_A0207",
+   "icon": "A0207",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0207"
   },
   "A0210": {
+   "asset_name": "Icon_Head_S_A0210",
+   "icon": "A0210",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0210"
   },
   "A0213": {
+   "asset_name": "Icon_Head_S_A0213",
+   "icon": "A0213",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0213"
   },
   "A0219": {
+   "asset_name": "Icon_Head_S_A0219",
+   "icon": "A0219",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0219"
   },
   "A0222": {
+   "asset_name": "Icon_Head_S_A0222",
+   "icon": "A0222",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0222"
   },
   "A0231": {
+   "asset_name": "Icon_Head_S_A0231",
+   "icon": "A0231",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0231"
   },
   "A0237": {
+   "asset_name": "Icon_Head_S_A0237",
+   "icon": "A0237",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0237"
   },
   "A0240": {
+   "asset_name": "Icon_Head_S_A0240",
+   "icon": "A0240",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0240"
   },
   "A0243": {
+   "asset_name": "Icon_Head_S_A0243",
+   "icon": "A0243",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0243"
   },
   "A0246": {
+   "asset_name": "Icon_Head_S_A0246",
+   "icon": "A0246",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0246"
   },
   "A0249": {
+   "asset_name": "Icon_Head_S_A0249",
+   "icon": "A0249",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0249"
   },
   "A0252": {
+   "asset_name": "Icon_Head_S_A0252",
+   "icon": "A0252",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0252"
   },
   "A0257": {
+   "asset_name": "Icon_Head_S_A0257",
+   "icon": "A0257",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0257"
   },
   "A0260": {
+   "asset_name": "Icon_Head_S_A0260",
+   "icon": "A0260",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0260"
   },
   "A0263": {
+   "asset_name": "Icon_Head_S_A0263",
+   "icon": "A0263",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0263"
   },
   "A0269": {
+   "asset_name": "Icon_Head_S_A0269",
+   "icon": "A0269",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0269"
   },
   "A0272": {
+   "asset_name": "Icon_Head_S_A0272",
+   "icon": "A0272",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0272"
   },
   "A0275": {
+   "asset_name": "Icon_Head_S_A0275",
+   "icon": "A0275",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0275"
   },
   "A0284": {
+   "asset_name": "Icon_Head_S_A0284",
+   "icon": "A0284",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0284"
   },
   "A0287": {
+   "asset_name": "Icon_Head_S_A0287",
+   "icon": "A0287",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0287"
   },
   "A0290": {
+   "asset_name": "Icon_Head_S_A0290",
+   "icon": "A0290",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0290"
   },
   "A0293": {
+   "asset_name": "Icon_Head_S_A0293",
+   "icon": "A0293",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0293"
   },
   "A0302": {
+   "asset_name": "Icon_Head_S_A0302",
+   "icon": "A0302",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0302"
   },
   "A0305": {
+   "asset_name": "Icon_Head_S_A0305",
+   "icon": "A0305",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0305"
   },
   "A0308": {
+   "asset_name": "Icon_Head_S_A0308",
+   "icon": "A0308",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0308"
   },
   "A0317": {
+   "asset_name": "Icon_Head_S_A0317",
+   "icon": "A0317",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0317"
   },
   "A0320": {
+   "asset_name": "Icon_Head_S_A0320",
+   "icon": "A0320",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0320"
   },
   "A0323": {
+   "asset_name": "Icon_Head_S_A0323",
+   "icon": "A0323",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0323"
   },
   "A0332": {
+   "asset_name": "Icon_Head_S_A0332",
+   "icon": "A0332",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0332"
   },
   "A0335": {
+   "asset_name": "Icon_Head_S_A0335",
+   "icon": "A0335",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0335"
   },
   "A0338": {
+   "asset_name": "Icon_Head_S_A0338",
+   "icon": "A0338",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0338"
   },
   "A0341": {
+   "asset_name": "Icon_Head_S_A0341",
+   "icon": "A0341",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0341"
   },
   "A0344": {
+   "asset_name": "Icon_Head_S_A0344",
+   "icon": "A0344",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0344"
   },
   "A0347": {
+   "asset_name": "Icon_Head_S_A0347",
+   "icon": "A0347",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0347"
   },
   "A0350": {
+   "asset_name": "Icon_Head_S_A0350",
+   "icon": "A0350",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0350"
   },
   "A0353": {
+   "asset_name": "Icon_Head_S_A0353",
+   "icon": "A0353",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0353"
   },
   "A0356": {
+   "asset_name": "Icon_Head_S_A0356",
+   "icon": "A0356",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0356"
   },
   "A0377": {
+   "asset_name": "Icon_Head_S_A0377",
+   "icon": "A0377",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0377"
   },
   "A0380": {
+   "asset_name": "Icon_Head_S_A0380",
+   "icon": "A0380",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0380"
   },
   "A0386": {
+   "asset_name": "Icon_Head_S_A0386",
+   "icon": "A0386",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0386"
   },
   "A0389": {
+   "asset_name": "Icon_Head_S_A0389",
+   "icon": "A0389",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0389"
   },
   "A0392": {
+   "asset_name": "Icon_Head_S_A0392",
+   "icon": "A0392",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0392"
   },
   "A0395": {
+   "asset_name": "Icon_Head_S_A0395",
+   "icon": "A0395",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0395"
   },
   "A0398": {
+   "asset_name": "Icon_Head_S_A0398",
+   "icon": "A0398",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0398"
   },
   "A0401": {
+   "asset_name": "Icon_Head_S_A0401",
+   "icon": "A0401",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0401"
   },
   "A0404": {
+   "asset_name": "Icon_Head_S_A0404",
+   "icon": "A0404",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0404"
   },
   "A0407": {
+   "asset_name": "Icon_Head_S_A0407",
+   "icon": "A0407",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0407"
   },
   "A0410": {
+   "asset_name": "Icon_Head_S_A0410",
+   "icon": "A0410",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0410"
   },
   "A0413": {
+   "asset_name": "Icon_Head_S_A0413",
+   "icon": "A0413",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0413"
   },
   "A0416": {
+   "asset_name": "Icon_Head_S_A0416",
+   "icon": "A0416",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0416"
   },
   "A0419": {
+   "asset_name": "Icon_Head_S_A0419",
+   "icon": "A0419",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0419"
   },
   "A0422": {
+   "asset_name": "Icon_Head_S_A0422",
+   "icon": "A0422",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0422"
   },
   "A0425": {
+   "asset_name": "Icon_Head_S_A0425",
+   "icon": "A0425",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0425"
   },
   "A0434": {
+   "asset_name": "Icon_Head_S_A0434",
+   "icon": "A0434",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0434"
   },
   "A0437": {
+   "asset_name": "Icon_Head_S_A0437",
+   "icon": "A0437",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0437"
   },
   "A0440": {
+   "asset_name": "Icon_Head_S_A0440",
+   "icon": "A0440",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0440"
   },
   "A0443": {
+   "asset_name": "Icon_Head_S_A0443",
+   "icon": "A0443",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0443"
   },
   "A0452": {
+   "asset_name": "Icon_Head_S_A0452",
+   "icon": "A0452",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0452"
   },
   "A0455": {
+   "asset_name": "Icon_Head_S_A0455",
+   "icon": "A0455",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0455"
   },
   "A0458": {
+   "asset_name": "Icon_Head_S_A0458",
+   "icon": "A0458",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0458"
   },
   "A0461": {
+   "asset_name": "Icon_Head_S_A0461",
+   "icon": "A0461",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0461"
   },
   "A0464": {
+   "asset_name": "Icon_Head_S_A0464",
+   "icon": "A0464",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0464"
   },
   "A0473": {
+   "asset_name": "Icon_Head_S_A0473",
+   "icon": "A0473",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0473"
   },
   "A0476": {
+   "asset_name": "Icon_Head_S_A0476",
+   "icon": "A0476",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0476"
   },
   "A0479": {
+   "asset_name": "Icon_Head_S_A0479",
+   "icon": "A0479",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0479"
   },
   "A0482": {
+   "asset_name": "Icon_Head_S_A0482",
+   "icon": "A0482",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0482"
   },
   "A0485": {
+   "asset_name": "Icon_Head_S_A0485",
+   "icon": "A0485",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A0485"
   },
   "A9999": {
+   "asset_name": "Icon_Head_S_A0001",
    "desc": "T_Item_Description_A9999",
+   "icon": "A9999",
+   "icon_section": "bonds",
    "name": "T_Item_Name_A9999"
   },
   "AC01": {
@@ -3418,6 +3844,9 @@
    "name": "T_Item_Name_CR61"
   },
   "Carnival006": {
+   "asset_name": "Icon_Carnival006_S",
+   "icon": "Carnival006",
+   "icon_section": "bonds",
    "name": "T_Item_Name_Carnival006"
   },
   "Carnival01": {
@@ -3427,6 +3856,9 @@
    "name": "T_Item_Name_Carnival01"
   },
   "Carnival012": {
+   "asset_name": "Icon_Carnival012_S",
+   "icon": "Carnival012",
+   "icon_section": "bonds",
    "name": "T_Item_Name_Carnival012"
   },
   "Carnival02": {
@@ -9762,19 +10194,31 @@
    "name": "T_Item_Name_RealGold"
   },
   "SA0001": {
+   "asset_name": "Icon_Head_S_SA0001",
    "desc": "T_Item_Description_SA0001",
+   "icon": "SA0001",
+   "icon_section": "bonds",
    "name": "T_Item_Name_SA0001"
   },
   "SA0037": {
+   "asset_name": "Icon_Head_S_SA0037",
    "desc": "T_Item_Description_SA0037",
+   "icon": "SA0037",
+   "icon_section": "bonds",
    "name": "T_Item_Name_SA0037"
   },
   "SA0201": {
+   "asset_name": "Icon_Head_S_SA0201",
    "desc": "T_Item_Description_SA0201",
+   "icon": "SA0201",
+   "icon_section": "bonds",
    "name": "T_Item_Name_SA0201"
   },
   "SA0213": {
+   "asset_name": "Icon_Head_S_SA0213",
    "desc": "T_Item_Description_SA0213",
+   "icon": "SA0213",
+   "icon_section": "bonds",
    "name": "T_Item_Name_SA0213"
   },
   "SCarnival006": {
@@ -10166,6 +10610,9 @@
    "name": "T_Item_Name_SH806"
   },
   "Sticker01": {
+   "asset_name": "Icon_Head_S_A0207",
+   "icon": "Sticker01",
+   "icon_section": "bonds",
    "name": "T_Item_Name_Sticker01"
   },
   "Sticker02": {
@@ -10960,5 +11407,5 @@
    "name": "T_Item_Name_VIPPoint"
   }
  },
- "updated": "2026-11-02T16:56:29+08:00"
+ "updated": "2026-11-09T13:06:59+08:00"
 }

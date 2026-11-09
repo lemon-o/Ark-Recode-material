@@ -45,6 +45,7 @@ _LABELS = {
     "equipset": "套装图标",
     "uiconz": "赛季框",
     "banners": "卡池横幅",
+    "bonds": "羁绊小图",
 }
 
 

@@ -9,5 +9,5 @@ __pycache__/
 # AssetStudio 等工具的缓存（验证图集时不要在仓库目录里跑）
 Asset Cache/
 
-# AssetStudio 等工具的缓存（验证图集时不要在仓库目录里跑）
-Asset Cache/
+# 本地工作区状态
+.workbuddy/
