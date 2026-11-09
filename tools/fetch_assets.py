@@ -673,21 +673,119 @@ def _game_icon_family(catalog: ContentCatalog) -> Family:
     )
 
 
-def _bond_family(catalog: ContentCatalog, wanted: set[str] | None = None) -> Family:
-    """收集羁绊小图（128x128 正方形头像，对应游戏内羁绊卡/神器图标）。
+_ITEM_TABLE_CACHE: str | None = None
 
-    收录 Assets/Game/CG/<ID>/Img/ 下的正方形小图（Icon_Head_S_<ID>.png 与 Icon_Carnival###_S.png）。
+
+def _load_item_table_text(
+    catalog: ContentCatalog,
+    server: PatchServer | None = None,
+    base: str | None = None,
+) -> str | None:
+    """获取 StaticData/Item.txt 的文本内容（优先解包 bundle，解包后存入内存缓存）。"""
+    global _ITEM_TABLE_CACHE
+    if _ITEM_TABLE_CACHE is not None:
+        return _ITEM_TABLE_CACHE
+
+    if server is not None and base is not None:
+        bundles = catalog.bundles_for(ITEM_TABLE_ADDRESS)
+        if bundles:
+            try:
+                paths = [server.fetch_bundle(base, internal) for internal in bundles]
+                env = _import_unitypy().load(*[str(p) for p in paths])
+                for obj in env.objects:
+                    if obj.type.name != "TextAsset":
+                        continue
+                    data = obj.read()
+                    if getattr(data, "m_Name", "") == "Item":
+                        raw = getattr(data, "m_Script", b"")
+                        _ITEM_TABLE_CACHE = (
+                            raw if isinstance(raw, str) else raw.decode("utf-8", "replace")
+                        )
+                        return _ITEM_TABLE_CACHE
+            except Exception as exc:
+                print(f"  Warning: failed to load Item bundle: {exc}", file=sys.stderr)
+
+    local_cache = Path("Asset Cache/Item.txt")
+    if local_cache.is_file():
+        try:
+            _ITEM_TABLE_CACHE = local_cache.read_text(encoding="utf-8")
+            return _ITEM_TABLE_CACHE
+        except Exception:
+            pass
+
+    return None
+
+
+def _parse_artifact_items(item_text: str) -> dict[str, str]:
+    """从 Item.txt 解析属于真正羁绊卡（ItemType == 'Artifact'）的条目，返回 {ID: icon_relative_path}。"""
+    artifacts: dict[str, str] = {}
+    lines = item_text.splitlines()
+    if not lines:
+        return artifacts
+    header = lines[0].split("@")
+    if "ID" not in header or "ItemType" not in header or "Icon" not in header:
+        return artifacts
+    id_at = header.index("ID")
+    type_at = header.index("ItemType")
+    icon_at = header.index("Icon")
+
+    for line in lines[1:]:
+        cols = line.split("@")
+        if len(cols) > type_at and cols[type_at] == "Artifact":
+            item_id = cols[id_at]
+            if item_id == "A9999":  # 测试占位
+                continue
+            icon = cols[icon_at] if len(cols) > icon_at else ""
+            if icon and icon.startswith("CG/"):
+                artifacts[item_id] = icon
+    return artifacts
+
+
+def _parse_artifact_items_from_meta() -> dict[str, str]:
+    """兜底降级：从已有的 data/item-meta.json 中读取羁绊映射。"""
+    meta_path = Path("data/item-meta.json")
+    artifacts: dict[str, str] = {}
+    if meta_path.is_file():
+        try:
+            meta = json.loads(meta_path.read_text(encoding="utf-8")).get("items", {})
+            for item_id, info in meta.items():
+                if info.get("icon_section") == "bonds" and item_id != "A9999":
+                    asset_name = info.get("asset_name", "")
+                    if asset_name:
+                        folder = item_id if not asset_name.startswith("Icon_Head_S_") else asset_name.replace("Icon_Head_S_", "")
+                        artifacts[item_id] = f"CG/{folder}/Img/{asset_name}"
+        except Exception:
+            pass
+    return artifacts
+
+
+def _bond_family(
+    catalog: ContentCatalog,
+    server: PatchServer | None = None,
+    base: str | None = None,
+    wanted: set[str] | None = None,
+) -> Family:
+    """收集真实羁绊小图（128x128 正方形头像，对应游戏内真实可佩戴的羁绊卡/神器图标）。
+
+    联动 StaticData/Item.txt 中 ItemType == 'Artifact' 的白名单，
+    精确排除角色好感度/寝室调教剧情回忆封面小图（LoveTalk），
+    仅收录游戏内真实存在的羁绊卡正方形小图（Icon_Head_S_A###.png 与 Icon_Carnival###_S.png）。
+
     为同时兼容 ID 索引与官方原始资产名，输出：
     1. <ID>.png（如 A0413.png, Carnival006.png）
     2. 官方资产原名（如 Icon_Head_S_A0413.png, Icon_Carnival006_S.png）
     两者内容 100% 一致。
     """
     discovered: dict[str, tuple[str, str]] = {}
-    for address in catalog._ids:  # noqa: SLF001
-        found = BOND_PATTERN.fullmatch(address)
-        if found:
-            bond_id = found.group(1)
-            official_name = found.group(2)
+    item_text = _load_item_table_text(catalog, server, base)
+    real_artifacts = _parse_artifact_items(item_text) if item_text else {}
+    if not real_artifacts:
+        real_artifacts = _parse_artifact_items_from_meta()
+
+    for bond_id, icon_path in sorted(real_artifacts.items()):
+        address = f"Assets/Game/{icon_path}.png"
+        if catalog.entries_for(address):
+            official_name = icon_path.rsplit("/", 1)[-1] + ".png"
             discovered[bond_id] = (official_name, address)
 
     addresses: dict[str, str] = {}
@@ -700,7 +798,7 @@ def _bond_family(catalog: ContentCatalog, wanted: set[str] | None = None) -> Fam
     return Family(
         "bonds",
         addresses,
-        note=f"{len(discovered)} unique bonds (ID + official alias: {len(addresses)} files)",
+        note=f"{len(discovered)} genuine bonds (ID + official alias: {len(addresses)} files)",
     )
 
 
@@ -905,7 +1003,7 @@ def main() -> int:
                 "atlas": lambda: _atlas_family(catalog),
                 "banner": lambda: _banner_family(catalog),
                 "bonds": lambda: _bond_family(
-                    catalog, _read_target_id_list(args.ids)
+                    catalog, server, base, _read_target_id_list(args.ids)
                 ),
                 "data": lambda: Family("data", {"Item.txt": ITEM_TABLE_ADDRESS},
                                        note="StaticData/Item.txt -> data/item-meta.json"),
@@ -1089,28 +1187,29 @@ def _download_data(
 
     def run(item: tuple[str, str, str]):
         _category, output_name, address = item
-        bundles = catalog.bundles_for(address)
-        if not bundles:
-            return output_name, None, "no bundle"
-        try:
-            paths = [server.fetch_bundle(base, internal) for internal in bundles]
-        except (httpx.HTTPError, OSError, RuntimeError) as exc:
-            return output_name, None, str(exc)
-        try:
-            environment = _import_unitypy().load(*[str(path) for path in paths])
-            text = None
-            for obj in environment.objects:
-                if obj.type.name != "TextAsset":
-                    continue
-                data = obj.read()
-                if data.m_Name == "Item":
-                    raw = data.m_Script
-                    text = raw if isinstance(raw, str) else raw.decode("utf-8", "replace")
-                    break
-            if text is None:
-                return output_name, None, "TextAsset 'Item' missing from bundle"
-        except Exception as exc:  # UnityPy raises a wide range of errors
-            return output_name, None, str(exc)
+        text = _load_item_table_text(catalog, server, base)
+        if text is None:
+            bundles = catalog.bundles_for(address)
+            if not bundles:
+                return output_name, None, "no bundle"
+            try:
+                paths = [server.fetch_bundle(base, internal) for internal in bundles]
+            except (httpx.HTTPError, OSError, RuntimeError) as exc:
+                return output_name, None, str(exc)
+            try:
+                environment = _import_unitypy().load(*[str(path) for path in paths])
+                for obj in environment.objects:
+                    if obj.type.name != "TextAsset":
+                        continue
+                    data = obj.read()
+                    if getattr(data, "m_Name", "") == "Item":
+                        raw = getattr(data, "m_Script", b"")
+                        text = raw if isinstance(raw, str) else raw.decode("utf-8", "replace")
+                        break
+                if text is None:
+                    return output_name, None, "TextAsset 'Item' missing from bundle"
+            except Exception as exc:  # UnityPy raises a wide range of errors
+                return output_name, None, str(exc)
 
         lines = text.splitlines()
         header = lines[0].split("@")
@@ -1118,6 +1217,7 @@ def _download_data(
         icon_at = header.index("Icon")
         name_at = header.index("Name")
         desc_at = header.index("Description")
+        type_at = header.index("ItemType") if "ItemType" in header else -1
         mapping: dict[str, dict[str, str]] = {}
         for line in lines[1:]:
             columns = line.split("@")
@@ -1131,8 +1231,12 @@ def _download_data(
                     # icon=图集里的 Sprite 名，section=它在哪个分区目录
                     entry["icon"] = found.group(2)
                     entry["icon_section"] = section
-            elif columns[icon_at].startswith("CG/") and (
-                "/Img/Icon_Head_S_" in columns[icon_at] or columns[icon_at].endswith("_S")
+            elif (
+                type_at != -1
+                and type_at < len(columns)
+                and columns[type_at] == "Artifact"
+                and columns[icon_at].startswith("CG/")
+                and columns[id_at] != "A9999"
             ):
                 entry["icon"] = columns[id_at]
                 entry["icon_section"] = "bonds"

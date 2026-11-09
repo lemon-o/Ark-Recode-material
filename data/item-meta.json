@@ -1810,10 +1810,7 @@
    "name": "T_Item_Name_A0485"
   },
   "A9999": {
-   "asset_name": "Icon_Head_S_A0001",
    "desc": "T_Item_Description_A9999",
-   "icon": "A9999",
-   "icon_section": "bonds",
    "name": "T_Item_Name_A9999"
   },
   "AC01": {
@@ -10194,31 +10191,19 @@
    "name": "T_Item_Name_RealGold"
   },
   "SA0001": {
-   "asset_name": "Icon_Head_S_SA0001",
    "desc": "T_Item_Description_SA0001",
-   "icon": "SA0001",
-   "icon_section": "bonds",
    "name": "T_Item_Name_SA0001"
   },
   "SA0037": {
-   "asset_name": "Icon_Head_S_SA0037",
    "desc": "T_Item_Description_SA0037",
-   "icon": "SA0037",
-   "icon_section": "bonds",
    "name": "T_Item_Name_SA0037"
   },
   "SA0201": {
-   "asset_name": "Icon_Head_S_SA0201",
    "desc": "T_Item_Description_SA0201",
-   "icon": "SA0201",
-   "icon_section": "bonds",
    "name": "T_Item_Name_SA0201"
   },
   "SA0213": {
-   "asset_name": "Icon_Head_S_SA0213",
    "desc": "T_Item_Description_SA0213",
-   "icon": "SA0213",
-   "icon_section": "bonds",
    "name": "T_Item_Name_SA0213"
   },
   "SCarnival006": {
@@ -10610,9 +10595,6 @@
    "name": "T_Item_Name_SH806"
   },
   "Sticker01": {
-   "asset_name": "Icon_Head_S_A0207",
-   "icon": "Sticker01",
-   "icon_section": "bonds",
    "name": "T_Item_Name_Sticker01"
   },
   "Sticker02": {
@@ -11407,5 +11389,5 @@
    "name": "T_Item_Name_VIPPoint"
   }
  },
- "updated": "2026-11-09T13:06:59+08:00"
+ "updated": "2026-11-09T13:38:15+08:00"
 }
