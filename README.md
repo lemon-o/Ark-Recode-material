@@ -89,6 +89,7 @@ catalog 里 7000+ 张 PNG 大半是 CG / 立绘 / 羁绊图（*_Sex_LoveTalk.png
     banners/     卡池横幅（Banner/BN_Summon_NNN 每池一个 bundle，512x256 简中图，
                  命名 BN_Summon_H804.png；卡池通用图如 MultiSummonMystic 同目录）
     bonds/       羁绊小图（128x128 方块头像，同时兼容 ID 命名 A0413.png 与官方名 Icon_Head_S_A0413.png）
+    videos/      招募/抽卡动画（videos/gacha/ 下收录裁切去除侧边栏与悬浮窗的出蓝/出紫/出金/出红视频）
     index.json   清单：分区 -> 键 -> 文件名 / 字节数 / sha256
     tools/       fetch_assets.py（抓图）、build_index.py（生成清单）、update_readme.py（回写「当前状态」）、sync_assets.py（供读取 AVATAR_ID_REMAP，在此仓库从不执行）
     backend/     config.py：抓图脚本要用的四个端点常量（GAME_ROUTER / GAME_ORIGIN / GAME_REFERER / HTTP_TIMEOUT）
