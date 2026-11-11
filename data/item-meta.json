@@ -516,6 +516,36 @@
    "icon_section": "items",
    "name": "T_Item_Name_241"
   },
+  "255": {
+   "desc": "T_Item_Description_255",
+   "icon": "5StarKarmaTicketSP",
+   "icon_section": "items",
+   "name": "T_Item_Name_228"
+  },
+  "256": {
+   "desc": "T_Item_Description_256",
+   "icon": "5StarHeroTicketSP",
+   "icon_section": "items",
+   "name": "T_Item_Name_241"
+  },
+  "257": {
+   "desc": "T_Item_Description_257",
+   "icon": "5StarHeroTicketSP",
+   "icon_section": "items",
+   "name": "T_Item_Name_232"
+  },
+  "258": {
+   "desc": "T_Item_Description_258",
+   "icon": "5StarGalaxyHeroTicket",
+   "icon_section": "items",
+   "name": "T_Item_Name_258"
+  },
+  "259": {
+   "desc": "T_Item_Description_259",
+   "icon": "5StarGalaxyHeroTicket",
+   "icon_section": "items",
+   "name": "T_Item_Name_259"
+  },
   "26": {
    "desc": "T_Item_Description_26",
    "icon": "MedalHonor",
@@ -1809,6 +1839,90 @@
    "icon_section": "bonds",
    "name": "T_Item_Name_A0485"
   },
+  "A0491": {
+   "asset_name": "Icon_Head_S_A0491",
+   "icon": "A0491",
+   "icon_section": "bonds",
+   "name": "T_Item_Name_A0491"
+  },
+  "A0494": {
+   "asset_name": "Icon_Head_S_A0494",
+   "icon": "A0494",
+   "icon_section": "bonds",
+   "name": "T_Item_Name_A0494"
+  },
+  "A0500": {
+   "asset_name": "Icon_Head_S_A0500",
+   "icon": "A0500",
+   "icon_section": "bonds",
+   "name": "T_Item_Name_A0500"
+  },
+  "A0503": {
+   "asset_name": "Icon_Head_S_A0503",
+   "icon": "A0503",
+   "icon_section": "bonds",
+   "name": "T_Item_Name_A0503"
+  },
+  "A0506": {
+   "asset_name": "Icon_Head_S_A0506",
+   "icon": "A0506",
+   "icon_section": "bonds",
+   "name": "T_Item_Name_A0506"
+  },
+  "A0509": {
+   "asset_name": "Icon_Head_S_A0509",
+   "icon": "A0509",
+   "icon_section": "bonds",
+   "name": "T_Item_Name_A0509"
+  },
+  "A0518": {
+   "asset_name": "Icon_Head_S_A0518",
+   "icon": "A0518",
+   "icon_section": "bonds",
+   "name": "T_Item_Name_A0518"
+  },
+  "A0521": {
+   "asset_name": "Icon_Head_S_A0521",
+   "icon": "A0521",
+   "icon_section": "bonds",
+   "name": "T_Item_Name_A0521"
+  },
+  "A0530": {
+   "asset_name": "Icon_Head_S_A0530",
+   "icon": "A0530",
+   "icon_section": "bonds",
+   "name": "T_Item_Name_A0530"
+  },
+  "A0536": {
+   "asset_name": "Icon_Head_S_A0536",
+   "icon": "A0536",
+   "icon_section": "bonds",
+   "name": "T_Item_Name_A0536"
+  },
+  "A0551": {
+   "asset_name": "Icon_Head_S_A0551",
+   "icon": "A0551",
+   "icon_section": "bonds",
+   "name": "T_Item_Name_A0551"
+  },
+  "A0560": {
+   "asset_name": "Icon_Head_S_A0560",
+   "icon": "A0560",
+   "icon_section": "bonds",
+   "name": "T_Item_Name_A0560"
+  },
+  "A0575": {
+   "asset_name": "Icon_Head_S_A0575",
+   "icon": "A0575",
+   "icon_section": "bonds",
+   "name": "T_Item_Name_A0575"
+  },
+  "A0608": {
+   "asset_name": "Icon_Head_S_A0608",
+   "icon": "A0608",
+   "icon_section": "bonds",
+   "name": "T_Item_Name_A0608"
+  },
   "A9999": {
    "desc": "T_Item_Description_A9999",
    "name": "T_Item_Name_A9999"
@@ -2248,17 +2362,65 @@
    "icon_section": "items",
    "name": "T_Item_Name_AH193"
   },
+  "AH194": {
+   "desc": "T_Item_Description_AH001",
+   "icon": "AH194",
+   "icon_section": "items",
+   "name": "T_Item_Name_AH194"
+  },
+  "AH195": {
+   "desc": "T_Item_Description_AH001",
+   "icon": "AH195",
+   "icon_section": "items",
+   "name": "T_Item_Name_AH195"
+  },
   "AH198": {
    "desc": "T_Item_Description_AH001",
    "icon": "AH198",
    "icon_section": "items",
    "name": "T_Item_Name_AH198"
   },
+  "AH199": {
+   "desc": "T_Item_Description_AH001",
+   "icon": "AH199",
+   "icon_section": "items",
+   "name": "T_Item_Name_AH199"
+  },
+  "AH200": {
+   "desc": "T_Item_Description_AH001",
+   "icon": "AH200",
+   "icon_section": "items",
+   "name": "T_Item_Name_AH200"
+  },
   "AH205": {
    "desc": "T_Item_Description_AH001",
    "icon": "AH205",
    "icon_section": "items",
    "name": "T_Item_Name_AH205"
+  },
+  "AH210": {
+   "desc": "T_Item_Description_AH001",
+   "icon": "AH210",
+   "icon_section": "items",
+   "name": "T_Item_Name_AH210"
+  },
+  "AH215": {
+   "desc": "T_Item_Description_AH001",
+   "icon": "AH215",
+   "icon_section": "items",
+   "name": "T_Item_Name_AH215"
+  },
+  "AH218": {
+   "desc": "T_Item_Description_AH001",
+   "icon": "AH218",
+   "icon_section": "items",
+   "name": "T_Item_Name_AH218"
+  },
+  "AH222": {
+   "desc": "T_Item_Description_AH001",
+   "icon": "AH222",
+   "icon_section": "items",
+   "name": "T_Item_Name_AH222"
   },
   "AH602": {
    "desc": "T_Item_Description_AH001",
@@ -3036,9 +3198,29 @@
    "desc": "T_Item_Description_Background01",
    "name": "T_Item_Name_Background168"
   },
+  "Background169": {
+   "desc": "T_Item_Description_Background01",
+   "name": "T_Item_Name_Background169"
+  },
   "Background17": {
    "desc": "T_Item_Description_Background01",
    "name": "T_Item_Name_Background17"
+  },
+  "Background170": {
+   "desc": "T_Item_Description_Background01",
+   "name": "T_Item_Name_Background170"
+  },
+  "Background171": {
+   "desc": "T_Item_Description_Background01",
+   "name": "T_Item_Name_Background171"
+  },
+  "Background172": {
+   "desc": "T_Item_Description_Background01",
+   "name": "T_Item_Name_Background172"
+  },
+  "Background173": {
+   "desc": "T_Item_Description_Background01",
+   "name": "T_Item_Name_Background173"
   },
   "Background174": {
    "desc": "T_Item_Description_Background01",
@@ -3048,9 +3230,65 @@
    "desc": "T_Item_Description_Background01",
    "name": "T_Item_Name_Background175"
   },
+  "Background176": {
+   "desc": "T_Item_Description_Background01",
+   "name": "T_Item_Name_Background176"
+  },
+  "Background177": {
+   "desc": "T_Item_Description_Background01",
+   "name": "T_Item_Name_Background177"
+  },
+  "Background178": {
+   "desc": "T_Item_Description_Background01",
+   "name": "T_Item_Name_Background178"
+  },
+  "Background179": {
+   "desc": "T_Item_Description_Background01",
+   "name": "T_Item_Name_Background179"
+  },
   "Background18": {
    "desc": "T_Item_Description_Background01",
    "name": "T_Item_Name_Background18"
+  },
+  "Background180": {
+   "desc": "T_Item_Description_Background01",
+   "name": "T_Item_Name_Background180"
+  },
+  "Background181": {
+   "desc": "T_Item_Description_Background01",
+   "name": "T_Item_Name_Background181"
+  },
+  "Background182": {
+   "desc": "T_Item_Description_Background01",
+   "name": "T_Item_Name_Background182"
+  },
+  "Background183": {
+   "desc": "T_Item_Description_Background01",
+   "name": "T_Item_Name_Background183"
+  },
+  "Background184": {
+   "desc": "T_Item_Description_Background01",
+   "name": "T_Item_Name_Background184"
+  },
+  "Background185": {
+   "desc": "T_Item_Description_Background01",
+   "name": "T_Item_Name_Background185"
+  },
+  "Background186": {
+   "desc": "T_Item_Description_Background01",
+   "name": "T_Item_Name_Background186"
+  },
+  "Background187": {
+   "desc": "T_Item_Description_Background01",
+   "name": "T_Item_Name_Background187"
+  },
+  "Background188": {
+   "desc": "T_Item_Description_Background01",
+   "name": "T_Item_Name_Background188"
+  },
+  "Background189": {
+   "desc": "T_Item_Description_Background01",
+   "name": "T_Item_Name_Background189"
   },
   "Background19": {
    "desc": "T_Item_Description_Background01",
@@ -3654,6 +3892,22 @@
    "desc": "T_Item_Description_Background01",
    "name": "T_Item_Name_CGCollection14"
   },
+  "CGCollection15": {
+   "desc": "T_Item_Description_Background01",
+   "name": "T_Item_Name_CGCollection15"
+  },
+  "CGCollection16": {
+   "desc": "T_Item_Description_Background01",
+   "name": "T_Item_Name_CGCollection16"
+  },
+  "CGCollection17": {
+   "desc": "T_Item_Description_Background01",
+   "name": "T_Item_Name_CGCollection17"
+  },
+  "CGCollection18": {
+   "desc": "T_Item_Description_Background01",
+   "name": "T_Item_Name_CGCollection18"
+  },
   "CR11": {
    "desc": "T_Item_Description_CR11",
    "icon": "CR11",
@@ -3861,6 +4115,12 @@
   "Carnival02": {
    "desc": "T_Item_Description_Carnival01",
    "icon": "AnniversaryPoint2",
+   "icon_section": "items",
+   "name": "T_Item_Name_Carnival01"
+  },
+  "Carnival03": {
+   "desc": "T_Item_Description_Carnival01",
+   "icon": "AnniversaryPoint3",
    "icon_section": "items",
    "name": "T_Item_Name_Carnival01"
   },
@@ -5586,11 +5846,41 @@
    "icon_section": "equip",
    "name": "T_Item_Name_E0468"
   },
+  "E0469": {
+   "desc": "T_Item_Description_E0469",
+   "icon": "E046_9",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E0469"
+  },
+  "E0470": {
+   "desc": "T_Item_Description_E0470",
+   "icon": "E047_0",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E0470"
+  },
   "E0471": {
    "desc": "T_Item_Description_E0471",
    "icon": "E047_1",
    "icon_section": "equip",
    "name": "T_Item_Name_E0471"
+  },
+  "E0472": {
+   "desc": "T_Item_Description_E0472",
+   "icon": "E047_2",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E0472"
+  },
+  "E0473": {
+   "desc": "T_Item_Description_E0473",
+   "icon": "E047_3",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E0473"
+  },
+  "E0474": {
+   "desc": "T_Item_Description_E0474",
+   "icon": "E047_4",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E0474"
   },
   "E0501": {
    "desc": "T_Item_Description_E0501",
@@ -5627,6 +5917,12 @@
    "icon": "E050_6",
    "icon_section": "equip",
    "name": "T_Item_Name_E0506"
+  },
+  "E0507": {
+   "desc": "T_Item_Description_E0507",
+   "icon": "E050_7",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E0507"
   },
   "E0601": {
    "icon": "E024_1",
@@ -7326,6 +7622,78 @@
    "icon_section": "equip",
    "name": "T_Item_Name_E1156"
   },
+  "E1161": {
+   "desc": "T_Item_Description_E1161",
+   "icon": "E116_1",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1161"
+  },
+  "E1162": {
+   "desc": "T_Item_Description_E1162",
+   "icon": "E116_2",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1162"
+  },
+  "E1163": {
+   "desc": "T_Item_Description_E1163",
+   "icon": "E116_3",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1163"
+  },
+  "E1164": {
+   "desc": "T_Item_Description_E1164",
+   "icon": "E116_4",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1164"
+  },
+  "E1165": {
+   "desc": "T_Item_Description_E1165",
+   "icon": "E116_5",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1165"
+  },
+  "E1166": {
+   "desc": "T_Item_Description_E1166",
+   "icon": "E116_6",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1166"
+  },
+  "E1171": {
+   "desc": "T_Item_Description_E1171",
+   "icon": "E117_1",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1171"
+  },
+  "E1172": {
+   "desc": "T_Item_Description_E1172",
+   "icon": "E117_2",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1172"
+  },
+  "E1173": {
+   "desc": "T_Item_Description_E1173",
+   "icon": "E117_3",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1173"
+  },
+  "E1174": {
+   "desc": "T_Item_Description_E1174",
+   "icon": "E117_4",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1174"
+  },
+  "E1175": {
+   "desc": "T_Item_Description_E1175",
+   "icon": "E117_5",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1175"
+  },
+  "E1176": {
+   "desc": "T_Item_Description_E1176",
+   "icon": "E117_6",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1176"
+  },
   "E1181": {
    "desc": "T_Item_Description_E1181",
    "icon": "E118_1",
@@ -7361,6 +7729,114 @@
    "icon": "E118_6",
    "icon_section": "equip",
    "name": "T_Item_Name_E1186"
+  },
+  "E1191": {
+   "desc": "T_Item_Description_E1191",
+   "icon": "E119_1",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1191"
+  },
+  "E1192": {
+   "desc": "T_Item_Description_E1192",
+   "icon": "E119_2",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1192"
+  },
+  "E1193": {
+   "desc": "T_Item_Description_E1193",
+   "icon": "E119_3",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1193"
+  },
+  "E1194": {
+   "desc": "T_Item_Description_E1194",
+   "icon": "E119_4",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1194"
+  },
+  "E1195": {
+   "desc": "T_Item_Description_E1195",
+   "icon": "E119_5",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1195"
+  },
+  "E1196": {
+   "desc": "T_Item_Description_E1196",
+   "icon": "E119_6",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1196"
+  },
+  "E1201": {
+   "desc": "T_Item_Description_E1201",
+   "icon": "E120_1",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1201"
+  },
+  "E1202": {
+   "desc": "T_Item_Description_E1202",
+   "icon": "E120_2",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1202"
+  },
+  "E1203": {
+   "desc": "T_Item_Description_E1203",
+   "icon": "E120_3",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1203"
+  },
+  "E1204": {
+   "desc": "T_Item_Description_E1204",
+   "icon": "E120_4",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1204"
+  },
+  "E1205": {
+   "desc": "T_Item_Description_E1205",
+   "icon": "E120_5",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1205"
+  },
+  "E1206": {
+   "desc": "T_Item_Description_E1206",
+   "icon": "E120_6",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1206"
+  },
+  "E1211": {
+   "desc": "T_Item_Description_E1211",
+   "icon": "E121_1",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1211"
+  },
+  "E1212": {
+   "desc": "T_Item_Description_E1212",
+   "icon": "E121_2",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1212"
+  },
+  "E1213": {
+   "desc": "T_Item_Description_E1213",
+   "icon": "E121_3",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1213"
+  },
+  "E1214": {
+   "desc": "T_Item_Description_E1214",
+   "icon": "E121_4",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1214"
+  },
+  "E1215": {
+   "desc": "T_Item_Description_E1215",
+   "icon": "E121_5",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1215"
+  },
+  "E1216": {
+   "desc": "T_Item_Description_E1216",
+   "icon": "E121_6",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E1216"
   },
   "E2001": {
    "desc": "T_Item_Description_E2001",
@@ -7505,6 +7981,42 @@
    "icon": "E203_6",
    "icon_section": "equip",
    "name": "T_Item_Name_E2036"
+  },
+  "E2041": {
+   "desc": "T_Item_Description_E2001",
+   "icon": "E204_1",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E2041"
+  },
+  "E2042": {
+   "desc": "T_Item_Description_E2001",
+   "icon": "E204_2",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E2042"
+  },
+  "E2043": {
+   "desc": "T_Item_Description_E2001",
+   "icon": "E204_3",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E2043"
+  },
+  "E2044": {
+   "desc": "T_Item_Description_E2001",
+   "icon": "E204_4",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E2044"
+  },
+  "E2045": {
+   "desc": "T_Item_Description_E2001",
+   "icon": "E204_5",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E2045"
+  },
+  "E2046": {
+   "desc": "T_Item_Description_E2001",
+   "icon": "E204_6",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E2046"
   },
   "E3001": {
    "desc": "T_Item_Description_E3001",
@@ -7937,6 +8449,42 @@
    "icon": "E406_6",
    "icon_section": "equip",
    "name": "T_Item_Name_E4066"
+  },
+  "E4071": {
+   "desc": "T_Item_Description_E4071",
+   "icon": "E407_1",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E4071"
+  },
+  "E4072": {
+   "desc": "T_Item_Description_E4072",
+   "icon": "E407_2",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E4072"
+  },
+  "E4073": {
+   "desc": "T_Item_Description_E4073",
+   "icon": "E407_3",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E4073"
+  },
+  "E4074": {
+   "desc": "T_Item_Description_E4074",
+   "icon": "E407_4",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E4074"
+  },
+  "E4075": {
+   "desc": "T_Item_Description_E4075",
+   "icon": "E407_5",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E4075"
+  },
+  "E4076": {
+   "desc": "T_Item_Description_E4076",
+   "icon": "E407_6",
+   "icon_section": "equip",
+   "name": "T_Item_Name_E4076"
   },
   "EC11": {
    "desc": "T_Item_Description_EC11",
@@ -8465,6 +9013,11 @@
    "icon": "Frame_065",
    "icon_section": "uiconz",
    "name": "T_Item_Name_Frame065"
+  },
+  "Frame066": {
+   "icon": "Frame_066",
+   "icon_section": "uiconz",
+   "name": "T_Item_Name_Frame066"
   },
   "GIFTCustomAEquip": {
    "desc": "T_Item_Description_GIFTCustomAEquip",
@@ -9598,6 +10151,66 @@
   "H208": {
    "name": "T_Item_Name_H208"
   },
+  "H209": {
+   "name": "T_Item_Name_H209"
+  },
+  "H210": {
+   "name": "T_Item_Name_H210"
+  },
+  "H211": {
+   "name": "T_Item_Name_H211"
+  },
+  "H212": {
+   "name": "T_Item_Name_H212"
+  },
+  "H213": {
+   "name": "T_Item_Name_H213"
+  },
+  "H214": {
+   "name": "T_Item_Name_H214"
+  },
+  "H215": {
+   "name": "T_Item_Name_H215"
+  },
+  "H216": {
+   "name": "T_Item_Name_H216"
+  },
+  "H217": {
+   "name": "T_Item_Name_H217"
+  },
+  "H218": {
+   "name": "T_Item_Name_H218"
+  },
+  "H219": {
+   "name": "T_Item_Name_H219"
+  },
+  "H222": {
+   "name": "T_Item_Name_H222"
+  },
+  "H223": {
+   "name": "T_Item_Name_H223"
+  },
+  "H224": {
+   "name": "T_Item_Name_H224"
+  },
+  "H225": {
+   "name": "T_Item_Name_H225"
+  },
+  "H229": {
+   "name": "T_Item_Name_H229"
+  },
+  "H232": {
+   "name": "T_Item_Name_H232"
+  },
+  "H235": {
+   "name": "T_Item_Name_H235"
+  },
+  "H237": {
+   "name": "T_Item_Name_H237"
+  },
+  "H248": {
+   "name": "T_Item_Name_H248"
+  },
   "H601": {
    "name": "T_Item_Name_H601"
   },
@@ -10542,6 +11155,62 @@
    "desc": "T_Item_Description_SH195",
    "name": "T_Item_Name_SH195"
   },
+  "SH198": {
+   "desc": "T_Item_Description_SH198",
+   "name": "T_Item_Name_SH198"
+  },
+  "SH199": {
+   "desc": "T_Item_Description_SH199",
+   "name": "T_Item_Name_SH199"
+  },
+  "SH200": {
+   "desc": "T_Item_Description_SH200",
+   "name": "T_Item_Name_SH200"
+  },
+  "SH203": {
+   "desc": "T_Item_Description_SH203",
+   "name": "T_Item_Name_SH203"
+  },
+  "SH204": {
+   "desc": "T_Item_Description_SH204",
+   "name": "T_Item_Name_SH204"
+  },
+  "SH205": {
+   "desc": "T_Item_Description_SH205",
+   "name": "T_Item_Name_SH205"
+  },
+  "SH206": {
+   "desc": "T_Item_Description_SH206",
+   "name": "T_Item_Name_SH206"
+  },
+  "SH207": {
+   "desc": "T_Item_Description_SH207",
+   "name": "T_Item_Name_SH207"
+  },
+  "SH209": {
+   "desc": "T_Item_Description_SH209",
+   "name": "T_Item_Name_SH209"
+  },
+  "SH210": {
+   "desc": "T_Item_Description_SH210",
+   "name": "T_Item_Name_SH210"
+  },
+  "SH212": {
+   "desc": "T_Item_Description_SH212",
+   "name": "T_Item_Name_SH212"
+  },
+  "SH213": {
+   "desc": "T_Item_Description_SH213",
+   "name": "T_Item_Name_SH213"
+  },
+  "SH215": {
+   "desc": "T_Item_Description_SH215",
+   "name": "T_Item_Name_SH215"
+  },
+  "SH218": {
+   "desc": "T_Item_Description_SH218",
+   "name": "T_Item_Name_SH218"
+  },
   "SH601": {
    "desc": "T_Item_Description_SH601",
    "name": "T_Item_Name_SH601"
@@ -10566,6 +11235,10 @@
    "desc": "T_Item_Description_SH607",
    "name": "T_Item_Name_SH607"
   },
+  "SH608": {
+   "desc": "T_Item_Description_SH608",
+   "name": "T_Item_Name_SH608"
+  },
   "SH609": {
    "desc": "T_Item_Description_SH609",
    "name": "T_Item_Name_SH609"
@@ -10573,6 +11246,10 @@
   "SH610": {
    "desc": "T_Item_Description_SH610",
    "name": "T_Item_Name_SH610"
+  },
+  "SH611": {
+   "desc": "T_Item_Description_SH611",
+   "name": "T_Item_Name_SH611"
   },
   "SH612": {
    "desc": "T_Item_Description_SH612",
@@ -11062,11 +11739,29 @@
    "icon_section": "items",
    "name": "T_Item_Name_TH193"
   },
+  "TH194": {
+   "desc": "T_Item_Description_TH194",
+   "icon": "Contract_H194",
+   "icon_section": "items",
+   "name": "T_Item_Name_TH194"
+  },
+  "TH195": {
+   "desc": "T_Item_Description_TH195",
+   "icon": "Contract_H195",
+   "icon_section": "items",
+   "name": "T_Item_Name_TH195"
+  },
   "TH198": {
    "desc": "T_Item_Description_TH198",
    "icon": "Contract_H198",
    "icon_section": "items",
    "name": "T_Item_Name_TH198"
+  },
+  "TH199": {
+   "desc": "T_Item_Description_TH199",
+   "icon": "Contract_H199",
+   "icon_section": "items",
+   "name": "T_Item_Name_TH199"
   },
   "TH1stFES": {
    "desc": "T_Item_Description_TH1stFES",
@@ -11074,11 +11769,77 @@
    "icon_section": "items",
    "name": "T_Item_Name_TH1stFES"
   },
+  "TH200": {
+   "desc": "T_Item_Description_TH200",
+   "icon": "Contract_H200",
+   "icon_section": "items",
+   "name": "T_Item_Name_TH200"
+  },
+  "TH203": {
+   "desc": "T_Item_Description_TH203",
+   "icon": "Contract_H203",
+   "icon_section": "items",
+   "name": "T_Item_Name_TH203"
+  },
+  "TH204": {
+   "desc": "T_Item_Description_TH204",
+   "icon": "Contract_H204",
+   "icon_section": "items",
+   "name": "T_Item_Name_TH204"
+  },
   "TH205": {
    "desc": "T_Item_Description_TH205",
    "icon": "Contract_H205",
    "icon_section": "items",
    "name": "T_Item_Name_TH205"
+  },
+  "TH206": {
+   "desc": "T_Item_Description_TH206",
+   "icon": "Contract_H206",
+   "icon_section": "items",
+   "name": "T_Item_Name_TH206"
+  },
+  "TH207": {
+   "desc": "T_Item_Description_TH207",
+   "icon": "Contract_H207",
+   "icon_section": "items",
+   "name": "T_Item_Name_TH207"
+  },
+  "TH209": {
+   "desc": "T_Item_Description_TH209",
+   "icon": "Contract_H209",
+   "icon_section": "items",
+   "name": "T_Item_Name_TH209"
+  },
+  "TH210": {
+   "desc": "T_Item_Description_TH210",
+   "icon": "Contract_H210",
+   "icon_section": "items",
+   "name": "T_Item_Name_TH210"
+  },
+  "TH212": {
+   "desc": "T_Item_Description_TH212",
+   "icon": "Contract_H212",
+   "icon_section": "items",
+   "name": "T_Item_Name_TH212"
+  },
+  "TH213": {
+   "desc": "T_Item_Description_TH213",
+   "icon": "Contract_H213",
+   "icon_section": "items",
+   "name": "T_Item_Name_TH213"
+  },
+  "TH215": {
+   "desc": "T_Item_Description_TH215",
+   "icon": "Contract_H215",
+   "icon_section": "items",
+   "name": "T_Item_Name_TH215"
+  },
+  "TH218": {
+   "desc": "T_Item_Description_TH218",
+   "icon": "Contract_H218",
+   "icon_section": "items",
+   "name": "T_Item_Name_TH218"
   },
   "TH601": {
    "desc": "T_Item_Description_TH601",
@@ -11110,11 +11871,35 @@
    "icon_section": "items",
    "name": "T_Item_Name_TH606"
   },
+  "TH607": {
+   "desc": "T_Item_Description_TH607",
+   "icon": "Contract_H607",
+   "icon_section": "items",
+   "name": "T_Item_Name_TH607"
+  },
+  "TH608": {
+   "desc": "T_Item_Description_TH608",
+   "icon": "Contract_H608",
+   "icon_section": "items",
+   "name": "T_Item_Name_TH608"
+  },
+  "TH609": {
+   "desc": "T_Item_Description_TH609",
+   "icon": "Contract_H609",
+   "icon_section": "items",
+   "name": "T_Item_Name_TH609"
+  },
   "TH610": {
    "desc": "T_Item_Description_TH610",
    "icon": "Contract_H610",
    "icon_section": "items",
    "name": "T_Item_Name_TH610"
+  },
+  "TH611": {
+   "desc": "T_Item_Description_TH611",
+   "icon": "Contract_H611",
+   "icon_section": "items",
+   "name": "T_Item_Name_TH611"
   },
   "TH612": {
    "desc": "T_Item_Description_TH612",
@@ -11127,6 +11912,12 @@
    "icon": "Contract_H613",
    "icon_section": "items",
    "name": "T_Item_Name_TH613"
+  },
+  "TH614": {
+   "desc": "T_Item_Description_TH614",
+   "icon": "Contract_H614",
+   "icon_section": "items",
+   "name": "T_Item_Name_TH614"
   },
   "TH804": {
    "desc": "T_Item_Description_TH804",
@@ -11389,5 +12180,5 @@
    "name": "T_Item_Name_VIPPoint"
   }
  },
- "updated": "2026-11-09T13:38:15+08:00"
+ "updated": "2026-11-11T21:33:39+08:00"
 }
