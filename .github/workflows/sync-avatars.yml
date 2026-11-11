@@ -2,9 +2,13 @@ name: Sync Assets
 
 on:
   schedule:
-    # 1. 周三游戏维护日（北京时间 14:00 - 20:00，对应 UTC 06:00 - 12:00）：每 20 分钟高频探测
-    - cron: "*/20 6-12 * * 3"
-    # 2. 其余日常时间段：每 2 小时轻量探活一次
+    # 1. 周三维护结束节点（北京时间 19:00 / 19:30 / 20:00，对应 UTC 11:00 / 11:30 / 12:00）：
+    #    官方维护通常 14:00-19:00，偶有延长；新 catalog 在维护结束时上线。
+    #    配合下面的 1 小时去重守卫，19:00 已拉取过则 19:30/20:00 直接跳过。
+    - cron: "0 11 * * 3"
+    - cron: "30 11 * * 3"
+    - cron: "0 12 * * 3"
+    # 2. 其余时间：每 2 小时轻量探活一次（兜底；5 分钟 catalog 探针 hook 是主检测）
     - cron: "0 */2 * * *"
   workflow_dispatch:
     inputs:
@@ -34,28 +38,57 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      # 维护结束节点排得密（19:00/19:30/20:00），上一班已拉取过就跳过本班。
+      # data/catalog-info.json 的 updated_at 由 check_version.py --save 在每次同步时刷新。
+      # 只对定时触发生效：hook 触发的 dispatch 说明 catalog 确实变了，不能跳过。
+      - name: 检查 1 小时内是否已同步过
+        id: recent
+        run: |
+          python3 - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          event = os.environ.get("GITHUB_EVENT_NAME", "")
+          try:
+              info = json.load(open("data/catalog-info.json", encoding="utf-8"))
+              last = datetime.fromisoformat(str(info["updated_at"]).replace("Z", "+00:00"))
+          except Exception as e:
+              print(f"读不到上次同步时间，继续执行：{e}")
+              last = None
+          now = datetime.now(timezone.utc)
+          recent = bool(last and (now - last).total_seconds() < 3600)
+          skip = recent and event == "schedule"
+          print(f"触发方式：{event}；上次同步：{last}；1 小时内已同步：{recent}；跳过：{skip}")
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as f:
+              f.write(f"skip={'true' if skip else 'false'}\n")
+          if skip:
+              with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as f:
+                  f.write(f"1 小时内已同步过（上次 {last}），本次跳过。\n")
+          PY
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
       - name: 安装轻量检测依赖
+        if: ${{ steps.recent.outputs.skip != 'true' }}
         run: |
           python -m pip install --upgrade pip
           python -m pip install "httpx==0.28.1"
 
       - name: 检查游戏 Catalog 版本变动
         id: check
+        if: ${{ steps.recent.outputs.skip != 'true' }}
         run: |
           FORCE_FLAG="${{ (inputs.force || github.event_name == 'repository_dispatch') && '--force' || '' }}"
           python tools/check_version.py $FORCE_FLAG
 
       - name: 安装完整提取依赖 (仅版本有变动或强制运行)
-        if: ${{ steps.check.outputs.changed == 'true' || inputs.force || github.event_name == 'repository_dispatch' }}
+        if: ${{ steps.recent.outputs.skip != 'true' && (steps.check.outputs.changed == 'true' || inputs.force || github.event_name == 'repository_dispatch') }}
         run: |
           python -m pip install UnityPy
 
       - name: 校验头像 ID 重映射表可读
-        if: ${{ steps.check.outputs.changed == 'true' || inputs.force || github.event_name == 'repository_dispatch' }}
+        if: ${{ steps.recent.outputs.skip != 'true' && (steps.check.outputs.changed == 'true' || inputs.force || github.event_name == 'repository_dispatch') }}
         run: |
           python - <<'PY'
           import ast, pathlib, sys
@@ -82,7 +115,7 @@ jobs:
           PY
 
       - name: 从 CDN 提取最新素材
-        if: ${{ steps.check.outputs.changed == 'true' || inputs.force || github.event_name == 'repository_dispatch' }}
+        if: ${{ steps.recent.outputs.skip != 'true' && (steps.check.outputs.changed == 'true' || inputs.force || github.event_name == 'repository_dispatch') }}
         run: |
           set -o pipefail
           mkdir -p build
@@ -98,7 +131,7 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: 生成清单并提交
-        if: ${{ !inputs.dry_run && (steps.check.outputs.changed == 'true' || inputs.force || github.event_name == 'repository_dispatch') }}
+        if: ${{ steps.recent.outputs.skip != 'true' && !inputs.dry_run && (steps.check.outputs.changed == 'true' || inputs.force || github.event_name == 'repository_dispatch') }}
         run: |
           python tools/check_version.py --save
           python tools/build_index.py
@@ -113,12 +146,18 @@ jobs:
           TITLE="${{ steps.check.outputs.notice_title || steps.check.outputs.catalog || 'latest' }}"
           git commit -m "chore(素材): 自动同步游戏更新素材 - ${TITLE} [skip ci]"
           git push
+          # index.json 是下游的入口清单：jsDelivr 会把 @main 分支文件缓存 12 小时，
+          # 不清缓存的话客户端最长 12 小时内仍拿到旧清单，清一下让新素材立刻可见。
+          # purge 失败不影响本次同步（缓存会在 12 小时内自然过期）。
+          curl -sS --fail --retry 3 --retry-delay 5 \
+            "https://purge.jsdelivr.net/gh/${GITHUB_REPOSITORY}@main/index.json" \
+            || echo "jsDelivr purge 失败，缓存将在 12 小时内自然过期"
 
       # 版本没变也要刷新 README 的「最近扫描」：那行显示的是本轮探活时刻，
       # 不是「最近一次抓到新素材」的时刻。缺了这步，无更新的日子里时间会一直冻住
       # （表现为「仓库不自动更新了」），顺带也保住了仓库的活跃度。
       - name: 探活心跳：刷新最近扫描时间
-        if: ${{ !inputs.dry_run && !inputs.force && github.event_name != 'repository_dispatch' && steps.check.outputs.changed != 'true' }}
+        if: ${{ steps.recent.outputs.skip != 'true' && !inputs.dry_run && !inputs.force && github.event_name != 'repository_dispatch' && steps.check.outputs.changed != 'true' }}
         run: |
           python tools/update_readme.py
           if [ -z "$(git status --porcelain)" ]; then
