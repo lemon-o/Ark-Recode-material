@@ -42,7 +42,7 @@ DEFAULT_TARGET = ROOT / "spine"
 DEFAULT_CACHE = ROOT / "Asset Cache"
 BOOTSTRAP_ROUTE = "GameServerDBSettingHandler.QueryBulletinInfoResult"
 
-PORTRAIT_SKEL_PATTERN = re.compile(r"^Assets/Game/Hero/(H\d+)/\1/([^/]+)\.skel\.bytes$")
+PORTRAIT_SKEL_PATTERN = re.compile(r"^Assets/Game/Hero/(H\d+)/([^/]+)/([^/]+)\.skel\.bytes$")
 
 
 def _read_config() -> dict[str, str]:
@@ -74,21 +74,35 @@ def _resolve_patch_info(client: httpx.Client, router: str) -> tuple[str, str]:
 
 def find_all_spine_portraits(catalog: ContentCatalog) -> dict[str, tuple[str, list[str]]]:
     """返回 {HeroID: (BaseName, [所有涉及的 bundle 内部地址])}"""
-    heroes: dict[str, tuple[str, list[str]]] = {}
+    candidates: dict[str, list[tuple[str, str, str]]] = {}
     for addr in catalog._ids:
         m = PORTRAIT_SKEL_PATTERN.match(addr)
-        if m:
-            hid, base_name = m.group(1), m.group(2)
-            bundles = list(catalog.bundles_for(addr))
-            # 同时也检查 png 地址所在的 bundle（防止部分角色如 H060 的 png 放在 duplicate bundle 里）
-            png_addr = f"Assets/Game/Hero/{hid}/{hid}/{base_name}.png"
-            png_bundles = catalog.bundles_for(png_addr)
-            for pb in png_bundles:
-                if pb not in bundles:
-                    bundles.append(pb)
-            if bundles:
-                heroes[hid] = (base_name, bundles)
-    return dict(sorted(heroes.items()))
+        if not m:
+            continue
+        hid, subdir, base_name = m.groups()
+        # 排除战斗 Q 版小人（如 H001_S 等）
+        if subdir.endswith("_S") or base_name.endswith("_S"):
+            continue
+        candidates.setdefault(hid, []).append((subdir, base_name, addr))
+
+    heroes: dict[str, tuple[str, list[str]]] = {}
+    for hid, items in sorted(candidates.items()):
+        # 优选主立绘：优先匹配 hid 本名（如 H003/H003a/H003）或早期 CG_{hid}_a
+        chosen = items[0]
+        for sub, b, addr in items:
+            if b == hid or b == f"CG_{hid}_a":
+                chosen = (sub, b, addr)
+                break
+        subdir, base_name, addr = chosen
+        bundles = list(catalog.bundles_for(addr))
+        # 检查对应 png 所在的 bundle（以防贴图分离，如 H060）
+        png_addr = addr[:-11] + ".png"
+        for pb in catalog.bundles_for(png_addr):
+            if pb not in bundles:
+                bundles.append(pb)
+        if bundles:
+            heroes[hid] = (base_name, bundles)
+    return heroes
 
 
 def extract_hero_spine(bundle_paths: list[Path], hero_id: str, base_name: str, out_dir: Path) -> dict[str, int]:
