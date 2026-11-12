@@ -1,0 +1,55 @@
+H802.png
+size:1024,1024
+filter:Linear,Linear
+pma:true
+scale:0.6
+Bear_Mouth
+bounds:480,963,42,59
+Bear_arm_L01
+bounds:349,205,82,218
+rotate:90
+Bear_arm_L02
+bounds:511,526,97,177
+offsets:0,0,97,182
+rotate:90
+Bear_arm_R01
+bounds:416,289,224,274
+rotate:90
+Bear_blush
+bounds:856,769,253,148
+rotate:90
+Bear_body
+bounds:692,363,337,330
+offsets:0,0,337,383
+rotate:90
+Bear_bow tie_L
+bounds:846,177,185,165
+rotate:90
+Bear_bow tie_L_shadow
+bounds:556,157,121,114
+offsets:3,0,124,114
+Bear_bow tie_R
+bounds:2,209,161,211
+Bear_bow tie_R_shadow
+bounds:937,704,85,127
+Bear_ear_L
+bounds:2,827,194,189
+offsets:3,0,197,189
+rotate:90
+Bear_ear_R
+bounds:265,793,188,229
+Bear_eye_L
+bounds:831,982,48,40
+Bear_eye_R
+bounds:434,975,50,47
+Bear_head
+bounds:499,624,398,355
+rotate:90
+Bear_leg_L
+bounds:643,242,120,200
+rotate:90
+Bear_leg_R
+bounds:164,239,196,250
+rotate:90
+Bear_whiteboard
+bounds:2,422,512,600

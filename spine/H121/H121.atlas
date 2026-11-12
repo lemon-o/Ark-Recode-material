@@ -1,0 +1,508 @@
+H121.png
+size:2048,2048
+filter:Linear,Linear
+pma:true
+scale:0.5
+Areola_left_2
+bounds:661,1705,50,64
+Areola_right
+bounds:1231,943,93,91
+offsets:0,0,105,98
+Arm sheath_right
+bounds:735,980,111,135
+rotate:90
+Back hair_1
+bounds:830,1759,287,467
+rotate:90
+Back hair_2
+bounds:245,865,161,443
+rotate:90
+Body_1
+bounds:2,1406,457,640
+offsets:7,22,464,696
+Bracelet_back side
+bounds:356,1515,33,72
+Breast Highlight_right
+bounds:1705,1686,40,39
+Charm
+bounds:462,1947,32,58
+Familiar Eye_right
+bounds:1893,1991,36,55
+Familiar_Screen 1
+bounds:1136,1004,211,222
+Familiar_Screen1
+bounds:856,405,169,216
+Familiar_Screen_2
+bounds:1078,1544,150,213
+Familiar_Screen_2_1
+bounds:1630,1067,140,199
+Familiar_Screen_2_2
+bounds:342,977,104,66
+offsets:0,0,109,74
+Familiar_Screen_2_3
+bounds:1872,1786,118,33
+Hair tail_6
+bounds:2,155,196,378
+rotate:90
+Hair_left_cheek position
+bounds:1483,456,62,170
+offsets:0,0,65,170
+rotate:90
+Left_Ear
+bounds:1524,1837,49,69
+Left_Earrings
+bounds:390,1781,33,33
+Left_tits_lv2_lv3_left chest
+bounds:1628,2024,30,22
+Lv2_Lv3_right_calf
+bounds:576,160,141,186
+offsets:218,78,574,351
+Magic Eye_Left
+bounds:2,1988,41,58
+Magic Eye_Left_dead
+bounds:1946,579,83,100
+offsets:3,0,86,100
+rotate:90
+Magic Eye_Left_touch
+bounds:1441,1600,86,100
+Magic Eye_Right_dead
+bounds:558,429,71,100
+rotate:90
+Magic Eye_Right_touch
+bounds:94,238,71,100
+Mosaic_LV3_Attack_01
+bounds:54,1034,38,38
+Mosaic_LV3_Attack_02
+bounds:48,1074,38,38
+Mosaic_LV3_Attack_03
+bounds:311,1123,38,38
+Mosaic_LV3_Damage_01
+bounds:1394,1157,38,38
+Mosaic_LV3_Dead_01
+bounds:84,1168,38,38
+Mosaic_LV3_Idle_01
+bounds:277,1406,38,38
+Mosaic_LV3_Idle_02
+bounds:1161,1434,38,38
+Mosaic_LV3_Touch_01
+bounds:347,1475,38,38
+Nipple highlight_right2
+bounds:190,2033,14,13
+Nipple highlight_right_1
+bounds:2024,2019,16,27
+Nipple highlight_right_2
+bounds:120,571,73,72
+offsets:0,0,73,76
+Right_Earrings
+bounds:1388,2014,30,32
+Right_horn_root
+bounds:1782,1375,104,109
+Right_wing_1_3
+bounds:1646,386,400,220
+Screen_reflective_1_1
+bounds:712,1157,70,100
+Screen_reflective_1_2
+bounds:479,1244,72,100
+Side bangs_left
+bounds:155,170,109,183
+rotate:90
+Side bangs_right
+bounds:1929,386,117,183
+Sideburns_left
+bounds:2,942,119,387
+Sideburns_right
+bounds:1421,254,122,315
+rotate:90
+arm shadow_Left
+bounds:915,1702,186,186
+back of headvvvv
+bounds:1747,1484,299,293
+back of tail
+bounds:647,886,431,917
+rotate:90
+bangs back
+bounds:1854,119,62,173
+rotate:90
+bangs forward
+bounds:342,1601,69,176
+bat wings_1_left
+bounds:1580,465,308,245
+rotate:90
+bat wings_1_right
+bounds:982,548,226,354
+rotate:90
+bat wings_2_left
+bounds:439,589,327,195
+bat wings_2_right
+bounds:1759,558,287,334
+bat wings_3_left
+bounds:698,577,315,282
+bat wings_3_right
+bounds:1673,268,137,368
+rotate:90
+boob_shadow_left
+bounds:1288,625,134,114
+chest shadow
+bounds:971,237,119,73
+offsets:3,1,136,151
+face0_eye_closed
+bounds:1397,179,182,74
+offsets:0,28,182,102
+face1_normal_blush_1
+bounds:1898,1259,148,56
+face2_angry_blush
+bounds:1898,1259,148,56
+face3_sad_blush
+bounds:1898,1259,148,56
+face4_blush
+bounds:1898,1259,148,56
+face5_panic_blush
+bounds:1898,1259,148,56
+face1_normal_eye
+bounds:1572,179,191,58
+face1_normal_eyebrow
+bounds:645,557,160,41
+face1_normal_mouth
+bounds:1837,1771,45,27
+face2_angry_eye
+bounds:374,646,188,56
+face2_angry_eyebrow
+bounds:155,121,138,35
+face2_angry_mouth
+bounds:1176,1537,38,42
+face3_sad_drop_1
+bounds:810,2025,143,21
+face3_sad_drop_2
+bounds:2024,1974,19,43
+face3_sad_drop_3
+bounds:1988,1462,58,54
+face3_sad_eye
+bounds:317,1280,180,53
+rotate:90
+face3_sad_eyebrow
+bounds:732,106,157,37
+face3_sad_mouth
+bounds:1931,2024,33,22
+offsets:1,4,34,35
+face4_happy_eye
+bounds:1361,129,184,51
+face4_happy_eyebrow
+bounds:1784,924,156,30
+offsets:0,0,156,36
+face4_happy_mouth
+bounds:660,1772,40,18
+face5_panic_drop_1
+bounds:314,2028,11,18
+face5_panic_drop_2
+bounds:1628,1986,17,37
+face5_panic_eye
+bounds:770,133,184,58
+face5_panic_eyebrow
+bounds:1304,447,164,42
+face5_panic_mouth
+bounds:1658,1869,40,37
+offsets:0,0,40,55
+face6_shame_blush
+bounds:1369,1323,163,82
+face7_blush
+bounds:1369,1323,163,82
+face6_shame_eye
+bounds:1348,1025,180,52
+rotate:90
+face6_shame_eyebrow
+bounds:92,394,158,32
+face6_shame_mouth
+bounds:1041,1699,42,18
+offsets:0,0,42,20
+face7_behit_drop_1
+bounds:353,2031,44,15
+face7_behit_drop_2
+bounds:510,2028,11,18
+face7_behit_drop_3
+bounds:1913,1958,17,37
+face7_behit_drop_4
+bounds:39,2032,49,14
+face7_behit_eye
+bounds:1678,136,175,47
+face7_behit_eyebrow
+bounds:650,396,166,37
+face7_behit_mouth
+bounds:793,1515,36,47
+front of tail
+bounds:733,189,419,173
+hair shade_1
+bounds:101,1968,55,78
+offsets:0,5,55,83
+hair shade_2
+bounds:660,1788,34,65
+hair shade_3
+bounds:1568,1962,59,84
+hair shade_4
+bounds:299,1668,43,61
+offsets:0,0,44,65
+hair tail_1
+bounds:891,380,267,547
+rotate:90
+hair tail_2
+bounds:991,500,379,593
+rotate:90
+hair tail_3
+bounds:257,316,367,484
+rotate:90
+hair tail_4
+bounds:2,232,399,326
+hair tail_5
+bounds:554,774,186,692
+offsets:0,0,201,771
+rotate:90
+hair_shoulder position
+bounds:2,906,35,147
+rotate:90
+hand_shadow
+bounds:2,357,133,88
+rotate:90
+head
+bounds:821,1038,230,245
+highlight
+bounds:290,77,92,92
+rotate:90
+left chest_1_1
+bounds:1643,1908,127,138
+left chest_1_2
+bounds:416,738,136,151
+left_bracelet_1
+bounds:1569,1903,52,64
+offsets:0,3,59,67
+left_bracelet_2
+bounds:526,1331,58,32
+offsets:0,0,58,33
+left_bracelet_3
+bounds:1316,1010,60,36
+offsets:0,2,60,38
+left_horn_root
+bounds:336,776,78,101
+left_horn_top
+bounds:1204,192,140,221
+rotate:90
+left_upper arm2
+bounds:1263,741,267,274
+rotate:90
+left_wing_1_1
+bounds:1248,882,463,437
+left_wing_1_2
+bounds:1404,1210,431,510
+rotate:90
+left_wing_1_3
+bounds:1521,780,525,271
+left_wing_cover up
+bounds:565,1365,152,123
+offsets:0,11,152,134
+leg decoration
+bounds:863,1847,54,65
+leg shadow
+bounds:818,311,280,185
+lewd lines_1
+bounds:1265,462,127,90
+offsets:147,87,464,696
+lewd lines_2_touch
+bounds:375,140,126,88
+offsets:147,87,464,696
+lewd lines_3_dead
+bounds:1920,182,126,88
+offsets:147,87,464,696
+lv1
+bounds:2,433,290,202
+lv1_ long boots
+bounds:1454,1638,445,408
+lv1_ suspenders
+bounds:1230,1608,23,149
+lv1_ suspenders_shadow
+bounds:51,1841,50,124
+offsets:1,0,103,207
+lv1_Bracelet_left_bottom plate
+bounds:1768,948,52,89
+rotate:90
+lv1_Gloves
+bounds:1440,338,233,115
+lv1_Hand inserted points_right
+bounds:662,1541,133,132
+rotate:90
+lv1_Hand inserted points_right_Left
+bounds:730,188,133,130
+lv1_Right_Gauntlet
+bounds:1864,947,182,140
+offsets:0,0,182,143
+lv1_belt shadow
+bounds:1025,115,223,37
+offsets:35,9,280,46
+lv1_bra_Left
+bounds:489,163,102,136
+lv1_bra_Shadow_01
+bounds:481,2008,30,38
+lv1_bra_Shadow_02
+bounds:158,2019,30,27
+lv1_bra_right_1_2
+bounds:372,1203,119,141
+lv1_chest strap
+bounds:519,131,259,40
+offsets:0,16,286,56
+lv1_lv2 arm decoration
+bounds:536,828,122,87
+offsets:0,15,130,102
+lv1_lv2_Right_bracelet_1
+bounds:1196,235,73,89
+rotate:90
+lv1_lv2_Right_bracelet_1_1
+bounds:1351,1530,59,87
+lv1_lv2_Right_bracelet_2
+bounds:872,1003,61,33
+lv1_lv2_back of shoes
+bounds:55,100,98,87
+offsets:0,45,98,132
+lv1_lv2_boots collar
+bounds:1760,512,75,144
+rotate:90
+lv1_lv2_gloves_gloves
+bounds:1093,1422,135,111
+lv1_lv2_left_underpants suspenders
+bounds:1269,1289,98,89
+lv1_lv2_lv3_Gloves_thumb up
+bounds:1637,1516,108,50
+lv1_lv2_lv3_Left chest highlight
+bounds:1251,1829,39,39
+lv1_lv2_lv3__Left_finger_ index finger_fingertip
+bounds:1282,81,98,112
+lv1_lv2_lv3__Left_finger_middle finger_fingertip
+bounds:1885,740,95,114
+lv1_lv2_lv3_eft_finger _ little finger
+bounds:1625,953,101,124
+rotate:90
+lv1_lv2_pants
+bounds:675,1667,51,38
+lv1_lv2_right_thigh strap
+bounds:1996,1789,50,122
+lv1_lv2_right_underpants suspenders
+bounds:1527,1549,30,99
+lv1_palm
+bounds:1005,978,129,106
+lv1_right_arm decoration
+bounds:342,1061,117,96
+offsets:0,0,119,96
+lv1_right_calf
+bounds:1217,1472,574,351
+rotate:90
+lv1_right_middle finger_index finger 1_2
+bounds:1028,1723,104,85
+lv1_right_middle finger_index finger 1_3
+bounds:1240,1844,93,53
+offsets:0,0,93,67
+lv1_right_middle finger_index finger_1_1
+bounds:403,418,99,89
+lv1_right_thigh
+bounds:77,925,298,280
+offsets:23,150,412,563
+lv1_vest
+bounds:549,1173,393,394
+offsets:0,123,464,696
+rotate:90
+lv2_ arm silk thread
+bounds:1387,1944,24,68
+lv2_ broken sole
+bounds:1679,982,367,287
+offsets:0,121,445,408
+lv2_Right_Arm Glove
+bounds:914,1341,182,140
+offsets:0,0,182,143
+lv2_arm
+bounds:356,304,251,107
+lv2_little finger4
+bounds:1437,1421,90,31
+lv2_lv3
+bounds:565,430,290,190
+offsets:0,12,290,202
+lv2_lv3 shoes
+bounds:2,583,254,196
+lv2_lv3_ rear calf
+bounds:994,1214,458,324
+lv2_lv3_ rear sole
+bounds:1901,1813,121,233
+lv2_lv3_Hand inserted points_right
+bounds:231,424,133,132
+lv2_lv3_Hand inserted points_right_Left
+bounds:929,1282,70,75
+lv2_lv3_back top
+bounds:898,1427,68,30
+offsets:0,0,74,30
+lv2_lv3_right_thigh
+bounds:665,1483,412,563
+lv2_right_fingertip
+bounds:474,494,99,93
+lv2_right_fingertip2
+bounds:1131,769,103,81
+lv2_ring finger3
+bounds:1072,525,99,68
+lv2_thigh straps
+bounds:1119,150,202,61
+offsets:0,3,202,64
+lv2_vest
+bounds:425,1008,391,254
+offsets:0,125,464,696
+lv3_end of glove
+bounds:1681,710,52,95
+lv3_left_arm
+bounds:1100,302,251,107
+lv3_right arm_1
+bounds:1563,1536,182,140
+offsets:0,0,182,143
+lv3_right_little finger
+bounds:769,702,75,108
+lv3_right_palm
+bounds:366,1992,113,54
+magic eyeball highlight_2
+bounds:398,2035,9,11
+magic eyeball highlight_3
+bounds:300,2033,12,13
+phone_effect
+bounds:689,947,60,60
+rear thigh
+bounds:391,1345,272,701
+right breast_1_1
+bounds:1240,1881,155,165
+right breast_1_2
+bounds:1890,1317,154,165
+offsets:0,0,155,165
+right_arm
+bounds:1425,625,197,289
+right_handguard
+bounds:1553,1020,81,89
+right_horn_top
+bounds:1683,171,125,234
+rotate:90
+right_wing_1_1
+bounds:2,1158,467,254
+offsets:33,29,500,283
+right_wing_1_2
+bounds:2,703,500,210
+offsets:0,5,500,215
+screen_background_1_1
+bounds:1568,87,86,100
+tail_1
+bounds:2,1735,124,311
+tail_2
+bounds:852,86,80,265
+rotate:90
+tail_3
+bounds:185,159,156,318
+rotate:90
+the neck
+bounds:1027,415,94,88
+offsets:0,0,94,90
+thigh charm
+bounds:1551,602,147,244
+tits_lv2_lv3_left chest_1_1
+bounds:1542,2024,24,22
+tits_lv2_lv3_left chest_lower level
+bounds:1542,2024,24,22
+tits_lv2_lv3_left chest_1_2
+bounds:328,2022,23,24
+offsets:0,1,23,25

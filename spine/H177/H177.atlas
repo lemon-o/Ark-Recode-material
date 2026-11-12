@@ -1,0 +1,347 @@
+H177.png
+size:2048,2048
+filter:Linear,Linear
+pma:true
+scale:0.49
+Angry01
+bounds:442,2008,50,36
+offsets:3,0,55,38
+Angry02
+bounds:1357,1237,155,79
+offsets:0,0,155,80
+Angry03
+bounds:469,22,163,74
+Anterior shadow01
+bounds:2,1290,38,108
+Anterior shadow02
+bounds:922,1886,14,85
+Anterior shadow03
+bounds:351,1076,30,74
+Anterior shadow04
+bounds:1090,1347,91,80
+offsets:0,1,91,81
+Anterior shadow05
+bounds:401,1466,16,60
+Anterior01
+bounds:1778,1385,55,237
+Anterior02
+bounds:1480,1493,103,203
+offsets:2,6,105,209
+Anterior03
+bounds:776,33,214,273
+rotate:90
+Anterior04
+bounds:236,1218,278,197
+rotate:90
+Anterior05
+bounds:1874,1061,156,182
+offsets:5,0,161,182
+Areola_L
+bounds:608,1631,121,103
+offsets:0,16,124,121
+Areola_R
+bounds:66,1844,76,101
+Axe Ahead01
+bounds:715,1158,410,495
+rotate:180
+Axe Ahead01_back
+bounds:2,805,287,347
+rotate:90
+Axe Ahead02
+bounds:1365,1504,540,273
+rotate:90
+Axe Ahead02_B
+bounds:1048,190,378,191
+Belt01
+bounds:969,1766,114,57
+Belt02
+bounds:91,1987,114,57
+Belt_L
+bounds:1127,1301,360,250
+offsets:0,10,360,260
+rotate:180
+Body01
+bounds:440,1643,384,599
+rotate:270
+Cape01
+bounds:2,1094,534,927
+offsets:0,0,534,944
+rotate:90
+Cape02
+bounds:1405,591,403,907
+Cape03
+bounds:1048,886,486,363
+offsets:0,0,486,384
+rotate:270
+Chest not exposed_L
+bounds:1500,1777,267,230
+offsets:0,0,267,232
+rotate:90
+Chest strap
+bounds:718,936,187,50
+Close your eyes03
+bounds:929,596,156,72
+Clothing_L
+bounds:455,133,135,348
+offsets:0,0,135,363
+rotate:90
+Clothing_R
+bounds:1192,883,195,111
+Coat collar_L
+bounds:278,386,151,534
+rotate:90
+Coat collar_R01
+bounds:448,1941,104,79
+offsets:0,1,104,80
+Coat collar_R02
+bounds:1336,379,130,181
+Coat collar_down_L
+bounds:927,1996,43,39
+Collar
+bounds:182,22,138,102
+Default01
+bounds:387,1736,54,35
+offsets:0,3,55,39
+Default02
+bounds:552,25,164,68
+Default03
+bounds:289,30,163,76
+Glasses01
+bounds:1291,1269,189,108
+Gloves01
+bounds:1170,1551,69,80
+Gloves02
+bounds:748,155,198,178
+Gloves02_attack
+bounds:709,1961,221,83
+Gloves03
+bounds:808,1897,118,72
+Gloves04
+bounds:890,697,132,78
+Hat
+bounds:226,246,263,184
+Head01
+bounds:354,1526,248,258
+rotate:90
+Head02
+bounds:1575,607,231,259
+Heartbroken01
+bounds:730,1630,55,39
+Heartbroken02
+bounds:650,202,150,74
+Heartbroken03
+bounds:144,1897,19,13
+Hit05
+bounds:144,1897,19,13
+Heartbroken04
+bounds:2,2028,19,16
+Hit06
+bounds:2,2028,19,16
+Hit01
+bounds:2,2007,6,19
+Hit02
+bounds:2,2007,6,19
+Shy01
+bounds:2,2007,6,19
+Hit03
+bounds:1235,957,150,77
+Hit04
+bounds:659,2009,48,35
+offsets:0,1,48,36
+Hit07
+bounds:2,465,159,77
+Iron ring
+bounds:143,1911,37,43
+LV12_chest_R
+bounds:605,1267,245,204
+offsets:0,0,245,221
+Left arm_1
+bounds:1027,1040,150,140
+offsets:0,0,156,140
+Left arm_2
+bounds:802,329,140,343
+rotate:270
+Left arm_3
+bounds:1804,1108,117,415
+Left arm_3-Shadow
+bounds:1602,1018,29,186
+offsets:1,5,30,191
+Nipple_L
+bounds:787,1634,39,29
+Nipple_R
+bounds:258,2005,23,33
+Panic01
+bounds:337,1925,47,44
+offsets:1,0,48,44
+Panic02
+bounds:2,1188,157,74
+rotate:90
+Panic03
+bounds:390,24,163,81
+Pants_L01
+bounds:1192,1586,286,457
+Pants_L02
+bounds:979,234,174,293
+rotate:90
+Pants_R01
+bounds:2,600,176,457
+rotate:90
+Pants_R02
+bounds:1696,1775,98,284
+rotate:270
+Pendant01
+bounds:1882,61,131,318
+Pendant02
+bounds:1922,1232,79,424
+offsets:1,0,80,424
+Pendant03
+bounds:1570,1004,94,256
+offsets:0,5,98,261
+Ponytail01
+bounds:1468,408,251,395
+rotate:270
+Ponytail02
+bounds:351,616,356,804
+rotate:270
+Ponytail04
+bounds:1959,1731,80,147
+Ponytail05
+bounds:939,1428,346,600
+rotate:180
+Ponytail06
+bounds:1873,190,166,356
+rotate:180
+Ponytail07
+bounds:2,55,135,183
+Ponytail08
+bounds:1826,313,126,758
+rotate:180
+Ponytail09
+bounds:182,501,130,537
+offsets:0,1,130,538
+rotate:90
+Ponytail10
+bounds:189,120,265,252
+offsets:0,2,265,254
+rotate:180
+Ponytail11
+bounds:2,1185,475,859
+Ponytail12
+bounds:437,245,192,350
+rotate:90
+Ponytail13
+bounds:1431,229,251,425
+rotate:90
+Ponytail14
+bounds:1600,20,292,211
+Right arm01
+bounds:552,803,68,77
+Right arm02
+bounds:2,73,225,188
+offsets:0,7,225,195
+rotate:90
+Right arm03
+bounds:960,409,329,210
+Right arm031
+bounds:294,347,139,72
+Right arm04
+bounds:2,526,123,74
+Right foot
+bounds:2,1820,87,224
+Shadow of Clothes
+bounds:2,1182,38,84
+Shy02
+bounds:91,1948,56,37
+Shy03
+bounds:161,538,152,83
+offsets:0,0,152,89
+Sleeve_L-1
+bounds:1729,731,176,379
+offsets:0,0,176,380
+rotate:180
+Sleeve_L-2
+bounds:1409,852,160,440
+offsets:0,8,207,448
+rotate:180
+Sleeve_R01
+bounds:2,301,251,198
+offsets:0,0,252,198
+Sleeve_R02
+bounds:1092,505,322,202
+Sleeve_attack
+bounds:423,883,293,103
+rotate:180
+Smile01
+bounds:596,1603,55,34
+offsets:3,7,59,47
+Smile02
+bounds:1232,1557,159,73
+rotate:90
+Smile04
+bounds:477,1158,142,95
+Underwear
+bounds:1419,59,349,209
+rotate:90
+Underwear digging into the flesh01
+bounds:430,1468,27,56
+Underwear digging into the flesh02
+bounds:2,1755,43,64
+arm_attack
+bounds:1732,1880,260,73
+attack_blur
+bounds:389,988,168,636
+rotate:90
+attack_hand_R
+bounds:286,1971,101,73
+bra_L
+bounds:207,1977,55,67
+buckle01
+bounds:962,78,222,419
+rotate:90
+chest_L
+bounds:1603,1532,266,226
+offsets:0,0,266,227
+rotate:90
+chest_R
+bounds:717,408,245,206
+offsets:0,0,245,221
+earrings_L
+bounds:444,799,51,81
+earrings_R
+bounds:1027,1018,49,94
+genitals_L01
+bounds:634,712,282,490
+rotate:90
+genitals_L02
+bounds:1461,1262,192,347
+genitals_R01
+bounds:1012,677,206,490
+rotate:270
+genitals_R02
+bounds:1728,1949,95,316
+rotate:270
+hand_attack
+bounds:337,1439,62,88
+hand_attackLV3
+bounds:620,1179,62,88
+hand_attack_B
+bounds:775,1473,27,30
+hand_attack_B_LV3
+bounds:571,1291,27,30
+left foot
+bounds:1829,1535,102,247
+left hand01
+bounds:1592,1360,96,142
+left hand02
+bounds:524,1244,84,46
+offsets:0,2,84,48
+left hand03
+bounds:977,1654,87,38
+left hand04
+bounds:411,1842,53,34
+left hand05
+bounds:285,1949,39,20
+leftarm_3_2
+bounds:62,236,120,125
+mosaic
+bounds:285,1897,50,50

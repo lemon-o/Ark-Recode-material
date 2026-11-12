@@ -1,0 +1,491 @@
+H127.png
+size:2048,2048
+filter:Linear,Linear
+pma:true
+scale:0.31
+ATK_Hand
+bounds:1208,1080,310,178
+ATK_Hand_Blur
+bounds:1687,341,186,64
+ATK_Shuriken_Blur
+bounds:1259,1349,186,43
+LV123_arm_L01-1
+bounds:234,1115,168,372
+offsets:30,0,198,372
+rotate:90
+LV123_arm_L01-2
+bounds:364,831,79,118
+offsets:0,0,79,120
+LV123_arm_L01-3
+bounds:1697,1131,126,87
+LV123_arm_L01_shadow
+bounds:2,508,90,196
+rotate:90
+LV123_arm_L02
+bounds:1148,952,210,372
+offsets:1,0,211,372
+rotate:90
+LV123_arm_L03
+bounds:1425,300,123,148
+offsets:0,0,123,154
+LV123_arm_R01
+bounds:429,809,265,203
+LV123_arm_R01_shadow
+bounds:242,1799,47,90
+LV123_arm_R02
+bounds:448,463,120,143
+LV123_arm_R03-1
+bounds:526,709,94,310
+rotate:90
+LV123_arm_R03-2
+bounds:1472,1306,206,182
+LV123_armor bow_R01
+bounds:2012,1996,32,50
+LV123_armor bow_R02
+bounds:1207,1906,37,36
+LV123_armor bow_R03
+bounds:1795,838,65,52
+LV123_armor bow_R04
+bounds:1567,1288,115,43
+LV123_armor bow_R05
+bounds:1359,919,125,41
+offsets:0,0,125,44
+LV123_armor bow_R06
+bounds:283,2027,10,19
+LV123_armor bow_R07
+bounds:513,1782,29,30
+LV123_armor_01
+bounds:1629,463,124,165
+LV123_armor_02
+bounds:1640,905,98,69
+LV123_bag
+bounds:1056,639,149,166
+rotate:90
+LV123_bag_shaodw
+bounds:839,241,107,115
+LV123_earrings_L
+bounds:642,586,109,91
+LV123_earrings_R
+bounds:1336,672,101,81
+LV123_finger1-1
+bounds:1287,1261,86,38
+LV123_finger1-2
+bounds:1236,1630,47,50
+LV123_finger2-1
+bounds:999,1193,90,38
+LV123_finger2-2
+bounds:496,1810,42,30
+LV123_finger3-2
+bounds:496,1810,42,30
+LV123_finger3-1
+bounds:581,1639,87,39
+LV123_finger4-1
+bounds:282,1285,94,67
+offsets:0,0,94,68
+LV123_finger4-2
+bounds:1751,1951,20,36
+LV123_finger_R01
+bounds:818,1384,96,24
+LV123_finger_R02
+bounds:1988,1282,58,186
+LV123_finger_R03
+bounds:1918,105,77,100
+LV123_finger_R04
+bounds:221,737,110,65
+LV123_finger_R05
+bounds:954,540,99,73
+LV123_finger_shadow_01
+bounds:1482,2020,44,26
+LV123_finger_shadow_02
+bounds:473,1516,45,94
+LV123_head
+bounds:861,1433,256,274
+rotate:90
+LV123_leg_L02
+bounds:1217,763,264,310
+rotate:90
+LV123_leg_L03
+bounds:1850,945,196,248
+LV123_leg_R01
+bounds:1481,1494,254,434
+rotate:90
+LV123_leg_R02
+bounds:333,667,167,310
+rotate:90
+LV123_leg_R03
+bounds:1168,755,142,248
+rotate:90
+LV123_leg_bow tie_L01
+bounds:1719,1982,75,64
+LV123_leg_bow tie_L02
+bounds:1475,992,114,91
+LV123_leg_bow tie_L03
+bounds:1444,1914,32,65
+LV123_leg_bow tie_L04
+bounds:1118,155,44,254
+rotate:90
+LV123_leg_bow tie_L05
+bounds:458,1481,57,34
+LV123_leg_bow tie_L06
+bounds:998,124,76,210
+offsets:0,61,76,271
+rotate:90
+LV123_leg_bow tie_R01
+bounds:67,829,76,79
+LV123_leg_bow tie_R02
+bounds:1061,795,99,87
+LV123_leg_bow tie_R03
+bounds:1130,1551,57,59
+LV123_leg_bow tie_R04
+bounds:1197,133,19,170
+rotate:90
+LV123_leg_bow tie_R05
+bounds:302,1988,51,58
+LV123_leg_bow tie_R06
+bounds:730,121,29,233
+offsets:0,0,33,233
+rotate:90
+LV123_leg_bow tie_R_shadow
+bounds:1973,576,73,106
+LV123_neck
+bounds:1495,417,134,140
+LV123_sleeve_R01_shadow-2
+bounds:1182,192,74,124
+LV123_weapon_02
+bounds:1224,1612,274,434
+LV123_weapon_F
+bounds:582,1612,277,434
+LV123_weapon_light_B
+bounds:376,1224,248,246
+LV12_body
+bounds:292,1612,288,434
+LV12_chest shadow_B
+bounds:756,1077,124,89
+offsets:0,4,124,93
+LV12_leg_L01
+bounds:827,1612,429,434
+LV12_underwear
+bounds:673,1166,215,310
+rotate:90
+LV1_arm_L01-B
+bounds:291,2024,16,22
+LV1_belt_02
+bounds:540,1684,69,184
+LV1_belt_03
+bounds:1288,331,173,214
+rotate:90
+LV1_belt_03_shadow
+bounds:250,523,171,279
+rotate:90
+LV1_belt_04_shadow
+bounds:341,377,83,111
+offsets:0,0,83,124
+LV1_bow tie_01
+bounds:1225,668,109,85
+LV1_bow tie_02
+bounds:1287,156,214,188
+LV1_bow tie_03
+bounds:527,122,100,208
+rotate:90
+LV1_bow tie_shadow
+bounds:72,398,160,186
+rotate:90
+LV1_bra
+bounds:1293,438,186,118
+LV1_chest bow_01-1
+bounds:2,2000,57,46
+LV23_chest bow_01-1
+bounds:2,2000,57,46
+LV1_chest bow_01-2
+bounds:505,1003,103,110
+LV23_chest bow_01-2
+bounds:505,1003,103,110
+LV1_chest bow_01-3
+bounds:997,968,136,117
+LV23_chest bow_01-3
+bounds:997,968,136,117
+LV1_chest bow_02
+bounds:110,787,190,256
+offsets:0,47,190,303
+rotate:90
+LV1_chest bow_03
+bounds:1394,1981,86,65
+LV1_chest bow_04
+bounds:837,1409,88,67
+LV1_chest bow_shadow
+bounds:882,1031,217,264
+offsets:0,0,248,264
+rotate:90
+LV1_chest shadow_F
+bounds:930,1339,124,99
+LV1_chest_L
+bounds:1763,1736,310,276
+rotate:90
+LV1_chest_L_shadow
+bounds:793,1487,82,124
+LV1_chest_R
+bounds:1475,1755,286,291
+offsets:0,19,286,310
+LV1_skirt bow_01
+bounds:1168,1874,78,35
+LV1_skirt bow_01-1
+bounds:985,1217,268,310
+rotate:90
+LV1_skirt bow_01-2
+bounds:1520,975,232,310
+rotate:90
+LV1_skirt bow_01-3
+bounds:617,576,163,248
+rotate:90
+LV1_skirt bow_01-4
+bounds:2,875,191,310
+rotate:90
+LV1_skirt bow_02
+bounds:737,149,216,38
+LV1_skirt bow_022
+bounds:1791,1134,283,214
+rotate:90
+LV1_skirt bow_03
+bounds:603,178,263,121
+LV1_skirt bow_033
+bounds:617,392,123,124
+LV1_skirt bow_shadow
+bounds:625,259,186,100
+LV1_skirt_01
+bounds:2,1316,372,338
+LV1_skirt_01_shadow
+bounds:1181,454,147,183
+offsets:0,0,147,186
+rotate:90
+LV1_skirt_02
+bounds:1534,309,248,179
+LV1_skirt_L01
+bounds:1500,132,98,89
+LV1_skirt_L02
+bounds:975,1911,135,235
+rotate:90
+LV1_skirt_L03
+bounds:1854,601,97,76
+LV1_skirt_R01
+bounds:1373,147,96,82
+LV1_skirt_R02
+bounds:1462,773,182,183
+LV1_skirt_belt
+bounds:1084,542,308,122
+LV1_sleeve_L01-1
+bounds:1472,200,138,112
+offsets:1,0,139,112
+LV1_sleeve_L01-2
+bounds:1805,1010,99,120
+LV1_sleeve_L01_shadow-1
+bounds:626,1166,76,127
+LV1_sleeve_L01_shadow-2
+bounds:1730,206,59,133
+offsets:0,0,60,133
+LV1_sleeve_L02
+bounds:1160,318,126,109
+LV1_sleeve_R01
+bounds:246,385,133,200
+rotate:90
+LV1_sleeve_R01_shadow_1
+bounds:238,1773,54,24
+LV1_sleeve_R02
+bounds:867,554,142,177
+LV1_sleeve_R03
+bounds:1917,1637,127,97
+LV23_Chest_R03
+bounds:295,1487,176,147
+LV23__Chest_L01
+bounds:2,1655,47,39
+LV23__Chest_L02
+bounds:879,733,183,149
+LV23__Chest_L03
+bounds:1754,1419,292,219
+offsets:0,0,310,219
+LV23__Chest_L_shadow
+bounds:1626,243,114,124
+LV23__Chest_R01
+bounds:525,1378,310,257
+LV23__Chest_R02
+bounds:1351,2017,35,29
+LV23__chest rope
+bounds:1980,118,66,135
+LV23_arm_L01-4
+bounds:2,1109,213,233
+offsets:0,0,213,237
+rotate:90
+LV23_chest bow_02
+bounds:1793,787,190,253
+offsets:0,50,190,303
+rotate:90
+LV23_chest bow_shadow
+bounds:2,251,117,124
+LV3_body
+bounds:2,1612,299,434
+offsets:3,0,302,434
+LV3_leg_L011
+bounds:231,951,288,209
+LV3_leg_L02
+bounds:2,600,232,110
+LV3_leg_L03-1
+bounds:613,950,214,308
+offsets:0,0,217,310
+rotate:90
+LV3_leg_L03-2
+bounds:958,428,214,142
+offsets:0,36,214,178
+LV3_leg_L04
+bounds:1612,688,72,99
+Mosaic_LV3_Attack_01
+bounds:886,1690,23,23
+Mosaic_LV3_Attack_02
+bounds:861,1693,23,23
+Mosaic_LV3_Damage_01
+bounds:2,1703,23,23
+Mosaic_LV3_Idle_01
+bounds:1796,1754,23,23
+Mosaic_LV3_Idle_02
+bounds:1222,1849,23,23
+Mosaic_LV3_Idle_03
+bounds:839,1865,23,23
+Mosaic_LV3_Touch_01
+bounds:794,2023,23,23
+accessories_01
+bounds:2,1076,80,57
+accessories_02
+bounds:2,137,149,106
+face1_normal_eye
+bounds:1805,262,214,113
+face1_normal_eyebrow
+bounds:112,190,202,90
+face1_normal_mouth
+bounds:300,1657,38,25
+face_close_mouth
+bounds:300,1657,38,25
+face2_angry_eye
+bounds:754,307,215,113
+face2_angry_eyebrow
+bounds:296,113,171,87
+face2_angry_mouth
+bounds:60,2024,38,22
+face2_angry_shadow
+bounds:740,478,147,96
+face3_sad_blush-1
+bounds:1762,165,173,73
+face3_sad_blush-2
+bounds:432,299,199,117
+face3_sad_eye2
+bounds:943,281,215,112
+face3_sad_eyebrow
+bounds:390,202,211,89
+face3_sad_mouth
+bounds:355,2030,31,16
+face4_happy_eye2
+bounds:422,246,202,90
+face4_happy_eyebrow
+bounds:981,202,202,90
+face4_happy_mouth
+bounds:971,1696,45,35
+face5_panic_eye
+bounds:403,366,212,117
+face5_panic_eyebrow
+bounds:1824,240,193,83
+face5_panic_mouth
+bounds:550,1872,30,27
+face5_panic_sweat
+bounds:100,2036,5,10
+face6_shame_blush-1
+bounds:121,228,166,92
+face6_shame_blush-2
+bounds:602,805,310,146
+face6_shame_blush-sweat
+bounds:1600,118,166,81
+face6_shame_eye
+bounds:712,359,218,117
+face6_shame_eyebrow
+bounds:209,178,211,82
+face6_shame_mouth
+bounds:2,1967,28,33
+face7_behit_eye-2
+bounds:968,359,216,118
+face7_behit_eyebrow
+bounds:1218,177,174,82
+face7_behit_mouth
+bounds:1758,1746,37,73
+face7_behit_pant_1
+bounds:95,1037,146,71
+face7_behit_pant_2
+bounds:1500,1673,64,39
+face7_behit_sweat
+bounds:601,102,87,169
+rotate:90
+face7_behit_tears
+bounds:1021,597,146,61
+rotate:90
+face_close_eye2
+bounds:980,234,209,99
+face_close_eyebrow
+bounds:436,152,202,91
+hair bow
+bounds:1628,786,254,210
+hair_B01
+bounds:1671,566,231,219
+hair_B02
+bounds:1744,448,134,248
+rotate:90
+hair_B03-1
+bounds:1387,616,157,282
+rotate:90
+hair_B03-2
+bounds:1807,679,131,239
+rotate:90
+hair_B03-3
+bounds:1181,1394,230,310
+rotate:90
+hair_B04
+bounds:84,317,135,205
+offsets:0,0,135,217
+rotate:90
+hair_B05
+bounds:252,1577,41,36
+hair_B06
+bounds:1355,1189,374,434
+rotate:90
+hair_B07-1
+bounds:1366,556,248,127
+hair_B07-2
+bounds:1507,1713,248,51
+hair_B07-3
+bounds:1600,121,252,215
+hair_B08
+bounds:1836,153,248,210
+rotate:90
+hair_B09
+bounds:1733,390,171,310
+rotate:90
+hair_F01
+bounds:905,884,178,310
+rotate:90
+hair_F02
+bounds:929,112,154,166
+hair_F03
+bounds:2,675,215,256
+hair_F04
+bounds:88,117,124,65
+hair_F05
+bounds:2,1347,138,219
+hair_F06
+bounds:530,517,207,174
+hair_F07
+bounds:219,626,106,262
+offsets:0,0,106,269
+rotate:90
+hair_shadow_01
+bounds:291,259,119,124
+hair_shadow_02
+bounds:846,1693,123,150
+hair_shadow_03
+bounds:2,386,64,124
+hair_shadow_04
+bounds:786,756,92,91
+offsets:0,0,92,93
