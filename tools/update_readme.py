@@ -46,6 +46,7 @@ _LABELS = {
     "uiconz": "赛季框",
     "banners": "卡池横幅",
     "bonds": "羁绊小图",
+    "spine": "Spine立绘",
 }
 
 

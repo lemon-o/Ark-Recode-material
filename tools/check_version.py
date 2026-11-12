@@ -294,11 +294,12 @@ def main(argv: list[str] | None = None) -> int:
         changed = True
         reasons.append("本地无基线状态记录")
     else:
-        # 1. 公告时段检查：若有新维护公告，且当前时间已达到维护时段开始
+        # 1. 公告时段检查：若有新维护公告，且当前时间已接近或超过维护结束时间（结束前半小时预热）
         if notice and notice.get("id"):
             notice_id = notice["id"]
-            start_ts = notice.get("startTimestamp", 0)
-            if notice_id != last_notice_id and now_ts >= start_ts:
+            end_ts = notice.get("endTimestamp", 0)
+            # 维护结束前 30 分钟起开始探查更新（此时 CDN 通常已预热或即将开服）
+            if notice_id != last_notice_id and now_ts >= (end_ts - 1800):
                 changed = True
                 reasons.append(f"命中官方新维护时段: {notice.get('window')} ({notice.get('title')})")
 
