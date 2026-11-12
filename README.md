@@ -84,6 +84,16 @@ catalog 里 7000+ 张 PNG 大半是 CG / 羁绊图（*_Sex_LoveTalk.png、Assets
 - **统一 ID 命名契约**：所有角色立绘统一以角色 ID 归一化命名，目录格式为 `spine/<ID>/<ID>.skel|.atlas|.png`。对于游戏早期少数内部资产命名不一致的角色（如 `H001` 内部为 `CG_H001_a`），提取脚本会在导出时自动将 `.atlas` 首行的贴图文件名重写对齐为 `<ID>.png`，下游 Spine Web Player / Pixi-Spine 播放器直接按 ID 拼接 URL 即可加载，无需额外查表；
 - **增量更新机制**：已存在完整三件套的角色在后续扫描中会自动跳过，每周维护仅针对新增角色执行拉取与解包。
 
+### 8. 角色档案与正式上线状态判定：`data/heroes.json`
+
+游戏补丁包与 Addressables catalog 中通常包含大量提前打包的「拆包预埋角色」（如未来节日限定、未开放活动的卫星角色）。为了让下游应用与页面能够精准区分「官方已正式上线角色」与「拆包未上线角色」，工作流集成了 `tools/build_heroes.py`，每次更新自动从官方 StaticData 与多语言文本表构建 `data/heroes.json`：
+
+- **判定标准**：游戏内已开放上线的角色必定在好感度台词签名表（`RoleSignature.txt`）中登记互动内容；拆包预埋角色在签名表中无条目。以此作为区分正式上线（`is_released: true`）与未上线拆包（`is_released: false`）的黄金标准；
+- **多语言与属性元数据**：提取简中（`name_chs`）、繁中（`name_cht`）、英文（`name_eng`）、日文（`name_jpn`）四语官方名称，以及星级（`star`）、属性（`element`）、职业（`job`）；
+- **素材可用性标记**：包含 `has_spine`（Spine 骨骼立绘是否存在）、`has_avatar`（头像是否存在）、`has_gacha`（卡池是否有产出）、`has_collection`（是否纳入图鉴）等状态；
+- **全自动同步**：每次 GitHub Actions 跑更新时全自动重构并推送，通过 jsDelivr CDN 全球分发：
+  `https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/data/heroes.json`
+
 ## 目录
 
     avatars/     角色头像（Icon_Head_S_<ID>，文件名即角色 ID，H193.png）
@@ -99,8 +109,9 @@ catalog 里 7000+ 张 PNG 大半是 CG / 羁绊图（*_Sex_LoveTalk.png、Assets
     bonds/       羁绊小图（128x128 方块头像，同时兼容 ID 命名 A0413.png 与官方名 Icon_Head_S_A0413.png）
     videos/      招募/抽卡动画（videos/gacha/ 下收录裁切去除侧边栏与悬浮窗的出蓝/出紫/出金/出红视频）
     spine/       全角色 Spine 骨骼立绘三件套（spine/<ID>/<ID>.{skel,atlas,png}）
+    data/        静态数据与元数据（heroes.json 全角色档案与上线状态、item-meta.json 道具羁绊表、summon-pools.json 卡池表）
     index.json   清单：分区 -> 键 -> 文件名 / 字节数 / sha256
-    tools/       fetch_assets.py（抓小图标）、fetch_spine.py（抓 Spine 骨骼立绘）、build_index.py（生成清单）、update_readme.py（回写统计信息）、check_version.py（Catalog 版本探测与维护公告检查）、sync_assets.py（供读取 AVATAR_ID_REMAP）
+    tools/       fetch_assets.py（抓小图标）、fetch_spine.py（抓 Spine 骨骼立绘）、build_heroes.py（构建角色档案与上线状态）、build_index.py（生成清单）、update_readme.py（回写统计信息）、check_version.py（Catalog 版本探测与维护公告检查）、sync_assets.py（供读取 AVATAR_ID_REMAP）
     backend/     config.py：抓图脚本要用的四个端点常量（GAME_ROUTER / GAME_ORIGIN / GAME_REFERER / HTTP_TIMEOUT）
 
 自包含：Actions 只 checkout 本仓库，不 clone 任何其它仓库、不需要任何 PAT。
