@@ -1,6 +1,6 @@
 {
-  "updated": "2026-11-12T17:26:41+08:00",
-  "count": 4674,
+  "updated": "2026-11-12T18:23:25+08:00",
+  "count": 4675,
   "avatars": {
     "H001": {
       "file": "H001.png",
@@ -22275,6 +22275,26 @@
         "name": "H002.skel",
         "bytes": 302448,
         "sha256": "1886ed61091d75d3353df1cc8ec897980969e4525e51568f0ec0a2354cb1bce1"
+      }
+    },
+    "H003": {
+      "atlas": {
+        "file": "H003/H003.atlas",
+        "name": "H003.atlas",
+        "bytes": 4407,
+        "sha256": "327900972604b5735bc191421b92d8231723c72dd5665db81d576c87f0a15750"
+      },
+      "png": {
+        "file": "H003/H003.png",
+        "name": "H003.png",
+        "bytes": 1828806,
+        "sha256": "1efc973b4ae6d0a1ded12a46180b501b6b94424f638967065e6d3d23103d91cb"
+      },
+      "skel": {
+        "file": "H003/H003.skel",
+        "name": "H003.skel",
+        "bytes": 220238,
+        "sha256": "328e4a635f7a46cac3ddf759d43527db01fe74f5bd97cfbc16ac5fbd366500d2"
       }
     },
     "H004": {
