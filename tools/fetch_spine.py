@@ -92,7 +92,7 @@ def find_all_spine_portraits(catalog: ContentCatalog) -> dict[str, tuple[str, li
 
 
 def extract_hero_spine(bundle_paths: list[Path], hero_id: str, base_name: str, out_dir: Path) -> dict[str, int]:
-    """从 bundle 列表中提取大立绘三件套，返回提取文件大小统计"""
+    """从 bundle 列表中提取大立绘三件套，按 hero_id 统一命名并修正 atlas 引用"""
     env = UnityPy.load(*[str(p) for p in bundle_paths])
     out_dir.mkdir(parents=True, exist_ok=True)
     saved = {}
@@ -107,13 +107,16 @@ def extract_hero_spine(bundle_paths: list[Path], hero_id: str, base_name: str, o
             if m_name == target_atlas:
                 raw = getattr(d, "m_Script", b"")
                 text = raw if isinstance(raw, str) else raw.decode("utf-8", "replace")
-                p = out_dir / f"{base_name}.atlas"
+                # 统一为 <hero_id>.atlas，若内部贴图引用包含 base_name.png，则同步替换为 hero_id.png
+                if base_name != hero_id:
+                    text = text.replace(f"{base_name}.png", f"{hero_id}.png")
+                p = out_dir / f"{hero_id}.atlas"
                 p.write_text(text, encoding="utf-8")
                 saved["atlas"] = len(text)
             elif m_name == target_skel:
                 raw = getattr(d, "m_Script", b"")
                 b = raw.encode("utf-8", "surrogateescape") if isinstance(raw, str) else bytes(raw)
-                p = out_dir / f"{base_name}.skel"
+                p = out_dir / f"{hero_id}.skel"
                 p.write_bytes(b)
                 saved["skel"] = len(b)
         elif obj.type.name == "Texture2D":
@@ -121,9 +124,19 @@ def extract_hero_spine(bundle_paths: list[Path], hero_id: str, base_name: str, o
             m_name = getattr(d, "m_Name", "")
             if m_name == base_name:
                 img = d.image
-                p = out_dir / f"{base_name}.png"
+                p = out_dir / f"{hero_id}.png"
                 img.save(p, format="PNG")
                 saved["png"] = p.stat().st_size
+
+    # 清理同一目录下可能残留的历史旧命名（如 CG_H001_a.*）
+    if base_name != hero_id:
+        for ext in [".skel", ".atlas", ".png"]:
+            old_p = out_dir / f"{base_name}{ext}"
+            if old_p.is_file():
+                try:
+                    old_p.unlink()
+                except OSError:
+                    pass
 
     return saved
 
@@ -173,23 +186,23 @@ def main(argv: list[str] | None = None) -> int:
     def process_hero(hid: str, info: tuple[str, list[str]]) -> tuple[str, bool, str]:
         base_name, bundles_internal = info
         hero_dir = args.target / hid
-        skel_file = hero_dir / f"{base_name}.skel"
-        atlas_file = hero_dir / f"{base_name}.atlas"
-        png_file = hero_dir / f"{base_name}.png"
+        skel_file = hero_dir / f"{hid}.skel"
+        atlas_file = hero_dir / f"{hid}.atlas"
+        png_file = hero_dir / f"{hid}.png"
 
         if not args.force and skel_file.is_file() and atlas_file.is_file() and png_file.is_file():
             if skel_file.stat().st_size > 0 and atlas_file.stat().st_size > 0 and png_file.stat().st_size > 0:
-                return hid, True, f"已存在(跳过: {base_name})"
+                return hid, True, f"已存在(跳过: {hid})"
 
         try:
             bundle_paths = [server.fetch_bundle(base, b) for b in bundles_internal]
             stats = extract_hero_spine(bundle_paths, hid, base_name, hero_dir)
             if "skel" in stats and "atlas" in stats and "png" in stats:
-                msg = f"提取成功 [{base_name}] (PNG: {stats['png']/1024/1024:.1f}MB, SKEL: {stats['skel']/1024:.0f}KB)"
+                msg = f"提取成功 [{hid}] (PNG: {stats['png']/1024/1024:.1f}MB, SKEL: {stats['skel']/1024:.0f}KB)"
                 return hid, True, msg
             else:
                 missing = [k for k in ["skel", "atlas", "png"] if k not in stats]
-                return hid, False, f"部分缺失 [{base_name}]: {missing}"
+                return hid, False, f"部分缺失 [{hid}]: {missing}"
         except Exception as exc:
             return hid, False, f"错误: {exc}"
 
