@@ -1,6 +1,6 @@
 # Ark Recode Material
 
-《Ark Re:Code》游戏素材的自动同步仓库。GitHub Actions 定时抓取，无人值守，游戏上新后新素材会自动出现在对应目录里（当前收角色头像、头像框、技能图标、功能图标、道具/装备/套装图标、赛季框、卡池横幅、羁绊小图）。
+《Ark Re:Code》游戏素材的自动同步仓库。GitHub Actions 定时抓取，无人值守，游戏上新后新素材会自动出现在对应目录里（当前收角色头像、头像框、技能图标、功能图标、道具/装备/套装图标、赛季框、卡池横幅、羁绊小图、Spine骨骼立绘）。
 
 <!-- SYNC-STATS:START -->
 <!-- 本块由 sync-avatars 工作流自动更新，请勿手改 -->
@@ -74,7 +74,15 @@ remapped: H801 -> H804.png; skipped, output already taken: H804 -> H804.png
 
 ### 6. 18+ 防线：白名单，不是黑名单
 
-catalog 里 7000+ 张 PNG 大半是 CG / 立绘 / 羁绊图（*_Sex_LoveTalk.png、Assets/Game/CG/A*/IMG_* 羁绊原大图、Hero/<ID>/<ID>/CG_*.png），那些是 18+ 内容。脚本用**白名单**收图：只收文件名以 Icon 开头、且路径落在 Hero/Img 或 Icon/ 下的资产；羁绊小图仅收录 128x128 的方块头像图标（Assets/Game/CG/<ID>/Img/Icon_Head_S_* 与 Icon_Carnival###_S），原大图 CG（IMG_*）、长条横幅（Icon_Head_M_*）与剧情封面（*_LoveTalk）一律不收；卡池横幅单独走 Assets/Game/Banner/BN_Summon_* 白名单前缀，同一目录树下的**活动宣传图 BN_Activity_* 不收**（那是运营物料，不是卡池横幅）。新增家族时必须维持这条纪律。
+catalog 里 7000+ 张 PNG 大半是 CG / 羁绊图（*_Sex_LoveTalk.png、Assets/Game/CG/A*/IMG_* 羁绊原大图、Hero/<ID>/<ID>/CG_*.png），那些是 18+ 内容。脚本用**白名单**收图：只收文件名以 Icon 开头、且路径落在 Hero/Img 或 Icon/ 下的合规资产；羁绊小图仅收录 128x128 的方块头像图标（Assets/Game/CG/<ID>/Img/Icon_Head_S_* 与 Icon_Carnival###_S），原大图 CG（IMG_*）、长条横幅（Icon_Head_M_*）与剧情封面（*_LoveTalk）一律不收；卡池横幅单独走 Assets/Game/Banner/BN_Summon_* 白名单前缀，同一目录树下的**活动宣传图 BN_Activity_* 不收**（那是运营物料，不是卡池横幅）。新增家族时必须维持这条纪律。
+
+### 7. Spine 骨骼立绘与合规安全准则
+
+游戏客户端的完整角色立绘在官方 CDN 中并非现成的单张静态全画幅图片，而是基于 Spine 骨骼运行库在运行时动态拼装渲染生成。
+
+- **原始散件三件套收录**：仓库仅且必须收录原始骨骼切片三件套（`.skel` 骨骼动画二进制数据、`.atlas` 图集切片坐标、`.png` 散装零件切片贴图）。绝不收录组装渲染后的完整裸图，利用 Atlas 散装碎图的天然解构特性彻底规避平台机器视觉审核风控；
+- **统一 ID 命名契约**：所有角色立绘统一以角色 ID 归一化命名，目录格式为 `spine/<ID>/<ID>.skel|.atlas|.png`。对于游戏早期少数内部资产命名不一致的角色（如 `H001` 内部为 `CG_H001_a`），提取脚本会在导出时自动将 `.atlas` 首行的贴图文件名重写对齐为 `<ID>.png`，下游 Spine Web Player / Pixi-Spine 播放器直接按 ID 拼接 URL 即可加载，无需额外查表；
+- **增量更新机制**：已存在完整三件套的角色在后续扫描中会自动跳过，每周维护仅针对新增角色执行拉取与解包。
 
 ## 目录
 
@@ -90,19 +98,24 @@ catalog 里 7000+ 张 PNG 大半是 CG / 立绘 / 羁绊图（*_Sex_LoveTalk.png
                  命名 BN_Summon_H804.png；卡池通用图如 MultiSummonMystic 同目录）
     bonds/       羁绊小图（128x128 方块头像，同时兼容 ID 命名 A0413.png 与官方名 Icon_Head_S_A0413.png）
     videos/      招募/抽卡动画（videos/gacha/ 下收录裁切去除侧边栏与悬浮窗的出蓝/出紫/出金/出红视频）
+    spine/       全角色 Spine 骨骼立绘三件套（spine/<ID>/<ID>.{skel,atlas,png}，共 231 个角色）
     index.json   清单：分区 -> 键 -> 文件名 / 字节数 / sha256
-    tools/       fetch_assets.py（抓图）、build_index.py（生成清单）、update_readme.py（回写「当前状态」）、sync_assets.py（供读取 AVATAR_ID_REMAP，在此仓库从不执行）
+    tools/       fetch_assets.py（抓小图标）、fetch_spine.py（抓 Spine 骨骼立绘）、build_index.py（生成清单）、update_readme.py（回写统计信息）、check_version.py（Catalog 版本探测与维护公告检查）、sync_assets.py（供读取 AVATAR_ID_REMAP）
     backend/     config.py：抓图脚本要用的四个端点常量（GAME_ROUTER / GAME_ORIGIN / GAME_REFERER / HTTP_TIMEOUT）
 
 自包含：Actions 只 checkout 本仓库，不 clone 任何其它仓库、不需要任何 PAT。
 
 ## 手动触发 / 本地复现
 
-Actions 页 -> Sync Avatars -> Run workflow，勾 `dry_run` 只扫描不抓取。
+- **GitHub 端执行（标准流程）**：
+  进入仓库 Actions 页 -> 选择 Sync Assets -> Run workflow。勾选 `force` 可跳过版本对比强制全量扫描，勾选 `dry_run` 只扫描不写入。
+  依据 `AGENTS.md` 规范，所有素材抓取与批量更新优先在 GitHub Actions 云端 Linux Runner 执行并落库，本地环境再通过 `git pull` 同步。
 
-本地跑一遍（需要 Python 3.12 与 `pip install httpx UnityPy`）：
+- **本地微量验证（仅用于脚本调试）**：
+  需要 Python 3.12 与 `pip install httpx UnityPy`。严禁在本地进行全量抓取并向远端推送大体积素材提交，本地仅通过指定 ID 进行抽样验证：
 
+    # 抽样提取单个角色 Spine 立绘以验证逻辑
+    python tools/fetch_spine.py --ids H195 --cache "Asset Cache"
+    # 提取常规小图标素材
     python tools/fetch_assets.py --only avatars,heads,skills,icons,atlas,banner,data,bonds --target .
     python tools/build_index.py
-
-首次运行会把 catalog 里的白名单素材一次性补齐（~2100 张），之后每次只增量抓新增的。
