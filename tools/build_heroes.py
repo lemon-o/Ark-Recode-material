@@ -178,8 +178,15 @@ def main(argv: list[str] | None = None) -> int:
         name_jpn = loc_maps["JPN"].get(name_key) or name_chs
 
         # 核心判定：是否正式上线
-        # 依据 RoleSignature.txt 中有无登记签名
-        is_released = hid in role_signatures
+        # 必须同时满足：
+        # 1. 在好感度签名表中登记（hid in role_signatures）
+        # 2. 官方 CDN 中已实装 Spine 骨骼立绘（hid in existing_spines，排除 H202、H169 等未实装资源的角色）
+        # 3. 具有正式官方角色名称（排除 H169 这种纯 ID 占位测试空壳）
+        is_released = bool(
+            hid in role_signatures
+            and hid in existing_spines
+            and name_chs != hid
+        )
 
         if is_released:
             released_ids.append(hid)
