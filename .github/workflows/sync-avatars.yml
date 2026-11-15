@@ -117,6 +117,7 @@ jobs:
           git push
           curl -i -s "https://purge.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/index.json" || true
           curl -i -s "https://purge.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/data/heroes.json" || true
+          curl -i -s "https://purge.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/data/item-meta.json" || true
 
       # 版本没变也要刷新 README 的「最近扫描」：那行显示的是本轮探活时刻，
       # 不是「最近一次抓到新素材」的时刻。缺了这步，无更新的日子里时间会一直冻住

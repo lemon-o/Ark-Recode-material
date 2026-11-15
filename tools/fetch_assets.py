@@ -121,31 +121,35 @@ BOND_PATTERN = re.compile(
     r"^Assets/Game/CG/([A-Za-z0-9_]+)/Img/(Icon_(?:Head_S_\1|\1_S)\.png)$"
 )
 
-# 图集家族：道具/装备/套装/赛季框图标不是独立 .png，而是 *.spriteatlas 的子资源
+# 图集家族：道具/装备/套装/赛季框/背景图鉴图标不是独立 .png，而是 *.spriteatlas 的子资源
 # （catalog 里只有图集本身的地址，单个图标按 Sprite 名索引）。所以这一族按
 # "整包下载、枚举 Sprite 导出"的方式解包，输出名 = Sprite 名（游戏自己的
-# 图标键；与 Item.txt 的 Icon 列 `Icon/Item[<名字>]`、`UI/Image/UI_iconz[<名字>]`
-# 对应）。键=图集名，值=输出目录。
+# 图标键；与 Item.txt 的 Icon 列 `Icon/Item[<名字>]`、`UI/Image/UI_iconz[<名字>]`、
+# `Icon/BG[<名字>]` 对应）。键=图集名，值=输出目录。
 ATLAS_SOURCES: dict[str, str] = {
     "Item": "Assets/Game/Icon/Item.spriteatlas",
     "Equip": "Assets/Game/Icon/Equip.spriteatlas",
     "EquipSet": "Assets/Game/Icon/EquipSet.spriteatlas",
     # 赛季头像框（⚑ Frame031 的 Icon 列 = UI/Image/UI_iconz[Frame_031]）
     "UI_iconz": "Assets/Game/UI/Image/UI_iconz.spriteatlas",
+    # 背景与图鉴道具小图标（Item.txt 的 Icon 列 = Icon/BG[Carnival###] 或 Icon/BG[*_Dialog]）
+    "BG": "Assets/Game/Icon/BG.spriteatlas",
 }
 ATLAS_CATEGORIES = {
     "Item": "items",
     "Equip": "equip",
     "EquipSet": "equipset",
     "UI_iconz": "uiconz",
+    "BG": "bg",
 }
 # Item.txt 的 Icon 列前缀 -> 输出目录（图集键 -> 分区）。
-# `Icon/Item[X]` = 道具图集，`UI/Image/UI_iconz[X]` = 赛季框等 UI 图标。
+# `Icon/Item[X]` = 道具图集，`UI/Image/UI_iconz[X]` = 赛季框等 UI 图标，`Icon/BG[X]` = 背景图鉴。
 ICON_COLUMN_SECTIONS: dict[str, str] = {
     "Icon/Item": "items",
     "Icon/Equip": "equip",
     "Icon/EquipSet": "equipset",
     "UI/Image/UI_iconz": "uiconz",
+    "Icon/BG": "bg",
 }
 ICON_COLUMN_PATTERN = re.compile(r"^([A-Za-z_/]+)\[([^\]]+)\]$")
 

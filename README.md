@@ -1,6 +1,6 @@
 # Ark Recode Material
 
-《Ark Re:Code》游戏素材的自动同步仓库。GitHub Actions 定时抓取，无人值守，游戏上新后新素材会自动出现在对应目录里（当前收角色头像、头像框、技能图标、功能图标、道具/装备/套装图标、赛季框、卡池横幅、羁绊小图、Spine骨骼立绘）。
+《Ark Re:Code》游戏素材的自动同步仓库。GitHub Actions 定时抓取，无人值守，游戏上新后新素材会自动出现在对应目录里（当前收角色头像、头像框、技能图标、功能图标、道具/装备/套装图标、赛季框、卡池横幅、羁绊小图、背景图鉴、Spine骨骼立绘）。
 
 <!-- SYNC-STATS:START -->
 <!-- 本块由 sync-avatars 工作流自动更新，请勿手改 -->
@@ -107,6 +107,7 @@ catalog 里 7000+ 张 PNG 大半是 CG / 羁绊图（*_Sex_LoveTalk.png、Assets
     banners/     卡池横幅（Banner/BN_Summon_NNN 每池一个 bundle，512x256 简中图，
                  命名 BN_Summon_H804.png；卡池通用图如 MultiSummonMystic 同目录）
     bonds/       羁绊小图（128x128 方块头像，同时兼容 ID 命名 A0413.png 与官方名 Icon_Head_S_A0413.png）
+    bg/          背景图鉴（BG.spriteatlas 里的切片，包含场景环境缩略图 *_Dialog 与图鉴道具小图标 Carnival###）
     videos/      招募/抽卡动画（videos/gacha/ 下收录裁切去除侧边栏与悬浮窗的出蓝/出紫/出金/出红视频）
     spine/       全角色 Spine 骨骼立绘三件套（spine/<ID>/<ID>.{skel,atlas,png}）
     data/        静态数据与元数据（heroes.json 全角色档案与上线状态、item-meta.json 道具羁绊表、summon-pools.json 卡池表）

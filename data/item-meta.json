@@ -2860,758 +2860,1136 @@
   },
   "Background01": {
    "desc": "T_Item_Description_Background01",
+   "icon": "Bg_Lobby",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background01"
   },
   "Background02": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0011_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background02"
   },
   "Background03": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0012_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background03"
   },
   "Background04": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0021_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background04"
   },
   "Background05": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0024_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background05"
   },
   "Background06": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0023_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background06"
   },
   "Background07": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0031_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background07"
   },
   "Background08": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0032_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background08"
   },
   "Background09": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0041_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background09"
   },
   "Background10": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0042_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background10"
   },
   "Background100": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0091_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background100"
   },
   "Background101": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0090_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background101"
   },
   "Background102": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0096_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background102"
   },
   "Background103": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0088_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background103"
   },
   "Background104": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0098_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background104"
   },
   "Background105": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S1381_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background105"
   },
   "Background106": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0083_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background106"
   },
   "Background107": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0232_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background107"
   },
   "Background108": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S1401_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background108"
   },
   "Background109": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0083_Battle",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background109"
   },
   "Background11": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0051_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background11"
   },
   "Background110": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0089_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background110"
   },
   "Background111": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0099_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background111"
   },
   "Background112": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0100_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background112"
   },
   "Background113": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S1391_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background113"
   },
   "Background114": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0107_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background114"
   },
   "Background115": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0109_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background115"
   },
   "Background116": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0111_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background116"
   },
   "Background117": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0105_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background117"
   },
   "Background118": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0104_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background118"
   },
   "Background119": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0113_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background119"
   },
   "Background12": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0052_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background12"
   },
   "Background120": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0044_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background120"
   },
   "Background121": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0043_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background121"
   },
   "Background122": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0103_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background122"
   },
   "Background123": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0064_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background123"
   },
   "Background124": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0117_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background124"
   },
   "Background125": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0118_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background125"
   },
   "Background126": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0116_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background126"
   },
   "Background127": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0114_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background127"
   },
   "Background128": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0125_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background128"
   },
   "Background129": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0126_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background129"
   },
   "Background13": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0061_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background13"
   },
   "Background130": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0031_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background130"
   },
   "Background131": {
    "desc": "T_Item_Description_Background01",
+   "icon": "H169_A0130_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_H169"
   },
   "Background132": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0120_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background132"
   },
   "Background133": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0123_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background133"
   },
   "Background134": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0137_Dialog_H167",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background134"
   },
   "Background135": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0119_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background135"
   },
   "Background136": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0138_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background136"
   },
   "Background137": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0139_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background137"
   },
   "Background138": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0129_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background138"
   },
   "Background139": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0075_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background139"
   },
   "Background14": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0062_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background14"
   },
   "Background140": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0124_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background140"
   },
   "Background141": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0128_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background141"
   },
   "Background142": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0069_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background142"
   },
   "Background143": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0053_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background143"
   },
   "Background144": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0142_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background144"
   },
   "Background145": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0131_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background145"
   },
   "Background146": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0093_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background146"
   },
   "Background147": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0146_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background147"
   },
   "Background148": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0147_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background148"
   },
   "Background149": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0149_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background149"
   },
   "Background15": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0063_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background15"
   },
   "Background150": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0151_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background150"
   },
   "Background151": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0152_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background151"
   },
   "Background152": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0153_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background152"
   },
   "Background153": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0154_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background153"
   },
   "Background154": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0155_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background154"
   },
   "Background155": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0158_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background155"
   },
   "Background156": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0159_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background156"
   },
   "Background157": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0040_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background157"
   },
   "Background158": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0161_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background158"
   },
   "Background159": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0165_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background159"
   },
   "Background16": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0071_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background16"
   },
   "Background160": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0167_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background160"
   },
   "Background161": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0176_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background161"
   },
   "Background162": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0177_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background162"
   },
   "Background163": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0179_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background163"
   },
   "Background164": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0186_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background164"
   },
   "Background165": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0180_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background165"
   },
   "Background166": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0187_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background166"
   },
   "Background167": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0188_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background167"
   },
   "Background168": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0189_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background168"
   },
   "Background169": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0170_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background169"
   },
   "Background17": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0073_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background17"
   },
   "Background170": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0171_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background170"
   },
   "Background171": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0173_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background171"
   },
   "Background172": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0185_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background172"
   },
   "Background173": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0182_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background173"
   },
   "Background174": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0194_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background174"
   },
   "Background175": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0195_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background175"
   },
   "Background176": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0200_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background176"
   },
   "Background177": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0202_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background177"
   },
   "Background178": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0201_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background178"
   },
   "Background179": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0164_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background179"
   },
   "Background18": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0074_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background18"
   },
   "Background180": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0162_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background180"
   },
   "Background181": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0196_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background181"
   },
   "Background182": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0209_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background182"
   },
   "Background183": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0208_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background183"
   },
   "Background184": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0197_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background184"
   },
   "Background185": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0198_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background185"
   },
   "Background186": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0207_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background186"
   },
   "Background187": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0199_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background187"
   },
   "Background188": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0214_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background188"
   },
   "Background189": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0150_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background189"
   },
   "Background19": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0081_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background19"
   },
   "Background20": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0082_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background20"
   },
   "Background21": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0083_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background21"
   },
   "Background22": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0091_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background22"
   },
   "Background23": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0092_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background23"
   },
   "Background24": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0093_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background24"
   },
   "Background25": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0101_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background25"
   },
   "Background26": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0102_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background26"
   },
   "Background27": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0111_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background27"
   },
   "Background28": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0112_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background28"
   },
   "Background29": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0113_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background29"
   },
   "Background30": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0121_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background30"
   },
   "Background31": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0122_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background31"
   },
   "Background32": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0131_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background32"
   },
   "Background33": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0141_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background33"
   },
   "Background34": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0151_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background34"
   },
   "Background35": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0161_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background35"
   },
   "Background36": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0171_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background36"
   },
   "Background37": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0181_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background37"
   },
   "Background38": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0182_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background38"
   },
   "Background39": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0183_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background39"
   },
   "Background40": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0191_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background40"
   },
   "Background41": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0201_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background41"
   },
   "Background42": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0211_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background42"
   },
   "Background43": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0221_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background43"
   },
   "Background44": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0261_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background44"
   },
   "Background45": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0271_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background45"
   },
   "Background46": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0281_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background46"
   },
   "Background47": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0291_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background47"
   },
   "Background48": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0292_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background48"
   },
   "Background49": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0293_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background49"
   },
   "Background50": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0294_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background50"
   },
   "Background51": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0301_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background51"
   },
   "Background52": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0302_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background52"
   },
   "Background53": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0311_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background53"
   },
   "Background54": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0321_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background54"
   },
   "Background55": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0011_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background55"
   },
   "Background56": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0012_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background56"
   },
   "Background57": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0013_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background57"
   },
   "Background58": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0015_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background58"
   },
   "Background59": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0016_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background59"
   },
   "Background60": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0017_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background60"
   },
   "Background61": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0018_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background61"
   },
   "Background62": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0019_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background62"
   },
   "Background63": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0020_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background63"
   },
   "Background64": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0021_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background64"
   },
   "Background65": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0022_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background65"
   },
   "Background66": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0023_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background66"
   },
   "Background67": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0241_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background67"
   },
   "Background68": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0242_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background68"
   },
   "Background69": {
    "desc": "T_Item_Description_Background01",
+   "icon": "S0251_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background69"
   },
   "Background70": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0024_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background70"
   },
   "Background71": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0026_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background71"
   },
   "Background72": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0027_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background72"
   },
   "Background73": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0028_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background73"
   },
   "Background74": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0032_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background74"
   },
   "Background75": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0033_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background75"
   },
   "Background76": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0034_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background76"
   },
   "Background77": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0047_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background77"
   },
   "Background78": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0039_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background78"
   },
   "Background79": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0037_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background79"
   },
   "Background80": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0066_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background80"
   },
   "Background81": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0067_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background81"
   },
   "Background82": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0060_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background82"
   },
   "Background83": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0054_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background83"
   },
   "Background84": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0059_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background84"
   },
   "Background85": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0050_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background85"
   },
   "Background86": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0051_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background86"
   },
   "Background87": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0073_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background87"
   },
   "Background88": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0068_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background88"
   },
   "Background89": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0070_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background89"
   },
   "Background90": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0061_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background90"
   },
   "Background91": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0062_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background91"
   },
   "Background92": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0074_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background92"
   },
   "Background93": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0058_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background93"
   },
   "Background94": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0046_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background94"
   },
   "Background95": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0026_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background95"
   },
   "Background96": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0076_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background96"
   },
   "Background97": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0084_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background97"
   },
   "Background98": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0085_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background98"
   },
   "Background99": {
    "desc": "T_Item_Description_Background01",
+   "icon": "A0092_Dialog",
+   "icon_section": "bg",
    "name": "T_Item_Name_Background99"
   },
   "C001": {
@@ -3838,74 +4216,110 @@
   },
   "CGCollection01": {
    "desc": "T_Item_Description_Background01",
+   "icon": "Carnival001",
+   "icon_section": "bg",
    "name": "T_Item_Name_CGCollection01"
   },
   "CGCollection02": {
    "desc": "T_Item_Description_Background01",
+   "icon": "Carnival002",
+   "icon_section": "bg",
    "name": "T_Item_Name_CGCollection02"
   },
   "CGCollection03": {
    "desc": "T_Item_Description_Background01",
+   "icon": "Carnival003",
+   "icon_section": "bg",
    "name": "T_Item_Name_CGCollection03"
   },
   "CGCollection04": {
    "desc": "T_Item_Description_Background01",
+   "icon": "Carnival004",
+   "icon_section": "bg",
    "name": "T_Item_Name_CGCollection04"
   },
   "CGCollection05": {
    "desc": "T_Item_Description_Background01",
+   "icon": "Carnival005",
+   "icon_section": "bg",
    "name": "T_Item_Name_CGCollection05"
   },
   "CGCollection06": {
    "desc": "T_Item_Description_Background01",
+   "icon": "Carnival006",
+   "icon_section": "bg",
    "name": "T_Item_Name_Carnival006"
   },
   "CGCollection07": {
    "desc": "T_Item_Description_Background01",
+   "icon": "Carnival007",
+   "icon_section": "bg",
    "name": "T_Item_Name_CGCollection07"
   },
   "CGCollection08": {
    "desc": "T_Item_Description_Background01",
+   "icon": "Carnival008",
+   "icon_section": "bg",
    "name": "T_Item_Name_CGCollection08"
   },
   "CGCollection09": {
    "desc": "T_Item_Description_Background01",
+   "icon": "Carnival009",
+   "icon_section": "bg",
    "name": "T_Item_Name_CGCollection09"
   },
   "CGCollection10": {
    "desc": "T_Item_Description_Background01",
+   "icon": "Carnival010",
+   "icon_section": "bg",
    "name": "T_Item_Name_CGCollection10"
   },
   "CGCollection11": {
    "desc": "T_Item_Description_Background01",
+   "icon": "Carnival011",
+   "icon_section": "bg",
    "name": "T_Item_Name_CGCollection11"
   },
   "CGCollection12": {
    "desc": "T_Item_Description_Background01",
+   "icon": "Carnival012",
+   "icon_section": "bg",
    "name": "T_Item_Name_Carnival012"
   },
   "CGCollection13": {
    "desc": "T_Item_Description_Background01",
+   "icon": "Carnival013",
+   "icon_section": "bg",
    "name": "T_Item_Name_CGCollection13"
   },
   "CGCollection14": {
    "desc": "T_Item_Description_Background01",
+   "icon": "Carnival014",
+   "icon_section": "bg",
    "name": "T_Item_Name_CGCollection14"
   },
   "CGCollection15": {
    "desc": "T_Item_Description_Background01",
+   "icon": "Carnival015",
+   "icon_section": "bg",
    "name": "T_Item_Name_CGCollection15"
   },
   "CGCollection16": {
    "desc": "T_Item_Description_Background01",
+   "icon": "Carnival016",
+   "icon_section": "bg",
    "name": "T_Item_Name_CGCollection16"
   },
   "CGCollection17": {
    "desc": "T_Item_Description_Background01",
+   "icon": "Carnival017",
+   "icon_section": "bg",
    "name": "T_Item_Name_CGCollection17"
   },
   "CGCollection18": {
    "desc": "T_Item_Description_Background01",
+   "icon": "Carnival018",
+   "icon_section": "bg",
    "name": "T_Item_Name_CGCollection18"
   },
   "CR11": {
@@ -12180,5 +12594,5 @@
    "name": "T_Item_Name_VIPPoint"
   }
  },
- "updated": "2026-11-12T18:23:16+08:00"
+ "updated": "2026-11-15T14:12:11+08:00"
 }
