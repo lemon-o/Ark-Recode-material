@@ -1,6 +1,6 @@
 {
-  "updated": "2026-11-12T18:23:25+08:00",
-  "count": 4675,
+  "updated": "2026-11-15T14:37:16+08:00",
+  "count": 4917,
   "avatars": {
     "H001": {
       "file": "H001.png",
@@ -22234,6 +22234,1218 @@
       "file": "Icon_Head_S_A0464.png",
       "bytes": 26830,
       "sha256": "9382b9408a643fec6f7881a0e1b3f6af0d97dd50085948663250074fce26e4e7"
+    }
+  },
+  "bg": {
+    "A0011_Dialog": {
+      "file": "A0011_Dialog.png",
+      "bytes": 22429,
+      "sha256": "0b3a29ec8a66ba43b66138bfdcf64d1035f78c712711b91dcd677b6e7c9549a6"
+    },
+    "A0012_Dialog": {
+      "file": "A0012_Dialog.png",
+      "bytes": 24406,
+      "sha256": "df654339f06bbbc7e80472002d39b1d959db2628f19fbfda7e957d797c0de6c0"
+    },
+    "A0013_Dialog": {
+      "file": "A0013_Dialog.png",
+      "bytes": 26300,
+      "sha256": "2942e55715d434d7c324d70f77ba3148b32add5f4f9aeee7b0c7ba19550fd65a"
+    },
+    "A0014_Dialog": {
+      "file": "A0014_Dialog.png",
+      "bytes": 24744,
+      "sha256": "c974b90f3e19cc4b64629ee1d74fb51f96f15e57a3e3fee4af434bf7fb902a56"
+    },
+    "A0015_Dialog": {
+      "file": "A0015_Dialog.png",
+      "bytes": 18906,
+      "sha256": "807687a97328352a979fc938373d58041c10a88d27c7e4d4491071339c6d31bf"
+    },
+    "A0016_Dialog": {
+      "file": "A0016_Dialog.png",
+      "bytes": 31533,
+      "sha256": "2214425ce0f4291b5e482b8e8a9a74ee39742daf8eaace4081a354bec71fbb70"
+    },
+    "A0017_Dialog": {
+      "file": "A0017_Dialog.png",
+      "bytes": 25847,
+      "sha256": "ce079b922a11a216b675a78d843b2024475fed3dbd8f0d2371490ab25d464234"
+    },
+    "A0018_Dialog": {
+      "file": "A0018_Dialog.png",
+      "bytes": 25282,
+      "sha256": "ce2566f170c4f28478fd6af5aa0985ed94a770a6fd9e4dab71bbc1c27af8e55e"
+    },
+    "A0019_Dialog": {
+      "file": "A0019_Dialog.png",
+      "bytes": 31494,
+      "sha256": "a75c370241d90c8d9a16c4b1265b8027df8f65b74c8b164514852edeea79cf70"
+    },
+    "A0020_Dialog": {
+      "file": "A0020_Dialog.png",
+      "bytes": 28008,
+      "sha256": "6a7e2e33fd65ea0694e1b039c08ca8bc9eb3c7b7847aea5084cacc09a8149ab4"
+    },
+    "A0021_Dialog": {
+      "file": "A0021_Dialog.png",
+      "bytes": 24103,
+      "sha256": "a6ec70f54f66b506f418897fbdde30f1b6adae18fc1915753ee1e058f0c78066"
+    },
+    "A0022_Dialog": {
+      "file": "A0022_Dialog.png",
+      "bytes": 31667,
+      "sha256": "34fb2b26e3b45dcbabfded1d34aff3f1846ce98a507619fcbe8775ed748fc0f1"
+    },
+    "A0023_Dialog": {
+      "file": "A0023_Dialog.png",
+      "bytes": 28481,
+      "sha256": "a161d5a9597b65f598d4d508388f8bc8d5fb2df1daff96416dda20be9f66aaf1"
+    },
+    "A0024_Dialog": {
+      "file": "A0024_Dialog.png",
+      "bytes": 26132,
+      "sha256": "1d747c18c8e481a1a6e18eddd67f476b7bd609a936ccaa907d10605a3f668503"
+    },
+    "A0026_Dialog": {
+      "file": "A0026_Dialog.png",
+      "bytes": 36936,
+      "sha256": "a0c4c998562a1726a540d7333cd8f481fed9c6b079fcb3d31089d184938f82ce"
+    },
+    "A0027_Dialog": {
+      "file": "A0027_Dialog.png",
+      "bytes": 33474,
+      "sha256": "4d011bbee56f01cb71c5328ac6d62ea53b8cb20cfb6bb9c8448f1e7c0c03a599"
+    },
+    "A0028_Dialog": {
+      "file": "A0028_Dialog.png",
+      "bytes": 21458,
+      "sha256": "9bc1dfa3a7aebd1d1bbc75ecf47e4f97815dab1d1540c5aca46eff72d18970a1"
+    },
+    "A0031_Dialog": {
+      "file": "A0031_Dialog.png",
+      "bytes": 23343,
+      "sha256": "3d8fe1d0bf7142ed8fc068d19ed12d24d5b7f4f3ff45da4506272dea859f1701"
+    },
+    "A0032_Dialog": {
+      "file": "A0032_Dialog.png",
+      "bytes": 24696,
+      "sha256": "c0aa967c895c13e55cf814606e61bbf5c3aa6e8f133d13c307e13b65d0c914a1"
+    },
+    "A0033_Dialog": {
+      "file": "A0033_Dialog.png",
+      "bytes": 40223,
+      "sha256": "f7825bbaac64bcd909371467ef92520387fe952ad38ac84ba00966b09063c6a4"
+    },
+    "A0034_Dialog": {
+      "file": "A0034_Dialog.png",
+      "bytes": 39425,
+      "sha256": "900c61688991b16e4247f4095b5407a004a6f14dee09db47b5479f088a14fedf"
+    },
+    "A0035_Dialog": {
+      "file": "A0035_Dialog.png",
+      "bytes": 25474,
+      "sha256": "ced3a488c16233c8268139da073deb36619d2067ebb515c4206457f5a1344ad1"
+    },
+    "A0036_Dialog": {
+      "file": "A0036_Dialog.png",
+      "bytes": 36444,
+      "sha256": "3a2e397981f1d5bc964198ce9d82ed7259cac8c805efccad9ff54d1a8e642eb6"
+    },
+    "A0037_Dialog": {
+      "file": "A0037_Dialog.png",
+      "bytes": 26599,
+      "sha256": "e98161c79d0b9b44b281a925e3b6fe1647c028fce6090afd2f50a8dbbd9970e5"
+    },
+    "A0038_Dialog": {
+      "file": "A0038_Dialog.png",
+      "bytes": 26966,
+      "sha256": "3e021a656e6aa42c5b8fc2749f00ffa23f27d61a2070761bd66f801a77aced3a"
+    },
+    "A0039_Dialog": {
+      "file": "A0039_Dialog.png",
+      "bytes": 38805,
+      "sha256": "55b44306f3b730f9aa68ff3a09dce0fbec303a7b2fb0ccf48ec7ff3b625d2eb8"
+    },
+    "A0040_Dialog": {
+      "file": "A0040_Dialog.png",
+      "bytes": 36584,
+      "sha256": "512f68c07ba57e70877536638867b494eebdd579c82fdccac54384ade0d80745"
+    },
+    "A0041_Dialog": {
+      "file": "A0041_Dialog.png",
+      "bytes": 29500,
+      "sha256": "17ffb89fa29ba0be553d795fd4826fd3c575a244e70279b24004f9c9eaae9c99"
+    },
+    "A0042_Dialog": {
+      "file": "A0042_Dialog.png",
+      "bytes": 36320,
+      "sha256": "8532613b2d751999ebc4173e1536a25f918eb8e3bd1e689680253e2eaae6dcbf"
+    },
+    "A0043_Dialog": {
+      "file": "A0043_Dialog.png",
+      "bytes": 32602,
+      "sha256": "725c9e045643df0f7669779cbb6270d030f01858a5146fad010e29c6644f0c64"
+    },
+    "A0044_Dialog": {
+      "file": "A0044_Dialog.png",
+      "bytes": 36481,
+      "sha256": "298a455ea38887c2c050c6e959ce3490acbfdfc88765e53d4301149bf1fd8bfe"
+    },
+    "A0046_Dialog": {
+      "file": "A0046_Dialog.png",
+      "bytes": 29005,
+      "sha256": "36e66f3409801421e108fa32ff1e00a4ec09a7c2c784c611cf3bdc49e25c2dd1"
+    },
+    "A0047_Dialog": {
+      "file": "A0047_Dialog.png",
+      "bytes": 23496,
+      "sha256": "d52f1869beaa0b42657b363a823b335af22d0f1e0b50b0831da99a3182729bf6"
+    },
+    "A0050_Dialog": {
+      "file": "A0050_Dialog.png",
+      "bytes": 35842,
+      "sha256": "85ea5e4253777fc0314f5f9f94a487758f132b1a9010b364b8a776f92d47e918"
+    },
+    "A0051_Dialog": {
+      "file": "A0051_Dialog.png",
+      "bytes": 33713,
+      "sha256": "ea91c27313590933172f421b5312fbb71f10b0ab492c1714ee74512ec4f2aa33"
+    },
+    "A0053_Dialog": {
+      "file": "A0053_Dialog.png",
+      "bytes": 22706,
+      "sha256": "548311806aaa8b553b08fceae4d5e08f1d37c5a225cb811ce34e77cdaabffd1b"
+    },
+    "A0054_Dialog": {
+      "file": "A0054_Dialog.png",
+      "bytes": 33964,
+      "sha256": "70d3419fb301a86ac7a340fe05f1a982a3b689c15b130223526d1d65da2e685f"
+    },
+    "A0058_Dialog": {
+      "file": "A0058_Dialog.png",
+      "bytes": 43645,
+      "sha256": "ed30c9bbad823b324dd5868ed2aec9d0f7eafcce714dd12b4efee6b0bf8e7242"
+    },
+    "A0059_Dialog": {
+      "file": "A0059_Dialog.png",
+      "bytes": 32948,
+      "sha256": "b11dcda386abce681991dbf8fa1870ec9b6b3469c7ce524c0d6a562a12ecf23f"
+    },
+    "A0060_Dialog": {
+      "file": "A0060_Dialog.png",
+      "bytes": 31637,
+      "sha256": "b2b538276110b5c38cf7c705bb76fc978b57c2d9960b4c68b5b179e2682ee35e"
+    },
+    "A0061_Dialog": {
+      "file": "A0061_Dialog.png",
+      "bytes": 33813,
+      "sha256": "7af6a9f2b62fed92eb6cfa159ff1b36c05a6b62deea7edc034b41f24480c3d37"
+    },
+    "A0062_Dialog": {
+      "file": "A0062_Dialog.png",
+      "bytes": 30474,
+      "sha256": "57999fdde027d3b43c8cacc47c121e92b8cb2034d912661e3bc491d4eb92d9f2"
+    },
+    "A0064_Dialog": {
+      "file": "A0064_Dialog.png",
+      "bytes": 31738,
+      "sha256": "151447440b30600a973a0643c9487d376ecda98129bf9dc207b45ac78cbf3007"
+    },
+    "A0066_Dialog": {
+      "file": "A0066_Dialog.png",
+      "bytes": 36972,
+      "sha256": "82d263274b2ad6eb0c8dd3e2f51f958d5ce5c0bb88c588971ab5c15e33135ee7"
+    },
+    "A0067_Dialog": {
+      "file": "A0067_Dialog.png",
+      "bytes": 36207,
+      "sha256": "1775bad9a986b311031b779e8b4f7374c8463726b95a88e6b9dca775d1e9d3e8"
+    },
+    "A0068_Dialog": {
+      "file": "A0068_Dialog.png",
+      "bytes": 36235,
+      "sha256": "f7356305c2f956f8e5399877643fd064efb37d59a6726c4d008d65b903bc73b6"
+    },
+    "A0069_Dialog": {
+      "file": "A0069_Dialog.png",
+      "bytes": 35400,
+      "sha256": "13934d5faabee7da83848ef022275751f4649290cc6cd0659dae36f503d904e5"
+    },
+    "A0070_Dialog": {
+      "file": "A0070_Dialog.png",
+      "bytes": 34034,
+      "sha256": "d252d3cd541bef92d9875e32f4695285dee2d67719eb1d4ec1683ad7f532f58b"
+    },
+    "A0073_Dialog": {
+      "file": "A0073_Dialog.png",
+      "bytes": 26507,
+      "sha256": "84ddeb29b6abd816edc1ac2dc159bdbd3ef36b88f5488366283636fb75b362e2"
+    },
+    "A0074_Dialog": {
+      "file": "A0074_Dialog.png",
+      "bytes": 29514,
+      "sha256": "dcec9f4f7d9d4bef57f4539dbd904c6a14df64ddd2b586e0eca93b892c6f5ce2"
+    },
+    "A0075_Dialog": {
+      "file": "A0075_Dialog.png",
+      "bytes": 30415,
+      "sha256": "b67320ea23e41658b8f22d0e1f57dd75900d7bc25cda42d6bed45ea1a6e79a3f"
+    },
+    "A0076_Dialog": {
+      "file": "A0076_Dialog.png",
+      "bytes": 33205,
+      "sha256": "874b8c3b55af84b18e597613ca456dc94120ef47ca81df78c1e19003c70441b8"
+    },
+    "A0083_Battle": {
+      "file": "A0083_Battle.png",
+      "bytes": 28817,
+      "sha256": "26b5edf8f041fe8b88b1d61b4159abaec697fa00bbc52bbd2dd1de6187d20bac"
+    },
+    "A0083_Dialog": {
+      "file": "A0083_Dialog.png",
+      "bytes": 34615,
+      "sha256": "0ff5263aadd5ec71c09eb234bbd898bf88b67cf7c163245e408cc7f19f1f8b52"
+    },
+    "A0084_Dialog": {
+      "file": "A0084_Dialog.png",
+      "bytes": 28991,
+      "sha256": "dbac7524d5c5755a61484c28313ba2dd7e504a58ccd05ecbc86a81c86723dfa2"
+    },
+    "A0085_Dialog": {
+      "file": "A0085_Dialog.png",
+      "bytes": 32264,
+      "sha256": "c533d22ee6c728017066295e3473c8b316c8e6b0f86af506462d278d98d105ab"
+    },
+    "A0086_Dialog": {
+      "file": "A0086_Dialog.png",
+      "bytes": 21869,
+      "sha256": "fbfb40377e125ecc1d530b8e1e9e606b50e754a56a7114fed3c3656d613312dc"
+    },
+    "A0087_Dialog": {
+      "file": "A0087_Dialog.png",
+      "bytes": 27523,
+      "sha256": "68ad0603bf5a35a71590a44b458eff03531a6f07d2de10ed0e0b410d23799b24"
+    },
+    "A0088_Dialog": {
+      "file": "A0088_Dialog.png",
+      "bytes": 29033,
+      "sha256": "afde786e1e62135ab55c421561e3b2280c8225af1fc54206f9b820470515333d"
+    },
+    "A0089_Dialog": {
+      "file": "A0089_Dialog.png",
+      "bytes": 30212,
+      "sha256": "9acd91e59cd8d11b0d2ff8c0544c2947694d1a418412218e3be8f1797dadd85c"
+    },
+    "A0090_Dialog": {
+      "file": "A0090_Dialog.png",
+      "bytes": 25322,
+      "sha256": "13d870f9c3b40d9263aa3bf84bc15d4846bbf0ffa4f3e4b2aa066c426f040c88"
+    },
+    "A0091_Dialog": {
+      "file": "A0091_Dialog.png",
+      "bytes": 25300,
+      "sha256": "259c542933d3b79910ae74213eaeebb7d1c2b4ab925ca0fcf09b1f7c4c5fa355"
+    },
+    "A0092_Dialog": {
+      "file": "A0092_Dialog.png",
+      "bytes": 34838,
+      "sha256": "49f582ee7ba9babad2cc621b915a5d6b3e9062c8f5711e3f8128301d1f924e72"
+    },
+    "A0093_Dialog": {
+      "file": "A0093_Dialog.png",
+      "bytes": 35016,
+      "sha256": "7f6652aa25b3aec32965652391264bdf48965154c5e6218b188f39ebe75f5d63"
+    },
+    "A0095_Dialog": {
+      "file": "A0095_Dialog.png",
+      "bytes": 27108,
+      "sha256": "0bb777bd3317dbcb213f21d2c9db01a24bb878df9f5dacf085706139d7b7cd7b"
+    },
+    "A0096_Dialog": {
+      "file": "A0096_Dialog.png",
+      "bytes": 32822,
+      "sha256": "c0875168b3205c4d40573b1d2b9f4373255ba9c26b5889e9935694ae8e659bbc"
+    },
+    "A0098_Dialog": {
+      "file": "A0098_Dialog.png",
+      "bytes": 18825,
+      "sha256": "820fdbc1998999f26f8814243ef04af06051df8e5c40d1f8bb938b4c873bce55"
+    },
+    "A0099_Dialog": {
+      "file": "A0099_Dialog.png",
+      "bytes": 35662,
+      "sha256": "062d50b4a3f38e1682000d969b5b58569aae3a1893b8301ce0028bdd184d3b5b"
+    },
+    "A0100_Dialog": {
+      "file": "A0100_Dialog.png",
+      "bytes": 31425,
+      "sha256": "4b6ad2a696543ee40573490c3f0b6dab6bc7934383a8d381e50d748282d66b9e"
+    },
+    "A0103_Dialog": {
+      "file": "A0103_Dialog.png",
+      "bytes": 64886,
+      "sha256": "da487effa217534f0b0ee92e59f047512fa2256904736f6dde713ae43d682fbd"
+    },
+    "A0104_Dialog": {
+      "file": "A0104_Dialog.png",
+      "bytes": 61257,
+      "sha256": "778f0a39923606e04a802cf0b1f57177a43169a89259ff37bc67fc7c6d3119f7"
+    },
+    "A0105_Dialog": {
+      "file": "A0105_Dialog.png",
+      "bytes": 59450,
+      "sha256": "8d0710e6e4564655c1fc5382350d409c45fbc11275b53a3ab5ebbf797ee7e41a"
+    },
+    "A0107_Dialog": {
+      "file": "A0107_Dialog.png",
+      "bytes": 38844,
+      "sha256": "a1ea6e616984b18549eaf1d065c470c373058db748226a4dff20d45b984d47a9"
+    },
+    "A0109_Dialog": {
+      "file": "A0109_Dialog.png",
+      "bytes": 32375,
+      "sha256": "2b58157ca85774e754f77f2d4f2bf6dfd17c6a841be382770817fc3ac1430d24"
+    },
+    "A0111_Dialog": {
+      "file": "A0111_Dialog.png",
+      "bytes": 22863,
+      "sha256": "538a74ff3a2002addad534493aa7fa21f99fdb1403f34b67c267965760e75a14"
+    },
+    "A0113_Dialog": {
+      "file": "A0113_Dialog.png",
+      "bytes": 23004,
+      "sha256": "e89d847aa23b68b5b3043f8ec06129d7ba6edf90624871bf338fd50a5ebebbda"
+    },
+    "A0114_Dialog": {
+      "file": "A0114_Dialog.png",
+      "bytes": 31008,
+      "sha256": "cbf3f62df864ad4e8fc7bc83b50a54a3fa53bbeb0203301776a01253c805bcdf"
+    },
+    "A0116_Dialog": {
+      "file": "A0116_Dialog.png",
+      "bytes": 22458,
+      "sha256": "1e46dbce5295b9bb4a0b15893e714e699a7f605e18d1243291b6e386ea3e6ebe"
+    },
+    "A0117_Dialog": {
+      "file": "A0117_Dialog.png",
+      "bytes": 34407,
+      "sha256": "cfec09b736f6e3f89599e32607fae41949e486a7858fc07b03a4879c4b5f2a6a"
+    },
+    "A0118_Dialog": {
+      "file": "A0118_Dialog.png",
+      "bytes": 25823,
+      "sha256": "4f456d2edabb0fc5992f04667fbfe9a10be845c6be51dcf0fdf6c391fec3c918"
+    },
+    "A0119_Dialog": {
+      "file": "A0119_Dialog.png",
+      "bytes": 28573,
+      "sha256": "02b616db342d5c85bc2ac99c5710d11289bd8066919309666b59e4d5b7681dfe"
+    },
+    "A0120_Dialog": {
+      "file": "A0120_Dialog.png",
+      "bytes": 29433,
+      "sha256": "f385ad91f5bc4706b4cd1bf99d8e3e6bae1416b4c8f9e2b19cc005b027027c2d"
+    },
+    "A0123_Dialog": {
+      "file": "A0123_Dialog.png",
+      "bytes": 33211,
+      "sha256": "19caacdeae65f9ce08c67f32ec93822d85ad72b4d7a0de676add368f87f06c33"
+    },
+    "A0124_Dialog": {
+      "file": "A0124_Dialog.png",
+      "bytes": 35285,
+      "sha256": "0bc3d57fe26254606fed55ec24b0d63cd0fd63861691f7fe998de9a815d62bea"
+    },
+    "A0125_Dialog": {
+      "file": "A0125_Dialog.png",
+      "bytes": 22900,
+      "sha256": "f45684965911aa0409fe35db4b57b4886bbf03237aa5d410c9e994af4a64608b"
+    },
+    "A0126_Dialog": {
+      "file": "A0126_Dialog.png",
+      "bytes": 25878,
+      "sha256": "79c8b9a941b8490b25fcd2cf6cd875873d4ce61c764d5951dd8261ab9a1127ac"
+    },
+    "A0128_Dialog": {
+      "file": "A0128_Dialog.png",
+      "bytes": 27304,
+      "sha256": "b766a6517a2863fd7c50fbb5b5d017f00fa05be7d1f12586c03e2ad010130539"
+    },
+    "A0129_Dialog": {
+      "file": "A0129_Dialog.png",
+      "bytes": 27517,
+      "sha256": "d46ef35dc149659e6d6030bb2c6835222d0d3a876d47cb17434e5b25ed49ba75"
+    },
+    "A0131_Dialog": {
+      "file": "A0131_Dialog.png",
+      "bytes": 21614,
+      "sha256": "0d512264579488d9c1ecc0985e12898cd7a05f7e1013c1d18fefa1117ffdd446"
+    },
+    "A0137_Dialog_H167": {
+      "file": "A0137_Dialog_H167.png",
+      "bytes": 21490,
+      "sha256": "bab0b81c74682fc37beee51f0d452cf69befe47fb8eada321e9bcb7a60243f32"
+    },
+    "A0138_Dialog": {
+      "file": "A0138_Dialog.png",
+      "bytes": 29787,
+      "sha256": "3dad3ab191fa6e1bdfcc13591e52fbb1972a5baa47e8ae86aa4718725fb8910f"
+    },
+    "A0139_Dialog": {
+      "file": "A0139_Dialog.png",
+      "bytes": 41075,
+      "sha256": "14c35f8cf48b50472f0153e8d8f8d2f247dc3cecc6b1833959e7b4091d300c7f"
+    },
+    "A0140_Dialog": {
+      "file": "A0140_Dialog.png",
+      "bytes": 20904,
+      "sha256": "2e22f86009970de4a8614e4175ce25a5aace0bddbe99ae600b5b4a79febebb6a"
+    },
+    "A0141_Dialog": {
+      "file": "A0141_Dialog.png",
+      "bytes": 39364,
+      "sha256": "15969b246bce5a21ee812a6636590cdb34b73aa0dbb1268f345197dcc858541e"
+    },
+    "A0142_Dialog": {
+      "file": "A0142_Dialog.png",
+      "bytes": 21203,
+      "sha256": "68efc4fdb6c35d75a5ac0221326b63fd71e53e1b5b05003975ac07c705199b59"
+    },
+    "A0143_Dialog": {
+      "file": "A0143_Dialog.png",
+      "bytes": 34688,
+      "sha256": "e933bc4d9c03731b4a9635eca7aa638df0fb0561ee95962fcfed7ff54dad4e8d"
+    },
+    "A0144_Dialog": {
+      "file": "A0144_Dialog.png",
+      "bytes": 27370,
+      "sha256": "a3eebf8abf035752b59af1a322d67465fcf1fffc11183e1179be14730e6311a5"
+    },
+    "A0145_Dialog": {
+      "file": "A0145_Dialog.png",
+      "bytes": 25630,
+      "sha256": "ba463bbd44e5636f9cdd46b165340a5b9e4820b1f25e9333e929308bafab80f5"
+    },
+    "A0146_Dialog": {
+      "file": "A0146_Dialog.png",
+      "bytes": 26528,
+      "sha256": "f021c233aadf339e6b7a846b83f14845d75b9a606da02b4e6861fc690fbe4b4c"
+    },
+    "A0147_Dialog": {
+      "file": "A0147_Dialog.png",
+      "bytes": 28651,
+      "sha256": "f63b7e9cd9ebb3c57d29d3a18047570b9f930cef4ac4322de0644d01fe5bfe9f"
+    },
+    "A0149_Dialog": {
+      "file": "A0149_Dialog.png",
+      "bytes": 26645,
+      "sha256": "14461cf0193303a7dd4e9f1241065b0e82529b2f2aee412a39942fad78c31f30"
+    },
+    "A0150_Dialog": {
+      "file": "A0150_Dialog.png",
+      "bytes": 30327,
+      "sha256": "e46a1811ef2d8c48446d17cc405959f62c13b354c39c3e8c0f0f29b837f449a8"
+    },
+    "A0151_Dialog": {
+      "file": "A0151_Dialog.png",
+      "bytes": 27124,
+      "sha256": "756f6d17b63c886de56a9d73807e76d0c42ce78e252322d939cc3c32d96ad1f4"
+    },
+    "A0152_Dialog": {
+      "file": "A0152_Dialog.png",
+      "bytes": 32341,
+      "sha256": "e01a874ce43fe0fea741ceb13bfd3870d0231be9ec9647b7374089320fd34736"
+    },
+    "A0153_Dialog": {
+      "file": "A0153_Dialog.png",
+      "bytes": 34311,
+      "sha256": "81a88af54a64158e597e52aced09502703d00ee33c1444059e6122c68e81173f"
+    },
+    "A0154_Dialog": {
+      "file": "A0154_Dialog.png",
+      "bytes": 36916,
+      "sha256": "71022e5df1c6bdf115833e3a88c9bade9215bc66363d5b0fff35e841cb22abf0"
+    },
+    "A0155_Dialog": {
+      "file": "A0155_Dialog.png",
+      "bytes": 35437,
+      "sha256": "f2d43dc6825ae5014613951e5e0f56313fba2a9a47de0788b42de479acf4fa2e"
+    },
+    "A0156_Dialog": {
+      "file": "A0156_Dialog.png",
+      "bytes": 22943,
+      "sha256": "10e5700b505f921c0dfcf262fca6dd5521b0ebf5305007e5ec5284e076895c6e"
+    },
+    "A0157_Dialog": {
+      "file": "A0157_Dialog.png",
+      "bytes": 36022,
+      "sha256": "2cb8cd435032d734df0a107d6dd7dc4f1096dc0c8d60058cb6f31da1744af7ba"
+    },
+    "A0158_Dialog": {
+      "file": "A0158_Dialog.png",
+      "bytes": 34684,
+      "sha256": "eae43f3c3408f0d9c3cfe6454233ecded0cbac0bf2dd4b6469c9238140085f0e"
+    },
+    "A0159_Dialog": {
+      "file": "A0159_Dialog.png",
+      "bytes": 31739,
+      "sha256": "253688a5180b262c2b99ee70efa597b03c15f15ae7a543bc1aba7c2ca4b3d659"
+    },
+    "A0160_Dialog": {
+      "file": "A0160_Dialog.png",
+      "bytes": 32103,
+      "sha256": "10f1601eb29bab00df7990550199520a6c80d91da317715c9c9b48cd3f3c965f"
+    },
+    "A0161_Dialog": {
+      "file": "A0161_Dialog.png",
+      "bytes": 34437,
+      "sha256": "663a1d29275e3420bab9847b52e2ed64221f4320385c22765aa5f253693d61f6"
+    },
+    "A0162_Dialog": {
+      "file": "A0162_Dialog.png",
+      "bytes": 28211,
+      "sha256": "aa01c6f0c452ed9402ef8c707e1dc7fcc305a5bfc442f1086042da4675ed922f"
+    },
+    "A0163_Dialog": {
+      "file": "A0163_Dialog.png",
+      "bytes": 37687,
+      "sha256": "53af897a143362c3a98db795354574f2223f4672bee78e5e99e4894a439a1057"
+    },
+    "A0164_Dialog": {
+      "file": "A0164_Dialog.png",
+      "bytes": 32963,
+      "sha256": "c0197d08ff8d218fec407422456d527b2ff60d3032d299c7e7f3f9e5e34dbb69"
+    },
+    "A0165_Dialog": {
+      "file": "A0165_Dialog.png",
+      "bytes": 37023,
+      "sha256": "cd6814850fa34ce25bd40423b83b218544f117dd187556bb259c189532369de2"
+    },
+    "A0166_Dialog": {
+      "file": "A0166_Dialog.png",
+      "bytes": 24416,
+      "sha256": "736e8d13f5e86fcbf1c8ec3012873464e22bfccb3012fef404bfeb1e0c607f66"
+    },
+    "A0167_Dialog": {
+      "file": "A0167_Dialog.png",
+      "bytes": 38583,
+      "sha256": "fcf0d78cdb70a70f06c9a39e8c59ca3cd87d8457b891bb55678dab78ab91e355"
+    },
+    "A0168_Dialog": {
+      "file": "A0168_Dialog.png",
+      "bytes": 31599,
+      "sha256": "ea6070d925fcdbf3fc103181ad8db10ea5d80d43ccfefac30831da3f1b6049f0"
+    },
+    "A0169_Dialog": {
+      "file": "A0169_Dialog.png",
+      "bytes": 27863,
+      "sha256": "30045e1910edb09f91d1aa75626d1e0c04e66c4bfb64c61f79880ada8390aafb"
+    },
+    "A0170_Dialog": {
+      "file": "A0170_Dialog.png",
+      "bytes": 34748,
+      "sha256": "50abfe33dada00bc579d5c9a69b20fb017f062c38248565ac8a6b0450a9c76ad"
+    },
+    "A0171_Dialog": {
+      "file": "A0171_Dialog.png",
+      "bytes": 35980,
+      "sha256": "fd0d98dcde8c1cf86b4ff692ac355063940c1fece13134e4d98b21a05627e62c"
+    },
+    "A0173_Dialog": {
+      "file": "A0173_Dialog.png",
+      "bytes": 28666,
+      "sha256": "fe035bb293859df2fe11250553ea8ebb33fd5b9d0c80132c33c27bd5dd958793"
+    },
+    "A0174_Dialog": {
+      "file": "A0174_Dialog.png",
+      "bytes": 32424,
+      "sha256": "fca0ff60882710e8827ba3b1b5532569d03dffbffd063667e543e759dcca6a8b"
+    },
+    "A0175_Dialog": {
+      "file": "A0175_Dialog.png",
+      "bytes": 32591,
+      "sha256": "89f40e5019e6658f3c601ba0e5f787059b4f352795973751dc898deaad8587ed"
+    },
+    "A0176_Dialog": {
+      "file": "A0176_Dialog.png",
+      "bytes": 36861,
+      "sha256": "b579d7c008fa729b67562e30a4d88248b86fbff7281a17dc66eba4fbca4cbf7d"
+    },
+    "A0177_Dialog": {
+      "file": "A0177_Dialog.png",
+      "bytes": 39955,
+      "sha256": "9bdc4d3157ef6a26e8d9dba71a2354d3190221b3fb08b024ba74059b98377f4b"
+    },
+    "A0178_Dialog": {
+      "file": "A0178_Dialog.png",
+      "bytes": 42870,
+      "sha256": "df33c26c7a43c2ab6c3fb5e64afd5444ca21bee159be0e911baf170566273d4a"
+    },
+    "A0179_Dialog": {
+      "file": "A0179_Dialog.png",
+      "bytes": 36771,
+      "sha256": "41e08036a9a2cd03f09d36be8e216ff42a619f43bf5fa9ddfe41ec974b195fbe"
+    },
+    "A0180_Dialog": {
+      "file": "A0180_Dialog.png",
+      "bytes": 35027,
+      "sha256": "0fa1820c6372f5e9dce2f9991ab33cb957c0cd7c95e7d17ed46da9808b4ead5c"
+    },
+    "A0182_Dialog": {
+      "file": "A0182_Dialog.png",
+      "bytes": 31467,
+      "sha256": "850bcc825be7b2fde7c0f7ac722a81f744058cd04e3f6dfbba0d25d32124f4d6"
+    },
+    "A0183_Dialog": {
+      "file": "A0183_Dialog.png",
+      "bytes": 30164,
+      "sha256": "8e8287db073d4bcc5bd23e2bae53d9124f5e3133fdf111205f87cad29d9197ac"
+    },
+    "A0184_Dialog": {
+      "file": "A0184_Dialog.png",
+      "bytes": 30779,
+      "sha256": "964ca67c3f477062a5a2fcab43aca9a18bf8bdc35b37ab3012806c22b7d3e566"
+    },
+    "A0185_Dialog": {
+      "file": "A0185_Dialog.png",
+      "bytes": 40382,
+      "sha256": "8e7188f87c6fb8683f434d51b726a5857bb31a72bf7b72d0fc61654b0deb29da"
+    },
+    "A0186_Dialog": {
+      "file": "A0186_Dialog.png",
+      "bytes": 37162,
+      "sha256": "6b0e39ce899ee88d16014a6d02bc44f34b046720775f351ec5d35af00f92d3c6"
+    },
+    "A0187_Dialog": {
+      "file": "A0187_Dialog.png",
+      "bytes": 33735,
+      "sha256": "c152b44ae24fe0a2a38dae4c6195482cac6879478e0c7a63497c55855439b992"
+    },
+    "A0188_Dialog": {
+      "file": "A0188_Dialog.png",
+      "bytes": 32856,
+      "sha256": "8b0b71d54489d5be380c6b6d865114e38312284dfd16a2ef99deef73d9ef7127"
+    },
+    "A0189_Dialog": {
+      "file": "A0189_Dialog.png",
+      "bytes": 30410,
+      "sha256": "77fd1a68b2edb658bfa151994bf45c09ae89ed8a1c6a3651e3e2674ac4cde598"
+    },
+    "A0190_Dialog": {
+      "file": "A0190_Dialog.png",
+      "bytes": 35885,
+      "sha256": "e845277738e6bf3ad50c7eeae2e3c30dc0c3c05f7b7d9ee2916e8744f62b3890"
+    },
+    "A0192_Dialog": {
+      "file": "A0192_Dialog.png",
+      "bytes": 33210,
+      "sha256": "b955919f38e6f3cdbd367d5157c9609372d812e817e9032bea661c1077a9b35f"
+    },
+    "A0193_Dialog": {
+      "file": "A0193_Dialog.png",
+      "bytes": 37793,
+      "sha256": "eb0ce254f3d1f3e6cd95d48f16341b8c5c144e2e7db67ddb483a75278b4d46e2"
+    },
+    "A0194_Dialog": {
+      "file": "A0194_Dialog.png",
+      "bytes": 33458,
+      "sha256": "480e22e1cabf5ab6c51fc79bfe086b42a9010e1134e62c9c99a7ae1c1643225a"
+    },
+    "A0195_Dialog": {
+      "file": "A0195_Dialog.png",
+      "bytes": 28735,
+      "sha256": "f554883d4163ccdd171eb9e206debac70a1c0c7a63a8abe272e07175a8c7f593"
+    },
+    "A0196_Dialog": {
+      "file": "A0196_Dialog.png",
+      "bytes": 34696,
+      "sha256": "9e2e8f14db73a56f410f15f33bf62e98c31559d310ae9c59b9b1149fb009a87d"
+    },
+    "A0197_Dialog": {
+      "file": "A0197_Dialog.png",
+      "bytes": 33730,
+      "sha256": "d166d74ef717bad790cb18a4d57758cdcc5a124e680e5e55e1e42893100ecaea"
+    },
+    "A0198_Dialog": {
+      "file": "A0198_Dialog.png",
+      "bytes": 37800,
+      "sha256": "a2f021b2c5eae280e17ea6e6ce5c53973444e5e8586c4548477f85527aaffe5f"
+    },
+    "A0199_Dialog": {
+      "file": "A0199_Dialog.png",
+      "bytes": 31455,
+      "sha256": "064eb6243447ee0342ea44bc1675f8112e2fc6248741b2ee0fbd0e6ee4aca26d"
+    },
+    "A0200_Dialog": {
+      "file": "A0200_Dialog.png",
+      "bytes": 28573,
+      "sha256": "1aaeee7f7cc5b073a2acbafdbb7022d93de432c27de013e77bd1b464e9997447"
+    },
+    "A0201_Dialog": {
+      "file": "A0201_Dialog.png",
+      "bytes": 24152,
+      "sha256": "bbb8a959224b97e1fc4e3dc1484a4ab777451f531d84e63bebacf9b4c3c5009a"
+    },
+    "A0202_Dialog": {
+      "file": "A0202_Dialog.png",
+      "bytes": 30140,
+      "sha256": "c6c75f70ff5c6b9b2e452d3660d8d3eef24db8ffb3e77f1c7e8591bf732b119e"
+    },
+    "A0203_Dialog": {
+      "file": "A0203_Dialog.png",
+      "bytes": 37442,
+      "sha256": "b50c40ee925e673930db82c8afb907167a824e08f38383f5ea9669e9ebe71c3a"
+    },
+    "A0204_Dialog": {
+      "file": "A0204_Dialog.png",
+      "bytes": 43829,
+      "sha256": "78decab2329ad88bea99a2bf52794fc5595626eab49e490eeccd22bc2dfe6750"
+    },
+    "A0205_Dialog": {
+      "file": "A0205_Dialog.png",
+      "bytes": 35983,
+      "sha256": "2b0ec010ed8e76da52310f230e45f6a4355ba4955c2ef7c010cbff20bf2c6436"
+    },
+    "A0206_Dialog": {
+      "file": "A0206_Dialog.png",
+      "bytes": 31684,
+      "sha256": "606e786784f7e0c6c0d942353221f0015b450a6ad21a483c926e5662165f1aa6"
+    },
+    "A0207_Dialog": {
+      "file": "A0207_Dialog.png",
+      "bytes": 36355,
+      "sha256": "88e0a6b3a908fb21e63d6da3f9d3d0e66130de3ffa6fdd91f9824a53f67267f2"
+    },
+    "A0208_Dialog": {
+      "file": "A0208_Dialog.png",
+      "bytes": 38040,
+      "sha256": "8d73f9443a7cb0cb1172efd3ad47fd9bb4e0d72455ccb50af09699ed5e2f3a96"
+    },
+    "A0209_Dialog": {
+      "file": "A0209_Dialog.png",
+      "bytes": 24727,
+      "sha256": "c93f72975cd93cf0e151a9206bfe1b794a453830a28a859f5155e2513dfa1c7f"
+    },
+    "A0210_Dialog": {
+      "file": "A0210_Dialog.png",
+      "bytes": 25783,
+      "sha256": "834d521d59ba23054b5827968d1b75aac7425f8068f666fe5440dca2bc689369"
+    },
+    "A0213_Dialog": {
+      "file": "A0213_Dialog.png",
+      "bytes": 38392,
+      "sha256": "393ce4514ba13f52174d642380e12810373ecb7439e5ce6bbf7f96677c405566"
+    },
+    "A0214_Dialog": {
+      "file": "A0214_Dialog.png",
+      "bytes": 29936,
+      "sha256": "da38dfcf8088808689a04ecf5bd2b6ec27403f414c2c11ba0c201d738abd38d8"
+    },
+    "BG_uiTMP05": {
+      "file": "BG_uiTMP05.png",
+      "bytes": 20810,
+      "sha256": "ff3efd1874c5b4e1ad4064f0bef85c3640898f0d6c4bff9c11bdd303eb0d6914"
+    },
+    "BG_uiTMP09": {
+      "file": "BG_uiTMP09.png",
+      "bytes": 24563,
+      "sha256": "90ae1393b94951767413e8c8a0e38081cb2967c0dba97bca1257c700aa81d356"
+    },
+    "Bg_Lobby": {
+      "file": "Bg_Lobby.png",
+      "bytes": 22411,
+      "sha256": "bf865cc69551227cf4491980b6593fc33f112eae6ede43257d5d1bd8f621f6b1"
+    },
+    "Carnival001": {
+      "file": "Carnival001.png",
+      "bytes": 64437,
+      "sha256": "3c1f3ce185586333f8a7dcb18a0eacb965fce2590cfc798ace5ed4273dd97630"
+    },
+    "Carnival002": {
+      "file": "Carnival002.png",
+      "bytes": 73637,
+      "sha256": "d6a0b8ae1ca9b978298b1f5cf0c6322367096fbc8e8513bd240669b72d634d10"
+    },
+    "Carnival003": {
+      "file": "Carnival003.png",
+      "bytes": 86585,
+      "sha256": "ffe48f379e6cec71509f0e1a69fcf439a7ca01e0ee7d49efb640fa233d8e91f0"
+    },
+    "Carnival004": {
+      "file": "Carnival004.png",
+      "bytes": 67982,
+      "sha256": "87befbc13f80803260185a3ab07b6c8fc3481b669492ab11f8e83fd665eb26a3"
+    },
+    "Carnival005": {
+      "file": "Carnival005.png",
+      "bytes": 71490,
+      "sha256": "0d6de860f5511cae3a46388048e6adafb5fddb372161286831bfe0c9b334d1be"
+    },
+    "Carnival006": {
+      "file": "Carnival006.png",
+      "bytes": 73209,
+      "sha256": "cb0a3c97cbb8c4ff00009b0cac1c01ca42ae162cf63bd8fe4d4c239c035fc20b"
+    },
+    "Carnival007": {
+      "file": "Carnival007.png",
+      "bytes": 72913,
+      "sha256": "ad986db59dd0779a5820d49ce3ad1b1c1bfbf50a193daeabc61b019c9fc0c60a"
+    },
+    "Carnival008": {
+      "file": "Carnival008.png",
+      "bytes": 71124,
+      "sha256": "76110bcc103688cb6d7943e4d214e7c92995d31e133e5a5739b3e3c4459d9bfc"
+    },
+    "Carnival009": {
+      "file": "Carnival009.png",
+      "bytes": 71034,
+      "sha256": "abcdd130c2fcaf702f27a0d66b7fbc44592acb7da549d39234b0951fea53fd56"
+    },
+    "Carnival010": {
+      "file": "Carnival010.png",
+      "bytes": 86710,
+      "sha256": "a397dac7e1073d6ca9002a4f9ab053f0c33e50afc271f0262e73a942309e15bb"
+    },
+    "Carnival011": {
+      "file": "Carnival011.png",
+      "bytes": 67053,
+      "sha256": "dfc323671e4a8fb179b0f7bdc6d22ff8ed71f2982e33d7ba067d2455ca7524cc"
+    },
+    "Carnival012": {
+      "file": "Carnival012.png",
+      "bytes": 76878,
+      "sha256": "fe000833ba8150dfc0cb39c0e2e0e07601ffbf0adc98a9f00e8ababa2094b043"
+    },
+    "Carnival013": {
+      "file": "Carnival013.png",
+      "bytes": 76429,
+      "sha256": "b7d70bff9399b4d3cf52aa28239d92434b6dbecb35c77c82c4d6bd6ec911f20f"
+    },
+    "Carnival014": {
+      "file": "Carnival014.png",
+      "bytes": 78214,
+      "sha256": "118c6b4d94281f7bc3105a6e21912f9b3e4fba70fd5659354b14edd0646576a5"
+    },
+    "Carnival015": {
+      "file": "Carnival015.png",
+      "bytes": 37690,
+      "sha256": "2ffde76cb33f4d67483afb6bb92cd74197818165bc86bf3bfa146f0e7235d4e0"
+    },
+    "Carnival016": {
+      "file": "Carnival016.png",
+      "bytes": 83357,
+      "sha256": "79ea7dc03b58e24cfaad440f05180a19194e5638c88e8cba7642a43fd0b4f41c"
+    },
+    "Carnival017": {
+      "file": "Carnival017.png",
+      "bytes": 82393,
+      "sha256": "d04f9702648b952d6d739312d0fddb8a38f117bfc1de3066d1642c3979fd07b1"
+    },
+    "S0011_Dialog": {
+      "file": "S0011_Dialog.png",
+      "bytes": 34967,
+      "sha256": "2e0d159bf44a173d648b62c0f7abbb0fe82a126f48dd9682329dadb5ef53fc71"
+    },
+    "S0012_Dialog": {
+      "file": "S0012_Dialog.png",
+      "bytes": 28557,
+      "sha256": "87bb255711316db9cf805e5cabc428e81f02dbf0971de563de40c9532ec3907f"
+    },
+    "S0021_Dialog": {
+      "file": "S0021_Dialog.png",
+      "bytes": 27537,
+      "sha256": "a7e67093366e5669f6aeef7d6994576a08767269a277e616b08f6b1356ca4068"
+    },
+    "S0023_Dialog": {
+      "file": "S0023_Dialog.png",
+      "bytes": 27682,
+      "sha256": "25e7d92474787f2b592849814f07f731fe5a487c5568057e8e788a0b5546c0b3"
+    },
+    "S0024_Dialog": {
+      "file": "S0024_Dialog.png",
+      "bytes": 26602,
+      "sha256": "b47a9b734fa8223a701963130b37a5f60c4118287d414546a8c6d2838ef64f31"
+    },
+    "S0031_Dialog": {
+      "file": "S0031_Dialog.png",
+      "bytes": 31370,
+      "sha256": "192f980e4bf6c86e4372b00701c5187c823d38efe1d9880d6b0fb012d6d45025"
+    },
+    "S0032_Dialog": {
+      "file": "S0032_Dialog.png",
+      "bytes": 31198,
+      "sha256": "2ebafee462716c30dffdbad6bc6ac55e2012c91629a76c1ef0b7389b0e242527"
+    },
+    "S0041_Dialog": {
+      "file": "S0041_Dialog.png",
+      "bytes": 33252,
+      "sha256": "00794ab0698f8200b04fbc85ab6aea06d77171b304c424a1838aa01abb990f8c"
+    },
+    "S0042_Dialog": {
+      "file": "S0042_Dialog.png",
+      "bytes": 32505,
+      "sha256": "e4d3dcc917812cd8944494fa1fc74b53f60efe13cad4c25cd353a14b8e692c0b"
+    },
+    "S0051_Dialog": {
+      "file": "S0051_Dialog.png",
+      "bytes": 27198,
+      "sha256": "1f9bf0772635753e868720b69b5e912e426887944ad7d0e8c188001ffbab3853"
+    },
+    "S0052_Dialog": {
+      "file": "S0052_Dialog.png",
+      "bytes": 17124,
+      "sha256": "fcde157d2f19931892c015663cab383f63978909b952b99daa4fa78be6cdcd11"
+    },
+    "S0061_Dialog": {
+      "file": "S0061_Dialog.png",
+      "bytes": 29385,
+      "sha256": "2211f830f8b369feec45ff68d6cadb8a5bdde7e9034176db88d0fd343cd356d5"
+    },
+    "S0062_Dialog": {
+      "file": "S0062_Dialog.png",
+      "bytes": 24684,
+      "sha256": "eb5c20e9d80243583f8c6daa0cd4a3b2e74fd0d3609c415630dc45f5c63ee4d2"
+    },
+    "S0063_Dialog": {
+      "file": "S0063_Dialog.png",
+      "bytes": 25809,
+      "sha256": "fbcdd6cf60eaf979f8174a12751d46d0b1136a1b07bbebdc9f2dd14473284694"
+    },
+    "S0071_Dialog": {
+      "file": "S0071_Dialog.png",
+      "bytes": 24080,
+      "sha256": "88d981f8207ecf5c4165738029094be29ed630744ba918f4340999ec2f50da65"
+    },
+    "S0073_Dialog": {
+      "file": "S0073_Dialog.png",
+      "bytes": 22280,
+      "sha256": "e153d7dc0125559c17f534f7ac673ab8a26c83e0b039654f82aa0cb1982ec45c"
+    },
+    "S0074_Dialog": {
+      "file": "S0074_Dialog.png",
+      "bytes": 20623,
+      "sha256": "4b3c9f2237885ee787685c1820d312821162ce414981e9e05c1b8559a9eaa5a1"
+    },
+    "S0081_Dialog": {
+      "file": "S0081_Dialog.png",
+      "bytes": 30421,
+      "sha256": "5ea287502a061f7eb87fde850b729bfc5d24acdaa7bd291f5333ec61149d0f93"
+    },
+    "S0082_Dialog": {
+      "file": "S0082_Dialog.png",
+      "bytes": 22507,
+      "sha256": "423fb317af5417d6fa8ea9c3e48c7d0f6bb9bad93f7aa549c9d14207b8adc302"
+    },
+    "S0083_Dialog": {
+      "file": "S0083_Dialog.png",
+      "bytes": 24060,
+      "sha256": "56eb3f790de96bcc80de575d02d68c2cc58521e521d018a2090edfcc8866588b"
+    },
+    "S0091_Dialog": {
+      "file": "S0091_Dialog.png",
+      "bytes": 23002,
+      "sha256": "aab7cf98b897c21c5c05f9a2687b3cfe908cc7f3c906848570411ba0d375b4b4"
+    },
+    "S0092_Dialog": {
+      "file": "S0092_Dialog.png",
+      "bytes": 19929,
+      "sha256": "53c2119acac4558cd47a277c835cb495769fb676b68f83a011a89f8cc17ece3e"
+    },
+    "S0093_Dialog": {
+      "file": "S0093_Dialog.png",
+      "bytes": 24364,
+      "sha256": "4b6ed3b5db8133a7a9264fd55896ec618e0fa461a2de06428f7126c363dcc101"
+    },
+    "S0101_Dialog": {
+      "file": "S0101_Dialog.png",
+      "bytes": 25716,
+      "sha256": "5d6164881b45a6446e689360337d4fa40d5debe8d34b876790a1ba77d73458ae"
+    },
+    "S0102_Dialog": {
+      "file": "S0102_Dialog.png",
+      "bytes": 23388,
+      "sha256": "87a3f89efebae1efdf6aa55aee2925d87c76b4516bd4bfd02b039824c4c6a3b4"
+    },
+    "S0111_Dialog": {
+      "file": "S0111_Dialog.png",
+      "bytes": 29243,
+      "sha256": "519d4468fcf114c852ea78e26ff0cacc31abae71820ca4c0154c66c559c54b73"
+    },
+    "S0112_Dialog": {
+      "file": "S0112_Dialog.png",
+      "bytes": 22770,
+      "sha256": "2482fe12c38981bc10d54ad377ef84cf98a3b4f6a0b7e4baf8d7d6717d3da66c"
+    },
+    "S0113_Dialog": {
+      "file": "S0113_Dialog.png",
+      "bytes": 26245,
+      "sha256": "533d80251bf2392d0814f458fa090ea3835545ddd8ebda83e628f4a1065bab1a"
+    },
+    "S0121_Dialog": {
+      "file": "S0121_Dialog.png",
+      "bytes": 29485,
+      "sha256": "9acd86b572cc354593d0a3f670ce60979851767ce7d15c96d71face5b0ac5c11"
+    },
+    "S0122_Dialog": {
+      "file": "S0122_Dialog.png",
+      "bytes": 27680,
+      "sha256": "0695939af7ddde256f21ed06d90aa2ccd0a42f0a045c090a415d169315d52724"
+    },
+    "S0131_Dialog": {
+      "file": "S0131_Dialog.png",
+      "bytes": 22424,
+      "sha256": "08055e85e0124d8873ecee3a1c34e1847c0ae7f096ba9e08a22984f7f474de4d"
+    },
+    "S0141_Dialog": {
+      "file": "S0141_Dialog.png",
+      "bytes": 26956,
+      "sha256": "14d7f6ba5e4885ace6ee481edf8c72c5a8447f97aa6a351fba6b3dffaee34808"
+    },
+    "S0151_Dialog": {
+      "file": "S0151_Dialog.png",
+      "bytes": 32641,
+      "sha256": "dbc18b467fb2f289abb863d5cb1265a2c815c4f0d77f26f0f378be0a56f31569"
+    },
+    "S0161_Dialog": {
+      "file": "S0161_Dialog.png",
+      "bytes": 32329,
+      "sha256": "b65a1b16143bf1149947aa8dc4dd5bf5311a43a221fec0e109a4d05423762bb3"
+    },
+    "S0171_Dialog": {
+      "file": "S0171_Dialog.png",
+      "bytes": 29078,
+      "sha256": "aee73afccd677770249cda1a1f31e83122887349641e8310dfefdfdf5306d935"
+    },
+    "S0181_Dialog": {
+      "file": "S0181_Dialog.png",
+      "bytes": 27879,
+      "sha256": "af759e7bd671285d3e3cfa6f7c56dd6bcfb7cd3ad6860426817c2eac77f09760"
+    },
+    "S0182_Dialog": {
+      "file": "S0182_Dialog.png",
+      "bytes": 22639,
+      "sha256": "409e75ba620388078e0fb115d30098d886f6e2c2a738b5ccfe93d52dc8947411"
+    },
+    "S0183_Dialog": {
+      "file": "S0183_Dialog.png",
+      "bytes": 24383,
+      "sha256": "a9df8e2c8e1712b32796a9a18a4d0c0e3e8d9b0363124a5c8294328876e242ee"
+    },
+    "S0191_Dialog": {
+      "file": "S0191_Dialog.png",
+      "bytes": 41622,
+      "sha256": "c099b5d38fe00cb3ea706f6328ec25abb2d8cede7d6b7d54b078e1570aa38943"
+    },
+    "S0201_Dialog": {
+      "file": "S0201_Dialog.png",
+      "bytes": 30789,
+      "sha256": "b53267db8d77fb6dbb8ba757aca8dffcd6ce2bf68beac97513dc11509a946f0b"
+    },
+    "S0211_Dialog": {
+      "file": "S0211_Dialog.png",
+      "bytes": 31429,
+      "sha256": "bbca14ad06ac1b358c822256b7a35fa299a434045726e05c7cbd5b9cbde4f97b"
+    },
+    "S0221_Dialog": {
+      "file": "S0221_Dialog.png",
+      "bytes": 32370,
+      "sha256": "4ff288632e77af255d68fd4d9ae4e9987929f81c058f9d31c50dabcebe6e0ae8"
+    },
+    "S0222_Dialog": {
+      "file": "S0222_Dialog.png",
+      "bytes": 25024,
+      "sha256": "18ab91548d67439930851ca9b5392950d50bcc0c437fdddc729f62e0ed23bf6e"
+    },
+    "S0232_Dialog": {
+      "file": "S0232_Dialog.png",
+      "bytes": 21720,
+      "sha256": "90a6b82dd501ba84da11b53bb2d6d5eb85c69733622c765b291dfbfabc4196cf"
+    },
+    "S0241_Dialog": {
+      "file": "S0241_Dialog.png",
+      "bytes": 24954,
+      "sha256": "be70db17d47168fb84488edbd6b068a212aeb7d7ec6caf4230d165302f9804d6"
+    },
+    "S0242_Dialog": {
+      "file": "S0242_Dialog.png",
+      "bytes": 28484,
+      "sha256": "3d2ecd81e54c84284677074ce935a8149dfd5757693065e0e44d9c68c5656be9"
+    },
+    "S0251_Dialog": {
+      "file": "S0251_Dialog.png",
+      "bytes": 31138,
+      "sha256": "f600d45e1da3057a9b4b7e81efc84d922a6a1aa4bdbb336a131dceeeba837350"
+    },
+    "S0261_Dialog": {
+      "file": "S0261_Dialog.png",
+      "bytes": 21378,
+      "sha256": "1df703b5aab71432f529128c02694687769d9c06faeaf1e10b87335d1eca3678"
+    },
+    "S0271_Dialog": {
+      "file": "S0271_Dialog.png",
+      "bytes": 22412,
+      "sha256": "e14977f2d933f514551d996b2a385c840cc792eeed5eca12c68a5c5265dc1e2c"
+    },
+    "S0281_Dialog": {
+      "file": "S0281_Dialog.png",
+      "bytes": 25046,
+      "sha256": "d9e42c8cfc1ee63c8b2f796f8bb536e9e9450e9760d72472d82fae01cc19eca7"
+    },
+    "S0291_Dialog": {
+      "file": "S0291_Dialog.png",
+      "bytes": 19588,
+      "sha256": "5e7f56203d2afc5c6becbd6e5cf3dd4d1e504166a0c87abe6375c7f776780022"
+    },
+    "S0292_Dialog": {
+      "file": "S0292_Dialog.png",
+      "bytes": 25253,
+      "sha256": "0333aa35c7f1d628507b94f5d39535657da2640c6d8f1ef4857ab24b2d5b32af"
+    },
+    "S0293_Dialog": {
+      "file": "S0293_Dialog.png",
+      "bytes": 27925,
+      "sha256": "07199b1f13b63bce332f53f690da234ec16de3497d43603bf6976768907ffb17"
+    },
+    "S0294_Dialog": {
+      "file": "S0294_Dialog.png",
+      "bytes": 27602,
+      "sha256": "6fe15407b993f1d7e5f28837fe8dea55a9ecc5664fc12c22e00759bb7dd7a92c"
+    },
+    "S0301_Dialog": {
+      "file": "S0301_Dialog.png",
+      "bytes": 32575,
+      "sha256": "8c2837340f6dc27adb601c35cff16571e9d64d9783baefafbfcfe962f54f5506"
+    },
+    "S0302_Dialog": {
+      "file": "S0302_Dialog.png",
+      "bytes": 25386,
+      "sha256": "e72fd848878f113ff35f4b29e8c18c7a6f25e4e24e25a8ff79cbeac86f3c21f7"
+    },
+    "S0311_Dialog": {
+      "file": "S0311_Dialog.png",
+      "bytes": 27685,
+      "sha256": "68524d6cb448caa57dd14e0e65ed63ed01b511f4fb17ba6976acde02564e5d80"
+    },
+    "S0321_Dialog": {
+      "file": "S0321_Dialog.png",
+      "bytes": 28102,
+      "sha256": "a13df3c07940dabf238270ad9d9ac6f9c48efbfac87f9ecbb3a3c5231dedc31e"
+    },
+    "S1381_Dialog": {
+      "file": "S1381_Dialog.png",
+      "bytes": 25768,
+      "sha256": "dfb4a3c0a9361906ef08e41c06dd3e27fbe8eccbf114a9b40eefcc6c562680d4"
+    },
+    "S1391_Dialog": {
+      "file": "S1391_Dialog.png",
+      "bytes": 33429,
+      "sha256": "e9cf5440030d5e30f10e1753bff29b389ddc00993f2fff6edff5a6da53e624f9"
+    },
+    "S1401_Dialog": {
+      "file": "S1401_Dialog.png",
+      "bytes": 27866,
+      "sha256": "08431f9a08fb01cbe2474a1acc92a6349b835f70530c43c322c635622c4cc46f"
     }
   },
   "spine": {
