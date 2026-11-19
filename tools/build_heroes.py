@@ -35,6 +35,21 @@ OUTPUT_FILE = ROOT / "data" / "heroes.json"
 
 _TZ8 = timezone(timedelta(hours=8))
 
+# 手工校准的未上线/拆包预埋角色 ID 集合：
+# 官方数据表中可能已提前写入好感度签名、活动配置或 Spine 资源，但正式服尚未实装上线。
+UNRELEASED_HERO_OVERRIDES: set[str] = {
+    "H154",  # 迦布莉
+    "H155",  # 蕾蜜莉
+    "H157",  # 曼德菈
+    "H158",  # 露菲娜
+    "H159",  # 约兰塔
+    "H161",  # 新生伊娥丝
+    "H164",  # 塔丝梅图姆
+    "H198",  # 执法者维尔莉特
+    "H201",  # 藿普
+    "H607",  # 玖可
+}
+
 
 def _read_config() -> dict[str, str]:
     wanted = {"GAME_ROUTER", "GAME_ORIGIN", "GAME_REFERER", "HTTP_TIMEOUT"}
@@ -130,7 +145,8 @@ def main(argv: list[str] | None = None) -> int:
             elif name == "RoleSignature":
                 for l in lines[1:]:
                     parts = l.split("@")
-                    if parts and parts[0]:
+                    # 必须登记有实际签名台词（排除仅有角色 ID 但签名内容为空的占位行）
+                    if parts and parts[0] and len(parts) > 2 and parts[2].strip():
                         role_signatures.add(parts[0])
             elif name == "RoleCollection":
                 for l in lines[1:]:
@@ -179,11 +195,13 @@ def main(argv: list[str] | None = None) -> int:
 
         # 核心判定：是否正式上线
         # 必须同时满足：
-        # 1. 在好感度签名表中登记（hid in role_signatures）
-        # 2. 官方 CDN 中已实装 Spine 骨骼立绘（hid in existing_spines，排除 H202、H169 等未实装资源的角色）
-        # 3. 具有正式官方角色名称（排除 H169 这种纯 ID 占位测试空壳）
+        # 1. 不在手工校准的未上线/拆包预埋黑名单中（hid not in UNRELEASED_HERO_OVERRIDES）
+        # 2. 在好感度签名表中登记有非空内容（hid in role_signatures）
+        # 3. 官方 CDN 中已实装 Spine 骨骼立绘（hid in existing_spines，排除 H202、H169 等未实装资源的角色）
+        # 4. 具有正式官方角色名称（排除 H169 这种纯 ID 占位测试空壳）
         is_released = bool(
-            hid in role_signatures
+            hid not in UNRELEASED_HERO_OVERRIDES
+            and hid in role_signatures
             and hid in existing_spines
             and name_chs != hid
         )
