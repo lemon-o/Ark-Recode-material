@@ -571,12 +571,9 @@ class Family:
 def _avatar_family(catalog: ContentCatalog, wanted: set[str] | None) -> Family:
     """Map every avatar address onto the file name the app looks up.
 
-    `AVATAR_ID_REMAP` translates an *asset* id into a *role* id.  The live
-    catalog carries both ends of the pair under their own paths -- H801 holds
-    蜜娜's art (the role table has no H801 at all) while H804 holds art that
-    matches no role.  The hand-verified table therefore outranks a raw entry
-    that happens to share the target name, or the remap would be silently
-    undone by whichever id sorted last.
+    `AVATAR_ID_REMAP` translates an *asset* id into a *role* id.
+    同名 ID 优先，重映射仅作兜底：若 catalog 中已存在目标角色的原生素材路径，
+    优先采用原生素材；仅当原生素材缺失时，才由重映射条目补充。
     """
     remap = _avatar_id_remap()
     discovered = catalog.match(AVATAR_PATTERN)
@@ -584,8 +581,8 @@ def _avatar_family(catalog: ContentCatalog, wanted: set[str] | None) -> Family:
     addresses: dict[str, str] = {}
     applied: list[str] = []
     skipped: list[str] = []
-    # Remapped ids first; `not in remap` is False for them, so they sort ahead.
-    for hero_id, address in sorted(discovered.items(), key=lambda kv: (kv[0] not in remap, kv[0])):
+    # 同名 ID 优先：`in remap` 为 False 的排前面；重映射条目靠后。
+    for hero_id, address in sorted(discovered.items(), key=lambda kv: (kv[0] in remap, kv[0])):
         output_id = remap.get(hero_id, hero_id)
         if wanted is not None and not (hero_id in wanted or output_id in wanted):
             continue
@@ -613,15 +610,13 @@ def _hero_icon_family(
 ) -> Family:
     """按白名单正则收集 ``Hero/*/Img`` 下的图标类资产（heads / skills）。
 
-    结构与 :func:`_avatar_family` 同构：重映射条目优先（资产 ``H801`` 的头图其实
-    是 ``H804`` 的，重映射改写输出文件名后，原始同名条目让位）；``--ids`` 过滤
-    按**资产 ID** 判（该 ID 目录下的所有图标，含皮肤 SH*，一并命中）。
+    结构与 :func:`_avatar_family` 同构，但优先级相反：**同名目录内容优先**，
+    重映射只补同名目录没提供的输出名。历史上游戏把蜜娜的素材错放在 H801 目录，
+    如今 catalog 里 H804 目录已装回自己名字的真图，而旧 H801 目录只剩占位盾
+    技能图——重映射若仍优先，会把占位图反向赋给 H804。``--ids`` 过滤按**资产
+    ID** 判（该 ID 目录下的所有图标，含皮肤 SH*，一并命中）。
     """
     remap = _avatar_id_remap()
-    # 重映射**目标**目录（如 H804）的内容与角色表对不上——那正是错位的另一半：
-    # H804 目录里的文件名都带着 H801（Icon_Head_B_H801.png 之类），是另一个
-    # 未知角色的图。整目录不收，只留重映射改写后的产物。
-    untrusted = set(remap.values())
     matches: list[tuple[str, str, str]] = []
     for address in catalog._ids:  # noqa: SLF001 — match() 只吐一个捕获组，这里要两个
         found = pattern.fullmatch(address)
@@ -631,14 +626,11 @@ def _hero_icon_family(
     addresses: dict[str, str] = {}
     applied: list[str] = []
     skipped: list[str] = []
-    excluded = 0
-    # 重映射优先：`not in remap` 为 False 的排前面（与 _avatar_family 同一招）。
+    # 同名目录优先：`in remap` 为 False 的排前面；重映射条目靠后，
+    # 输出名已被同名目录占用时走下面的 skipped 分支让位。
     for asset_id, name, address in sorted(
-        matches, key=lambda item: (item[0] not in remap, item[0], item[1])
+        matches, key=lambda item: (item[0] in remap, item[0], item[1])
     ):
-        if asset_id in untrusted:
-            excluded += 1
-            continue
         if wanted is not None and not (
             asset_id in wanted or (asset_id in remap and remap[asset_id] in wanted)
         ):
@@ -646,18 +638,16 @@ def _hero_icon_family(
         output_name = name
         if asset_id in remap:
             output_name = name.replace(asset_id, remap[asset_id], 1)
-            if output_name != name:
-                applied.append(f"{asset_id} -> {output_name}")
         if output_name in addresses:
             skipped.append(output_name)
             continue
         addresses[output_name] = address
+        if output_name != name:
+            applied.append(f"{asset_id} -> {output_name}")
 
     note = ""
-    if excluded:
-        note = f"excluded {excluded} files in untrusted dirs {sorted(untrusted)}"
     if applied:
-        note += ("" if not note else "; ") + "remapped: " + ", ".join(applied)
+        note = "remapped: " + ", ".join(applied)
     if skipped:
         note += ("" if not note else "; ") + "skipped, output already taken: " + ", ".join(skipped)
     return Family(category, addresses, note=note)
