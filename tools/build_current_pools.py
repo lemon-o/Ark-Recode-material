@@ -4,7 +4,7 @@
 1. 本期限定招募 (PickUp)、神秘招募与复刻招募的核心团员与专属羁绊；
 2. 对应的卡池横幅 (Banner)、角色头像、羁绊小图 CDN 直链；
 3. 保底抽数 (Pity Cap：限定 120 抽，神秘 200 抽)；
-4. 开放时间与持续周期。
+4. 具体开放时间段（依据开服时间 + 默认/公告持续周期精准计算）。
 """
 
 from __future__ import annotations
@@ -53,13 +53,77 @@ def parse_hero_bond_pairs(text: str) -> dict[str, str]:
     return pairs
 
 
-def parse_pool_duration(line_or_text: str) -> str:
-    """提取卡池开放持续时长（如持续2周、持续1周）。"""
-    m = re.search(r"持續\s*(\d+)\s*(周|週|天|日)", line_or_text)
-    if m:
-        unit = "周" if m.group(2) in ("周", "週") else "天"
-        return f"{m.group(1)}{unit}"
-    return "2周"
+def calculate_pool_timeline(
+    category: str,
+    hero_name: str,
+    content: str,
+    start_time_iso: str,
+) -> dict[str, Any]:
+    """计算卡池开放时间范围与持续时长。
+
+    业务规则：
+    1. 优先从该团员所在公告行提取显式指定的开放周期（如「持續1周」、「持續3周」）；
+    2. 若未明确说明：
+       - 神秘招募卡池 (category == 'mystic') 默认持续 3 周 (21 天)；
+       - 其他限时卡池（限定招募、复刻招募）默认持续 2 周 (14 天)；
+    3. 自动由卡池开放开始时间 + 持续时长计算出具体的截止时间段。
+    """
+    days = 21 if category == "mystic" else 14
+    dur_str = "3周" if category == "mystic" else "2周"
+
+    # 1. 尝试从包含该角色名字的特定行提取
+    found_explicit = False
+    for line in content.splitlines():
+        if hero_name and hero_name in line:
+            m = re.search(r"持續\s*(\d+)\s*(周|週|天|日)", line)
+            if m:
+                val = int(m.group(1))
+                unit = m.group(2)
+                if unit in ("周", "週"):
+                    days = val * 7
+                    dur_str = f"{val}周"
+                else:
+                    days = val
+                    dur_str = f"{val}天"
+                found_explicit = True
+                break
+
+    # 2. 若单行未指明，看整篇是否有一致指定的活动周期
+    if not found_explicit:
+        m = re.search(r"【招募機率UP】.*?持續\s*(\d+)\s*(周|週|天|日)", content, re.S)
+        if m:
+            val = int(m.group(1))
+            unit = m.group(2)
+            if unit in ("周", "週"):
+                days = val * 7
+                dur_str = f"{val}周"
+            else:
+                days = val
+                dur_str = f"{val}天"
+
+    start_iso = ""
+    end_iso = ""
+    display_time = ""
+
+    if start_time_iso:
+        try:
+            s_dt = datetime.fromisoformat(start_time_iso)
+            e_dt = s_dt + timedelta(days=days)
+            start_iso = s_dt.isoformat()
+            end_iso = e_dt.isoformat()
+            display_time = f"{s_dt.strftime('%Y/%m/%d %H:%M')} - {e_dt.strftime('%Y/%m/%d %H:%M')}"
+        except Exception:
+            display_time = f"持续 {dur_str}"
+    else:
+        display_time = f"持续 {dur_str}"
+
+    return {
+        "start_time": start_iso,
+        "end_time": end_iso,
+        "duration": dur_str,
+        "duration_days": days,
+        "display_time": display_time,
+    }
 
 
 def resolve_bond_info(bond_name: str, bonds_meta: dict[str, dict[str, str]]) -> dict[str, str] | None:
@@ -117,6 +181,8 @@ def build_current_pools_data(
         ("rerun", "复刻招募", 120),
     ]
 
+    base_start_time = maintenance.get("end_time") or maintenance.get("start_time") or ""
+
     for cat_key, cat_label, default_cap in categories:
         hero_list = heroes_section.get(cat_key, [])
         for h in hero_list:
@@ -149,8 +215,13 @@ def build_current_pools_data(
             pool_cfg = pools_dict.get(pool_id) or pools_dict.get(f"AcyivitySummon{hid}") or {}
             cap = pool_cfg.get("cap") or default_cap
 
-            # 持续时间
-            duration = parse_pool_duration(content)
+            # 精准计算开放时间段
+            timeline = calculate_pool_timeline(
+                category=cat_key,
+                hero_name=name_cht or name_chs,
+                content=content,
+                start_time_iso=base_start_time,
+            )
 
             pool_entry = {
                 "pool_id": pool_id,
@@ -172,8 +243,11 @@ def build_current_pools_data(
                     "file": banner_file if has_banner else "",
                     "url": banner_url,
                 },
-                "start_time": maintenance.get("end_time") or maintenance.get("start_time") or "",
-                "duration": duration,
+                "start_time": timeline["start_time"],
+                "end_time": timeline["end_time"],
+                "duration": timeline["duration"],
+                "duration_days": timeline["duration_days"],
+                "display_time": timeline["display_time"],
             }
             active_pools.append(pool_entry)
 
@@ -200,7 +274,7 @@ def render_readme_dashboard(pools_data: dict[str, Any]) -> str:
         f"> **当前招募活动窗口**：`{window}` | **更新类型**：{pools_data.get('update_type', '常规维护')}",
         "> **实时接口**：[`data/current-pools.json`](https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/data/current-pools.json)",
         "",
-        "| 卡池横幅 | 招募类型 | 核心角色 | 专属羁绊 | 保底上限 | 开放周期 |",
+        "| 卡池横幅 | 招募类型 | 核心角色 | 专属羁绊 | 保底上限 | 开放时间 |",
         "| :---: | :---: | :---: | :---: | :---: | :---: |",
     ]
 
@@ -240,9 +314,11 @@ def render_readme_dashboard(pools_data: dict[str, Any]) -> str:
 
             pool_type = p.get("type", "限定招募")
             cap = f"{p.get('pity_cap', 120)} 抽"
-            duration = f"{p.get('duration', '2周')}"
+            display_time = p.get("display_time", "")
+            dur_str = p.get("duration", "2周")
+            time_cell = f"{display_time}<br><sub>(持续 {dur_str})</sub>" if display_time else f"持续 {dur_str}"
 
-            lines.append(f"| {banner_md} | **{pool_type}** | {hero_md} | {bond_md} | {cap} | {duration} |")
+            lines.append(f"| {banner_md} | **{pool_type}** | {hero_md} | {bond_md} | {cap} | {time_cell} |")
 
     lines.append(END_TAG)
     return "\n".join(lines)

@@ -130,10 +130,12 @@ ATLAS_SOURCES: dict[str, str] = {
     "Item": "Assets/Game/Icon/Item.spriteatlas",
     "Equip": "Assets/Game/Icon/Equip.spriteatlas",
     "EquipSet": "Assets/Game/Icon/EquipSet.spriteatlas",
-    # 赛季头像框（⚑ Frame031 的 Icon 列 = UI/Image/UI_iconz[Frame_031]）
+    # 赛季头像框（Frame031 的 Icon 列 = UI/Image/UI_iconz[Frame_031]）
     "UI_iconz": "Assets/Game/UI/Image/UI_iconz.spriteatlas",
     # 背景与图鉴道具小图标（Item.txt 的 Icon 列 = Icon/BG[Carnival###] 或 Icon/BG[*_Dialog]）
     "BG": "Assets/Game/Icon/BG.spriteatlas",
+    # 活动商店与礼包商店图标
+    "GiftShop": "Assets/Game/Icon/GiftShop.spriteatlas",
 }
 ATLAS_CATEGORIES = {
     "Item": "items",
@@ -141,6 +143,7 @@ ATLAS_CATEGORIES = {
     "EquipSet": "equipset",
     "UI_iconz": "uiconz",
     "BG": "bg",
+    "GiftShop": "items",
 }
 # Item.txt 的 Icon 列前缀 -> 输出目录（图集键 -> 分区）。
 # `Icon/Item[X]` = 道具图集，`UI/Image/UI_iconz[X]` = 赛季框等 UI 图标，`Icon/BG[X]` = 背景图鉴。
@@ -187,7 +190,7 @@ BANNER_PATH_NAME = re.compile(r"/([^/]+)$")
 #     冗余信息（整棵仓库只有一种语言），去掉了反而更好对应角色 ID `H804`。
 BANNER_LANGUAGE = "CHS"
 BANNER_POOL_PATTERN = re.compile(
-    r"^Assets/Game/Banner/(BN_Summon_\d+)/(BN_Summon_[\w]+)_CHS\.prefab$"
+    r"^Assets/Game/Banner/(BN_(?:Summon|Activity)_\d+)/(BN_(?:Summon|Activity|Logo)_[\w]+)_CHS\.prefab$"
 )
 # 贴图名尾部语言标记：只认 catalog 里真实出现过的写法（含 007 池约定俗成的
 # FR/JAP 简写，以及 MultiSummonNormal 那张把 DEU 写成了 DE 的错拼）。

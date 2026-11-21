@@ -5,7 +5,7 @@
 <!-- SYNC-STATS:START -->
 <!-- 本块由 sync-avatars 工作流自动更新，请勿手改 -->
 - 素材总数：4918（头像 269 / 头像框 1217 / 技能图标 812 / 功能图标 34 / 道具图标 859 / 装备图标 650 / 套装图标 17 / 赛季框 150 / 卡池横幅 166 / 羁绊小图 270 / 背景图鉴 242 / Spine立绘 232）
-- 最近扫描：2026-11-21T18:17:28+08:00（北京时间）
+- 最近扫描：2026-11-21T19:06:07+08:00（北京时间）
 - 清单：`https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/index.json`
 <!-- SYNC-STATS:END -->
 
@@ -16,9 +16,9 @@
 > **当前招募活动窗口**：`11/11 14:00 - 19:00 (UTC+8)` | **更新类型**：常规停机维护
 > **实时接口**：[`data/current-pools.json`](https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/data/current-pools.json)
 
-| 卡池横幅 | 招募类型 | 核心角色 | 专属羁绊 | 保底上限 | 开放周期 |
+| 卡池横幅 | 招募类型 | 核心角色 | 专属羁绊 | 保底上限 | 开放时间 |
 | :---: | :---: | :---: | :---: | :---: | :---: |
-| [![Banner](https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/banners/BN_Summon_H195.png)](https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/banners/BN_Summon_H195.png) | **限定招募** | <img src="https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/avatars/H195.png" width="36" height="36" align="center" /> **[庆典女王艾乐莱思](https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/avatars/H195.png)**<br><sub>5★ Earth/Warrior</sub> | <img src="https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0443.png" width="28" height="28" align="center" /> 「专属的乐趣」 | 120 抽 | 2周 |
+| [![Banner](https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/banners/BN_Summon_H195.png)](https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/banners/BN_Summon_H195.png) | **限定招募** | <img src="https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/avatars/H195.png" width="36" height="36" align="center" /> **[庆典女王艾乐莱思](https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/avatars/H195.png)**<br><sub>5★ Earth/Warrior</sub> | <img src="https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0443.png" width="28" height="28" align="center" /> 「专属的乐趣」 | 120 抽 | 2026/11/11 19:00 - 2026/11/25 19:00<br><sub>(持续 2周)</sub> |
 <!-- CURRENT-POOLS:END -->
 
 ## 实现原理
