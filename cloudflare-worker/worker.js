@@ -136,6 +136,8 @@ function parseMaintenanceSchedule(text) {
     return {
       type: "range",
       raw: matchRange[0],
+      isHotReload: false,
+      updateType: "常规停机维护（大版本/新角色）",
       endUtcTimestamp: endUtc,
       nightUtcTimestamp: nightUtc,
       beijingEndStr: `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")} ${String(endH).padStart(2, "0")}:${String(endM).padStart(2, "0")}`,
@@ -155,9 +157,13 @@ function parseMaintenanceSchedule(text) {
 
     const endUtc = Date.UTC(year, month, day, h - 8, m, 0);
     const nightUtc = Date.UTC(year, month, day, 23 - 8, 55, 0);
+    const isHotReload = /不(?:會|要)?關閉伺服器|不停[機机]/.test(text);
+
     return {
       type: "point",
       raw: matchSingle[0],
+      isHotReload,
+      updateType: isHotReload ? "不停机/不关机活动更新（通常为复刻活动）" : "常规维护更新",
       endUtcTimestamp: endUtc,
       nightUtcTimestamp: nightUtc,
       beijingEndStr: `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")} ${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`,
@@ -265,6 +271,7 @@ async function checkAndDispatch(env, ctx, origin, force = false) {
         return {
           status: "waiting",
           message: "官方提前发布了维护公告，维护尚未结束，暂不执行抓取",
+          update_type: schedule.updateType,
           current_time_beijing: beijingNowStr,
           maintenance_end_beijing: schedule.beijingEndStr,
           night_fallback_beijing: schedule.beijingNightStr,
@@ -275,6 +282,7 @@ async function checkAndDispatch(env, ctx, origin, force = false) {
         return {
           status: "expired",
           message: "该维护公告已过期（已超过当晚 12 点兜底时间），跳过",
+          update_type: schedule.updateType,
           current_time_beijing: beijingNowStr,
           maintenance_end_beijing: schedule.beijingEndStr,
           announcement_id: targetMsg.id,
@@ -283,6 +291,7 @@ async function checkAndDispatch(env, ctx, origin, force = false) {
         return {
           status: "waiting_fallback",
           message: "第一阶段（维护结束准时抓取）已过，当前等待当晚 23:55 兜底抓取",
+          update_type: schedule.updateType,
           current_time_beijing: beijingNowStr,
           next_trigger_beijing: schedule.beijingNightStr,
           announcement_id: targetMsg.id,
