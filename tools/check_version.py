@@ -231,6 +231,75 @@ def load_local_state() -> dict:
         return {}
 
 
+CDN_AVATAR_BASE = "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/avatars"
+ANNOUNCEMENT_FILE_PATH = ROOT / "data" / "announcement.json"
+HEROES_JSON_PATH = ROOT / "data" / "heroes.json"
+
+
+def export_downstream_announcement(notice: dict | None, source: str) -> None:
+    """生成专供下游消费的规范化维护公告数据文件 (data/announcement.json)。"""
+    if not notice:
+        return
+
+    content = notice.get("content") or ""
+    is_hot_reload = bool(re.search(r"不(?:會|要)?關閉伺服器|不停[機机]", content))
+    update_type = "不停机/不关机活动更新" if is_hot_reload else "常规停机维护"
+
+    heroes_meta = {}
+    if HEROES_JSON_PATH.is_file():
+        try:
+            heroes_meta = json.loads(HEROES_JSON_PATH.read_text(encoding="utf-8")).get("heroes", {})
+        except Exception:
+            pass
+
+    def enrich_heroes(heroes_list: list[dict[str, str]]) -> list[dict[str, Any]]:
+        enriched = []
+        for h in heroes_list:
+            hid = str(h.get("id") or "")
+            name_raw = str(h.get("name") or "")
+            meta = heroes_meta.get(hid) or {}
+            entry = {
+                "id": hid,
+                "name": name_raw,
+                "name_chs": meta.get("name_chs") or meta.get("name") or name_raw,
+                "name_cht": meta.get("name_cht") or name_raw,
+                "name_eng": meta.get("name_eng") or "",
+                "star": meta.get("star") or 5,
+                "element": meta.get("element") or "",
+                "job": meta.get("job") or "",
+                "avatar_url": f"{CDN_AVATAR_BASE}/{hid}.png" if hid else "",
+            }
+            enriched.append(entry)
+        return enriched
+
+    data = {
+        "id": str(notice.get("id") or ""),
+        "title": notice.get("title") or "",
+        "activity_name": notice.get("activity_name") or "",
+        "source": source,
+        "is_hot_reload": is_hot_reload,
+        "update_type": update_type,
+        "maintenance": {
+            "window": notice.get("window") or "",
+            "start_time": notice.get("startTime") or "",
+            "end_time": notice.get("endTime") or "",
+            "start_timestamp": notice.get("startTimestamp") or 0.0,
+            "end_timestamp": notice.get("endTimestamp") or 0.0,
+        },
+        "heroes": {
+            "pickup": enrich_heroes(notice.get("pickup_heroes") or []),
+            "mystic": enrich_heroes(notice.get("mystic_heroes") or []),
+            "rerun": enrich_heroes(notice.get("rerun_heroes") or []),
+        },
+        "content": content,
+        "updated_at": datetime.now(timezone.utc).astimezone().isoformat(timespec="seconds"),
+    }
+
+    ANNOUNCEMENT_FILE_PATH.parent.mkdir(parents=True, exist_ok=True)
+    ANNOUNCEMENT_FILE_PATH.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(f"已导出下游维护公告文件 -> {ANNOUNCEMENT_FILE_PATH}")
+
+
 def save_local_state(catalog_info: dict, notice: dict | None = None, source: str = "erolabs") -> None:
     STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
     local_state = load_local_state()
@@ -259,6 +328,9 @@ def save_local_state(catalog_info: dict, notice: dict | None = None, source: str
     }
     STATE_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"已更新版本状态基线 -> {STATE_PATH}")
+
+    # 同步生成供下游消费的专用公告文件
+    export_downstream_announcement(notice, source)
 
 
 def _set_github_output(name: str, value: str) -> None:

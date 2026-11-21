@@ -94,6 +94,17 @@ catalog 里 7000+ 张 PNG 大半是 CG / 羁绊图（*_Sex_LoveTalk.png、Assets
 - **全自动同步**：每次 GitHub Actions 跑更新时全自动重构并推送，通过 jsDelivr CDN 全球分发：
   `https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/data/heroes.json`
 
+### 9. 维护公告与卡池情报：`data/announcement.json`
+
+供下游 Wiki、网页前端、抽卡模拟器与 Discord 机器人即时获取官方最新维护状态、开服时间窗口与本期 UP 角色：
+
+- **结构化时间窗口**：包含原始文本（`maintenance.window`）、标准 ISO 时间（`start_time`, `end_time`）及时间戳（秒），便于下游倒计时组件直接消费；
+- **本期招募角色情报**：`heroes.pickup`（限定角色）、`heroes.mystic`（神秘招募角色）、`heroes.rerun`（复刻角色），每位团员附带唯一 ID、四语名称、星级属性与直链头像 URL；
+- **更新类型识别**：`is_hot_reload` 区分不停机活动热更新与停机大维护；
+- **原始全文备份**：`content` 包含官方发布的完整 Markdown 公告文本；
+- **CDN 全球分发**：
+  `https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/data/announcement.json`
+
 ## 目录
 
     avatars/     角色头像（Icon_Head_S_<ID>，文件名即角色 ID，H193.png）
@@ -110,7 +121,7 @@ catalog 里 7000+ 张 PNG 大半是 CG / 羁绊图（*_Sex_LoveTalk.png、Assets
     bg/          背景图鉴（BG.spriteatlas 里的切片，包含场景环境缩略图 *_Dialog 与图鉴道具小图标 Carnival###）
     videos/      招募/抽卡动画（videos/gacha/ 下收录裁切去除侧边栏与悬浮窗的出蓝/出紫/出金/出红视频）
     spine/       全角色 Spine 骨骼立绘三件套（spine/<ID>/<ID>.{skel,atlas,png}）
-    data/        静态数据与元数据（heroes.json 全角色档案与上线状态、item-meta.json 道具羁绊表、summon-pools.json 卡池表）
+    data/        静态数据与元数据（announcement.json 官方维护与卡池公告、heroes.json 全角色档案、item-meta.json 道具表、summon-pools.json 卡池表）
     index.json   清单：分区 -> 键 -> 文件名 / 字节数 / sha256
     tools/       fetch_assets.py（抓小图标）、fetch_spine.py（抓 Spine 骨骼立绘）、build_heroes.py（构建角色档案与上线状态）、build_index.py（生成清单）、update_readme.py（回写统计信息）、check_version.py（Catalog 版本探测与维护公告检查）、sync_assets.py（供读取 AVATAR_ID_REMAP）
     backend/     config.py：抓图脚本要用的四个端点常量（GAME_ROUTER / GAME_ORIGIN / GAME_REFERER / HTTP_TIMEOUT）
