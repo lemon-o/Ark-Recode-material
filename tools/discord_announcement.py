@@ -40,41 +40,72 @@ DEFAULT_DISCORD_CHANNEL_ID = os.environ.get("DISCORD_CHANNEL_ID", "1119147451576
 
 
 def parse_maintenance_time(text: str, default_year: int | None = None) -> dict[str, Any] | None:
-    """从公告文本提取维护时间窗口。"""
+    """从公告文本提取维护时间窗口。
+
+    兼容两种常见格式：
+    1. 时间范围：11/18 08:00 - 14:00 (UTC+8)
+    2. 单点更新/不停机更新：預計將於11/18 08:00 (UTC+8)進行活動更新
+    """
     if not text:
         return None
     if default_year is None:
         default_year = datetime.now(GAME_TZ).year
 
-    match = re.search(
+    # 格式 1：时间范围
+    match_range = re.search(
         r"(?:(\d{4})[年/.-])?(\d{1,2})[月/.-](\d{1,2})[日号]?(?:\s*\([^\)]*\))?\s*"
         r"(\d{1,2}):(\d{2})\s*[-~至到]\s*(\d{1,2}):(\d{2})(?:\s*\(?UTC\+?8\)?)?",
         text,
         re.IGNORECASE,
     )
-    if not match:
-        return None
+    if match_range:
+        year = int(match_range.group(1)) if match_range.group(1) else default_year
+        month = int(match_range.group(2))
+        day = int(match_range.group(3))
+        start_h, start_m = int(match_range.group(4)), int(match_range.group(5))
+        end_h, end_m = int(match_range.group(6)), int(match_range.group(7))
 
-    year = int(match.group(1)) if match.group(1) else default_year
-    month = int(match.group(2))
-    day = int(match.group(3))
-    start_h, start_m = int(match.group(4)), int(match.group(5))
-    end_h, end_m = int(match.group(6)), int(match.group(7))
+        try:
+            start_dt = datetime(year, month, day, start_h, start_m, tzinfo=GAME_TZ)
+            end_dt = datetime(year, month, day, end_h, end_m, tzinfo=GAME_TZ)
+            if end_dt <= start_dt:
+                end_dt += timedelta(days=1)
+            return {
+                "start": start_dt.isoformat(),
+                "end": end_dt.isoformat(),
+                "startTimestamp": start_dt.timestamp(),
+                "endTimestamp": end_dt.timestamp(),
+                "raw": match_range.group(0).strip(),
+            }
+        except Exception:
+            pass
 
-    try:
-        start_dt = datetime(year, month, day, start_h, start_m, tzinfo=GAME_TZ)
-        end_dt = datetime(year, month, day, end_h, end_m, tzinfo=GAME_TZ)
-        if end_dt <= start_dt:
-            end_dt += timedelta(days=1)
-        return {
-            "start": start_dt.isoformat(),
-            "end": end_dt.isoformat(),
-            "startTimestamp": start_dt.timestamp(),
-            "endTimestamp": end_dt.timestamp(),
-            "raw": match.group(0).strip(),
-        }
-    except Exception:
-        return None
+    # 格式 2：单点更新（如不停机更新 11/18 08:00 (UTC+8)）
+    match_single = re.search(
+        r"(?:將?於|时间|時間)?\s*(?:(\d{4})[年/.-])?(\d{1,2})[月/.-](\d{1,2})[日号]?(?:\s*\([^\)]*\))?\s*"
+        r"(\d{1,2}):(\d{2})(?:\s*\(?UTC\+?8\)?)?",
+        text,
+        re.IGNORECASE,
+    )
+    if match_single:
+        year = int(match_single.group(1)) if match_single.group(1) else default_year
+        month = int(match_single.group(2))
+        day = int(match_single.group(3))
+        start_h, start_m = int(match_single.group(4)), int(match_single.group(5))
+        try:
+            start_dt = datetime(year, month, day, start_h, start_m, tzinfo=GAME_TZ)
+            end_dt = start_dt + timedelta(hours=1)
+            return {
+                "start": start_dt.isoformat(),
+                "end": end_dt.isoformat(),
+                "startTimestamp": start_dt.timestamp(),
+                "endTimestamp": end_dt.timestamp(),
+                "raw": match_single.group(0).strip(),
+            }
+        except Exception:
+            pass
+
+    return None
 
 
 def _load_hero_name_map() -> dict[str, str]:
@@ -178,13 +209,46 @@ def parse_announcement_text(content: str) -> dict[str, Any]:
     }
 
 
+def extract_message_text(msg: dict[str, Any]) -> str:
+    """提取消息文本，兼容原生文本、转发快照 (message_snapshots) 及富文本 Embeds。"""
+    parts: list[str] = []
+    content = (msg.get("content") or "").strip()
+    if content:
+        parts.append(content)
+
+    # 1. 兼容 Discord 官方消息转发 / 快照 (Forwarded Message / message_snapshots)
+    for snap in msg.get("message_snapshots") or []:
+        s_msg = snap.get("message") or {}
+        s_content = (s_msg.get("content") or "").strip()
+        if s_content:
+            parts.append(s_content)
+        for emb in s_msg.get("embeds") or []:
+            title = (emb.get("title") or "").strip()
+            desc = (emb.get("description") or "").strip()
+            if title:
+                parts.append(title)
+            if desc:
+                parts.append(desc)
+
+    # 2. 兼容原生 Embeds (如 Webhook 机器人推送的富文本卡片)
+    for emb in msg.get("embeds") or []:
+        title = (emb.get("title") or "").strip()
+        desc = (emb.get("description") or "").strip()
+        if title:
+            parts.append(title)
+        if desc:
+            parts.append(desc)
+
+    return "\n\n".join(parts)
+
+
 def fetch_from_discord_api(
     token: str,
     channel_id: str,
     timeout: float = 10.0,
 ) -> str | None:
     """通过 Discord API 获取官方频道最新消息文本。"""
-    url = f"https://discord.com/api/v10/channels/{channel_id}/messages?limit=5"
+    url = f"https://discord.com/api/v10/channels/{channel_id}/messages?limit=10"
 
     auth_header = token.strip()
     if not (auth_header.startswith("Bot ") or auth_header.startswith("Bearer ")):
@@ -193,7 +257,7 @@ def fetch_from_discord_api(
 
     headers = {
         "Authorization": auth_header,
-        "User-Agent": "Mozilla/5.0 (compatible; ArkRecodeSync/1.0)",
+        "User-Agent": "DiscordBot (https://github.com/lemon-o/Ark-Recode-material, 1.0.0)",
     }
 
     try:
@@ -202,13 +266,16 @@ def fetch_from_discord_api(
             if resp.status_code == 200:
                 messages = resp.json()
                 if messages and isinstance(messages, list):
-                    # 遍历最新消息，优先寻找包含维护时段的公告
+                    # 遍历最新消息，优先寻找包含维护或招募信息的公告
                     for msg in messages:
-                        content = msg.get("content") or ""
-                        if "維護" in content or "维护" in content or "招募" in content:
-                            return content
-                    # 若未特别写明维护，取第一条最新消息
-                    return messages[0].get("content") or ""
+                        text = extract_message_text(msg)
+                        if any(k in text for k in ("維護", "维护", "招募", "更新", "機率UP", "概率UP")):
+                            return text
+                    # 若未命中特定关键词，取第一条最新非空文本
+                    for msg in messages:
+                        text = extract_message_text(msg)
+                        if text:
+                            return text
             else:
                 print(f"[Discord API] 读取失败: HTTP {resp.status_code} ({resp.text[:100]})", file=sys.stderr)
     except Exception as exc:

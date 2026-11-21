@@ -44,5 +44,27 @@ class TestDiscordAnnouncementParser(unittest.TestCase):
         rerun_ids = [h["id"] for h in res["rerun_heroes"]]
         self.assertIn("H188", rerun_ids)  # 雪江
 
+    def test_parse_forwarded_snapshot_and_hotfix(self):
+        # 验证不停机更新与 Discord 消息转发结构
+        forwarded_msg = {
+            "type": 0,
+            "content": "",
+            "message_snapshots": [
+                {
+                    "message": {
+                        "content": "11/18 維護公告\n預計將於11/18 08:00 (UTC+8)進行活動更新，本次維護將不會關閉伺服器\n【招募機率UP】限定團員「烈酒赤兔芭索蘿」與羈絆「躍動的烈情」出現機率大幅提高！\n【招募機率UP】團員「埃帕蒂」與羈絆「拘束與放蕩」出現機率大幅提高！"
+                    }
+                }
+            ]
+        }
+        text = discord_announcement.extract_message_text(forwarded_msg)
+        self.assertIn("烈酒赤兔芭索蘿", text)
+
+        res = discord_announcement.parse_announcement_text(text)
+        pickup_ids = [h["id"] for h in res["pickup_heroes"]]
+        self.assertIn("H180", pickup_ids)  # 烈酒赤兔芭索蘿
+        self.assertIn("H016", pickup_ids)  # 埃帕蒂
+        self.assertIn("11/18 08:00", res["window"])
+
 if __name__ == "__main__":
     unittest.main()
