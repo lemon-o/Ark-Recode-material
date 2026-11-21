@@ -1017,6 +1017,19 @@ def main() -> int:
                     jobs.append((family.category, output_name, address))
             print(f"Selected {len(jobs)} assets from {', '.join(selected)}")
 
+            if not args.refresh:
+                needed_jobs = []
+                for cat, out_name, addr in jobs:
+                    if cat not in ("atlas", "banner", "data"):
+                        dest = args.target / cat / out_name
+                        if dest.is_file() and dest.stat().st_size > 0:
+                            continue
+                    needed_jobs.append((cat, out_name, addr))
+                skipped_count = len(jobs) - len(needed_jobs)
+                if skipped_count:
+                    print(f"  增量跳过: {skipped_count} 个常规素材本地已存在且非空，仅计划拉取 {len(needed_jobs)} 个素材")
+                jobs = needed_jobs
+
             if args.dry_run:
                 for category, output_name, address in jobs:
                     print(f"  would fetch {category}/{output_name} <- {address}")

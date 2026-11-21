@@ -5,9 +5,21 @@
 <!-- SYNC-STATS:START -->
 <!-- 本块由 sync-avatars 工作流自动更新，请勿手改 -->
 - 素材总数：4918（头像 269 / 头像框 1217 / 技能图标 812 / 功能图标 34 / 道具图标 859 / 装备图标 650 / 套装图标 17 / 赛季框 150 / 卡池横幅 166 / 羁绊小图 270 / 背景图鉴 242 / Spine立绘 232）
-- 最近扫描：2026-11-21T09:29:08+08:00（北京时间）
+- 最近扫描：2026-11-21T18:17:28+08:00（北京时间）
 - 清单：`https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/index.json`
 <!-- SYNC-STATS:END -->
+
+### 当前招募活动动态看板 (Active Summon Pools)
+
+<!-- CURRENT-POOLS:START -->
+<!-- 本看板联动官方维护公告与卡池配置自动生成，请勿手动修改 -->
+> **当前招募活动窗口**：`11/11 14:00 - 19:00 (UTC+8)` | **更新类型**：常规停机维护
+> **实时接口**：[`data/current-pools.json`](https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/data/current-pools.json)
+
+| 卡池横幅 | 招募类型 | 核心角色 | 专属羁绊 | 保底上限 | 开放周期 |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| [![Banner](https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/banners/BN_Summon_H195.png)](https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/banners/BN_Summon_H195.png) | **限定招募** | <img src="https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/avatars/H195.png" width="36" height="36" align="center" /> **[庆典女王艾乐莱思](https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/avatars/H195.png)**<br><sub>5★ Earth/Warrior</sub> | <img src="https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0443.png" width="28" height="28" align="center" /> 「专属的乐趣」 | 120 抽 | 2周 |
+<!-- CURRENT-POOLS:END -->
 
 ## 实现原理
 
@@ -105,6 +117,17 @@ catalog 里 7000+ 张 PNG 大半是 CG / 羁绊图（*_Sex_LoveTalk.png、Assets
 - **CDN 全球分发**：
   `https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/data/announcement.json`
 
+### 10. 活跃卡池数据与动态看板：`data/current-pools.json`
+
+由 `tools/build_current_pools.py` 自动联动官方最新维护公告、游戏数据表与卡池配置生成，聚合当前正在开放中的各招募卡池完整数据：
+
+- **核心角色与专属羁绊联动**：将 UP 角色（唯一 ID、多语言名称、星级、属性、职业、直链头像）与其专属羁绊（羁绊 ID、多语言名称、小图直链）精准配对；
+- **横幅与保底机制**：包含卡池横幅高清直链（`BN_Summon_<HID>.png`）与保底上限（限定招募 120 抽、神秘招募 200 抽）；
+- **时间与开放周期**：包含维护后生效时间戳与开放持续周期（如持续 2 周）；
+- **README 动态看板**：卡池状态会自动渲染并嵌入在 README 顶部看板表格中；
+- **CDN 全球分发**：
+  `https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/data/current-pools.json`
+
 ## 目录
 
     avatars/     角色头像（Icon_Head_S_<ID>，文件名即角色 ID，H193.png）
@@ -121,9 +144,9 @@ catalog 里 7000+ 张 PNG 大半是 CG / 羁绊图（*_Sex_LoveTalk.png、Assets
     bg/          背景图鉴（BG.spriteatlas 里的切片，包含场景环境缩略图 *_Dialog 与图鉴道具小图标 Carnival###）
     videos/      招募/抽卡动画（videos/gacha/ 下收录裁切去除侧边栏与悬浮窗的出蓝/出紫/出金/出红视频）
     spine/       全角色 Spine 骨骼立绘三件套（spine/<ID>/<ID>.{skel,atlas,png}）
-    data/        静态数据与元数据（announcement.json 官方维护与卡池公告、heroes.json 全角色档案、item-meta.json 道具表、summon-pools.json 卡池表）
+    data/        静态数据与元数据（announcement.json 官方维护与卡池公告、current-pools.json 活跃卡池情报、heroes.json 全角色档案、bonds.json 羁绊表、item-meta.json 道具表、summon-pools.json 卡池表）
     index.json   清单：分区 -> 键 -> 文件名 / 字节数 / sha256
-    tools/       fetch_assets.py（抓小图标）、fetch_spine.py（抓 Spine 骨骼立绘）、build_heroes.py（构建角色档案与上线状态）、build_index.py（生成清单）、update_readme.py（回写统计信息）、check_version.py（Catalog 版本探测与维护公告检查）、sync_assets.py（供读取 AVATAR_ID_REMAP）
+    tools/       sync_smart.py（智能调度与定向抓取）、fetch_assets.py（抓小图标）、fetch_spine.py（抓 Spine 骨骼立绘）、build_heroes.py（构建角色档案）、build_current_pools.py（构建活跃卡池情报与看板）、build_index.py（生成清单）、update_readme.py（回写统计信息）、check_version.py（Catalog 版本探测与维护公告检查）、sync_assets.py（供读取 AVATAR_ID_REMAP）
     backend/     config.py：抓图脚本要用的四个端点常量（GAME_ROUTER / GAME_ORIGIN / GAME_REFERER / HTTP_TIMEOUT）
 
 自包含：Actions 只 checkout 本仓库，不 clone 任何其它仓库、不需要任何 PAT。

@@ -181,8 +181,8 @@ def parse_announcement_text(content: str) -> dict[str, Any]:
                     pickup_heroes.append(hero_entry)
 
     # 2. 提取整篇简短活动标题
-    title_match = re.search(r"限定活動[「『]([^」』]+)[」』]|主題活動[「『]([^」』]+)[」』]", content)
-    activity_name = title_match.group(1) or title_match.group(2) if title_match else ""
+    title_match = re.search(r"(?:限定活動|主題活動|活动)[】\s]*[「『]([^」』]+)[」』]", content)
+    activity_name = title_match.group(1).strip() if title_match else ""
 
     summary_parts = []
     if activity_name:

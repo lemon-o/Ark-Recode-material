@@ -1,0 +1,938 @@
+{
+  "A0001": {
+    "id": "A0001",
+    "name_chs": "驰骋的快感",
+    "name_cht": "馳騁的快感",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0001.png"
+  },
+  "A0002": {
+    "id": "A0002",
+    "name_chs": "幸福的时刻",
+    "name_cht": "幸福的時刻",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0002.png"
+  },
+  "A0003": {
+    "id": "A0003",
+    "name_chs": "爱人的画像",
+    "name_cht": "愛人的畫像",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0003.png"
+  },
+  "A0004": {
+    "id": "A0004",
+    "name_chs": "残酷的真相",
+    "name_cht": "殘酷的真相",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0004.png"
+  },
+  "A0005": {
+    "id": "A0005",
+    "name_chs": "忘利的商人",
+    "name_cht": "忘利的商人",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0005.png"
+  },
+  "A0006": {
+    "id": "A0006",
+    "name_chs": "生猛的刺激",
+    "name_cht": "生猛的刺激",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0006.png"
+  },
+  "A0007": {
+    "id": "A0007",
+    "name_chs": "束缚与控制",
+    "name_cht": "束縛與控制",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0007.png"
+  },
+  "A0008": {
+    "id": "A0008",
+    "name_chs": "贪吃的后果",
+    "name_cht": "貪吃的後果",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0008.png"
+  },
+  "A0009": {
+    "id": "A0009",
+    "name_chs": "真正的主角",
+    "name_cht": "真正的主角",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0009.png"
+  },
+  "A0010": {
+    "id": "A0010",
+    "name_chs": "无尽的采样",
+    "name_cht": "無盡的採樣",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0010.png"
+  },
+  "A0011": {
+    "id": "A0011",
+    "name_chs": "难忘的惩罚",
+    "name_cht": "難忘的懲罰",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0011.png"
+  },
+  "A0012": {
+    "id": "A0012",
+    "name_chs": "拘束与放荡",
+    "name_cht": "拘束與放蕩",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0012.png"
+  },
+  "A0013": {
+    "id": "A0013",
+    "name_chs": "足尖的诱惑",
+    "name_cht": "足尖的誘惑",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0013.png"
+  },
+  "A0014": {
+    "id": "A0014",
+    "name_chs": "热情的力量",
+    "name_cht": "熱情的力量",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0014.png"
+  },
+  "A0015": {
+    "id": "A0015",
+    "name_chs": "冷静的反面",
+    "name_cht": "冷靜的反面",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0015.png"
+  },
+  "A0016": {
+    "id": "A0016",
+    "name_chs": "高效的治疗",
+    "name_cht": "高效的治療",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0016.png"
+  },
+  "A0017": {
+    "id": "A0017",
+    "name_chs": "偶像的心声",
+    "name_cht": "偶像的心聲",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0017.png"
+  },
+  "A0018": {
+    "id": "A0018",
+    "name_chs": "深吻与后庭",
+    "name_cht": "深吻與後庭",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0018.png"
+  },
+  "A0019": {
+    "id": "A0019",
+    "name_chs": "催促的回眸",
+    "name_cht": "催促的回眸",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0019.png"
+  },
+  "A0020": {
+    "id": "A0020",
+    "name_chs": "无人的店面",
+    "name_cht": "無人的店面",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0020.png"
+  },
+  "A0021": {
+    "id": "A0021",
+    "name_chs": "潜藏的爱意",
+    "name_cht": "潛藏的愛意",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0021.png"
+  },
+  "A0022": {
+    "id": "A0022",
+    "name_chs": "初次的悸动",
+    "name_cht": "初次的悸動",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0022.png"
+  },
+  "A0023": {
+    "id": "A0023",
+    "name_chs": "战前的欢愉",
+    "name_cht": "戰前的歡愉",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0023.png"
+  },
+  "A0024": {
+    "id": "A0024",
+    "name_chs": "爱意的共鸣",
+    "name_cht": "愛意的共鳴",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0024.png"
+  },
+  "A0025": {
+    "id": "A0025",
+    "name_chs": "狂暴与欲望",
+    "name_cht": "狂暴與慾望",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0025.png"
+  },
+  "A0026": {
+    "id": "A0026",
+    "name_chs": "强势的反扑",
+    "name_cht": "強勢的反撲",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0026.png"
+  },
+  "A0027": {
+    "id": "A0027",
+    "name_chs": "狂野的呼唤",
+    "name_cht": "狂野的呼喚",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0027.png"
+  },
+  "A0028": {
+    "id": "A0028",
+    "name_chs": "必要的强化",
+    "name_cht": "必要的強化",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0028.png"
+  },
+  "A0029": {
+    "id": "A0029",
+    "name_chs": "爱怜的疼惜",
+    "name_cht": "愛憐的疼惜",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0029.png"
+  },
+  "A0030": {
+    "id": "A0030",
+    "name_chs": "压抑的愉悦",
+    "name_cht": "壓抑的愉悅",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0030.png"
+  },
+  "A0031": {
+    "id": "A0031",
+    "name_chs": "善意的委托",
+    "name_cht": "善意的委託",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0031.png"
+  },
+  "A0032": {
+    "id": "A0032",
+    "name_chs": "不只是取样",
+    "name_cht": "不只是取樣",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0032.png"
+  },
+  "A0033": {
+    "id": "A0033",
+    "name_chs": "诱人的猫咪",
+    "name_cht": "誘人的貓咪",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0033.png"
+  },
+  "A0034": {
+    "id": "A0034",
+    "name_chs": "非人的体验",
+    "name_cht": "非人的體驗",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0034.png"
+  },
+  "A0035": {
+    "id": "A0035",
+    "name_chs": "毒舌的傲骄",
+    "name_cht": "毒舌的傲驕",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0035.png"
+  },
+  "A0036": {
+    "id": "A0036",
+    "name_chs": "激情的治疗",
+    "name_cht": "激情的治療",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0036.png"
+  },
+  "A0037": {
+    "id": "A0037",
+    "name_chs": "市集的角落",
+    "name_cht": "市集的角落",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0037.png"
+  },
+  "A0038": {
+    "id": "A0038",
+    "name_chs": "情动的浪潮",
+    "name_cht": "情動的浪潮",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0038.png"
+  },
+  "A0039": {
+    "id": "A0039",
+    "name_chs": "网红的流量",
+    "name_cht": "網紅的流量",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0039.png"
+  },
+  "A0040": {
+    "id": "A0040",
+    "name_chs": "意外的娇羞",
+    "name_cht": "意外的嬌羞",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0040.png"
+  },
+  "A0041": {
+    "id": "A0041",
+    "name_chs": "公主的渴望",
+    "name_cht": "公主的渴望",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0041.png"
+  },
+  "A0042": {
+    "id": "A0042",
+    "name_chs": "圣女的秘密",
+    "name_cht": "聖女的秘密",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0042.png"
+  },
+  "A0043": {
+    "id": "A0043",
+    "name_chs": "纾压的管道",
+    "name_cht": "紓壓的管道",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0043.png"
+  },
+  "A0044": {
+    "id": "A0044",
+    "name_chs": "密林的激战",
+    "name_cht": "密林的激戰",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0044.png"
+  },
+  "A0045": {
+    "id": "A0045",
+    "name_chs": "迷离的双眼",
+    "name_cht": "迷離的雙眼",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0045.png"
+  },
+  "A0046": {
+    "id": "A0046",
+    "name_chs": "小小的虐待",
+    "name_cht": "小小的虐待",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0046.png"
+  },
+  "A0047": {
+    "id": "A0047",
+    "name_chs": "主人与宠物",
+    "name_cht": "主人與寵物",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0047.png"
+  },
+  "A0048": {
+    "id": "A0048",
+    "name_chs": "恶毒的媚药",
+    "name_cht": "惡毒的媚藥",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0048.png"
+  },
+  "A0049": {
+    "id": "A0049",
+    "name_chs": "酒醉的借口",
+    "name_cht": "酒醉的藉口",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0049.png"
+  },
+  "A0050": {
+    "id": "A0050",
+    "name_chs": "欢愉的影像",
+    "name_cht": "歡愉的影像",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0050.png"
+  },
+  "A0051": {
+    "id": "A0051",
+    "name_chs": "恩爱的抚痕",
+    "name_cht": "恩愛的撫痕",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0051.png"
+  },
+  "A0052": {
+    "id": "A0052",
+    "name_chs": "堕落的奇迹",
+    "name_cht": "墮落的奇蹟",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0052.png"
+  },
+  "A0053": {
+    "id": "A0053",
+    "name_chs": "暧昧的触手",
+    "name_cht": "曖昧的觸手",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0053.png"
+  },
+  "A0054": {
+    "id": "A0054",
+    "name_chs": "病娇的威胁",
+    "name_cht": "病嬌的威脅",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0054.png"
+  },
+  "A0055": {
+    "id": "A0055",
+    "name_chs": "神恩的狂热",
+    "name_cht": "神恩的狂熱",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0055.png"
+  },
+  "A0056": {
+    "id": "A0056",
+    "name_chs": "感官的记忆",
+    "name_cht": "感官的記憶",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0056.png"
+  },
+  "A0057": {
+    "id": "A0057",
+    "name_chs": "私密的癖好",
+    "name_cht": "私密的癖好",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0057.png"
+  },
+  "A0058": {
+    "id": "A0058",
+    "name_chs": "独处的心愿",
+    "name_cht": "獨處的心願",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0058.png"
+  },
+  "A0122": {
+    "id": "A0122",
+    "name_chs": "魅魔的逆袭",
+    "name_cht": "魅魔的逆襲",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0122.png"
+  },
+  "A0125": {
+    "id": "A0125",
+    "name_chs": "圣诞节礼物",
+    "name_cht": "聖誕節禮物",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0125.png"
+  },
+  "A0131": {
+    "id": "A0131",
+    "name_chs": "新奇的感受",
+    "name_cht": "新奇的感受",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0131.png"
+  },
+  "A0142": {
+    "id": "A0142",
+    "name_chs": "美味的封肉",
+    "name_cht": "美味的封肉",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0142.png"
+  },
+  "A0153": {
+    "id": "A0153",
+    "name_chs": "部长的假面",
+    "name_cht": "部長的假面",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0153.png"
+  },
+  "A0156": {
+    "id": "A0156",
+    "name_chs": "完美的渴求",
+    "name_cht": "完美的渴求",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0156.png"
+  },
+  "A0159": {
+    "id": "A0159",
+    "name_chs": "团长的交易",
+    "name_cht": "團長的交易",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0159.png"
+  },
+  "A0160": {
+    "id": "A0160",
+    "name_chs": "小丑的邀约",
+    "name_cht": "小丑的邀約",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0160.png"
+  },
+  "A0162": {
+    "id": "A0162",
+    "name_chs": "醉与醒之间",
+    "name_cht": "醉與醒之間",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0162.png"
+  },
+  "A0168": {
+    "id": "A0168",
+    "name_chs": "反差的甜美",
+    "name_cht": "反差的甜美",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0168.png"
+  },
+  "A0171": {
+    "id": "A0171",
+    "name_chs": "姐妹的默契",
+    "name_cht": "姐妹的默契",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0171.png"
+  },
+  "A0174": {
+    "id": "A0174",
+    "name_chs": "疗癒的夜袭",
+    "name_cht": "療癒的夜襲",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0174.png"
+  },
+  "A0177": {
+    "id": "A0177",
+    "name_chs": "女王的消遣",
+    "name_cht": "女王的消遣",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0177.png"
+  },
+  "A0192": {
+    "id": "A0192",
+    "name_chs": "强化的渴望",
+    "name_cht": "強化的渴望",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0192.png"
+  },
+  "A0201": {
+    "id": "A0201",
+    "name_chs": "挣扎的妥协",
+    "name_cht": "掙扎的妥協",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0201.png"
+  },
+  "A0204": {
+    "id": "A0204",
+    "name_chs": "迫切的激情",
+    "name_cht": "迫切的激情",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0204.png"
+  },
+  "A0207": {
+    "id": "A0207",
+    "name_chs": "羞涩的实证",
+    "name_cht": "羞澀的實證",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0207.png"
+  },
+  "A0210": {
+    "id": "A0210",
+    "name_chs": "坦率的恋慕",
+    "name_cht": "坦率的戀慕",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0210.png"
+  },
+  "A0213": {
+    "id": "A0213",
+    "name_chs": "顺服的劲敌",
+    "name_cht": "順服的勁敵",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0213.png"
+  },
+  "A0219": {
+    "id": "A0219",
+    "name_chs": "突破的尝试",
+    "name_cht": "突破的嘗試",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0219.png"
+  },
+  "A0222": {
+    "id": "A0222",
+    "name_chs": "暗巷的交锋",
+    "name_cht": "暗巷的交鋒",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0222.png"
+  },
+  "A0231": {
+    "id": "A0231",
+    "name_chs": "不义的陷阱",
+    "name_cht": "不義的陷阱",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0231.png"
+  },
+  "A0237": {
+    "id": "A0237",
+    "name_chs": "赛博攻防战",
+    "name_cht": "賽博攻防戰",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0237.png"
+  },
+  "A0240": {
+    "id": "A0240",
+    "name_chs": "专有的服务",
+    "name_cht": "專有的服務",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0240.png"
+  },
+  "A0243": {
+    "id": "A0243",
+    "name_chs": "羞涩的请求",
+    "name_cht": "羞澀的請求",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0243.png"
+  },
+  "A0246": {
+    "id": "A0246",
+    "name_chs": "失守的防线",
+    "name_cht": "失守的防線",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0246.png"
+  },
+  "A0249": {
+    "id": "A0249",
+    "name_chs": "征服与臣服",
+    "name_cht": "征服與臣服",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0249.png"
+  },
+  "A0252": {
+    "id": "A0252",
+    "name_chs": "寂寞的救赎",
+    "name_cht": "寂寞的救贖",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0252.png"
+  },
+  "A0257": {
+    "id": "A0257",
+    "name_chs": "灵感的来源",
+    "name_cht": "靈感的來源",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0257.png"
+  },
+  "A0260": {
+    "id": "A0260",
+    "name_chs": "激情的禁果",
+    "name_cht": "激情的禁果",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0260.png"
+  },
+  "A0263": {
+    "id": "A0263",
+    "name_chs": "纯白的真心",
+    "name_cht": "純白的真心",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0263.png"
+  },
+  "A0269": {
+    "id": "A0269",
+    "name_chs": "坦率训练课",
+    "name_cht": "坦率訓練課",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0269.png"
+  },
+  "A0272": {
+    "id": "A0272",
+    "name_chs": "热情的沙浴",
+    "name_cht": "熱情的沙浴",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0272.png"
+  },
+  "A0275": {
+    "id": "A0275",
+    "name_chs": "私密的报答",
+    "name_cht": "私密的報答",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0275.png"
+  },
+  "A0284": {
+    "id": "A0284",
+    "name_chs": "窒息的征服",
+    "name_cht": "窒息的征服",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0284.png"
+  },
+  "A0287": {
+    "id": "A0287",
+    "name_chs": "A0287",
+    "name_cht": "A0287",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0287.png"
+  },
+  "A0290": {
+    "id": "A0290",
+    "name_chs": "A0290",
+    "name_cht": "A0290",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0290.png"
+  },
+  "A0293": {
+    "id": "A0293",
+    "name_chs": "A0293",
+    "name_cht": "A0293",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0293.png"
+  },
+  "A0302": {
+    "id": "A0302",
+    "name_chs": "泳池畔私语",
+    "name_cht": "泳池畔私語",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0302.png"
+  },
+  "A0305": {
+    "id": "A0305",
+    "name_chs": "办公室秘辛",
+    "name_cht": "辦公室秘辛",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0305.png"
+  },
+  "A0308": {
+    "id": "A0308",
+    "name_chs": "A0308",
+    "name_cht": "A0308",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0308.png"
+  },
+  "A0317": {
+    "id": "A0317",
+    "name_chs": "隐藏的炽热",
+    "name_cht": "隱藏的熾熱",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0317.png"
+  },
+  "A0320": {
+    "id": "A0320",
+    "name_chs": "祕密的战略",
+    "name_cht": "祕密的戰略",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0320.png"
+  },
+  "A0323": {
+    "id": "A0323",
+    "name_chs": "A0323",
+    "name_cht": "A0323",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0323.png"
+  },
+  "A0332": {
+    "id": "A0332",
+    "name_chs": "狂放的禁果",
+    "name_cht": "狂放的禁果",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0332.png"
+  },
+  "A0335": {
+    "id": "A0335",
+    "name_chs": "逆转的撩拨",
+    "name_cht": "逆轉的撩撥",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0335.png"
+  },
+  "A0338": {
+    "id": "A0338",
+    "name_chs": "热烈的声援",
+    "name_cht": "熱烈的聲援",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0338.png"
+  },
+  "A0341": {
+    "id": "A0341",
+    "name_chs": "雪夜的铃声",
+    "name_cht": "雪夜的鈴聲",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0341.png"
+  },
+  "A0344": {
+    "id": "A0344",
+    "name_chs": "特製的甜点",
+    "name_cht": "特製的甜點",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0344.png"
+  },
+  "A0347": {
+    "id": "A0347",
+    "name_chs": "酸苦的过往",
+    "name_cht": "酸苦的過往",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0347.png"
+  },
+  "A0350": {
+    "id": "A0350",
+    "name_chs": "黑丝的抚慰",
+    "name_cht": "黑絲的撫慰",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0350.png"
+  },
+  "A0353": {
+    "id": "A0353",
+    "name_chs": "隐秘的开发",
+    "name_cht": "隱秘的開發",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0353.png"
+  },
+  "A0356": {
+    "id": "A0356",
+    "name_chs": "跃动的烈情",
+    "name_cht": "躍動的烈情",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0356.png"
+  },
+  "A0377": {
+    "id": "A0377",
+    "name_chs": "少女的心机",
+    "name_cht": "少女的心機",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0377.png"
+  },
+  "A0380": {
+    "id": "A0380",
+    "name_chs": "晨间的呵护",
+    "name_cht": "晨間的呵護",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0380.png"
+  },
+  "A0386": {
+    "id": "A0386",
+    "name_chs": "炎热和沁凉",
+    "name_cht": "炎熱和沁涼",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0386.png"
+  },
+  "A0389": {
+    "id": "A0389",
+    "name_chs": "欲擒和故纵",
+    "name_cht": "欲擒和故縱",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0389.png"
+  },
+  "A0392": {
+    "id": "A0392",
+    "name_chs": "温煦的午后",
+    "name_cht": "溫煦的午後",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0392.png"
+  },
+  "A0395": {
+    "id": "A0395",
+    "name_chs": "A0395",
+    "name_cht": "A0395",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0395.png"
+  },
+  "A0398": {
+    "id": "A0398",
+    "name_chs": "A0398",
+    "name_cht": "A0398",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0398.png"
+  },
+  "A0401": {
+    "id": "A0401",
+    "name_chs": "A0401",
+    "name_cht": "A0401",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0401.png"
+  },
+  "A0404": {
+    "id": "A0404",
+    "name_chs": "纵情于林野",
+    "name_cht": "縱情於林野",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0404.png"
+  },
+  "A0407": {
+    "id": "A0407",
+    "name_chs": "A0407",
+    "name_cht": "A0407",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0407.png"
+  },
+  "A0410": {
+    "id": "A0410",
+    "name_chs": "神圣的仪礼",
+    "name_cht": "神聖的儀禮",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0410.png"
+  },
+  "A0413": {
+    "id": "A0413",
+    "name_chs": "盛开的扶桑",
+    "name_cht": "盛開的扶桑",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0413.png"
+  },
+  "A0416": {
+    "id": "A0416",
+    "name_chs": "A0416",
+    "name_cht": "A0416",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0416.png"
+  },
+  "A0419": {
+    "id": "A0419",
+    "name_chs": "刹那的拥有",
+    "name_cht": "剎那的擁有",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0419.png"
+  },
+  "A0422": {
+    "id": "A0422",
+    "name_chs": "斗室的抚触",
+    "name_cht": "斗室的撫觸",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0422.png"
+  },
+  "A0425": {
+    "id": "A0425",
+    "name_chs": "调情的夜车",
+    "name_cht": "調情的夜車",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0425.png"
+  },
+  "A0434": {
+    "id": "A0434",
+    "name_chs": "近岸轻撩时",
+    "name_cht": "近岸輕撩時",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0434.png"
+  },
+  "A0437": {
+    "id": "A0437",
+    "name_chs": "午后的私厨",
+    "name_cht": "午後的私廚",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0437.png"
+  },
+  "A0440": {
+    "id": "A0440",
+    "name_chs": "圣夜的魔法",
+    "name_cht": "聖夜的魔法",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0440.png"
+  },
+  "A0443": {
+    "id": "A0443",
+    "name_chs": "专属的乐趣",
+    "name_cht": "專屬的樂趣",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0443.png"
+  },
+  "A0452": {
+    "id": "A0452",
+    "name_chs": "温和的拷问",
+    "name_cht": "溫和的拷問",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0452.png"
+  },
+  "A0455": {
+    "id": "A0455",
+    "name_chs": "孤独的再遇",
+    "name_cht": "孤獨的再遇",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0455.png"
+  },
+  "A0458": {
+    "id": "A0458",
+    "name_chs": "A0458",
+    "name_cht": "A0458",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0458.png"
+  },
+  "A0461": {
+    "id": "A0461",
+    "name_chs": "羞耻的自抚",
+    "name_cht": "羞恥的自撫",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0461.png"
+  },
+  "A0464": {
+    "id": "A0464",
+    "name_chs": "甜蜜的顾问",
+    "name_cht": "甜蜜的顧問",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0464.png"
+  },
+  "A0473": {
+    "id": "A0473",
+    "name_chs": "A0473",
+    "name_cht": "A0473",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0473.png"
+  },
+  "A0476": {
+    "id": "A0476",
+    "name_chs": "A0476",
+    "name_cht": "A0476",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0476.png"
+  },
+  "A0479": {
+    "id": "A0479",
+    "name_chs": "A0479",
+    "name_cht": "A0479",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0479.png"
+  },
+  "A0482": {
+    "id": "A0482",
+    "name_chs": "A0482",
+    "name_cht": "A0482",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0482.png"
+  },
+  "A0485": {
+    "id": "A0485",
+    "name_chs": "A0485",
+    "name_cht": "A0485",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0485.png"
+  },
+  "A0491": {
+    "id": "A0491",
+    "name_chs": "A0491",
+    "name_cht": "A0491",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0491.png"
+  },
+  "A0494": {
+    "id": "A0494",
+    "name_chs": "A0494",
+    "name_cht": "A0494",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0494.png"
+  },
+  "A0500": {
+    "id": "A0500",
+    "name_chs": "A0500",
+    "name_cht": "A0500",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0500.png"
+  },
+  "A0503": {
+    "id": "A0503",
+    "name_chs": "A0503",
+    "name_cht": "A0503",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0503.png"
+  },
+  "A0506": {
+    "id": "A0506",
+    "name_chs": "A0506",
+    "name_cht": "A0506",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0506.png"
+  },
+  "A0509": {
+    "id": "A0509",
+    "name_chs": "A0509",
+    "name_cht": "A0509",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0509.png"
+  },
+  "A0518": {
+    "id": "A0518",
+    "name_chs": "A0518",
+    "name_cht": "A0518",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0518.png"
+  },
+  "A0521": {
+    "id": "A0521",
+    "name_chs": "A0521",
+    "name_cht": "A0521",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0521.png"
+  },
+  "A0530": {
+    "id": "A0530",
+    "name_chs": "A0530",
+    "name_cht": "A0530",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0530.png"
+  },
+  "A0536": {
+    "id": "A0536",
+    "name_chs": "A0536",
+    "name_cht": "A0536",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0536.png"
+  },
+  "A0551": {
+    "id": "A0551",
+    "name_chs": "A0551",
+    "name_cht": "A0551",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0551.png"
+  },
+  "A0560": {
+    "id": "A0560",
+    "name_chs": "A0560",
+    "name_cht": "A0560",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0560.png"
+  },
+  "A0575": {
+    "id": "A0575",
+    "name_chs": "A0575",
+    "name_cht": "A0575",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0575.png"
+  },
+  "A0608": {
+    "id": "A0608",
+    "name_chs": "A0608",
+    "name_cht": "A0608",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0608.png"
+  },
+  "A9999": {
+    "id": "A9999",
+    "name_chs": "A9999",
+    "name_cht": "A9999",
+    "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A9999.png"
+  }
+}

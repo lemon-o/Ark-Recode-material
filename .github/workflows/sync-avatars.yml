@@ -7,6 +7,14 @@ on:
         description: "强制全量扫描抓取（跳过 Catalog 变动检查）"
         type: boolean
         default: false
+      slot:
+        description: "抓取模式 (end_time: 维护结束定向抓取; night_fallback: 夜间增量兜底; auto: 自动推断)"
+        type: choice
+        options:
+          - auto
+          - end_time
+          - night_fallback
+        default: auto
       dry_run:
         description: "只扫描不写入与提交"
         type: boolean
@@ -86,16 +94,15 @@ jobs:
               sys.exit("tools/sync_assets.py 里找不到 AVATAR_ID_REMAP")
           PY
 
-      - name: 从 CDN 提取最新素材
+      - name: 智能调度提取最新素材与元数据
         if: ${{ steps.check.outputs.changed == 'true' || inputs.force }}
+        env:
+          DISPATCH_SLOT: ${{ github.event.client_payload.slot || inputs.slot || 'auto' }}
         run: |
           set -o pipefail
           mkdir -p build
-          python tools/fetch_assets.py \
-            --only avatars,heads,skills,icons,atlas,banner,data,bonds \
-            --target "$GITHUB_WORKSPACE" \
-            ${{ inputs.dry_run && '--dry-run' || '' }} | tee build/report.txt
-          python tools/fetch_spine.py --all --jobs 4 | tee -a build/report.txt
+          DRY_RUN_FLAG="${{ inputs.dry_run && '--dry-run' || '' }}"
+          python tools/sync_smart.py --slot "${DISPATCH_SLOT}" $DRY_RUN_FLAG | tee build/report.txt
           {
             echo '## Sync Assets Report'
             echo '```'
@@ -109,6 +116,7 @@ jobs:
           DISPATCH_SLOT_KEY: ${{ github.event.client_payload.slot_key || '' }}
         run: |
           python tools/check_version.py --save
+          python tools/build_current_pools.py --update-readme
           python tools/build_heroes.py
           python tools/build_index.py
           python tools/update_readme.py

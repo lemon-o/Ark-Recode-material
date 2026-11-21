@@ -1,0 +1,44 @@
+{
+  "updated_at": "2026-11-21T18:17:28+08:00",
+  "announcement_id": "1573604140079259678",
+  "activity_name": "眾星雲集的慶典",
+  "update_type": "常规停机维护",
+  "is_hot_reload": false,
+  "maintenance": {
+    "window": "11/11 14:00 - 19:00 (UTC+8)",
+    "start_time": "2026-11-11T14:00:00+08:00",
+    "end_time": "2026-11-11T19:00:00+08:00",
+    "start_timestamp": 1794376800.0,
+    "end_timestamp": 1794394800.0
+  },
+  "active_pools": [
+    {
+      "pool_id": "ActivitySummonH195",
+      "type": "限定招募",
+      "category": "pickup",
+      "pity_cap": 120,
+      "hero": {
+        "id": "H195",
+        "name_chs": "庆典女王艾乐莱思",
+        "name_cht": "慶典女王艾樂萊思",
+        "name_eng": "Carnival Queen Ermes",
+        "star": 5,
+        "element": "Earth",
+        "job": "Warrior",
+        "avatar_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/avatars/H195.png"
+      },
+      "exclusive_bond": {
+        "id": "A0443",
+        "name_chs": "专属的乐趣",
+        "name_cht": "專屬的樂趣",
+        "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0443.png"
+      },
+      "banner": {
+        "file": "BN_Summon_H195.png",
+        "url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/banners/BN_Summon_H195.png"
+      },
+      "start_time": "2026-11-11T19:00:00+08:00",
+      "duration": "2周"
+    }
+  ]
+}
