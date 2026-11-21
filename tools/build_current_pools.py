@@ -274,15 +274,14 @@ def render_readme_dashboard(pools_data: dict[str, Any]) -> str:
         f"> **当前招募活动窗口**：`{window}` | **更新类型**：{pools_data.get('update_type', '常规维护')}",
         "> **实时接口**：[`data/current-pools.json`](https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/data/current-pools.json)",
         "",
-        "| 卡池横幅 | 招募类型 | 核心角色 | 专属羁绊 | 保底上限 | 开放时间 |",
-        "| :---: | :---: | :---: | :---: | :---: | :---: |",
+        "| 卡池横幅 | 招募类型 | 专属羁绊 | 开放时间 |",
+        "| :---: | :---: | :---: | :---: |",
     ]
 
     if not active_pools:
-        lines.append("| *暂无正在进行中的招募卡池* | - | - | - | - | - |")
+        lines.append("| *暂无正在进行中的招募卡池* | - | - | - |")
     else:
         for p in active_pools:
-            hero = p.get("hero", {})
             bond = p.get("exclusive_bond") or {}
             banner = p.get("banner", {})
 
@@ -291,15 +290,6 @@ def render_readme_dashboard(pools_data: dict[str, Any]) -> str:
                 banner_md = f"[![Banner]({banner['url']})]({banner['url']})"
             else:
                 banner_md = "*(暂无横幅)*"
-
-            # 角色
-            star = f"{hero.get('star', 5)}★"
-            elem = hero.get("element", "")
-            job = hero.get("job", "")
-            meta_desc = f"{star} {elem}/{job}".strip()
-            avatar_url = hero.get("avatar_url", "")
-            name = hero.get("name_chs") or hero.get("name_cht") or hero.get("id")
-            hero_md = f"<img src=\"{avatar_url}\" width=\"36\" height=\"36\" align=\"center\" /> **[{name}]({avatar_url})**<br><sub>{meta_desc}</sub>"
 
             # 羁绊
             if bond and bond.get("name_chs"):
@@ -313,12 +303,11 @@ def render_readme_dashboard(pools_data: dict[str, Any]) -> str:
                 bond_md = "—"
 
             pool_type = p.get("type", "限定招募")
-            cap = f"{p.get('pity_cap', 120)} 抽"
             display_time = p.get("display_time", "")
             dur_str = p.get("duration", "2周")
             time_cell = f"{display_time}<br><sub>(持续 {dur_str})</sub>" if display_time else f"持续 {dur_str}"
 
-            lines.append(f"| {banner_md} | **{pool_type}** | {hero_md} | {bond_md} | {cap} | {time_cell} |")
+            lines.append(f"| {banner_md} | **{pool_type}** | {bond_md} | {time_cell} |")
 
     lines.append(END_TAG)
     return "\n".join(lines)

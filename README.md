@@ -16,9 +16,9 @@
 > **当前招募活动窗口**：`11/11 14:00 - 19:00 (UTC+8)` | **更新类型**：常规停机维护
 > **实时接口**：[`data/current-pools.json`](https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/data/current-pools.json)
 
-| 卡池横幅 | 招募类型 | 核心角色 | 专属羁绊 | 保底上限 | 开放时间 |
-| :---: | :---: | :---: | :---: | :---: | :---: |
-| [![Banner](https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/banners/BN_Summon_H195.png)](https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/banners/BN_Summon_H195.png) | **限定招募** | <img src="https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/avatars/H195.png" width="36" height="36" align="center" /> **[庆典女王艾乐莱思](https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/avatars/H195.png)**<br><sub>5★ Earth/Warrior</sub> | <img src="https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0443.png" width="28" height="28" align="center" /> 「专属的乐趣」 | 120 抽 | 2026/11/11 19:00 - 2026/11/25 19:00<br><sub>(持续 2周)</sub> |
+| 卡池横幅 | 招募类型 | 专属羁绊 | 开放时间 |
+| :---: | :---: | :---: | :---: |
+| [![Banner](https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/banners/BN_Summon_H195.png)](https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/banners/BN_Summon_H195.png) | **限定招募** | <img src="https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0443.png" width="28" height="28" align="center" /> 「专属的乐趣」 | 2026/11/11 19:00 - 2026/11/25 19:00<br><sub>(持续 2周)</sub> |
 <!-- CURRENT-POOLS:END -->
 
 ## 实现原理
