@@ -181,15 +181,53 @@ def is_debut_hero(
     return False
 
 
-def resolve_pool_type(cat_label: str, is_debut: bool) -> str:
-    """依据招募类型与首发状态生成规范的招募类型标签。"""
-    if is_debut:
-        if cat_label in ("限定招募", "活动招募", "PickUp"):
-            return "限定招募 (首发)"
-        if cat_label == "神秘招募":
-            return "神秘招募 (首发)"
-        return f"{cat_label} (首发)"
-    return cat_label
+def is_hero_limited(
+    hero_id: str,
+    hero_name: str,
+    content: str,
+    hero_detail: dict[str, Any],
+) -> bool:
+    """判定团员是否为限定角色（非限定即为常驻/普池团员）。
+
+    三重判定：
+    1. heroes.json 元数据中的 is_limited 标记（取自官方 Item.txt Tags 列，最底层最权威依据）；
+    2. 公告正文中该角色所在行是否明确冠以「限定團員」/「限定角色」；
+    3. 公告行未加限定者（如「團員「埃帕蒂」」）判定为常规常驻角色。
+    """
+    # 1. 优先查验 heroes.json 中的底层官方标记
+    if "is_limited" in hero_detail:
+        if not hero_detail["is_limited"]:
+            # 数据表标记为常驻时，除非公告单行明确强调「限定團員」，否则为常驻
+            for line in content.splitlines():
+                if hero_name and hero_name in line and re.search(r"限定(?:團員|角色|英雄)", line):
+                    return True
+            return False
+        return True
+
+    # 2. 公告文本行检查
+    for line in content.splitlines():
+        if hero_name and hero_name in line:
+            if re.search(r"限定(?:團員|角色|英雄)", line):
+                return True
+
+    return False
+
+
+def resolve_pool_type(
+    cat_key: str,
+    cat_label: str,
+    is_limited: bool,
+    is_debut: bool,
+) -> str:
+    """依据招募类型、限定状态与首发状态生成规范的招募类型标签。"""
+    if cat_key == "mystic":
+        return "神秘招募 (首发)" if is_debut else "神秘招募"
+
+    if is_limited:
+        return "限定招募 (首发)" if is_debut else "限定招募"
+    else:
+        # 常驻团员（如埃帕蒂）机率UP招募
+        return "常规招募 (首发)" if is_debut else "常规招募"
 
 
 def parse_combo_pools(
@@ -317,13 +355,26 @@ def extract_pools_from_announcement(
                 explicit_flag=h.get("is_debut"),
             )
 
-            type_label = resolve_pool_type(cat_label, is_debut=debut)
+            limited = is_hero_limited(
+                hero_id=hid,
+                hero_name=name_cht or name_chs,
+                content=content,
+                hero_detail=hero_detail,
+            )
+
+            type_label = resolve_pool_type(
+                cat_key=cat_key,
+                cat_label=cat_label,
+                is_limited=limited,
+                is_debut=debut,
+            )
 
             pool_entry = {
                 "pool_id": pool_id,
                 "type": type_label,
                 "category": cat_key,
                 "is_debut": debut,
+                "is_limited": limited,
                 "pity_cap": cap,
                 "hero": {
                     "id": hid,

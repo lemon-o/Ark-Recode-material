@@ -157,6 +157,7 @@ def main(argv: list[str] | None = None) -> int:
     role_signatures = set()
     role_collections = set()
     gacha_roles = set()
+    hero_limits = {}
 
     for obj in env_static.objects:
         if obj.type.name == "TextAsset":
@@ -172,6 +173,15 @@ def main(argv: list[str] | None = None) -> int:
                     # IsHero (col 12) == '1'
                     if len(parts) > 12 and parts[12] == "1":
                         role_rows.append(parts)
+            elif name == "Item":
+                item_headers = lines[0].split("@")
+                tag_col = item_headers.index("Tags") if "Tags" in item_headers else 19
+                for l in lines[1:]:
+                    parts = l.split("@")
+                    if parts and parts[0].startswith("H") and len(parts) > tag_col:
+                        tags = parts[tag_col]
+                        is_limit = ("LimitStar" in tags) and ("Normal" not in tags)
+                        hero_limits[parts[0]] = is_limit
             elif name == "RoleSignature":
                 for l in lines[1:]:
                     parts = l.split("@")
@@ -263,6 +273,7 @@ def main(argv: list[str] | None = None) -> int:
             "element": element,
             "job": job,
             "is_released": is_released,
+            "is_limited": hero_limits.get(hid, False),
             "has_spine": hid in existing_spines,
             "has_avatar": hid in existing_avatars,
             "has_gacha": hid in gacha_roles,

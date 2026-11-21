@@ -269,7 +269,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H002": {
       "id": "H002",
@@ -285,7 +286,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H003": {
       "id": "H003",
@@ -301,7 +303,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H004": {
       "id": "H004",
@@ -317,7 +320,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H005": {
       "id": "H005",
@@ -333,7 +337,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H006": {
       "id": "H006",
@@ -349,7 +354,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H007": {
       "id": "H007",
@@ -365,7 +371,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H008": {
       "id": "H008",
@@ -381,7 +388,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H009": {
       "id": "H009",
@@ -397,7 +405,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H010": {
       "id": "H010",
@@ -413,7 +422,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H011": {
       "id": "H011",
@@ -429,7 +439,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H012": {
       "id": "H012",
@@ -445,7 +456,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H013": {
       "id": "H013",
@@ -461,7 +473,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H014": {
       "id": "H014",
@@ -477,7 +490,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H015": {
       "id": "H015",
@@ -493,7 +507,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H016": {
       "id": "H016",
@@ -509,7 +524,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H017": {
       "id": "H017",
@@ -525,7 +541,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H018": {
       "id": "H018",
@@ -541,7 +558,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H019": {
       "id": "H019",
@@ -557,7 +575,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H020": {
       "id": "H020",
@@ -573,7 +592,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H021": {
       "id": "H021",
@@ -589,7 +609,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H022": {
       "id": "H022",
@@ -605,7 +626,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H023": {
       "id": "H023",
@@ -621,7 +643,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H024": {
       "id": "H024",
@@ -637,7 +660,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H025": {
       "id": "H025",
@@ -653,7 +677,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H026": {
       "id": "H026",
@@ -669,7 +694,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H027": {
       "id": "H027",
@@ -685,7 +711,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H028": {
       "id": "H028",
@@ -701,7 +728,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H029": {
       "id": "H029",
@@ -717,7 +745,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H030": {
       "id": "H030",
@@ -733,7 +762,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H031": {
       "id": "H031",
@@ -749,7 +779,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H032": {
       "id": "H032",
@@ -765,7 +796,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H033": {
       "id": "H033",
@@ -781,7 +813,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H034": {
       "id": "H034",
@@ -797,7 +830,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H035": {
       "id": "H035",
@@ -813,7 +847,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H036": {
       "id": "H036",
@@ -829,7 +864,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H037": {
       "id": "H037",
@@ -845,7 +881,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H038": {
       "id": "H038",
@@ -861,7 +898,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H039": {
       "id": "H039",
@@ -877,7 +915,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H040": {
       "id": "H040",
@@ -893,7 +932,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H041": {
       "id": "H041",
@@ -909,7 +949,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H042": {
       "id": "H042",
@@ -925,7 +966,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H043": {
       "id": "H043",
@@ -941,7 +983,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H044": {
       "id": "H044",
@@ -957,7 +1000,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H045": {
       "id": "H045",
@@ -973,7 +1017,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H046": {
       "id": "H046",
@@ -989,7 +1034,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H047": {
       "id": "H047",
@@ -1005,7 +1051,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H048": {
       "id": "H048",
@@ -1021,7 +1068,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H049": {
       "id": "H049",
@@ -1037,7 +1085,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H050": {
       "id": "H050",
@@ -1053,7 +1102,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H051": {
       "id": "H051",
@@ -1069,7 +1119,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H052": {
       "id": "H052",
@@ -1085,7 +1136,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H053": {
       "id": "H053",
@@ -1101,7 +1153,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H054": {
       "id": "H054",
@@ -1117,7 +1170,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H055": {
       "id": "H055",
@@ -1133,7 +1187,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H056": {
       "id": "H056",
@@ -1149,7 +1204,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H057": {
       "id": "H057",
@@ -1165,7 +1221,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H058": {
       "id": "H058",
@@ -1181,7 +1238,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H059": {
       "id": "H059",
@@ -1197,7 +1255,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H060": {
       "id": "H060",
@@ -1213,7 +1272,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H061": {
       "id": "H061",
@@ -1229,7 +1289,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H062": {
       "id": "H062",
@@ -1245,7 +1306,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H063": {
       "id": "H063",
@@ -1261,7 +1323,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H064": {
       "id": "H064",
@@ -1277,7 +1340,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H065": {
       "id": "H065",
@@ -1293,7 +1357,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H066": {
       "id": "H066",
@@ -1309,7 +1374,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H067": {
       "id": "H067",
@@ -1325,7 +1391,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H068": {
       "id": "H068",
@@ -1341,7 +1408,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H069": {
       "id": "H069",
@@ -1357,7 +1425,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H070": {
       "id": "H070",
@@ -1373,7 +1442,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H071": {
       "id": "H071",
@@ -1389,7 +1459,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H072": {
       "id": "H072",
@@ -1405,7 +1476,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H073": {
       "id": "H073",
@@ -1421,7 +1493,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H074": {
       "id": "H074",
@@ -1437,7 +1510,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H075": {
       "id": "H075",
@@ -1453,7 +1527,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H076": {
       "id": "H076",
@@ -1469,7 +1544,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H077": {
       "id": "H077",
@@ -1485,7 +1561,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H078": {
       "id": "H078",
@@ -1501,7 +1578,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H079": {
       "id": "H079",
@@ -1517,7 +1595,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H080": {
       "id": "H080",
@@ -1533,7 +1612,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H081": {
       "id": "H081",
@@ -1549,7 +1629,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H082": {
       "id": "H082",
@@ -1565,7 +1646,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H083": {
       "id": "H083",
@@ -1581,7 +1663,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H084": {
       "id": "H084",
@@ -1597,7 +1680,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H085": {
       "id": "H085",
@@ -1613,7 +1697,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H086": {
       "id": "H086",
@@ -1629,7 +1714,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H087": {
       "id": "H087",
@@ -1645,7 +1731,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H088": {
       "id": "H088",
@@ -1661,7 +1748,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H089": {
       "id": "H089",
@@ -1677,7 +1765,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H090": {
       "id": "H090",
@@ -1693,7 +1782,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H091": {
       "id": "H091",
@@ -1709,7 +1799,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H092": {
       "id": "H092",
@@ -1725,7 +1816,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H093": {
       "id": "H093",
@@ -1741,7 +1833,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H094": {
       "id": "H094",
@@ -1757,7 +1850,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H095": {
       "id": "H095",
@@ -1773,7 +1867,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H096": {
       "id": "H096",
@@ -1789,7 +1884,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H097": {
       "id": "H097",
@@ -1805,7 +1901,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H098": {
       "id": "H098",
@@ -1821,7 +1918,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H099": {
       "id": "H099",
@@ -1837,7 +1935,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H100": {
       "id": "H100",
@@ -1853,7 +1952,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H101": {
       "id": "H101",
@@ -1869,7 +1969,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H102": {
       "id": "H102",
@@ -1885,7 +1986,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H103": {
       "id": "H103",
@@ -1901,7 +2003,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H104": {
       "id": "H104",
@@ -1917,7 +2020,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H105": {
       "id": "H105",
@@ -1933,7 +2037,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H106": {
       "id": "H106",
@@ -1949,7 +2054,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H107": {
       "id": "H107",
@@ -1965,7 +2071,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H108": {
       "id": "H108",
@@ -1981,7 +2088,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H109": {
       "id": "H109",
@@ -1997,7 +2105,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H110": {
       "id": "H110",
@@ -2013,7 +2122,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H111": {
       "id": "H111",
@@ -2029,7 +2139,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H112": {
       "id": "H112",
@@ -2045,7 +2156,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H113": {
       "id": "H113",
@@ -2061,7 +2173,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H114": {
       "id": "H114",
@@ -2077,7 +2190,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H115": {
       "id": "H115",
@@ -2093,7 +2207,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H116": {
       "id": "H116",
@@ -2109,7 +2224,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H117": {
       "id": "H117",
@@ -2125,7 +2241,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H118": {
       "id": "H118",
@@ -2141,7 +2258,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H119": {
       "id": "H119",
@@ -2157,7 +2275,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H120": {
       "id": "H120",
@@ -2173,7 +2292,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H121": {
       "id": "H121",
@@ -2189,7 +2309,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H122": {
       "id": "H122",
@@ -2205,7 +2326,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H123": {
       "id": "H123",
@@ -2221,7 +2343,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H124": {
       "id": "H124",
@@ -2237,7 +2360,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H125": {
       "id": "H125",
@@ -2253,7 +2377,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H126": {
       "id": "H126",
@@ -2269,7 +2394,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H127": {
       "id": "H127",
@@ -2285,7 +2411,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H128": {
       "id": "H128",
@@ -2301,7 +2428,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H129": {
       "id": "H129",
@@ -2317,7 +2445,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H130": {
       "id": "H130",
@@ -2333,7 +2462,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H131": {
       "id": "H131",
@@ -2349,7 +2479,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H132": {
       "id": "H132",
@@ -2365,7 +2496,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H133": {
       "id": "H133",
@@ -2381,7 +2513,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H134": {
       "id": "H134",
@@ -2397,7 +2530,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H135": {
       "id": "H135",
@@ -2413,7 +2547,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H136": {
       "id": "H136",
@@ -2429,7 +2564,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H137": {
       "id": "H137",
@@ -2445,7 +2581,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H138": {
       "id": "H138",
@@ -2461,7 +2598,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H139": {
       "id": "H139",
@@ -2477,7 +2615,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H140": {
       "id": "H140",
@@ -2493,7 +2632,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H141": {
       "id": "H141",
@@ -2509,7 +2649,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H142": {
       "id": "H142",
@@ -2525,7 +2666,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H143": {
       "id": "H143",
@@ -2541,7 +2683,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H144": {
       "id": "H144",
@@ -2557,7 +2700,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H145": {
       "id": "H145",
@@ -2573,7 +2717,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H146": {
       "id": "H146",
@@ -2589,7 +2734,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H147": {
       "id": "H147",
@@ -2605,7 +2751,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H148": {
       "id": "H148",
@@ -2621,7 +2768,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H149": {
       "id": "H149",
@@ -2637,7 +2785,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H150": {
       "id": "H150",
@@ -2653,7 +2802,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H151": {
       "id": "H151",
@@ -2669,7 +2819,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H152": {
       "id": "H152",
@@ -2685,7 +2836,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H153": {
       "id": "H153",
@@ -2701,7 +2853,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H154": {
       "id": "H154",
@@ -2717,7 +2870,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H155": {
       "id": "H155",
@@ -2733,7 +2887,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H156": {
       "id": "H156",
@@ -2749,7 +2904,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H157": {
       "id": "H157",
@@ -2765,7 +2921,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H158": {
       "id": "H158",
@@ -2781,7 +2938,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H159": {
       "id": "H159",
@@ -2797,7 +2955,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H160": {
       "id": "H160",
@@ -2813,7 +2972,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H161": {
       "id": "H161",
@@ -2829,7 +2989,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H162": {
       "id": "H162",
@@ -2845,7 +3006,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H163": {
       "id": "H163",
@@ -2861,7 +3023,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H164": {
       "id": "H164",
@@ -2877,7 +3040,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": true
     },
     "H165": {
       "id": "H165",
@@ -2893,7 +3057,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H166": {
       "id": "H166",
@@ -2909,7 +3074,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H167": {
       "id": "H167",
@@ -2925,7 +3091,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H168": {
       "id": "H168",
@@ -2941,7 +3108,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H169": {
       "id": "H169",
@@ -2957,7 +3125,8 @@
       "has_spine": false,
       "has_avatar": false,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H170": {
       "id": "H170",
@@ -2973,7 +3142,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H171": {
       "id": "H171",
@@ -2989,7 +3159,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H172": {
       "id": "H172",
@@ -3005,7 +3176,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H173": {
       "id": "H173",
@@ -3021,7 +3193,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H174": {
       "id": "H174",
@@ -3037,7 +3210,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H175": {
       "id": "H175",
@@ -3053,7 +3227,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H176": {
       "id": "H176",
@@ -3069,7 +3244,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H177": {
       "id": "H177",
@@ -3085,7 +3261,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H178": {
       "id": "H178",
@@ -3101,7 +3278,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H179": {
       "id": "H179",
@@ -3117,7 +3295,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H180": {
       "id": "H180",
@@ -3133,7 +3312,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H181": {
       "id": "H181",
@@ -3149,7 +3329,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H182": {
       "id": "H182",
@@ -3165,7 +3346,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H183": {
       "id": "H183",
@@ -3181,7 +3363,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H184": {
       "id": "H184",
@@ -3197,7 +3380,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H185": {
       "id": "H185",
@@ -3213,7 +3397,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H186": {
       "id": "H186",
@@ -3229,7 +3414,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H187": {
       "id": "H187",
@@ -3245,7 +3431,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H188": {
       "id": "H188",
@@ -3261,7 +3448,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H189": {
       "id": "H189",
@@ -3277,7 +3465,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H190": {
       "id": "H190",
@@ -3293,7 +3482,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H191": {
       "id": "H191",
@@ -3309,7 +3499,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H192": {
       "id": "H192",
@@ -3325,7 +3516,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H193": {
       "id": "H193",
@@ -3341,7 +3533,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H194": {
       "id": "H194",
@@ -3357,7 +3550,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H195": {
       "id": "H195",
@@ -3373,7 +3567,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H196": {
       "id": "H196",
@@ -3389,7 +3584,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H197": {
       "id": "H197",
@@ -3405,7 +3601,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H198": {
       "id": "H198",
@@ -3421,7 +3618,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H199": {
       "id": "H199",
@@ -3437,7 +3635,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H200": {
       "id": "H200",
@@ -3453,7 +3652,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H201": {
       "id": "H201",
@@ -3469,7 +3669,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H202": {
       "id": "H202",
@@ -3485,7 +3686,8 @@
       "has_spine": false,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H203": {
       "id": "H203",
@@ -3501,7 +3703,8 @@
       "has_spine": false,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H204": {
       "id": "H204",
@@ -3517,7 +3720,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": true
     },
     "H205": {
       "id": "H205",
@@ -3533,7 +3737,8 @@
       "has_spine": false,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H206": {
       "id": "H206",
@@ -3549,7 +3754,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": true
     },
     "H207": {
       "id": "H207",
@@ -3565,7 +3771,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": true
     },
     "H208": {
       "id": "H208",
@@ -3581,7 +3788,8 @@
       "has_spine": false,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H209": {
       "id": "H209",
@@ -3597,7 +3805,8 @@
       "has_spine": false,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": true
     },
     "H210": {
       "id": "H210",
@@ -3613,7 +3822,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H211": {
       "id": "H211",
@@ -3629,7 +3839,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H212": {
       "id": "H212",
@@ -3645,7 +3856,8 @@
       "has_spine": false,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": true
     },
     "H213": {
       "id": "H213",
@@ -3661,7 +3873,8 @@
       "has_spine": false,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": true
     },
     "H214": {
       "id": "H214",
@@ -3677,7 +3890,8 @@
       "has_spine": false,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": true
     },
     "H215": {
       "id": "H215",
@@ -3693,7 +3907,8 @@
       "has_spine": false,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H216": {
       "id": "H216",
@@ -3709,7 +3924,8 @@
       "has_spine": false,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H217": {
       "id": "H217",
@@ -3725,7 +3941,8 @@
       "has_spine": false,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H218": {
       "id": "H218",
@@ -3741,7 +3958,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H219": {
       "id": "H219",
@@ -3757,7 +3975,8 @@
       "has_spine": false,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": true
     },
     "H222": {
       "id": "H222",
@@ -3773,7 +3992,8 @@
       "has_spine": false,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H223": {
       "id": "H223",
@@ -3789,7 +4009,8 @@
       "has_spine": false,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H224": {
       "id": "H224",
@@ -3805,7 +4026,8 @@
       "has_spine": false,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": true
     },
     "H225": {
       "id": "H225",
@@ -3821,7 +4043,8 @@
       "has_spine": false,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H229": {
       "id": "H229",
@@ -3837,7 +4060,8 @@
       "has_spine": false,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": true
     },
     "H232": {
       "id": "H232",
@@ -3853,7 +4077,8 @@
       "has_spine": false,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": true
     },
     "H235": {
       "id": "H235",
@@ -3869,7 +4094,8 @@
       "has_spine": false,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H237": {
       "id": "H237",
@@ -3885,7 +4111,8 @@
       "has_spine": false,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": true
     },
     "H248": {
       "id": "H248",
@@ -3901,7 +4128,8 @@
       "has_spine": false,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": true
     },
     "H601": {
       "id": "H601",
@@ -3917,7 +4145,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H602": {
       "id": "H602",
@@ -3933,7 +4162,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H603": {
       "id": "H603",
@@ -3949,7 +4179,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": false,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H604": {
       "id": "H604",
@@ -3965,7 +4196,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H605": {
       "id": "H605",
@@ -3981,7 +4213,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H606": {
       "id": "H606",
@@ -3997,7 +4230,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H607": {
       "id": "H607",
@@ -4013,7 +4247,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H608": {
       "id": "H608",
@@ -4029,7 +4264,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H609": {
       "id": "H609",
@@ -4045,7 +4281,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H610": {
       "id": "H610",
@@ -4061,7 +4298,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H611": {
       "id": "H611",
@@ -4077,7 +4315,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H612": {
       "id": "H612",
@@ -4093,7 +4332,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H613": {
       "id": "H613",
@@ -4109,7 +4349,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H614": {
       "id": "H614",
@@ -4125,7 +4366,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": true
     },
     "H804": {
       "id": "H804",
@@ -4141,7 +4383,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H806": {
       "id": "H806",
@@ -4157,7 +4400,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": true
     },
     "H809": {
       "id": "H809",
@@ -4173,7 +4417,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": true
+      "has_collection": true,
+      "is_limited": false
     },
     "H810": {
       "id": "H810",
@@ -4189,7 +4434,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     },
     "H811": {
       "id": "H811",
@@ -4205,7 +4451,8 @@
       "has_spine": true,
       "has_avatar": true,
       "has_gacha": true,
-      "has_collection": false
+      "has_collection": false,
+      "is_limited": false
     }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-21T19:44:31+08:00",
+  "updated_at": "2026-11-21T20:06:43+08:00",
   "announcement_id": "1576137682697093120",
   "activity_name": "活动更新",
   "update_type": "不停机活动更新",
@@ -17,6 +17,7 @@
       "type": "限定招募 (首发)",
       "category": "pickup",
       "is_debut": true,
+      "is_limited": true,
       "pity_cap": 120,
       "hero": {
         "id": "H195",
@@ -73,6 +74,7 @@
       "type": "限定招募",
       "category": "pickup",
       "is_debut": false,
+      "is_limited": true,
       "pity_cap": 120,
       "hero": {
         "id": "H180",
@@ -102,9 +104,10 @@
     },
     {
       "pool_id": "ActivitySummonH016",
-      "type": "限定招募",
+      "type": "常规招募",
       "category": "pickup",
       "is_debut": false,
+      "is_limited": false,
       "pity_cap": 120,
       "hero": {
         "id": "H016",
