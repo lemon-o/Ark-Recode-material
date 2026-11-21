@@ -233,6 +233,12 @@ def load_local_state() -> dict:
 
 def save_local_state(catalog_info: dict, notice: dict | None = None, source: str = "erolabs") -> None:
     STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
+    local_state = load_local_state()
+    slots = list(local_state.get("dispatched_slots") or [])
+    current_slot = os.environ.get("DISPATCH_SLOT_KEY", "").strip()
+    if current_slot and current_slot not in slots:
+        slots.append(current_slot)
+
     payload = {
         "catalog": catalog_info.get("catalog"),
         "url": catalog_info.get("url"),
@@ -241,12 +247,14 @@ def save_local_state(catalog_info: dict, notice: dict | None = None, source: str
         "size": catalog_info.get("size"),
         "notice_source": source,
         "last_notice_id": (notice or {}).get("id") or (notice or {}).get("newsId"),
+        "last_discord_msg_id": (notice or {}).get("id"),
         "last_notice_title": (notice or {}).get("title"),
         "maintenance_window": (notice or {}).get("window"),
         "maintenance_end": (notice or {}).get("endTime"),
         "pickup_heroes": (notice or {}).get("pickup_heroes") or [],
         "mystic_heroes": (notice or {}).get("mystic_heroes") or [],
         "rerun_heroes": (notice or {}).get("rerun_heroes") or [],
+        "dispatched_slots": slots,
         "updated_at": datetime.now(timezone.utc).astimezone().isoformat(timespec="seconds"),
     }
     STATE_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

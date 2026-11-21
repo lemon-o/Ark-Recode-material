@@ -49,6 +49,7 @@ jobs:
           DISCORD_USER_TOKEN: ${{ secrets.DISCORD_USER_TOKEN }}
           DISCORD_CHANNEL_ID: ${{ secrets.DISCORD_CHANNEL_ID }}
           DISCORD_ANNOUNCEMENT_TEXT: ${{ inputs.discord_text || github.event.client_payload.content || '' }}
+          DISPATCH_SLOT_KEY: ${{ github.event.client_payload.slot_key || '' }}
         run: |
           FORCE_FLAG="${{ inputs.force && '--force' || '' }}"
           python tools/check_version.py $FORCE_FLAG
@@ -104,6 +105,8 @@ jobs:
 
       - name: 生成清单并提交
         if: ${{ !inputs.dry_run && (steps.check.outputs.changed == 'true' || inputs.force) }}
+        env:
+          DISPATCH_SLOT_KEY: ${{ github.event.client_payload.slot_key || '' }}
         run: |
           python tools/check_version.py --save
           python tools/build_heroes.py

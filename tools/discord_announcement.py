@@ -246,8 +246,8 @@ def fetch_from_discord_api(
     token: str,
     channel_id: str,
     timeout: float = 10.0,
-) -> str | None:
-    """通过 Discord API 获取官方频道最新消息文本。"""
+) -> dict[str, Any] | None:
+    """通过 Discord API 获取官方频道最新消息及元数据。"""
     url = f"https://discord.com/api/v10/channels/{channel_id}/messages?limit=10"
 
     auth_header = token.strip()
@@ -270,12 +270,12 @@ def fetch_from_discord_api(
                     for msg in messages:
                         text = extract_message_text(msg)
                         if any(k in text for k in ("維護", "维护", "招募", "更新", "機率UP", "概率UP")):
-                            return text
+                            return {"id": msg.get("id"), "content": text, "timestamp": msg.get("timestamp")}
                     # 若未命中特定关键词，取第一条最新非空文本
                     for msg in messages:
                         text = extract_message_text(msg)
                         if text:
-                            return text
+                            return {"id": msg.get("id"), "content": text, "timestamp": msg.get("timestamp")}
             else:
                 print(f"[Discord API] 读取失败: HTTP {resp.status_code} ({resp.text[:100]})", file=sys.stderr)
     except Exception as exc:
@@ -305,9 +305,10 @@ def fetch_discord_notice(timeout: float = 10.0) -> dict[str, Any] | None:
     channel_id = os.environ.get("DISCORD_CHANNEL_ID", DEFAULT_DISCORD_CHANNEL_ID)
 
     if token and channel_id:
-        text = fetch_from_discord_api(token, channel_id, timeout=timeout)
-        if text:
-            parsed = parse_announcement_text(text)
+        msg_obj = fetch_from_discord_api(token, channel_id, timeout=timeout)
+        if msg_obj and msg_obj.get("content"):
+            parsed = parse_announcement_text(msg_obj["content"])
+            parsed["id"] = msg_obj.get("id")
             parsed["source"] = "discord_api"
             return parsed
 

@@ -1,16 +1,18 @@
 /**
- * Cloudflare Worker: Discord 官方公告监听 -> GitHub Actions 自动联动网关
+ * Cloudflare Worker: Discord 官方公告智能排程 -> GitHub Actions 定点准时联动网关
  *
- * 核心机制：
- * 1. 定时（Cron Trigger，如每 5 分钟）轻量查询 Discord 目标频道（#综合）；
- * 2. 深度提取最新消息（兼容原生文本、转发快照 message_snapshots 及富文本 Embeds）；
- * 3. 识别出维护或招募公告后，校验是否为最新未处理公告；
- * 4. 自动调用 GitHub API (repository_dispatch) 唤醒云端 Runner，将公告文本秒级注入构建流程；
- * 5. 支持直接在浏览器访问 Worker URL（如 /check）进行手动检测与状态排查。
+ * 核心逻辑（智能排程，绝不盲目提前触发）：
+ * 1. 定时（Cron Trigger，每 5 分钟）轻量查询 Discord 目标频道（#综合）；
+ * 2. 深度解析公告正文，提取维护结束时间（如 11/26 18:00 或 11/18 08:00）；
+ * 3. 严格执行两阶段精准触发：
+ *    - 【第一阶段】维护结束时间准时触发 1 次（从 CDN 获取刚更新的一手素材）；
+ *    - 【第二阶段】维护结束当天晚上 23:55 兜底触发 1 次（防止开服延期或晚间补丁）；
+ *    - 【其余所有时间】绝不触发 GitHub Actions，返回等待状态并输出倒计时；
+ * 4. 访问 /check 路由可实时查看当前公告、维护时间及下次计划抓取时间。
  */
 
-// 实例内存缓存，防止短时间内高频重复请求
-let memoryLastProcessedId = null;
+// 实例内存记录已触发过的槽位: Set of `${msgId}_${slot}`
+const dispatchedSlots = new Set();
 
 export default {
   // 1. 定时任务触发（Cron Trigger）
@@ -22,13 +24,14 @@ export default {
     }
   },
 
-  // 2. HTTP 路由（供手动测试或查看当前监听状态）
+  // 2. HTTP 路由（供手动测试或查看当前排程状态）
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
     try {
       if (url.pathname === "/" || url.pathname === "/check") {
-        const result = await checkAndDispatch(env, ctx, url.origin);
+        const force = url.searchParams.get("force") === "true";
+        const result = await checkAndDispatch(env, ctx, url.origin, force);
         return new Response(JSON.stringify(result, null, 2), {
           status: 200,
           headers: {
@@ -41,8 +44,8 @@ export default {
       return new Response(
         JSON.stringify({
           status: "online",
-          service: "Ark-Recode Discord Announcement Bridge",
-          usage: "访问 /check 进行即时检测与触发",
+          service: "Ark-Recode Discord Announcement Scheduled Bridge",
+          usage: "访问 /check 查看当前排程状态，/check?force=true 可强制触发一次测试",
         }, null, 2),
         {
           status: 200,
@@ -102,26 +105,75 @@ function extractMessageContent(msg) {
 }
 
 /**
- * 核心业务：读取 Discord、判重并调度 GitHub Actions
+ * 解析公告文本中的维护结束时间点（转换为 UTC 时间戳）
  */
-async function checkAndDispatch(env, ctx, origin) {
+function parseMaintenanceSchedule(text) {
+  if (!text) return null;
+  const now = new Date();
+  const defaultYear = now.getFullYear();
+
+  // 格式 1：时间范围，如 11/26 14:00 - 18:00 (UTC+8)
+  const rangeRegex = /(?:(\d{4})[年/.-])?(\d{1,2})[月/.-](\d{1,2})[日号]?(?:\s*\([^\)]*\))?\s*(\d{1,2}):(\d{2})\s*[-~至到]\s*(\d{1,2}):(\d{2})(?:\s*\(?UTC\+?8\)?)?/i;
+  const matchRange = text.match(rangeRegex);
+  if (matchRange) {
+    const year = matchRange[1] ? parseInt(matchRange[1], 10) : defaultYear;
+    const month = parseInt(matchRange[2], 10) - 1;
+    const day = parseInt(matchRange[3], 10);
+    const endH = parseInt(matchRange[6], 10);
+    const endM = parseInt(matchRange[7], 10);
+
+    // 东八区 (UTC+8) 转为标准 UTC 时间戳
+    const endUtc = Date.UTC(year, month, day, endH - 8, endM, 0);
+    const nightUtc = Date.UTC(year, month, day, 23 - 8, 55, 0);
+    return {
+      type: "range",
+      raw: matchRange[0],
+      endUtcTimestamp: endUtc,
+      nightUtcTimestamp: nightUtc,
+      beijingEndStr: `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")} ${String(endH).padStart(2, "0")}:${String(endM).padStart(2, "0")}`,
+      beijingNightStr: `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")} 23:55`,
+    };
+  }
+
+  // 格式 2：单点更新，如 將於11/18 08:00 (UTC+8)進行活動更新
+  const singleRegex = /(?:將?於|时间|時間)?\s*(?:(\d{4})[年/.-])?(\d{1,2})[月/.-](\d{1,2})[日号]?(?:\s*\([^\)]*\))?\s*(\d{1,2}):(\d{2})(?:\s*\(?UTC\+?8\)?)?/i;
+  const matchSingle = text.match(singleRegex);
+  if (matchSingle) {
+    const year = matchSingle[1] ? parseInt(matchSingle[1], 10) : defaultYear;
+    const month = parseInt(matchSingle[2], 10) - 1;
+    const day = parseInt(matchSingle[3], 10);
+    const h = parseInt(matchSingle[4], 10);
+    const m = parseInt(matchSingle[5], 10);
+
+    const endUtc = Date.UTC(year, month, day, h - 8, m, 0);
+    const nightUtc = Date.UTC(year, month, day, 23 - 8, 55, 0);
+    return {
+      type: "point",
+      raw: matchSingle[0],
+      endUtcTimestamp: endUtc,
+      nightUtcTimestamp: nightUtc,
+      beijingEndStr: `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")} ${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`,
+      beijingNightStr: `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")} 23:55`,
+    };
+  }
+
+  return null;
+}
+
+/**
+ * 核心调度：读取 Discord 公告、解析时间、定点准时触发
+ */
+async function checkAndDispatch(env, ctx, origin, force = false) {
   try {
     const botToken = env.DISCORD_BOT_TOKEN;
     const channelId = env.DISCORD_CHANNEL_ID || "1573590290424401932";
     const githubRepo = env.GITHUB_REPO || "lemon-o/Ark-Recode-material";
     const githubToken = env.GITHUB_PAT || env.GITHUB_TOKEN;
 
-    if (!botToken) {
+    if (!botToken || !githubToken) {
       return {
         status: "error",
-        message: "缺少环境变量 DISCORD_BOT_TOKEN（请在 Settings -> Variables 中添加）",
-      };
-    }
-
-    if (!githubToken) {
-      return {
-        status: "error",
-        message: "缺少环境变量 GITHUB_PAT（请在 Settings -> Variables 中添加）",
+        message: "缺少必要环境变量: DISCORD_BOT_TOKEN 或 GITHUB_PAT",
       };
     }
 
@@ -147,7 +199,7 @@ async function checkAndDispatch(env, ctx, origin) {
       return { status: "ok", message: "频道暂无消息" };
     }
 
-    // 2. 筛选包含维护、更新或招募特征的公告
+    // 2. 筛选维护公告
     let targetMsg = null;
     let targetContent = "";
     const keywords = ["維護", "维护", "更新", "招募", "機率UP", "概率UP"];
@@ -165,49 +217,113 @@ async function checkAndDispatch(env, ctx, origin) {
       return { status: "ok", message: "最新消息中未检测到维护或招募公告" };
     }
 
-    // 3. 防重复触发检查
-    let isProcessed = false;
+    // 3. 解析维护时间排程
+    const schedule = parseMaintenanceSchedule(targetContent);
+    const nowUtc = Date.now();
+    const beijingNowStr = new Date(nowUtc + 8 * 3600 * 1000).toISOString().replace("T", " ").slice(0, 16);
 
-    // 内存检查
-    if (memoryLastProcessedId && memoryLastProcessedId === targetMsg.id) {
-      isProcessed = true;
-    }
-
-    // KV 检查（若绑定了 ANNOUNCEMENT_KV）
-    if (!isProcessed && env.ANNOUNCEMENT_KV) {
-      try {
-        const lastId = await env.ANNOUNCEMENT_KV.get("last_processed_msg_id");
-        if (lastId === targetMsg.id) {
-          isProcessed = true;
-        }
-      } catch (e) {
-        // 忽略 KV 读取异常
-      }
-    }
-
-    // Edge Cache 检查
-    if (!isProcessed && origin) {
-      try {
-        const cache = caches.default;
-        const cacheKey = new Request(`${origin}/__cache__/msg_${targetMsg.id}`);
-        const hit = await cache.match(cacheKey);
-        if (hit) {
-          isProcessed = true;
-        }
-      } catch (e) {
-        // 忽略 Cache API 异常
-      }
-    }
-
-    if (isProcessed) {
+    if (!schedule && !force) {
       return {
-        status: "ok",
-        message: `该公告 (ID: ${targetMsg.id}) 之前已触发过同步，跳过重复调度`,
+        status: "waiting",
+        message: "已获取到公告，但正文中未包含具体维护时间，跳过触发",
         content_preview: targetContent.slice(0, 80) + "...",
       };
     }
 
-    // 4. 调用 GitHub API 触发 repository_dispatch
+    // 4. 计算当前是否命中【准时触发窗口】
+    let activeSlot = null; // 'end_time' | 'night_fallback' | null
+    let slotReason = "";
+
+    if (force) {
+      activeSlot = "manual_force";
+      slotReason = "手动强制触发测试";
+    } else if (schedule) {
+      // 窗口 1：维护结束时间开始后的 20 分钟内
+      const window1Start = schedule.endUtcTimestamp;
+      const window1End = schedule.endUtcTimestamp + 20 * 60 * 1000;
+
+      // 窗口 2：维护当天 23:55 开始后的 25 分钟内 (23:55 - 00:20)
+      const window2Start = schedule.nightUtcTimestamp;
+      const window2End = schedule.nightUtcTimestamp + 25 * 60 * 1000;
+
+      if (nowUtc >= window1Start && nowUtc < window1End) {
+        activeSlot = "end_time";
+        slotReason = `命中维护结束准时抓取窗口 (${schedule.beijingEndStr})`;
+      } else if (nowUtc >= window2Start && nowUtc < window2End) {
+        activeSlot = "night_fallback";
+        slotReason = `命中维护当晚 12 点兜底抓取窗口 (${schedule.beijingNightStr})`;
+      } else if (nowUtc < window1Start) {
+        const diffMinutes = Math.round((window1Start - nowUtc) / (60 * 1000));
+        return {
+          status: "waiting",
+          message: "官方提前发布了维护公告，维护尚未结束，暂不执行抓取",
+          current_time_beijing: beijingNowStr,
+          maintenance_end_beijing: schedule.beijingEndStr,
+          night_fallback_beijing: schedule.beijingNightStr,
+          countdown: `距离维护结束准时抓取还剩约 ${diffMinutes} 分钟`,
+          announcement_id: targetMsg.id,
+        };
+      } else if (nowUtc > window2End) {
+        return {
+          status: "expired",
+          message: "该维护公告已过期（已超过当晚 12 点兜底时间），跳过",
+          current_time_beijing: beijingNowStr,
+          maintenance_end_beijing: schedule.beijingEndStr,
+          announcement_id: targetMsg.id,
+        };
+      } else {
+        return {
+          status: "waiting_fallback",
+          message: "第一阶段（维护结束准时抓取）已过，当前等待当晚 23:55 兜底抓取",
+          current_time_beijing: beijingNowStr,
+          next_trigger_beijing: schedule.beijingNightStr,
+          announcement_id: targetMsg.id,
+        };
+      }
+    }
+
+    // 5. 防重复触发检查（每个公告的每个槽位只触发一次）
+    const slotKey = `${targetMsg.id}_${activeSlot}`;
+    let isDispatched = dispatchedSlots.has(slotKey);
+
+    // 检查 Cloudflare KV（若绑定）
+    if (!isDispatched && env.ANNOUNCEMENT_KV) {
+      try {
+        const val = await env.ANNOUNCEMENT_KV.get(slotKey);
+        if (val) isDispatched = true;
+      } catch (e) {
+        // ignore
+      }
+    }
+
+    // 检查 GitHub 远端 catalog-info.json 记录
+    if (!isDispatched && !force) {
+      try {
+        const infoResp = await fetch(
+          `https://raw.githubusercontent.com/${githubRepo}/main/data/catalog-info.json?t=${Date.now()}`,
+          { headers: { Authorization: `Bearer ${githubToken}` } }
+        );
+        if (infoResp.ok) {
+          const info = await infoResp.json();
+          // 如果仓库中记录的槽位已处理过
+          if (info.dispatched_slots && info.dispatched_slots.includes(slotKey)) {
+            isDispatched = true;
+          }
+        }
+      } catch (e) {
+        // ignore
+      }
+    }
+
+    if (isDispatched) {
+      return {
+        status: "ok",
+        message: `[${slotReason}] 该槽位 (${slotKey}) 之前已触发过，跳过重复调度`,
+        current_time_beijing: beijingNowStr,
+      };
+    }
+
+    // 6. 准时唤醒 GitHub Actions
     const dispatchUrl = `https://api.github.com/repos/${githubRepo}/dispatches`;
     const dispatchResp = await fetch(dispatchUrl, {
       method: "POST",
@@ -220,6 +336,8 @@ async function checkAndDispatch(env, ctx, origin) {
       body: JSON.stringify({
         event_type: "discord_announcement",
         client_payload: {
+          slot: activeSlot,
+          slot_key: slotKey,
           message_id: targetMsg.id,
           timestamp: targetMsg.timestamp,
           content: targetContent,
@@ -235,29 +353,11 @@ async function checkAndDispatch(env, ctx, origin) {
       };
     }
 
-    // 5. 标记该消息为已处理
-    memoryLastProcessedId = targetMsg.id;
-
+    // 7. 记录该槽位为已触发
+    dispatchedSlots.add(slotKey);
     if (env.ANNOUNCEMENT_KV) {
       try {
-        await env.ANNOUNCEMENT_KV.put("last_processed_msg_id", targetMsg.id);
-      } catch (e) {
-        // ignore
-      }
-    }
-
-    if (origin) {
-      try {
-        const cache = caches.default;
-        const cacheKey = new Request(`${origin}/__cache__/msg_${targetMsg.id}`);
-        const cacheResp = new Response("processed", {
-          headers: { "Cache-Control": "public, max-age=604800" },
-        });
-        if (ctx && ctx.waitUntil) {
-          ctx.waitUntil(cache.put(cacheKey, cacheResp));
-        } else {
-          await cache.put(cacheKey, cacheResp);
-        }
+        await env.ANNOUNCEMENT_KV.put(slotKey, "dispatched", { expirationTtl: 604800 });
       } catch (e) {
         // ignore
       }
@@ -265,8 +365,12 @@ async function checkAndDispatch(env, ctx, origin) {
 
     return {
       status: "dispatched",
-      message: `[OK] 成功唤醒 GitHub Actions! 公告 ID: ${targetMsg.id}`,
-      content_preview: targetContent.slice(0, 100),
+      slot: activeSlot,
+      reason: slotReason,
+      message: `[OK] 准时成功唤醒 GitHub Actions! (${slotReason})`,
+      current_time_beijing: beijingNowStr,
+      announcement_id: targetMsg.id,
+      preview: targetContent.slice(0, 100),
     };
   } catch (err) {
     return {
