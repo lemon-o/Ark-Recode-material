@@ -1,0 +1,47 @@
+{
+  "id": "1576137682697093120",
+  "title": "限定: 烈酒赤兔芭索蘿 / 埃帕蒂",
+  "activity_name": "活动更新",
+  "source": "discord_api",
+  "is_hot_reload": true,
+  "update_type": "不停机活动更新",
+  "maintenance": {
+    "window": "11/18 08:00 (UTC+8)",
+    "start_time": "2026-11-18T08:00:00+08:00",
+    "end_time": "2026-11-18T08:00:00+08:00",
+    "start_timestamp": 1794960000.0,
+    "end_timestamp": 1794960000.0
+  },
+  "heroes": {
+    "pickup": [
+      {
+        "id": "H180",
+        "name": "烈酒赤兔芭索蘿",
+        "name_chs": "烈酒赤兔芭索萝",
+        "name_cht": "烈酒赤兔芭索蘿",
+        "name_eng": "Crimson Hare Bartholo",
+        "star": 5,
+        "element": "Fire",
+        "job": "Warrior",
+        "is_debut": false,
+        "avatar_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/avatars/H180.png"
+      },
+      {
+        "id": "H016",
+        "name": "埃帕蒂",
+        "name_chs": "埃帕蒂",
+        "name_cht": "埃帕蒂",
+        "name_eng": "Apathy",
+        "star": 5,
+        "element": "Earth",
+        "job": "Vanguard",
+        "is_debut": false,
+        "avatar_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/avatars/H016.png"
+      }
+    ],
+    "mystic": [],
+    "rerun": []
+  },
+  "content": "11/18 維護公告\n團長您好，收到來自星源研究所的通知\n\n《星隕計畫 Ark Re:Code》預計將於11/18 08:00 (UTC+8)進行活動更新，本次維護將不會關閉伺服器，請團長重新開啟遊戲即可體驗最新活動！\n\n預計更新項目如下\n\n新增項目\n【招募機率UP】限定團員「烈酒赤兔芭索蘿」與羈絆「躍動的烈情」出現機率大幅提高！\n【招募機率UP】團員「埃帕蒂」與羈絆「拘束與放蕩」出現機率大幅提高！\n【物資補充計畫】關卡掉落提升，詳細時間請參照活動公告！\n\n感謝一直以來的支持，一起用愛²拯救世界！",
+  "updated_at": "2026-11-21T18:00:00+08:00"
+}

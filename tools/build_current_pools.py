@@ -1,10 +1,11 @@
-"""从官方维护公告 (data/announcement.json) 与游戏卡池元数据自动生成当前正在进行中的招募卡池情报 (data/current-pools.json)。
+"""从官方维护公告与游戏卡池元数据自动生成当前正在进行中的招募卡池情报 (data/current-pools.json)。
 
 同时提供看板生成能力，可将卡池看板表格自动嵌入 README.md，供用户与下游应用（抽卡模拟器、Wiki、前端看板、机器人）即时获取：
-1. 本期限定招募 (PickUp)、神秘招募与复刻招募的核心团员与专属羁绊；
-2. 对应的卡池横幅 (Banner)、角色头像、羁绊小图 CDN 直链；
-3. 保底抽数 (Pity Cap：限定 120 抽，神秘 200 抽)；
-4. 具体开放时间段（依据开服时间 + 默认/公告持续周期精准计算）。
+1. 正在开放中的所有未结束卡池（包含多期重叠卡池、限定招募、神秘招募与限定组合招募）；
+2. 招募类型精准标注：首发团员标注为「限定招募 (首发)」，复刻角色标注为「限定招募」；
+3. 特殊限时卡池：支持限定组合招募等自选池；
+4. 对应的卡池横幅 (Banner)、专属羁绊小图 CDN 直链；
+5. 具体开放时间段（依据开服时间 + 默认/公告持续周期精准计算）。
 """
 
 from __future__ import annotations
@@ -18,6 +19,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parent.parent
 
+ANNOUNCEMENTS_DIR = ROOT / "data" / "announcements"
 ANNOUNCEMENT_PATH = ROOT / "data" / "announcement.json"
 HEROES_PATH = ROOT / "data" / "heroes.json"
 SUMMON_POOLS_PATH = ROOT / "data" / "summon-pools.json"
@@ -31,6 +33,9 @@ _TZ8 = timezone(timedelta(hours=8))
 
 START_TAG = "<!-- CURRENT-POOLS:START -->"
 END_TAG = "<!-- CURRENT-POOLS:END -->"
+
+# 已知首发上线团员名单（用于首发标注兜底）
+KNOWN_DEBUT_HERO_IDS = {"H195"}
 
 
 def _load_json(path: Path) -> dict[str, Any]:
@@ -55,26 +60,26 @@ def parse_hero_bond_pairs(text: str) -> dict[str, str]:
 
 def calculate_pool_timeline(
     category: str,
-    hero_name: str,
+    target_name: str,
     content: str,
     start_time_iso: str,
 ) -> dict[str, Any]:
     """计算卡池开放时间范围与持续时长。
 
     业务规则：
-    1. 优先从该团员所在公告行提取显式指定的开放周期（如「持續1周」、「持續3周」）；
+    1. 优先从该卡池/团员所在公告行提取显式指定的开放周期（如「持續1周」、「持續3周」）；
     2. 若未明确说明：
        - 神秘招募卡池 (category == 'mystic') 默认持续 3 周 (21 天)；
-       - 其他限时卡池（限定招募、复刻招募）默认持续 2 周 (14 天)；
+       - 其他限时卡池（限定招募、限定组合招募、复刻招募）默认持续 2 周 (14 天)；
     3. 自动由卡池开放开始时间 + 持续时长计算出具体的截止时间段。
     """
     days = 21 if category == "mystic" else 14
     dur_str = "3周" if category == "mystic" else "2周"
 
-    # 1. 尝试从包含该角色名字的特定行提取
+    # 1. 尝试从包含该目标名字的特定行提取
     found_explicit = False
     for line in content.splitlines():
-        if hero_name and hero_name in line:
+        if target_name and target_name in line:
             m = re.search(r"持續\s*(\d+)\s*(周|週|天|日)", line)
             if m:
                 val = int(m.group(1))
@@ -158,12 +163,98 @@ def resolve_bond_info(bond_name: str, bonds_meta: dict[str, dict[str, str]]) -> 
     }
 
 
-def build_current_pools_data(
+def is_debut_hero(
+    hero_id: str,
+    hero_name: str,
+    content: str,
+    explicit_flag: bool | None = None,
+) -> bool:
+    """判定团员是否为本期首发上线团员。"""
+    if explicit_flag is not None:
+        return bool(explicit_flag)
+    if hero_id in KNOWN_DEBUT_HERO_IDS:
+        return True
+    for line in content.splitlines():
+        if hero_name and hero_name in line:
+            if re.search(r"全新|首發|首发|首度|初登場|初次登場", line):
+                return True
+    return False
+
+
+def resolve_pool_type(cat_label: str, is_debut: bool) -> str:
+    """依据招募类型与首发状态生成规范的招募类型标签。"""
+    if is_debut:
+        if cat_label in ("限定招募", "活动招募", "PickUp"):
+            return "限定招募 (首发)"
+        if cat_label == "神秘招募":
+            return "神秘招募 (首发)"
+        return f"{cat_label} (首发)"
+    return cat_label
+
+
+def parse_combo_pools(
+    content: str,
+    base_start_time: str,
+) -> list[dict[str, Any]]:
+    """从公告正文中解析限定组合招募等特殊自选卡池。"""
+    combo_pools: list[dict[str, Any]] = []
+    lines = content.splitlines()
+
+    for line in lines:
+        if not re.search(r"組合招募|组合招募", line):
+            continue
+
+        m_name = re.search(r"【(?:招募機率UP|招募概率UP)】\s*([^\n，,]*?(?:組合招募|组合招募)[^\n，,]*)", line)
+        raw_name = m_name.group(1).strip() if m_name else "限定组合招募"
+        clean_name = re.sub(r"(?:開放|开启|開啟)$", "", raw_name).strip()
+
+        timeline = calculate_pool_timeline(
+            category="combo",
+            target_name=clean_name,
+            content=line,
+            start_time_iso=base_start_time,
+        )
+
+        banner_file = "BN_Summon_MultiSummonLimit.png"
+        banner_path = ROOT / "banners" / banner_file
+        banner_url = f"{CDN_BASE}/banners/{banner_file}" if banner_path.is_file() else ""
+
+        entry = {
+            "pool_id": "ComboSummon_MultiSummonLimit",
+            "name": clean_name,
+            "type": "限定组合招募",
+            "category": "combo",
+            "is_debut": False,
+            "pity_cap": 120,
+            "hero": None,
+            "exclusive_bond": {
+                "id": "",
+                "name_chs": "自选3名团员",
+                "name_cht": "自選3名團員",
+                "icon_url": "",
+            },
+            "banner": {
+                "file": banner_file if banner_path.is_file() else "",
+                "url": banner_url,
+            },
+            "start_time": timeline["start_time"],
+            "end_time": timeline["end_time"],
+            "duration": timeline["duration"],
+            "duration_days": timeline["duration_days"],
+            "display_time": timeline["display_time"],
+        }
+        combo_pools.append(entry)
+
+    return combo_pools
+
+
+def extract_pools_from_announcement(
     announcement: dict[str, Any],
     heroes_meta: dict[str, Any],
     pools_meta: dict[str, Any],
     bonds_meta: dict[str, Any],
-) -> dict[str, Any]:
+) -> list[dict[str, Any]]:
+    """从单个公告对象中提取该公告所涉及的全部招募卡池。"""
     content = announcement.get("content", "")
     maintenance = announcement.get("maintenance", {})
     heroes_section = announcement.get("heroes", {})
@@ -172,16 +263,16 @@ def build_current_pools_data(
     pools_dict = pools_meta.get("pools", {})
     all_heroes = heroes_meta.get("heroes", {})
 
-    active_pools: list[dict[str, Any]] = []
+    pools: list[dict[str, Any]] = []
 
-    # 分类处理：pickup, mystic, rerun
+    base_start_time = maintenance.get("end_time") or maintenance.get("start_time") or ""
+
+    # 1. 角色限定 / 神秘 / 复刻卡池
     categories = [
         ("pickup", "限定招募", 120),
         ("mystic", "神秘招募", 200),
         ("rerun", "复刻招募", 120),
     ]
-
-    base_start_time = maintenance.get("end_time") or maintenance.get("start_time") or ""
 
     for cat_key, cat_label, default_cap in categories:
         hero_list = heroes_section.get(cat_key, [])
@@ -195,7 +286,6 @@ def build_current_pools_data(
             name_cht = hero_detail.get("name_cht") or h.get("name_cht") or h.get("name") or ""
             name_eng = hero_detail.get("name_eng") or h.get("name_eng") or ""
 
-            # 寻找专属羁绊
             raw_bond_name = (
                 hero_bond_map.get(name_cht)
                 or hero_bond_map.get(name_chs)
@@ -204,29 +294,36 @@ def build_current_pools_data(
             )
             bond_info = resolve_bond_info(raw_bond_name, bonds_meta) if raw_bond_name else None
 
-            # 寻找 Banner
             banner_file = f"BN_Summon_{hid}.png"
             banner_path = ROOT / "banners" / banner_file
             has_banner = banner_path.is_file()
             banner_url = f"{CDN_BASE}/banners/{banner_file}" if has_banner else ""
 
-            # 匹配池信息与保底
             pool_id = f"ActivitySummon{hid}" if cat_key != "mystic" else f"MysticSummon{hid}"
             pool_cfg = pools_dict.get(pool_id) or pools_dict.get(f"AcyivitySummon{hid}") or {}
             cap = pool_cfg.get("cap") or default_cap
 
-            # 精准计算开放时间段
             timeline = calculate_pool_timeline(
                 category=cat_key,
-                hero_name=name_cht or name_chs,
+                target_name=name_cht or name_chs,
                 content=content,
                 start_time_iso=base_start_time,
             )
 
+            debut = is_debut_hero(
+                hero_id=hid,
+                hero_name=name_cht or name_chs,
+                content=content,
+                explicit_flag=h.get("is_debut"),
+            )
+
+            type_label = resolve_pool_type(cat_label, is_debut=debut)
+
             pool_entry = {
                 "pool_id": pool_id,
-                "type": cat_label,
+                "type": type_label,
                 "category": cat_key,
+                "is_debut": debut,
                 "pity_cap": cap,
                 "hero": {
                     "id": hid,
@@ -249,21 +346,109 @@ def build_current_pools_data(
                 "duration_days": timeline["duration_days"],
                 "display_time": timeline["display_time"],
             }
-            active_pools.append(pool_entry)
+            pools.append(pool_entry)
+
+    # 2. 特殊限时组合招募池
+    combo_pools = parse_combo_pools(content=content, base_start_time=base_start_time)
+    pools.extend(combo_pools)
+
+    return pools
+
+
+def load_all_announcements(primary_announcement: dict[str, Any] | None = None) -> list[dict[str, Any]]:
+    """汇总已归档的历史公告与当前公告。"""
+    announcements: list[dict[str, Any]] = []
+    seen_ids: set[str] = set()
+
+    if ANNOUNCEMENTS_DIR.is_dir():
+        for f in sorted(ANNOUNCEMENTS_DIR.glob("*.json")):
+            data = _load_json(f)
+            aid = str(data.get("id") or f.stem)
+            if aid and aid not in seen_ids:
+                seen_ids.add(aid)
+                announcements.append(data)
+
+    if primary_announcement:
+        aid = str(primary_announcement.get("id") or "")
+        if aid and aid not in seen_ids:
+            seen_ids.add(aid)
+            announcements.append(primary_announcement)
+        elif not aid:
+            announcements.append(primary_announcement)
+
+    return announcements
+
+
+def build_current_pools_data(
+    primary_announcement: dict[str, Any],
+    heroes_meta: dict[str, Any],
+    pools_meta: dict[str, Any],
+    bonds_meta: dict[str, Any],
+    now_dt: datetime | None = None,
+) -> dict[str, Any]:
+    """汇总并构建当前所有未结束的招募活动卡池情报。"""
+    if now_dt is None:
+        now_dt = datetime.now(_TZ8)
+
+    announcements = load_all_announcements(primary_announcement)
+    if not announcements and primary_announcement:
+        announcements = [primary_announcement]
+
+    existing_current = _load_json(OUTPUT_PATH)
+    existing_pools = existing_current.get("active_pools") or []
+
+    pools_registry: dict[str, dict[str, Any]] = {}
+
+    # 1. 载入先前已存在的活跃池基线
+    for p in existing_pools:
+        pid = p.get("pool_id")
+        if pid:
+            pools_registry[pid] = p
+
+    # 2. 从所有收集到的公告中提取/覆盖卡池
+    order_counter = 0
+    for ann in announcements:
+        extracted = extract_pools_from_announcement(ann, heroes_meta, pools_meta, bonds_meta)
+        for ep in extracted:
+            order_counter += 1
+            ep["_order"] = order_counter
+            pid = ep["pool_id"]
+            pools_registry[pid] = ep
+
+    # 3. 过滤并剔除已截止的卡池 (now > end_time)
+    active_pools: list[dict[str, Any]] = []
+    for pid, pool in pools_registry.items():
+        end_time_str = pool.get("end_time")
+        if end_time_str:
+            try:
+                end_dt = datetime.fromisoformat(end_time_str)
+                if end_dt < now_dt:
+                    continue  # 已结束，剔除
+            except Exception:
+                pass
+        active_pools.append(pool)
+
+    # 4. 排序：按卡池开放起始时间升序排列，相同起始时间保持公告声明顺序
+    active_pools.sort(key=lambda x: (x.get("start_time") or "", x.get("_order", 0)))
+    for p in active_pools:
+        p.pop("_order", None)
+
+    latest_ann = primary_announcement or (announcements[-1] if announcements else {})
+    maintenance = latest_ann.get("maintenance", {})
 
     return {
-        "updated_at": datetime.now(_TZ8).isoformat(timespec="seconds"),
-        "announcement_id": announcement.get("id", ""),
-        "activity_name": announcement.get("activity_name", ""),
-        "update_type": announcement.get("update_type", "常规停机维护"),
-        "is_hot_reload": announcement.get("is_hot_reload", False),
+        "updated_at": now_dt.isoformat(timespec="seconds"),
+        "announcement_id": latest_ann.get("id", ""),
+        "activity_name": latest_ann.get("activity_name", ""),
+        "update_type": latest_ann.get("update_type", "活动更新"),
+        "is_hot_reload": latest_ann.get("is_hot_reload", False),
         "maintenance": maintenance,
         "active_pools": active_pools,
     }
 
 
 def render_readme_dashboard(pools_data: dict[str, Any]) -> str:
-    """生成嵌入 README.md 的卡池看板 Markdown 表格。"""
+    """生成嵌入 README.md 的卡池看板 Markdown 表格（精简 4 列规范）。"""
     active_pools = pools_data.get("active_pools", [])
     maint = pools_data.get("maintenance", {})
     window = maint.get("window", "")
@@ -271,7 +456,7 @@ def render_readme_dashboard(pools_data: dict[str, Any]) -> str:
     lines = [
         START_TAG,
         "<!-- 本看板联动官方维护公告与卡池配置自动生成，请勿手动修改 -->",
-        f"> **当前招募活动窗口**：`{window}` | **更新类型**：{pools_data.get('update_type', '常规维护')}",
+        f"> **当前招募活动窗口**：`{window}` | **更新类型**：{pools_data.get('update_type', '活动更新')}",
         "> **实时接口**：[`data/current-pools.json`](https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/data/current-pools.json)",
         "",
         "| 卡池横幅 | 招募类型 | 专属羁绊 | 开放时间 |",
@@ -279,24 +464,26 @@ def render_readme_dashboard(pools_data: dict[str, Any]) -> str:
     ]
 
     if not active_pools:
-        lines.append("| *暂无正在进行中的招募卡池* | - | - | - |")
+        lines.append("| *(暂无进行中的招募卡池)* | - | - | - |")
     else:
         for p in active_pools:
             bond = p.get("exclusive_bond") or {}
             banner = p.get("banner", {})
 
-            # 横幅
+            # 横幅列
             if banner.get("url"):
                 banner_md = f"[![Banner]({banner['url']})]({banner['url']})"
             else:
                 banner_md = "*(暂无横幅)*"
 
-            # 羁绊
-            if bond and bond.get("name_chs"):
+            # 专属羁绊列
+            if p.get("category") == "combo" or bond.get("name_chs") == "自选3名团员":
+                bond_md = "— (自选3名团员)"
+            elif bond and bond.get("name_chs"):
                 bond_name = bond.get("name_chs")
                 bond_icon = bond.get("icon_url")
                 if bond_icon:
-                    bond_md = f"<img src=\"{bond_icon}\" width=\"28\" height=\"28\" align=\"center\" /> 「{bond_name}」"
+                    bond_md = f'<img src="{bond_icon}" width="28" height="28" align="center" /> 「{bond_name}」'
                 else:
                     bond_md = f"「{bond_name}」"
             else:
@@ -323,7 +510,6 @@ def update_readme_with_dashboard(dashboard_text: str) -> bool:
     if pattern.search(content):
         new_content = pattern.sub(lambda _: dashboard_text, content, count=1)
     else:
-        # 插入到「当前状态」块之后
         status_end_tag = "<!-- SYNC-STATS:END -->"
         if status_end_tag in content:
             new_content = content.replace(
@@ -347,9 +533,6 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     announcement = _load_json(args.announcement)
-    if not announcement:
-        print("[!] 维护公告文件为空，跳过卡池情报生成。")
-        return 0
 
     heroes_meta = _load_json(HEROES_PATH)
     pools_meta = _load_json(SUMMON_POOLS_PATH)

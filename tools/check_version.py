@@ -297,6 +297,12 @@ def export_downstream_announcement(notice: dict | None, source: str) -> None:
 
     ANNOUNCEMENT_FILE_PATH.parent.mkdir(parents=True, exist_ok=True)
     ANNOUNCEMENT_FILE_PATH.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    notice_id = str(notice.get("id") or "").strip()
+    if notice_id:
+        archive_dir = ROOT / "data" / "announcements"
+        archive_dir.mkdir(parents=True, exist_ok=True)
+        archive_file = archive_dir / f"{notice_id}.json"
+        archive_file.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"已导出下游维护公告文件 -> {ANNOUNCEMENT_FILE_PATH}")
 
 

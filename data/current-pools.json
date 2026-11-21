@@ -1,21 +1,22 @@
 {
-  "updated_at": "2026-11-21T19:15:28+08:00",
-  "announcement_id": "1573604140079259678",
-  "activity_name": "眾星雲集的慶典",
-  "update_type": "常规停机维护",
-  "is_hot_reload": false,
+  "updated_at": "2026-11-21T19:44:31+08:00",
+  "announcement_id": "1576137682697093120",
+  "activity_name": "活动更新",
+  "update_type": "不停机活动更新",
+  "is_hot_reload": true,
   "maintenance": {
-    "window": "11/11 14:00 - 19:00 (UTC+8)",
-    "start_time": "2026-11-11T14:00:00+08:00",
-    "end_time": "2026-11-11T19:00:00+08:00",
-    "start_timestamp": 1794376800.0,
-    "end_timestamp": 1794394800.0
+    "window": "11/18 08:00 (UTC+8)",
+    "start_time": "2026-11-18T08:00:00+08:00",
+    "end_time": "2026-11-18T08:00:00+08:00",
+    "start_timestamp": 1794960000.0,
+    "end_timestamp": 1794960000.0
   },
   "active_pools": [
     {
       "pool_id": "ActivitySummonH195",
-      "type": "限定招募",
+      "type": "限定招募 (首发)",
       "category": "pickup",
+      "is_debut": true,
       "pity_cap": 120,
       "hero": {
         "id": "H195",
@@ -42,6 +43,94 @@
       "duration": "2周",
       "duration_days": 14,
       "display_time": "2026/11/11 19:00 - 2026/11/25 19:00"
+    },
+    {
+      "pool_id": "ComboSummon_MultiSummonLimit",
+      "name": "3週年限定組合招募",
+      "type": "限定组合招募",
+      "category": "combo",
+      "is_debut": false,
+      "pity_cap": 120,
+      "hero": null,
+      "exclusive_bond": {
+        "id": "",
+        "name_chs": "自选3名团员",
+        "name_cht": "自選3名團員",
+        "icon_url": ""
+      },
+      "banner": {
+        "file": "BN_Summon_MultiSummonLimit.png",
+        "url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/banners/BN_Summon_MultiSummonLimit.png"
+      },
+      "start_time": "2026-11-11T19:00:00+08:00",
+      "end_time": "2026-11-25T19:00:00+08:00",
+      "duration": "2周",
+      "duration_days": 14,
+      "display_time": "2026/11/11 19:00 - 2026/11/25 19:00"
+    },
+    {
+      "pool_id": "ActivitySummonH180",
+      "type": "限定招募",
+      "category": "pickup",
+      "is_debut": false,
+      "pity_cap": 120,
+      "hero": {
+        "id": "H180",
+        "name_chs": "烈酒赤兔芭索萝",
+        "name_cht": "烈酒赤兔芭索蘿",
+        "name_eng": "Crimson Hare Bartholo",
+        "star": 5,
+        "element": "Fire",
+        "job": "Warrior",
+        "avatar_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/avatars/H180.png"
+      },
+      "exclusive_bond": {
+        "id": "A0356",
+        "name_chs": "跃动的烈情",
+        "name_cht": "躍動的烈情",
+        "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0356.png"
+      },
+      "banner": {
+        "file": "BN_Summon_H180.png",
+        "url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/banners/BN_Summon_H180.png"
+      },
+      "start_time": "2026-11-18T08:00:00+08:00",
+      "end_time": "2026-12-02T08:00:00+08:00",
+      "duration": "2周",
+      "duration_days": 14,
+      "display_time": "2026/11/18 08:00 - 2026/12/02 08:00"
+    },
+    {
+      "pool_id": "ActivitySummonH016",
+      "type": "限定招募",
+      "category": "pickup",
+      "is_debut": false,
+      "pity_cap": 120,
+      "hero": {
+        "id": "H016",
+        "name_chs": "埃帕蒂",
+        "name_cht": "埃帕蒂",
+        "name_eng": "Apathy",
+        "star": 5,
+        "element": "Earth",
+        "job": "Vanguard",
+        "avatar_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/avatars/H016.png"
+      },
+      "exclusive_bond": {
+        "id": "A0012",
+        "name_chs": "拘束与放荡",
+        "name_cht": "拘束與放蕩",
+        "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0012.png"
+      },
+      "banner": {
+        "file": "BN_Summon_H016.png",
+        "url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/banners/BN_Summon_H016.png"
+      },
+      "start_time": "2026-11-18T08:00:00+08:00",
+      "end_time": "2026-12-02T08:00:00+08:00",
+      "duration": "2周",
+      "duration_days": 14,
+      "display_time": "2026/11/18 08:00 - 2026/12/02 08:00"
     }
   ]
 }
