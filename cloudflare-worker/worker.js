@@ -104,6 +104,13 @@ function extractMessageContent(msg) {
   return parts.join("\n\n");
 }
 
+function resolveYear(yearStr, targetMonth, currentMonth, currentYear) {
+  if (yearStr) return parseInt(yearStr, 10);
+  if (currentMonth === 11 && targetMonth === 0) return currentYear + 1;
+  if (currentMonth === 0 && targetMonth === 11) return currentYear - 1;
+  return currentYear;
+}
+
 /**
  * 解析公告文本中的维护结束时间点（转换为 UTC 时间戳）
  */
@@ -111,13 +118,14 @@ function parseMaintenanceSchedule(text) {
   if (!text) return null;
   const now = new Date();
   const defaultYear = now.getFullYear();
+  const currentMonth = now.getMonth();
 
   // 格式 1：时间范围，如 11/26 14:00 - 18:00 (UTC+8)
   const rangeRegex = /(?:(\d{4})[年/.-])?(\d{1,2})[月/.-](\d{1,2})[日号]?(?:\s*\([^\)]*\))?\s*(\d{1,2}):(\d{2})\s*[-~至到]\s*(\d{1,2}):(\d{2})(?:\s*\(?UTC\+?8\)?)?/i;
   const matchRange = text.match(rangeRegex);
   if (matchRange) {
-    const year = matchRange[1] ? parseInt(matchRange[1], 10) : defaultYear;
     const month = parseInt(matchRange[2], 10) - 1;
+    const year = resolveYear(matchRange[1], month, currentMonth, defaultYear);
     const day = parseInt(matchRange[3], 10);
     const endH = parseInt(matchRange[6], 10);
     const endM = parseInt(matchRange[7], 10);
@@ -139,8 +147,8 @@ function parseMaintenanceSchedule(text) {
   const singleRegex = /(?:將?於|时间|時間)?\s*(?:(\d{4})[年/.-])?(\d{1,2})[月/.-](\d{1,2})[日号]?(?:\s*\([^\)]*\))?\s*(\d{1,2}):(\d{2})(?:\s*\(?UTC\+?8\)?)?/i;
   const matchSingle = text.match(singleRegex);
   if (matchSingle) {
-    const year = matchSingle[1] ? parseInt(matchSingle[1], 10) : defaultYear;
     const month = parseInt(matchSingle[2], 10) - 1;
+    const year = resolveYear(matchSingle[1], month, currentMonth, defaultYear);
     const day = parseInt(matchSingle[3], 10);
     const h = parseInt(matchSingle[4], 10);
     const m = parseInt(matchSingle[5], 10);
