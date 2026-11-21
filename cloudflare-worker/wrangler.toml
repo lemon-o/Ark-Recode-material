@@ -1,0 +1,16 @@
+name = "ark-recode-announcement-bridge"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+# 定时调度：每 5 分钟自动巡检一次 Discord 频道
+# 发现新公告立即唤醒 GitHub Actions
+[triggers]
+crons = ["*/5 * * * *"]
+
+[vars]
+GITHUB_REPO = "lemon-o/Ark-Recode-material"
+DISCORD_CHANNEL_ID = "1573590290424401932"
+
+# 密钥配置说明（请在 Cloudflare Dashboard 的 Worker -> Settings -> Variables 中添加为 Secret）：
+# DISCORD_BOT_TOKEN = "你的 Discord Bot Token"
+# GITHUB_PAT = "具备 repo 权限的 GitHub Personal Access Token"
