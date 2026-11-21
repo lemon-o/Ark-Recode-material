@@ -35,6 +35,9 @@ OUTPUT_FILE = ROOT / "data" / "heroes.json"
 
 _TZ8 = timezone(timedelta(hours=8))
 
+DISCORD_NOTICE_PATH = ROOT / "data" / "discord-notice.json"
+CATALOG_INFO_PATH = ROOT / "data" / "catalog-info.json"
+
 # 手工校准的未上线/拆包预埋角色 ID 集合：
 # 官方数据表中可能已提前写入好感度签名、活动配置或 Spine 资源，但正式服尚未实装上线。
 UNRELEASED_HERO_OVERRIDES: set[str] = {
@@ -49,6 +52,33 @@ UNRELEASED_HERO_OVERRIDES: set[str] = {
     "H201",  # 藿普
     "H607",  # 玖可
 }
+
+
+def _get_announced_hero_ids() -> set[str]:
+    """从 Discord 官方公告或版本基线中提取已确认为正式上线的角色 ID 集合（优先放行白名单）。"""
+    announced: set[str] = set()
+
+    # 1. 优先读取 Discord 专用公告快照
+    if DISCORD_NOTICE_PATH.is_file():
+        try:
+            d = json.loads(DISCORD_NOTICE_PATH.read_text(encoding="utf-8"))
+            for h in (d.get("pickup_heroes") or []) + (d.get("mystic_heroes") or []):
+                if isinstance(h, dict) and h.get("id"):
+                    announced.add(str(h["id"]).upper())
+        except (OSError, ValueError):
+            pass
+
+    # 2. 读取 catalog-info.json 中的公告解析记录
+    if CATALOG_INFO_PATH.is_file():
+        try:
+            d = json.loads(CATALOG_INFO_PATH.read_text(encoding="utf-8"))
+            for h in (d.get("pickup_heroes") or []) + (d.get("mystic_heroes") or []):
+                if isinstance(h, dict) and h.get("id"):
+                    announced.add(str(h["id"]).upper())
+        except (OSError, ValueError):
+            pass
+
+    return announced
 
 
 def _read_config() -> dict[str, str]:
@@ -179,6 +209,11 @@ def main(argv: list[str] | None = None) -> int:
     released_ids = []
     unreleased_ids = []
 
+    # 优先读取 Discord 官方公告/版本基线确认上线的白名单角色
+    announced_ids = _get_announced_hero_ids()
+    if announced_ids:
+        print(f"公告确认上线放行名单 (Discord/Official): {sorted(list(announced_ids))}")
+
     for parts in role_rows:
         hid = parts[0]
         title_key = parts[1] if len(parts) > 1 else ""
@@ -194,16 +229,22 @@ def main(argv: list[str] | None = None) -> int:
         name_jpn = loc_maps["JPN"].get(name_key) or name_chs
 
         # 核心判定：是否正式上线
-        # 必须同时满足：
-        # 1. 不在手工校准的未上线/拆包预埋黑名单中（hid not in UNRELEASED_HERO_OVERRIDES）
-        # 2. 在好感度签名表中登记有非空内容（hid in role_signatures）
-        # 3. 官方 CDN 中已实装 Spine 骨骼立绘（hid in existing_spines，排除 H202、H169 等未实装资源的角色）
-        # 4. 具有正式官方角色名称（排除 H169 这种纯 ID 占位测试空壳）
+        # 满足以下两条之一即可判定为正式上线：
+        # 1. 【Discord 官方频道/公告优先】：被官方公告明确确认为本期限定招募或神秘招募（自动解除黑名单限制放行）
+        # 2. 或满足常规实装条件：
+        #    a. 不在手工校准的未上线/拆包预埋黑名单中（hid not in UNRELEASED_HERO_OVERRIDES）
+        #    b. 在好感度签名表中登记有非空内容（hid in role_signatures）
+        #    c. 官方 CDN 中已实装 Spine 骨骼立绘（hid in existing_spines）
+        #    d. 具有正式官方角色名称（排除 H169 这种纯 ID 占位测试空壳）
+        is_officially_announced = hid in announced_ids
         is_released = bool(
-            hid not in UNRELEASED_HERO_OVERRIDES
-            and hid in role_signatures
-            and hid in existing_spines
-            and name_chs != hid
+            is_officially_announced
+            or (
+                hid not in UNRELEASED_HERO_OVERRIDES
+                and hid in role_signatures
+                and hid in existing_spines
+                and name_chs != hid
+            )
         )
 
         if is_released:

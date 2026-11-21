@@ -16,8 +16,12 @@ on:
         description: "只扫描不写入与提交"
         type: boolean
         default: false
+      discord_text:
+        description: "直接传入 Discord 官方最新公告文本进行精准识别（可选）"
+        type: string
+        default: ""
   repository_dispatch:
-    types: [game_updated, catalog_updated, sync_assets]
+    types: [game_updated, catalog_updated, sync_assets, discord_announcement]
 
 permissions:
   contents: write
@@ -45,6 +49,11 @@ jobs:
 
       - name: 检查游戏 Catalog 版本变动
         id: check
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          DISCORD_USER_TOKEN: ${{ secrets.DISCORD_USER_TOKEN }}
+          DISCORD_CHANNEL_ID: ${{ secrets.DISCORD_CHANNEL_ID }}
+          DISCORD_ANNOUNCEMENT_TEXT: ${{ inputs.discord_text || github.event.client_payload.content || '' }}
         run: |
           FORCE_FLAG="${{ (inputs.force || github.event_name == 'repository_dispatch') && '--force' || '' }}"
           python tools/check_version.py $FORCE_FLAG

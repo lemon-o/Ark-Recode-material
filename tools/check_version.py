@@ -30,6 +30,11 @@ from pathlib import Path
 
 import httpx
 
+try:
+    from tools.discord_announcement import fetch_discord_notice
+except ImportError:
+    from discord_announcement import fetch_discord_notice
+
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG_PATH = ROOT / "backend" / "config.py"
 STATE_PATH = ROOT / "data" / "catalog-info.json"
@@ -226,7 +231,7 @@ def load_local_state() -> dict:
         return {}
 
 
-def save_local_state(catalog_info: dict, notice: dict | None = None) -> None:
+def save_local_state(catalog_info: dict, notice: dict | None = None, source: str = "erolabs") -> None:
     STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
     payload = {
         "catalog": catalog_info.get("catalog"),
@@ -234,10 +239,14 @@ def save_local_state(catalog_info: dict, notice: dict | None = None) -> None:
         "etag": catalog_info.get("etag"),
         "last_modified": catalog_info.get("last_modified"),
         "size": catalog_info.get("size"),
-        "last_notice_id": (notice or {}).get("id"),
+        "notice_source": source,
+        "last_notice_id": (notice or {}).get("id") or (notice or {}).get("newsId"),
         "last_notice_title": (notice or {}).get("title"),
         "maintenance_window": (notice or {}).get("window"),
         "maintenance_end": (notice or {}).get("endTime"),
+        "pickup_heroes": (notice or {}).get("pickup_heroes") or [],
+        "mystic_heroes": (notice or {}).get("mystic_heroes") or [],
+        "rerun_heroes": (notice or {}).get("rerun_heroes") or [],
         "updated_at": datetime.now(timezone.utc).astimezone().isoformat(timespec="seconds"),
     }
     STATE_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -261,16 +270,29 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     print("正在抓取官方维护公告与游戏 Catalog 状态...")
-    notice = fetch_maintenance_notice()
+    # 优先检测 Discord 官方频道公告
+    notice_source = "none"
+    discord_notice = fetch_discord_notice()
+    if discord_notice:
+        notice = discord_notice
+        notice_source = discord_notice.get("source", "discord")
+        print(f"[情报源: Discord 优先] 维护窗口: [{notice.get('window')}] {notice.get('title')}")
+        if notice.get("pickup_heroes"):
+            print(f"  限定招募: {[h['name'] for h in notice['pickup_heroes']]}")
+        if notice.get("mystic_heroes"):
+            print(f"  神秘招募: {[h['name'] for h in notice['mystic_heroes']]}")
+    else:
+        # 回退至 EROLABS 网页新闻 API
+        notice = fetch_maintenance_notice()
+        notice_source = "erolabs" if notice else "none"
+        if notice:
+            print(f"[情报源: EROLABS 网页] 维护窗口: [{notice.get('window')}] {notice.get('title')}")
+        else:
+            print("未抓取到近期维护公告（常规状态）")
+
     remote = fetch_remote_catalog_info()
     local = load_local_state()
-
     now_ts = datetime.now(timezone.utc).timestamp()
-
-    if notice:
-        print(f"官方维护公告: [{notice.get('window')}] {notice.get('title')}")
-    else:
-        print("未抓取到近期维护公告（常规状态）")
 
     remote_catalog = remote.get("catalog")
     remote_etag = remote.get("etag")
@@ -329,10 +351,11 @@ def main(argv: list[str] | None = None) -> int:
     _set_github_output("catalog", str(remote_catalog))
     _set_github_output("catalog_url", str(remote.get("url")))
     _set_github_output("notice_title", clean_title)
+    _set_github_output("notice_source", notice_source)
     _set_github_output("maintenance_window", str((notice or {}).get("window") or ""))
 
     if args.save:
-        save_local_state(remote, notice)
+        save_local_state(remote, notice, source=notice_source)
 
     return 0
 
