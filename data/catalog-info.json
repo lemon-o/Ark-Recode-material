@@ -1,8 +1,8 @@
 {
-  "catalog": "catalog_116553",
-  "url": "https://erdpu.gzxhcjz.com/GamePatch/WebGL/catalog_116553.json",
+  "catalog": "catalog_116600",
+  "url": "https://erdpu.gzxhcjz.com/GamePatch/WebGL/catalog_116600.json",
   "etag": "\"b9538450e430a8bcc06603eb1591f612-4\"",
-  "last_modified": "Wed, 25 Nov 2026 06:34:25 GMT",
+  "last_modified": "Wed, 25 Nov 2026 08:53:51 GMT",
   "size": 27927611,
   "notice_source": "erolabs",
   "last_notice_id": 3747,
@@ -19,7 +19,8 @@
   "mystic_heroes": [],
   "rerun_heroes": [],
   "dispatched_slots": [
-    "1574711295427739772_maint_mid_2h"
+    "1574711295427739772_maint_mid_2h",
+    "1574711295427739772_end_time"
   ],
-  "updated_at": "2026-11-25T08:20:17+00:00"
+  "updated_at": "2026-11-25T09:02:24+00:00"
 }
