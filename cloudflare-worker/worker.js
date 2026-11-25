@@ -13,6 +13,8 @@
 
 // 实例内存记录已触发过的槽位: Set of `${msgId}_${slot}`
 const dispatchedSlots = new Set();
+// 记录最近派发时间戳，防止毫秒级瞬时双发并发: Map of `${slotKey} -> timestamp`
+const lastDispatchTimestamps = new Map();
 
 export default {
   // 1. 定时任务触发（Cron Trigger）
@@ -363,6 +365,17 @@ async function checkAndDispatch(env, ctx, origin, force = false) {
 
     // 5. 防重复触发检查（每个公告的每个槽位只触发一次）
     const slotKey = `${targetMsg.id}_${activeSlot}`;
+    const nowTimestamp = Date.now();
+    const lastDispatchedAt = lastDispatchTimestamps.get(slotKey) || 0;
+    // 60 秒内严格防抖，杜绝多实例/并发瞬时双发
+    if (nowTimestamp - lastDispatchedAt < 60000) {
+      return {
+        status: "ok",
+        message: `[${slotReason}] 该槽位 (${slotKey}) 刚刚已在 60 秒内触发过，防抖拦截`,
+        current_time_beijing: beijingNowStr,
+      };
+    }
+
     let isDispatched = dispatchedSlots.has(slotKey);
 
     // 检查 Cloudflare KV（若绑定）
@@ -434,6 +447,7 @@ async function checkAndDispatch(env, ctx, origin, force = false) {
 
     // 7. 记录该槽位为已触发
     dispatchedSlots.add(slotKey);
+    lastDispatchTimestamps.set(slotKey, Date.now());
     if (env.ANNOUNCEMENT_KV) {
       try {
         await env.ANNOUNCEMENT_KV.put(slotKey, "dispatched", { expirationTtl: 604800 });
