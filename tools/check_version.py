@@ -426,14 +426,16 @@ def main(argv: list[str] | None = None) -> int:
         changed = True
         reasons.append("本地无基线状态记录")
     else:
-        # 1. 公告时段检查：若有新维护公告，且当前时间已接近或超过维护结束时间（结束前半小时预热）
+        # 1. 公告时段检查：若有新维护公告，且当前时间已过维护开始后 2 小时（或维护结束前半小时）
         if notice and notice.get("id"):
             notice_id = notice["id"]
+            start_ts = notice.get("startTimestamp", 0)
             end_ts = notice.get("endTimestamp", 0)
-            # 维护结束前 30 分钟起开始探查更新（此时 CDN 通常已预热或即将开服）
-            if notice_id != last_notice_id and now_ts >= (end_ts - 1800):
+            # 维护开始后 2 小时起开始探查更新（若维护总时长 <= 2 小时则取结束前半小时预热）
+            mid2h_ts = (start_ts + 7200) if (end_ts - start_ts > 7200) else (end_ts - 1800)
+            if notice_id != last_notice_id and now_ts >= mid2h_ts:
                 changed = True
-                reasons.append(f"命中官方新维护时段: {notice.get('window')} ({notice.get('title')})")
+                reasons.append(f"命中官方新维护时段 (已过维护开始后2小时): {notice.get('window')} ({notice.get('title')})")
 
         # 2. Catalog 物理变动检查（热更/补丁上线）：名称、ETag 或大小变动
         if remote_catalog != local_catalog:

@@ -245,23 +245,23 @@ def resolve_slot(slot_arg: str) -> str:
 
     # 从环境变量读取
     env_slot = os.environ.get("DISPATCH_SLOT", "").strip().lower()
-    if env_slot in ("end_time", "night_fallback"):
+    if env_slot in ("end_time", "maint_mid_2h", "night_fallback"):
         return env_slot
 
-    # 自动根据当前时刻推断：23:00 - 01:00 判定为夜间兜底，其余为维护结束定向
+    # 自动根据当前时刻推断：23:00 - 01:00 判定为夜间兜底，其余为维护开始后/结束时定向
     now_hour = datetime.now(_TZ8).hour
     if now_hour in (23, 0):
         return "night_fallback"
-    return "end_time"
+    return "maint_mid_2h"
 
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Ark-Recode 素材抓取智能调度与定向精准提取")
     parser.add_argument(
         "--slot",
-        choices=["auto", "end_time", "night_fallback"],
+        choices=["auto", "maint_mid_2h", "end_time", "night_fallback"],
         default="auto",
-        help="触发时段 (end_time: 维护结束定向抓取; night_fallback: 夜间12点增量兜底; auto: 自动识别)",
+        help="触发时段 (maint_mid_2h: 维护开始后2小时定向抓取; end_time: 维护结束开服核验; night_fallback: 夜间12点增量兜底; auto: 自动识别)",
     )
     parser.add_argument("--dry-run", action="store_true", help="演练模式，不写盘")
     args = parser.parse_args(argv)
@@ -269,7 +269,7 @@ def main(argv: list[str] | None = None) -> int:
     slot = resolve_slot(args.slot)
     print(f"[*] 智能调度生效时段: [{slot}] (请求槽位: {args.slot})")
 
-    if slot == "end_time":
+    if slot in ("end_time", "maint_mid_2h"):
         announced_heroes = _load_announcement_heroes()
         return run_targeted_sync(announced_heroes, dry_run=args.dry_run)
     else:

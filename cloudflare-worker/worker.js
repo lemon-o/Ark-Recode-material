@@ -127,20 +127,37 @@ function parseMaintenanceSchedule(text) {
     const month = parseInt(matchRange[2], 10) - 1;
     const year = resolveYear(matchRange[1], month, currentMonth, defaultYear);
     const day = parseInt(matchRange[3], 10);
+    const startH = parseInt(matchRange[4], 10);
+    const startM = parseInt(matchRange[5], 10);
     const endH = parseInt(matchRange[6], 10);
     const endM = parseInt(matchRange[7], 10);
 
     // 东八区 (UTC+8) 转为标准 UTC 时间戳
+    const startUtc = Date.UTC(year, month, day, startH - 8, startM, 0);
     const endUtc = Date.UTC(year, month, day, endH - 8, endM, 0);
+    // 维护开始后 2 小时：如果维护本身短于 2 小时，则取 endUtc
+    const mid2hUtc = (endUtc - startUtc > 2 * 3600 * 1000)
+      ? (startUtc + 2 * 3600 * 1000)
+      : endUtc;
     const nightUtc = Date.UTC(year, month, day, 23 - 8, 55, 0);
+
+    const formatDt = (ts) => {
+      const d = new Date(ts + 8 * 3600 * 1000);
+      return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, "0")}-${String(d.getUTCDate()).padStart(2, "0")} ${String(d.getUTCHours()).padStart(2, "0")}:${String(d.getUTCMinutes()).padStart(2, "0")}`;
+    };
+
     return {
       type: "range",
       raw: matchRange[0],
       isHotReload: false,
       updateType: "常规停机维护（大版本/新角色）",
+      startUtcTimestamp: startUtc,
+      mid2hUtcTimestamp: mid2hUtc,
       endUtcTimestamp: endUtc,
       nightUtcTimestamp: nightUtc,
-      beijingEndStr: `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")} ${String(endH).padStart(2, "0")}:${String(endM).padStart(2, "0")}`,
+      beijingStartStr: formatDt(startUtc),
+      beijingMid2hStr: formatDt(mid2hUtc),
+      beijingEndStr: formatDt(endUtc),
       beijingNightStr: `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")} 23:55`,
     };
   }
@@ -155,18 +172,25 @@ function parseMaintenanceSchedule(text) {
     const h = parseInt(matchSingle[4], 10);
     const m = parseInt(matchSingle[5], 10);
 
-    const endUtc = Date.UTC(year, month, day, h - 8, m, 0);
-    const nightUtc = Date.UTC(year, month, day, 23 - 8, 55, 0);
-    const isHotReload = /不(?:會|要)?關閉伺服器|不停[機机]/.test(text);
+    const startUtc = endUtc;
+    const mid2hUtc = endUtc;
+    const formatDt = (ts) => {
+      const d = new Date(ts + 8 * 3600 * 1000);
+      return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, "0")}-${String(d.getUTCDate()).padStart(2, "0")} ${String(d.getUTCHours()).padStart(2, "0")}:${String(d.getUTCMinutes()).padStart(2, "0")}`;
+    };
 
     return {
       type: "point",
       raw: matchSingle[0],
       isHotReload,
       updateType: isHotReload ? "不停机/不关机活动更新（通常为复刻活动）" : "常规维护更新",
+      startUtcTimestamp: startUtc,
+      mid2hUtcTimestamp: mid2hUtc,
       endUtcTimestamp: endUtc,
       nightUtcTimestamp: nightUtc,
-      beijingEndStr: `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")} ${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`,
+      beijingStartStr: formatDt(startUtc),
+      beijingMid2hStr: formatDt(mid2hUtc),
+      beijingEndStr: formatDt(endUtc),
       beijingNightStr: `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")} 23:55`,
     };
   }
@@ -245,28 +269,35 @@ async function checkAndDispatch(env, ctx, origin, force = false) {
     }
 
     // 4. 计算当前是否命中【准时触发窗口】
-    let activeSlot = null; // 'end_time' | 'night_fallback' | null
+    let activeSlot = null;
     let slotReason = "";
 
     if (force) {
       activeSlot = "manual_force";
       slotReason = "手动强制触发测试";
     } else if (schedule) {
-      // 窗口 1：维护结束时间开始后的 20 分钟内
-      const window1Start = schedule.endUtcTimestamp;
-      const window1End = schedule.endUtcTimestamp + 20 * 60 * 1000;
+      // 阶段 1：维护开始后 2 小时定向抓取素材（此时 CDN 补丁已就绪）
+      const windowMidStart = schedule.mid2hUtcTimestamp;
+      const windowMidEnd = schedule.endUtcTimestamp;
 
-      // 窗口 2：维护当天 23:55 开始后的 25 分钟内 (23:55 - 00:20)
-      const window2Start = schedule.nightUtcTimestamp;
-      const window2End = schedule.nightUtcTimestamp + 25 * 60 * 1000;
+      // 阶段 2：维护结束开服核验（如 17:00 - 17:30）
+      const windowEndStart = schedule.endUtcTimestamp;
+      const windowEndEnd = schedule.endUtcTimestamp + 30 * 60 * 1000;
 
-      if (nowUtc >= window1Start && nowUtc < window1End) {
+      // 阶段 3：维护当晚 23:55 全量增量兜底 (23:55 - 00:30)
+      const windowNightStart = schedule.nightUtcTimestamp;
+      const windowNightEnd = schedule.nightUtcTimestamp + 35 * 60 * 1000;
+
+      if (nowUtc >= windowMidStart && nowUtc < windowMidEnd) {
+        activeSlot = "maint_mid_2h";
+        slotReason = `命中维护开始后 2 小时素材定向抓取窗口 (${schedule.beijingMid2hStr})`;
+      } else if (nowUtc >= windowEndStart && nowUtc < windowEndEnd) {
         activeSlot = "end_time";
-        slotReason = `命中维护结束准时抓取窗口 (${schedule.beijingEndStr})`;
-      } else if (nowUtc >= window2Start && nowUtc < window2End) {
+        slotReason = `命中维护结束开服核验窗口 (${schedule.beijingEndStr})`;
+      } else if (nowUtc >= windowNightStart && nowUtc < windowNightEnd) {
         activeSlot = "night_fallback";
         slotReason = `命中维护当晚 12 点兜底抓取窗口 (${schedule.beijingNightStr})`;
-      } else if (nowUtc < window1Start) {
+      } else if (nowUtc < windowMidStart) {
         // 槽位 0：新公告发布后，立即向 Actions 派发轻量 notice_sync 槽位，同步 announcement.json 与看板供下游消费
         const noticeSyncSlotKey = `${targetMsg.id}_notice_sync`;
         let isNoticeSynced = dispatchedSlots.has(noticeSyncSlotKey);
@@ -295,19 +326,21 @@ async function checkAndDispatch(env, ctx, origin, force = false) {
           activeSlot = "notice_sync";
           slotReason = `发现最新维护公告 #${targetMsg.id}，即时同步公告元数据与看板供下游消费`;
         } else {
-          const diffMinutes = Math.round((window1Start - nowUtc) / (60 * 1000));
+          const diffMinutes = Math.round((windowMidStart - nowUtc) / (60 * 1000));
           return {
             status: "waiting",
-            message: "维护公告已即时同步，当前维护尚未结束，等待准时抓取素材",
+            message: "维护公告已即时同步；当前等待维护开始后 2 小时准时抓取素材",
             update_type: schedule.updateType,
             current_time_beijing: beijingNowStr,
+            maintenance_start_beijing: schedule.beijingStartStr,
+            assets_extract_beijing: schedule.beijingMid2hStr,
             maintenance_end_beijing: schedule.beijingEndStr,
             night_fallback_beijing: schedule.beijingNightStr,
-            countdown: `距离维护结束准时抓取素材还剩约 ${diffMinutes} 分钟`,
+            countdown: `距离维护开始后 2 小时素材抓取还剩约 ${diffMinutes} 分钟`,
             announcement_id: targetMsg.id,
           };
         }
-      } else if (nowUtc > window2End) {
+      } else if (nowUtc > windowNightEnd) {
         return {
           status: "expired",
           message: "该维护公告已过期（已超过当晚 12 点兜底时间），跳过",
@@ -319,7 +352,7 @@ async function checkAndDispatch(env, ctx, origin, force = false) {
       } else {
         return {
           status: "waiting_fallback",
-          message: "第一阶段（维护结束准时抓取）已过，当前等待当晚 23:55 兜底抓取",
+          message: "开服校对阶段已过，当前等待当晚 23:55 全量兜底抓取",
           update_type: schedule.updateType,
           current_time_beijing: beijingNowStr,
           next_trigger_beijing: schedule.beijingNightStr,

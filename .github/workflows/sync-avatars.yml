@@ -8,11 +8,12 @@ on:
         type: boolean
         default: false
       slot:
-        description: "抓取模式 (end_time: 维护结束定向抓取; night_fallback: 夜间增量兜底; notice_sync: 仅同步公告; auto: 自动推断)"
+        description: "抓取模式 (maint_mid_2h: 维护开始后2小时定向抓取; end_time: 维护结束开服核验; night_fallback: 夜间增量兜底; notice_sync: 仅同步公告; auto: 自动推断)"
         type: choice
         options:
           - auto
           - notice_sync
+          - maint_mid_2h
           - end_time
           - night_fallback
         default: auto
