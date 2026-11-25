@@ -98,7 +98,15 @@ def calculate_pool_timeline(
     if start_time_iso:
         try:
             s_dt = datetime.fromisoformat(start_time_iso)
-            e_dt = s_dt + timedelta(days=days)
+            # 计算到期日期
+            end_date = (s_dt + timedelta(days=days)).date()
+
+            # 卡池结束时刻判定准则：
+            # 1. 若卡池本身为 08:00 开启（早间/不停机更新），到期日维护通常在 08:00 结束
+            # 2. 其余常规维护卡池（如 14:00 关机），到期日随官方维护开启，严格在 14:00 关闭（绝非 19:00 或晚上）
+            close_hour = 8 if s_dt.hour == 8 else 14
+            e_dt = datetime(end_date.year, end_date.month, end_date.day, close_hour, 0, tzinfo=s_dt.tzinfo)
+
             start_iso = s_dt.isoformat()
             end_iso = e_dt.isoformat()
             display_time = f"{s_dt.strftime('%Y/%m/%d %H:%M')} - {e_dt.strftime('%Y/%m/%d %H:%M')}"
@@ -493,26 +501,45 @@ def build_current_pools_data(
             pid = ep["pool_id"]
             pools_registry[pid] = ep
 
-    # 3. 过滤并剔除已截止的卡池 (now > end_time)
+    latest_ann = primary_announcement or (announcements[-1] if announcements else {})
+    maintenance = latest_ann.get("maintenance", {})
+    maint_start_dt = None
+    if maintenance and maintenance.get("start_time"):
+        try:
+            maint_start_dt = datetime.fromisoformat(maintenance["start_time"])
+        except Exception:
+            pass
+
+    # 3. 过滤并自动清理已截止的卡池
+    # 核心铁律：每一次官方维护都会关闭当天（或之前）过期的卡池
     active_pools: list[dict[str, Any]] = []
     for pid, pool in pools_registry.items():
         end_time_str = pool.get("end_time")
-        if end_time_str:
-            try:
-                end_dt = datetime.fromisoformat(end_time_str)
-                if end_dt < now_dt:
-                    continue  # 已结束，剔除
-            except Exception:
-                pass
+        if not end_time_str:
+            active_pools.append(pool)
+            continue
+
+        try:
+            end_dt = datetime.fromisoformat(end_time_str)
+        except Exception:
+            active_pools.append(pool)
+            continue
+
+        # 规则 1：客观时间已经超过截止时间 -> 清理剔除
+        if now_dt >= end_dt:
+            continue
+
+        # 规则 2：官方维护自动清理机制——当期官方维护一旦开始，当天（或更早）到期的往期卡池随维护关闭，一律清理剔除
+        if maint_start_dt and now_dt >= maint_start_dt:
+            if end_dt.date() <= maint_start_dt.date():
+                continue
+
         active_pools.append(pool)
 
     # 4. 排序：按卡池开放起始时间升序排列，相同起始时间保持公告声明顺序
     active_pools.sort(key=lambda x: (x.get("start_time") or "", x.get("_order", 0)))
     for p in active_pools:
         p.pop("_order", None)
-
-    latest_ann = primary_announcement or (announcements[-1] if announcements else {})
-    maintenance = latest_ann.get("maintenance", {})
 
     return {
         "updated_at": now_dt.isoformat(timespec="seconds"),

@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-25T17:02:24+08:00",
+  "updated_at": "2026-11-25T18:32:50+08:00",
   "announcement_id": "3747",
   "activity_name": "漂泊者之歌",
   "update_type": "常规停机维护",
@@ -12,63 +12,6 @@
     "end_timestamp": 1795597200.0
   },
   "active_pools": [
-    {
-      "pool_id": "ActivitySummonH195",
-      "type": "限定招募 (首发)",
-      "category": "pickup",
-      "is_debut": true,
-      "is_limited": true,
-      "pity_cap": 120,
-      "hero": {
-        "id": "H195",
-        "name_chs": "庆典女王艾乐莱思",
-        "name_cht": "慶典女王艾樂萊思",
-        "name_eng": "Carnival Queen Ermes",
-        "star": 5,
-        "element": "Earth",
-        "job": "Warrior",
-        "avatar_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/avatars/H195.png"
-      },
-      "exclusive_bond": {
-        "id": "A0443",
-        "name_chs": "专属的乐趣",
-        "name_cht": "專屬的樂趣",
-        "icon_url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0443.png"
-      },
-      "banner": {
-        "file": "BN_Summon_H195.png",
-        "url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/banners/BN_Summon_H195.png"
-      },
-      "start_time": "2026-11-11T19:00:00+08:00",
-      "end_time": "2026-11-25T19:00:00+08:00",
-      "duration": "2周",
-      "duration_days": 14,
-      "display_time": "2026/11/11 19:00 - 2026/11/25 19:00"
-    },
-    {
-      "pool_id": "ComboSummon_MultiSummonLimit",
-      "name": "3週年限定組合招募",
-      "type": "限定组合招募",
-      "category": "combo",
-      "is_debut": false,
-      "pity_cap": 120,
-      "hero": null,
-      "exclusive_bond": {
-        "id": "",
-        "name_chs": "自选3名团员",
-        "name_cht": "自選3名團員",
-        "icon_url": ""
-      },
-      "banner": {
-        "file": "BN_Summon_MultiSummonLimit.png",
-        "url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/banners/BN_Summon_MultiSummonLimit.png"
-      },
-      "start_time": "2026-11-11T19:00:00+08:00",
-      "end_time": "2026-11-25T19:00:00+08:00",
-      "duration": "2周",
-      "duration_days": 14,
-      "display_time": "2026/11/11 19:00 - 2026/11/25 19:00"
-    },
     {
       "pool_id": "ActivitySummonH180",
       "type": "限定招募",
@@ -163,10 +106,10 @@
         "url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/banners/BN_Summon_H199.png"
       },
       "start_time": "2026-11-25T17:00:00+08:00",
-      "end_time": "2026-12-09T17:00:00+08:00",
+      "end_time": "2026-12-09T14:00:00+08:00",
       "duration": "2周",
       "duration_days": 14,
-      "display_time": "2026/11/25 17:00 - 2026/12/09 17:00"
+      "display_time": "2026/11/25 17:00 - 2026/12/09 14:00"
     },
     {
       "pool_id": "MysticSummon_MultiSummonMystic",
@@ -187,10 +130,10 @@
         "url": "https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/banners/BN_Summon_MultiSummonMystic.png"
       },
       "start_time": "2026-11-25T17:00:00+08:00",
-      "end_time": "2026-12-16T17:00:00+08:00",
+      "end_time": "2026-12-16T14:00:00+08:00",
       "duration": "3周",
       "duration_days": 21,
-      "display_time": "2026/11/25 17:00 - 2026/12/16 17:00"
+      "display_time": "2026/11/25 17:00 - 2026/12/16 14:00"
     }
   ]
 }
