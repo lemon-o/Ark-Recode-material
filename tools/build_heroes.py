@@ -55,10 +55,23 @@ UNRELEASED_HERO_OVERRIDES: set[str] = {
 
 
 def _get_announced_hero_ids() -> set[str]:
-    """从 Discord 官方公告或版本基线中提取已确认为正式上线的角色 ID 集合（优先放行白名单）。"""
+    """从官方公告（data/announcement.json）或版本基线中提取已确认为正式上线的角色 ID 集合（优先放行白名单）。"""
     announced: set[str] = set()
 
-    # 1. 优先读取 Discord 专用公告快照
+    # 1. 优先读取统一维护公告文件 data/announcement.json
+    ann_path = ROOT / "data" / "announcement.json"
+    if ann_path.is_file():
+        try:
+            d = json.loads(ann_path.read_text(encoding="utf-8"))
+            heroes_sec = d.get("heroes", {})
+            for cat in ("pickup", "mystic", "rerun"):
+                for h in heroes_sec.get(cat, []):
+                    if isinstance(h, dict) and h.get("id"):
+                        announced.add(str(h["id"]).upper())
+        except (OSError, ValueError):
+            pass
+
+    # 2. 读取 Discord 专用公告快照
     if DISCORD_NOTICE_PATH.is_file():
         try:
             d = json.loads(DISCORD_NOTICE_PATH.read_text(encoding="utf-8"))

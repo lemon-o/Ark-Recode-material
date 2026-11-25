@@ -105,6 +105,65 @@ def is_hero_already_in_repo(hid: str) -> bool:
     return has_avatar and has_spine
 
 
+def classify_announcement_heroes(hero_ids: list[str]) -> tuple[list[str], list[str]]:
+    """准确区分公告中的【全新首发团员】与【往期复刻团员】。
+
+    判据：
+    1. announcement.json 中明确归入 rerun 分类，或正文含「復刻」字样的，归入复刻；
+    2. announcement.json 中归入 pickup 且未标记复刻的，或属于已知首发名单，或在当前 heroes.json 中曾为未上线（unreleased），归入全新首发。
+    """
+    if not ANNOUNCEMENT_PATH.is_file():
+        return [], hero_ids
+
+    debut_heroes: list[str] = []
+    rerun_heroes: list[str] = []
+
+    try:
+        data = json.loads(ANNOUNCEMENT_PATH.read_text(encoding="utf-8"))
+        heroes_sec = data.get("heroes", {})
+        content = str(data.get("content") or "")
+
+        rerun_set = {str(h.get("id")).upper() for h in heroes_sec.get("rerun", []) if h.get("id")}
+        pickup_set = {str(h.get("id")).upper() for h in heroes_sec.get("pickup", []) if h.get("id")}
+
+        # 检查 heroes.json 历史上线状态
+        unreleased_set = set()
+        if HEROES_PATH.is_file():
+            try:
+                hdata = json.loads(HEROES_PATH.read_text(encoding="utf-8"))
+                unreleased_set = {str(x).upper() for x in hdata.get("unreleased_ids", [])}
+            except Exception:
+                pass
+
+        known_debuts = {"H195", "H199"}
+
+        for hid in hero_ids:
+            hid_upper = hid.upper()
+            if hid_upper in rerun_set:
+                rerun_heroes.append(hid_upper)
+            elif hid_upper in pickup_set:
+                # 查看正文中该角色所在行是否标注复刻
+                is_explicit_rerun = False
+                for line in content.splitlines():
+                    if hid_upper in line or (heroes_sec.get("pickup") and any(h.get("name") in line for h in heroes_sec["pickup"] if h.get("id") == hid_upper)):
+                        if re.search(r"復刻|复刻", line):
+                            is_explicit_rerun = True
+                            break
+                if is_explicit_rerun:
+                    rerun_heroes.append(hid_upper)
+                else:
+                    debut_heroes.append(hid_upper)
+            elif hid_upper in unreleased_set or hid_upper in known_debuts:
+                debut_heroes.append(hid_upper)
+            else:
+                rerun_heroes.append(hid_upper)
+
+    except Exception:
+        return [], hero_ids
+
+    return debut_heroes, rerun_heroes
+
+
 def run_targeted_sync(hero_ids: list[str], dry_run: bool = False) -> int:
     """针对公告内团员与活动商店素材执行精准定向抓取与跳过判定。"""
     print(f"\n[*] 启动【维护结束准时抓取 (定向模式)】...")
@@ -114,20 +173,15 @@ def run_targeted_sync(hero_ids: list[str], dry_run: bool = False) -> int:
     if activity_info:
         print(f"[+] 检测到限时活动: 「{activity_info['name']}」" + (" (含活动商店/代币兑换)" if activity_info.get("has_shop") else ""))
 
-    new_heroes: list[str] = []
-    rerun_heroes: list[str] = []
+    debut_heroes, rerun_heroes = classify_announcement_heroes(hero_ids)
 
-    for hid in hero_ids:
-        if is_hero_already_in_repo(hid):
-            rerun_heroes.append(hid)
-        else:
-            new_heroes.append(hid)
-
+    if debut_heroes:
+        print(f"[+] 确认为全新首发团员: {debut_heroes}")
     if rerun_heroes:
-        print(f"[OK] 检测到已存在复刻团员: {rerun_heroes}（角色素材已完整收录，跳过立绘下载）")
+        print(f"[OK] 确认为往期复刻团员: {rerun_heroes}（已上线过，跳过角色立绘大文件下载）")
 
-    # 分支 1：公告内没有全新角色
-    if not new_heroes:
+    # 分支 1：公告内全部为复刻角色（没有全新首发角色）
+    if not debut_heroes:
         # 分支 1.1：没有新角色，但有新活动/活动商店 -> 定向抓取活动图集与数据表
         if activity_info:
             print("[+] 团员虽均为复刻，但本期存在新限时活动/活动商店，启动活动商店素材定向拉取 (atlas,data,banner)...")
@@ -150,26 +204,35 @@ def run_targeted_sync(hero_ids: list[str], dry_run: bool = False) -> int:
             return 0
 
         # 分支 1.2：没有新角色，也没有新活动 -> 完全无需抓取，仅刷新看板与心跳
-        print("[OK] 本期所有公告团员素材均已就绪（均为复刻团员），且无新活动商店，无需下载游戏资产包！")
+        print("[OK] 本期所有公告团员均为复刻且素材完整，无新活动商店，无需下载游戏资产包！")
         print("[*] 正在刷新当前招募动态看板与角色档案...")
         _run_cmd([sys.executable, "tools/build_current_pools.py", "--update-readme"])
         _run_cmd([sys.executable, "tools/update_readme.py"])
         print("[OK] 定向同步完成，耗时极短，无大文件变动。")
         return 0
 
-    # 分支 2：存在全新实装团员
-    print(f"[+] 发现全新实装团员: {new_heroes}，启动定向极速拉取...")
+    # 分支 2：存在全新首发团员
+    missing_spine_heroes = [hid for hid in debut_heroes if not is_hero_already_in_repo(hid)]
+    cached_spine_heroes = [hid for hid in debut_heroes if is_hero_already_in_repo(hid)]
+
+    if cached_spine_heroes:
+        print(f"[*] 首发团员 {cached_spine_heroes} 的立绘素材已在往期拆包中提前就绪，无需重复下载 Spine 大文件。")
+    if missing_spine_heroes:
+        print(f"[+] 首发团员 {missing_spine_heroes} 需解包下载全新 Spine 骨骼立绘！")
+
     if dry_run:
-        print(f"[*] [Dry Run] 计划提取角色 ID: {new_heroes}")
+        print(f"[*] [Dry Run] 计划针对首发团员 {debut_heroes} 同步图标、羁绊、横幅与元数据")
+        if missing_spine_heroes:
+            print(f"[*] [Dry Run] 计划下载 Spine 立绘: {missing_spine_heroes}")
         if activity_info:
             print("[*] [Dry Run] 计划附带提取活动商店素材: atlas, data")
         return 0
 
-    ids_str = ",".join(new_heroes)
+    ids_str = ",".join(debut_heroes)
     # 若有新活动，一并抓取 atlas 与 data（包含活动代币、活动商店兑换物图标）
     families = "avatars,heads,skills,bonds,banner,atlas,data" if activity_info else "avatars,heads,skills,bonds,banner"
 
-    # 1. 定向抓取新角色的头像、头像框、技能图标、卡池横幅（及活动图集/商店代币）
+    # 1. 定向抓取首发角色的头像、头像框、技能图标、卡池横幅、专属羁绊（及活动图集/商店代币）
     code = _run_cmd([
         sys.executable,
         "tools/fetch_assets.py",
@@ -180,16 +243,18 @@ def run_targeted_sync(hero_ids: list[str], dry_run: bool = False) -> int:
     if code != 0:
         return code
 
-    # 2. 定向抓取新角色的 Spine 骨骼立绘
-    code = _run_cmd([
-        sys.executable,
-        "tools/fetch_spine.py",
-        "--ids", ids_str,
-        "--target", "spine",
-        "--jobs", "4",
-    ])
-    if code != 0:
-        return code
+    # 2. 若存在尚未收录 Spine 的首发角色，定向抓取 Spine 骨骼立绘
+    if missing_spine_heroes:
+        missing_ids_str = ",".join(missing_spine_heroes)
+        code = _run_cmd([
+            sys.executable,
+            "tools/fetch_spine.py",
+            "--ids", missing_ids_str,
+            "--target", "spine",
+            "--jobs", "4",
+        ])
+        if code != 0:
+            return code
 
     # 3. 刷新全量元数据与看板
     _run_cmd([sys.executable, "tools/build_heroes.py"])
@@ -197,7 +262,7 @@ def run_targeted_sync(hero_ids: list[str], dry_run: bool = False) -> int:
     _run_cmd([sys.executable, "tools/build_index.py"])
     _run_cmd([sys.executable, "tools/update_readme.py"])
 
-    print(f"[OK] 新团员 {new_heroes} 与活动商店素材定向抓取全部完成！")
+    print(f"[OK] 全新首发团员 {debut_heroes} 与活动商店素材定向抓取与元数据构建全部完成！")
     return 0
 
 
