@@ -1,23 +1,25 @@
 {
-  "catalog": "catalog_116310",
-  "url": "https://erdpu.gzxhcjz.com/GamePatch/WebGL/catalog_116310.json",
-  "etag": "\"f3fd8fe6145c4c6c5974bb1e7861b284-4\"",
-  "last_modified": "Wed, 11 Nov 2026 06:19:39 GMT",
-  "size": 27923518,
-  "notice_source": "discord_api",
-  "last_notice_id": "1573604140079259678",
-  "last_discord_msg_id": "1573604140079259678",
-  "last_notice_title": "限定: 慶典女王艾樂萊思",
-  "maintenance_window": "11/11 14:00 - 19:00 (UTC+8)",
-  "maintenance_end": "2026-11-11T19:00:00+08:00",
+  "catalog": "catalog_116553",
+  "url": "https://erdpu.gzxhcjz.com/GamePatch/WebGL/catalog_116553.json",
+  "etag": "\"b9538450e430a8bcc06603eb1591f612-4\"",
+  "last_modified": "Wed, 25 Nov 2026 06:34:25 GMT",
+  "size": 27927611,
+  "notice_source": "erolabs",
+  "last_notice_id": 3747,
+  "last_discord_msg_id": 3747,
+  "last_notice_title": "11/25 維護公告，限定活動「漂泊者之歌」啟動！",
+  "maintenance_window": "11/25 14:00 - 17:00 (UTC+8)",
+  "maintenance_end": "2026-11-25T17:00:00+08:00",
   "pickup_heroes": [
     {
-      "id": "H195",
-      "name": "慶典女王艾樂萊思"
+      "id": "H199",
+      "name": "漂泊者埃帕蒂"
     }
   ],
   "mystic_heroes": [],
   "rerun_heroes": [],
-  "dispatched_slots": [],
-  "updated_at": "2026-11-21T17:06:23+08:00"
+  "dispatched_slots": [
+    "1574711295427739772_maint_mid_2h"
+  ],
+  "updated_at": "2026-11-25T08:20:17+00:00"
 }
