@@ -35,7 +35,7 @@ START_TAG = "<!-- CURRENT-POOLS:START -->"
 END_TAG = "<!-- CURRENT-POOLS:END -->"
 
 # 已知首发上线团员名单（用于首发标注兜底）
-KNOWN_DEBUT_HERO_IDS = {"H195"}
+KNOWN_DEBUT_HERO_IDS = {"H195", "H199"}
 
 
 def _load_json(path: Path) -> dict[str, Any]:
@@ -77,7 +77,6 @@ def calculate_pool_timeline(
     dur_str = "3周" if category == "mystic" else "2周"
 
     # 1. 尝试从包含该目标名字的特定行提取
-    found_explicit = False
     for line in content.splitlines():
         if target_name and target_name in line:
             m = re.search(r"持續\s*(\d+)\s*(周|週|天|日)", line)
@@ -90,21 +89,7 @@ def calculate_pool_timeline(
                 else:
                     days = val
                     dur_str = f"{val}天"
-                found_explicit = True
                 break
-
-    # 2. 若单行未指明，看整篇是否有一致指定的活动周期
-    if not found_explicit:
-        m = re.search(r"【招募機率UP】.*?持續\s*(\d+)\s*(周|週|天|日)", content, re.S)
-        if m:
-            val = int(m.group(1))
-            unit = m.group(2)
-            if unit in ("周", "週"):
-                days = val * 7
-                dur_str = f"{val}周"
-            else:
-                days = val
-                dur_str = f"{val}天"
 
     start_iso = ""
     end_iso = ""
@@ -234,56 +219,98 @@ def parse_combo_pools(
     content: str,
     base_start_time: str,
 ) -> list[dict[str, Any]]:
-    """从公告正文中解析限定组合招募等特殊自选卡池。"""
-    combo_pools: list[dict[str, Any]] = []
+    """从公告正文中解析限定组合招募与自选神秘招募等特殊活动卡池。"""
+    special_pools: list[dict[str, Any]] = []
     lines = content.splitlines()
 
     for line in lines:
-        if not re.search(r"組合招募|组合招募", line):
-            continue
+        # 1. 限定组合招募
+        if re.search(r"組合招募|组合招募", line):
+            m_name = re.search(r"【(?:招募機率UP|招募概率UP)】\s*([^\n，,]*?(?:組合招募|组合招募)[^\n，,]*)", line)
+            raw_name = m_name.group(1).strip() if m_name else "限定组合招募"
+            clean_name = re.sub(r"(?:開放|开启|開啟)$", "", raw_name).strip()
 
-        m_name = re.search(r"【(?:招募機率UP|招募概率UP)】\s*([^\n，,]*?(?:組合招募|组合招募)[^\n，,]*)", line)
-        raw_name = m_name.group(1).strip() if m_name else "限定组合招募"
-        clean_name = re.sub(r"(?:開放|开启|開啟)$", "", raw_name).strip()
+            timeline = calculate_pool_timeline(
+                category="combo",
+                target_name=clean_name,
+                content=line,
+                start_time_iso=base_start_time,
+            )
 
-        timeline = calculate_pool_timeline(
-            category="combo",
-            target_name=clean_name,
-            content=line,
-            start_time_iso=base_start_time,
-        )
+            banner_file = "BN_Summon_MultiSummonLimit.png"
+            banner_path = ROOT / "banners" / banner_file
+            banner_url = f"{CDN_BASE}/banners/{banner_file}" if banner_path.is_file() else ""
 
-        banner_file = "BN_Summon_MultiSummonLimit.png"
-        banner_path = ROOT / "banners" / banner_file
-        banner_url = f"{CDN_BASE}/banners/{banner_file}" if banner_path.is_file() else ""
+            entry = {
+                "pool_id": "ComboSummon_MultiSummonLimit",
+                "name": clean_name,
+                "type": "限定组合招募",
+                "category": "combo",
+                "is_debut": False,
+                "pity_cap": 120,
+                "hero": None,
+                "exclusive_bond": {
+                    "id": "",
+                    "name_chs": "自选3名团员",
+                    "name_cht": "自選3名團員",
+                    "icon_url": "",
+                },
+                "banner": {
+                    "file": banner_file if banner_path.is_file() else "",
+                    "url": banner_url,
+                },
+                "start_time": timeline["start_time"],
+                "end_time": timeline["end_time"],
+                "duration": timeline["duration"],
+                "duration_days": timeline["duration_days"],
+                "display_time": timeline["display_time"],
+            }
+            special_pools.append(entry)
 
-        entry = {
-            "pool_id": "ComboSummon_MultiSummonLimit",
-            "name": clean_name,
-            "type": "限定组合招募",
-            "category": "combo",
-            "is_debut": False,
-            "pity_cap": 120,
-            "hero": None,
-            "exclusive_bond": {
-                "id": "",
-                "name_chs": "自选3名团员",
-                "name_cht": "自選3名團員",
-                "icon_url": "",
-            },
-            "banner": {
-                "file": banner_file if banner_path.is_file() else "",
-                "url": banner_url,
-            },
-            "start_time": timeline["start_time"],
-            "end_time": timeline["end_time"],
-            "duration": timeline["duration"],
-            "duration_days": timeline["duration_days"],
-            "display_time": timeline["display_time"],
-        }
-        combo_pools.append(entry)
+        # 2. 自选神秘招募（如 3周年紀念神秘招募）
+        elif re.search(r"神秘招募.*?(?:選擇|选择).*?團員|神秘招募.*?(?:自選|自选)", line):
+            m_name = re.search(r"【(?:招募機率UP|招募概率UP)】\s*([^\n，,]*?神秘招募[^\n，,]*)", line)
+            raw_name = m_name.group(1).strip() if m_name else "自选神秘招募"
+            clean_name = re.sub(r"(?:開放|开启|開啟)$", "", raw_name).strip()
 
-    return combo_pools
+            timeline = calculate_pool_timeline(
+                category="mystic",
+                target_name=clean_name,
+                content=line,
+                start_time_iso=base_start_time,
+            )
+
+            banner_file = "BN_Summon_MultiSummonMystic.png"
+            banner_path = ROOT / "banners" / banner_file
+            banner_url = f"{CDN_BASE}/banners/{banner_file}" if banner_path.is_file() else ""
+
+            entry = {
+                "pool_id": "MysticSummon_MultiSummonMystic",
+                "name": clean_name,
+                "type": "神秘招募 (自选)",
+                "category": "mystic",
+                "is_debut": False,
+                "pity_cap": 200,
+                "hero": None,
+                "exclusive_bond": {
+                    "id": "",
+                    "name_chs": "自选1名团员",
+                    "name_cht": "自選1名團員",
+                    "icon_url": "",
+                },
+                "banner": {
+                    "file": banner_file if banner_path.is_file() else "",
+                    "url": banner_url,
+                },
+                "start_time": timeline["start_time"],
+                "end_time": timeline["end_time"],
+                "duration": timeline["duration"],
+                "duration_days": timeline["duration_days"],
+                "display_time": timeline["display_time"],
+            }
+            special_pools.append(entry)
+
+    return special_pools
 
 
 def extract_pools_from_announcement(
@@ -530,6 +557,8 @@ def render_readme_dashboard(pools_data: dict[str, Any]) -> str:
             # 专属羁绊列
             if p.get("category") == "combo" or bond.get("name_chs") == "自选3名团员":
                 bond_md = "— (自选3名团员)"
+            elif bond and bond.get("name_chs") == "自选1名团员":
+                bond_md = "— (自选1名团员)"
             elif bond and bond.get("name_chs"):
                 bond_name = bond.get("name_chs")
                 bond_icon = bond.get("icon_url")

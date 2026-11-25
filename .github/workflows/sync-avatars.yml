@@ -8,10 +8,11 @@ on:
         type: boolean
         default: false
       slot:
-        description: "抓取模式 (end_time: 维护结束定向抓取; night_fallback: 夜间增量兜底; auto: 自动推断)"
+        description: "抓取模式 (end_time: 维护结束定向抓取; night_fallback: 夜间增量兜底; notice_sync: 仅同步公告; auto: 自动推断)"
         type: choice
         options:
           - auto
+          - notice_sync
           - end_time
           - night_fallback
         default: auto
@@ -61,6 +62,23 @@ jobs:
         run: |
           FORCE_FLAG="${{ inputs.force && '--force' || '' }}"
           python tools/check_version.py $FORCE_FLAG
+
+      - name: 即时同步维护公告与卡池看板 (轻量无素材提交)
+        if: ${{ !inputs.dry_run && steps.check.outputs.notice_updated == 'true' && steps.check.outputs.changed != 'true' && !inputs.force }}
+        run: |
+          python tools/build_current_pools.py --update-readme
+          python tools/update_readme.py
+          if [ -n "$(git status --porcelain data/announcement.json data/announcements/ data/current-pools.json README.md)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data/announcement.json data/announcements/ data/current-pools.json README.md
+            TITLE="${{ steps.check.outputs.notice_title || '维护公告' }}"
+            WINDOW="${{ steps.check.outputs.maintenance_window || '' }}"
+            git commit -m "chore(公告): 即时同步最新维护公告 [${WINDOW}] - ${TITLE} [skip ci]"
+            git pull --rebase origin main || true
+            git push
+            python tools/purge_cdn.py --commit HEAD || true
+          fi
 
       - name: 安装完整提取依赖 (仅版本有变动或强制运行)
         if: ${{ steps.check.outputs.changed == 'true' || inputs.force }}

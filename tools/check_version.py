@@ -31,9 +31,9 @@ from pathlib import Path
 import httpx
 
 try:
-    from tools.discord_announcement import fetch_discord_notice
+    from tools.discord_announcement import fetch_discord_notice, parse_announcement_text
 except ImportError:
-    from discord_announcement import fetch_discord_notice
+    from discord_announcement import fetch_discord_notice, parse_announcement_text
 
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG_PATH = ROOT / "backend" / "config.py"
@@ -173,15 +173,29 @@ def fetch_maintenance_notice(timeout: float = 12.0) -> dict | None:
                     # 未来的维护预告（start 还没到）保留，由判定侧比较时间后再决定。
                     if now_ts - parsed["startTimestamp"] > NOTICE_MAX_AGE_DAYS * 86400:
                         continue
+
+                    # 格式化 intro 换行，并结构化提取角色与活动信息
+                    clean_intro = intro.replace("【", "\n【").strip()
+                    parsed_text = parse_announcement_text(f"{title}\n{clean_intro}")
+
+                    # 提取活动名称（如「漂泊者之歌」）
+                    m_act = re.search(r"[「『]([^」』]+)[」』]", title)
+                    act_name = m_act.group(1).strip() if m_act else ""
+
                     return {
                         "id": item.get("newsId"),
                         "title": title,
+                        "activity_name": act_name,
                         "window": parsed["raw"],
                         "startTime": parsed["start"],
                         "endTime": parsed["end"],
                         "startTimestamp": parsed["startTimestamp"],
                         "endTimestamp": parsed["endTimestamp"],
-                        "intro": intro[:200],
+                        "content": clean_intro,
+                        "intro": clean_intro[:200],
+                        "pickup_heroes": parsed_text.get("pickup_heroes") or [],
+                        "mystic_heroes": parsed_text.get("mystic_heroes") or [],
+                        "rerun_heroes": parsed_text.get("rerun_heroes") or [],
                     }
         except Exception:
             continue
@@ -389,6 +403,16 @@ def main(argv: list[str] | None = None) -> int:
     local_size = local.get("size")
     last_notice_id = local.get("last_notice_id")
 
+    # 只要检测到新维护公告（无论当前是否到达维护结束点），立即独立导出 announcement.json 供下游消费
+    notice_updated = False
+    if notice and notice.get("id"):
+        curr_notice_id = str(notice["id"]).strip()
+        last_id_str = str(last_notice_id or "").strip()
+        if curr_notice_id and curr_notice_id != last_id_str:
+            export_downstream_announcement(notice, source=notice_source)
+            notice_updated = True
+            print(f"[公告解耦同步] 发现最新官方维护公告 #{curr_notice_id}，已即时导出 announcement.json")
+
     print(f"远端 Catalog: {remote_catalog} (ETag: {remote_etag}, 大小: {remote_size})")
     print(f"本地 基线:    {local_catalog} (ETag: {local_etag}, 大小: {local_size})")
 
@@ -434,6 +458,7 @@ def main(argv: list[str] | None = None) -> int:
         clean_title = notice_title or str(remote_catalog)
 
     _set_github_output("changed", "true" if changed else "false")
+    _set_github_output("notice_updated", "true" if notice_updated else "false")
     _set_github_output("catalog", str(remote_catalog))
     _set_github_output("catalog_url", str(remote.get("url")))
     _set_github_output("notice_title", clean_title)

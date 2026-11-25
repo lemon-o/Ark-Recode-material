@@ -267,17 +267,46 @@ async function checkAndDispatch(env, ctx, origin, force = false) {
         activeSlot = "night_fallback";
         slotReason = `命中维护当晚 12 点兜底抓取窗口 (${schedule.beijingNightStr})`;
       } else if (nowUtc < window1Start) {
-        const diffMinutes = Math.round((window1Start - nowUtc) / (60 * 1000));
-        return {
-          status: "waiting",
-          message: "官方提前发布了维护公告，维护尚未结束，暂不执行抓取",
-          update_type: schedule.updateType,
-          current_time_beijing: beijingNowStr,
-          maintenance_end_beijing: schedule.beijingEndStr,
-          night_fallback_beijing: schedule.beijingNightStr,
-          countdown: `距离维护结束准时抓取还剩约 ${diffMinutes} 分钟`,
-          announcement_id: targetMsg.id,
-        };
+        // 槽位 0：新公告发布后，立即向 Actions 派发轻量 notice_sync 槽位，同步 announcement.json 与看板供下游消费
+        const noticeSyncSlotKey = `${targetMsg.id}_notice_sync`;
+        let isNoticeSynced = dispatchedSlots.has(noticeSyncSlotKey);
+        if (!isNoticeSynced && env.ANNOUNCEMENT_KV) {
+          try {
+            const val = await env.ANNOUNCEMENT_KV.get(noticeSyncSlotKey);
+            if (val) isNoticeSynced = true;
+          } catch (e) {}
+        }
+        if (!isNoticeSynced) {
+          try {
+            const annResp = await fetch(
+              `https://raw.githubusercontent.com/${githubRepo}/main/data/announcement.json?t=${Date.now()}`,
+              { headers: { Authorization: `Bearer ${githubToken}` } }
+            );
+            if (annResp.ok) {
+              const annData = await annResp.json();
+              if (String(annData.id) === String(targetMsg.id)) {
+                isNoticeSynced = true;
+              }
+            }
+          } catch (e) {}
+        }
+
+        if (!isNoticeSynced) {
+          activeSlot = "notice_sync";
+          slotReason = `发现最新维护公告 #${targetMsg.id}，即时同步公告元数据与看板供下游消费`;
+        } else {
+          const diffMinutes = Math.round((window1Start - nowUtc) / (60 * 1000));
+          return {
+            status: "waiting",
+            message: "维护公告已即时同步，当前维护尚未结束，等待准时抓取素材",
+            update_type: schedule.updateType,
+            current_time_beijing: beijingNowStr,
+            maintenance_end_beijing: schedule.beijingEndStr,
+            night_fallback_beijing: schedule.beijingNightStr,
+            countdown: `距离维护结束准时抓取素材还剩约 ${diffMinutes} 分钟`,
+            announcement_id: targetMsg.id,
+          };
+        }
       } else if (nowUtc > window2End) {
         return {
           status: "expired",

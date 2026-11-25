@@ -13,7 +13,7 @@
 
 <!-- CURRENT-POOLS:START -->
 <!-- 本看板联动官方维护公告与卡池配置自动生成，请勿手动修改 -->
-> **当前招募活动窗口**：`11/18 08:00 (UTC+8)` | **更新类型**：不停机活动更新
+> **当前招募活动窗口**：`11/25 14:00 - 17:00 (UTC+8)` | **更新类型**：常规停机维护
 > **实时接口**：[`data/current-pools.json`](https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/data/current-pools.json)
 
 | 卡池横幅 | 招募类型 | 专属羁绊 | 开放时间 |
@@ -22,6 +22,8 @@
 | [![Banner](https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/banners/BN_Summon_MultiSummonLimit.png)](https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/banners/BN_Summon_MultiSummonLimit.png) | **限定组合招募** | — (自选3名团员) | 2026/11/11 19:00 - 2026/11/25 19:00<br><sub>(持续 2周)</sub> |
 | [![Banner](https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/banners/BN_Summon_H180.png)](https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/banners/BN_Summon_H180.png) | **限定招募** | <img src="https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0356.png" width="28" height="28" align="center" /> 「跃动的烈情」 | 2026/11/18 08:00 - 2026/12/02 08:00<br><sub>(持续 2周)</sub> |
 | [![Banner](https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/banners/BN_Summon_H016.png)](https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/banners/BN_Summon_H016.png) | **常规招募** | <img src="https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0012.png" width="28" height="28" align="center" /> 「拘束与放荡」 | 2026/11/18 08:00 - 2026/12/02 08:00<br><sub>(持续 2周)</sub> |
+| [![Banner](https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/banners/BN_Summon_H199.png)](https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/banners/BN_Summon_H199.png) | **限定招募 (首发)** | <img src="https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/bonds/A0455.png" width="28" height="28" align="center" /> 「孤独的再遇」 | 2026/11/25 17:00 - 2026/12/09 17:00<br><sub>(持续 2周)</sub> |
+| [![Banner](https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/banners/BN_Summon_MultiSummonMystic.png)](https://cdn.jsdelivr.net/gh/lemon-o/Ark-Recode-material@main/banners/BN_Summon_MultiSummonMystic.png) | **神秘招募 (自选)** | — (自选1名团员) | 2026/11/25 17:00 - 2026/12/16 17:00<br><sub>(持续 3周)</sub> |
 <!-- CURRENT-POOLS:END -->
 
 ## 实现原理
