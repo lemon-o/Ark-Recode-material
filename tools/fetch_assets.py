@@ -166,6 +166,7 @@ ITEM_TABLE_ADDRESS = "Assets/Game/StaticData/Item.txt"
 # 比 Activity.txt 的 `Type==SummonPickUp`（只有 95 条、漏掉整族 MysticSummon/MultiSummon）全，
 # 且 ID 列直接就是快照 `StoreRecordContainer` 的 StaticID。
 COMMODITY_TABLE_ADDRESS = "Assets/Game/StaticData/Commodity.txt"
+DROP_TABLE_ADDRESS = "Assets/Game/StaticData/Drop.txt"
 SUMMON_STORE_ID = "Summon"
 # 非卡池档位：测试用档（TestSummon1~9），不进产物。
 SUMMON_EXCLUDED_PREFIXES = ("TestSummon",)
@@ -1379,24 +1380,183 @@ def _summon_pool_type_name(sid: str) -> str:
     return "未分类"
 
 
+def _distill_summon_candidates(
+    item_text: str,
+    drop_text: str,
+    comm_text: str,
+) -> dict[str, object] | None:
+    """Item.txt + Drop.txt + Commodity.txt -> 自选卡池候选人与标签映射产物。
+
+    返回结构：
+      * pools: 自选/组合卡池候选人映射表（含 type, maxSelect, candidates 等）
+      * tags: 团员标签与候选人名单映射表（如 MLStar5, MLStar5ERO, Limit1Star5 等）
+    """
+    if not item_text or not drop_text or not comm_text:
+        return None
+
+    # 1. 解析 Item.txt
+    item_lines = item_text.splitlines()
+    if not item_lines:
+        return None
+    i_head = item_lines[0].split("@")
+    try:
+        id_i = i_head.index("ID")
+        tags_i = i_head.index("Tags")
+    except ValueError:
+        return None
+    type_i = i_head.index("ItemType") if "ItemType" in i_head else -1
+    group_i = i_head.index("Group") if "Group" in i_head else -1
+
+    tag_to_heroes: dict[str, list[str]] = {}
+    tag_to_artifacts: dict[str, list[str]] = {}
+    for line in item_lines[1:]:
+        cols = line.split("@")
+        if len(cols) <= max(id_i, tags_i):
+            continue
+        iid = cols[id_i]
+        raw_tags = cols[tags_i]
+        if not raw_tags:
+            continue
+        tags = [t.strip() for t in raw_tags.split("~") if t.strip()]
+
+        is_role = False
+        if type_i != -1 and type_i < len(cols) and cols[type_i] == "Role":
+            is_role = True
+        elif group_i != -1 and group_i < len(cols) and cols[group_i] == "Hero":
+            is_role = True
+        elif iid.startswith(("H", "SH")):
+            is_role = True
+
+        is_artifact = False
+        if type_i != -1 and type_i < len(cols) and cols[type_i] == "Artifact":
+            is_artifact = True
+        elif group_i != -1 and group_i < len(cols) and cols[group_i] == "Artifact":
+            is_artifact = True
+        elif iid.startswith("A") and len(iid) == 5 and iid[1:].isdigit():
+            is_artifact = True
+
+        if is_role:
+            for t in tags:
+                tag_to_heroes.setdefault(t, []).append(iid)
+        elif is_artifact:
+            for t in tags:
+                tag_to_artifacts.setdefault(t, []).append(iid)
+
+    for t in tag_to_heroes:
+        tag_to_heroes[t] = sorted(set(tag_to_heroes[t]))
+    for t in tag_to_artifacts:
+        tag_to_artifacts[t] = sorted(set(tag_to_artifacts[t]))
+
+    # 2. 解析 Drop.txt
+    drop_lines = drop_text.splitlines()
+    if not drop_lines:
+        return None
+    d_head = drop_lines[0].split("@")
+    try:
+        did_i = d_head.index("DropID")
+        dtag_i = d_head.index("TagString")
+    except ValueError:
+        return None
+
+    drop_to_tags: dict[str, set[str]] = {}
+    for line in drop_lines[1:]:
+        cols = line.split("@")
+        if len(cols) <= max(did_i, dtag_i):
+            continue
+        did = cols[did_i]
+        dtag = cols[dtag_i]
+        if did and dtag:
+            drop_to_tags.setdefault(did, set()).add(dtag)
+
+    # 3. 解析 Commodity.txt
+    comm_lines = comm_text.splitlines()
+    if not comm_lines:
+        return None
+    c_head = comm_lines[0].split("@")
+    try:
+        cid_i = c_head.index("ID")
+        cstore_i = c_head.index("Store")
+    except ValueError:
+        return None
+    cdyn1_i = c_head.index("DynamicField1") if "DynamicField1" in c_head else -1
+    cguar_i = c_head.index("GuaranteedRoleIDs") if "GuaranteedRoleIDs" in c_head else -1
+
+    role_drop_pattern = re.compile(r'RoleDropID:"([^"]+)"')
+    art_drop_pattern = re.compile(r'ArtifactDropID:"([^"]+)"')
+    max_select_pattern = re.compile(r'MaxSelectCount:(\d+)')
+
+    pools: dict[str, dict[str, object]] = {}
+    for line in comm_lines[1:]:
+        cols = line.split("@")
+        if len(cols) <= max(cid_i, cstore_i):
+            continue
+        if cols[cstore_i] != SUMMON_STORE_ID:
+            continue
+        sid = cols[cid_i]
+        if not sid or any(sid.startswith(p) for p in SUMMON_EXCLUDED_PREFIXES):
+            continue
+        dyn1 = cols[cdyn1_i] if cdyn1_i != -1 and cdyn1_i < len(cols) else ""
+        guar = cols[cguar_i] if cguar_i != -1 and cguar_i < len(cols) else ""
+
+        if "SummonInfo" in dyn1:
+            role_match = role_drop_pattern.search(dyn1)
+            art_match = art_drop_pattern.search(dyn1)
+            max_match = max_select_pattern.search(dyn1)
+            role_drop_id = role_match.group(1) if role_match else None
+            art_drop_id = art_match.group(1) if art_match else None
+            max_select = int(max_match.group(1)) if max_match else 1
+
+            r_tags = sorted(drop_to_tags.get(role_drop_id, set()))
+            candidates = []
+            for t in r_tags:
+                candidates.extend(tag_to_heroes.get(t, []))
+            candidates = sorted(set(candidates))
+
+            pool_entry: dict[str, object] = {
+                "type": "select",
+                "maxSelect": max_select,
+                "roleDropId": role_drop_id,
+                "tags": r_tags,
+                "candidates": candidates,
+            }
+            if art_drop_id:
+                a_tags = sorted(drop_to_tags.get(art_drop_id, set()))
+                art_candidates = []
+                for t in a_tags:
+                    art_candidates.extend(tag_to_artifacts.get(t, []))
+                pool_entry["artifactDropId"] = art_drop_id
+                pool_entry["artifactTags"] = a_tags
+                pool_entry["artifactCandidates"] = sorted(set(art_candidates))
+
+            pools[sid] = pool_entry
+        elif guar and "~" in guar:
+            combo_candidates = [h.strip() for h in guar.split("~") if h.strip()]
+            pools[sid] = {
+                "type": "combo",
+                "maxSelect": len(combo_candidates),
+                "candidates": combo_candidates,
+            }
+
+    return {
+        "pools": pools,
+        "tags": {k: tag_to_heroes[k] for k in sorted(tag_to_heroes)},
+    }
+
+
 def _download_summon_banners(
     catalog: ContentCatalog,
     server: PatchServer,
     base: str,
     workers: int,
 ) -> dict[tuple[str, str], bytes | None]:
-    """取 StaticData/Commodity.txt，蒸馏成两份 data 产物：
+    """取 StaticData/Commodity.txt，蒸馏成三份 data 产物：
 
-      * data/summon-banners.json —— {StaticID: banner 文件名}，供客户端出卡池横幅图
-      * data/summon-pools.json   —— 卡池档位注册表，供客户端判定"排期里的真卡池"
+      * data/summon-banners.json    —— {StaticID: banner 文件名}，供客户端出卡池横幅图
+      * data/summon-pools.json      —— 卡池档位注册表，供客户端判定"排期里的真卡池"
+      * data/summon-candidates.json —— 自选/组合卡池候选人与标签映射，供客户端免发版自动同步
 
-    与 _download_data 并列、互不干扰：同一 bundle 里另找名为 Commodity 的 TextAsset。
-    两份产物都在 data 分区（不进 index.json），客户端走 material_sync 的 HTTP 直拉 + TTL。
-
-    [为什么从 Activity.txt 换成 Commodity.txt] 旧源按 `Type==SummonPickUp` 只捞到 95 条，
-    漏掉整族 MysticSummon*(40) / MultiSummon*(8) / ActivitySummonCombo*(4)，导致神秘池
-    没横幅（实测 MysticSummonH185 缺图）。Commodity.txt 的 Store==Summon 有 163 行、
-    152 条带 banner，且 ID 列就是快照 StaticID，无需任何映射猜测。
+    与 _download_data 并列、互不干扰：同一 bundle 里解析 Commodity、Item、Drop 的 TextAsset。
+    三份产物都在 data 分区（不进 index.json），客户端走 material_sync 的 HTTP 直拉 + TTL。
     """
     results: dict[tuple[str, str], bytes | None] = {}
     bundles = catalog.bundles_for(COMMODITY_TABLE_ADDRESS)
@@ -1404,6 +1564,7 @@ def _download_summon_banners(
         print("  summon-banners: no bundle", file=sys.stderr)
         results[("data", "summon-banners.json")] = None
         results[("data", "summon-pools.json")] = None
+        results[("data", "summon-candidates.json")] = None
         return results
     try:
         paths = [server.fetch_bundle(base, internal) for internal in bundles]
@@ -1411,30 +1572,57 @@ def _download_summon_banners(
         print(f"  summon-banners: {exc}", file=sys.stderr)
         results[("data", "summon-banners.json")] = None
         results[("data", "summon-pools.json")] = None
+        results[("data", "summon-candidates.json")] = None
         return results
 
-    text = None
+    texts: dict[str, str] = {}
     try:
         environment = _import_unitypy().load(*[str(path) for path in paths])
         for obj in environment.objects:
             if obj.type.name != "TextAsset":
                 continue
             data = obj.read()
-            if data.m_Name == "Commodity":
-                raw = data.m_Script
-                text = raw if isinstance(raw, str) else raw.decode("utf-8", "replace")
-                break
+            name = getattr(data, "m_Name", "")
+            if name in ("Commodity", "Item", "Drop"):
+                raw = getattr(data, "m_Script", b"")
+                texts[name] = raw if isinstance(raw, str) else raw.decode("utf-8", "replace")
     except Exception as exc:  # UnityPy raises a wide range of errors
         print(f"  summon-banners: {exc}", file=sys.stderr)
         results[("data", "summon-banners.json")] = None
         results[("data", "summon-pools.json")] = None
+        results[("data", "summon-candidates.json")] = None
         return results
 
-    distilled = _distill_summon_commodities(text) if text else None
+    if "Item" not in texts:
+        item_raw = _load_item_table_text(catalog, server, base)
+        if item_raw:
+            texts["Item"] = item_raw
+
+    if "Drop" not in texts:
+        drop_bundles = catalog.bundles_for(DROP_TABLE_ADDRESS)
+        if drop_bundles:
+            try:
+                d_paths = [server.fetch_bundle(base, internal) for internal in drop_bundles]
+                d_env = _import_unitypy().load(*[str(p) for p in d_paths])
+                for obj in d_env.objects:
+                    if obj.type.name == "TextAsset":
+                        d_data = obj.read()
+                        if getattr(d_data, "m_Name", "") == "Drop":
+                            d_raw = getattr(d_data, "m_Script", b"")
+                            texts["Drop"] = (
+                                d_raw if isinstance(d_raw, str) else d_raw.decode("utf-8", "replace")
+                            )
+                            break
+            except Exception as exc:
+                print(f"  summon-candidates: failed to load Drop bundle: {exc}", file=sys.stderr)
+
+    comm_text = texts.get("Commodity")
+    distilled = _distill_summon_commodities(comm_text) if comm_text else None
     if not distilled:
         print("  summon-banners: Commodity.txt parsed to an empty mapping", file=sys.stderr)
         results[("data", "summon-banners.json")] = None
         results[("data", "summon-pools.json")] = None
+        results[("data", "summon-candidates.json")] = None
         return results
 
     banners, pools = distilled
@@ -1455,6 +1643,25 @@ def _download_summon_banners(
         sort_keys=True,
         indent=1,
     ).encode("utf-8")
+
+    item_text = texts.get("Item", "")
+    drop_text = texts.get("Drop", "")
+    candidates_meta = (
+        _distill_summon_candidates(item_text, drop_text, comm_text)
+        if (item_text and drop_text and comm_text)
+        else None
+    )
+    if candidates_meta:
+        candidates_meta["updated"] = stamp
+        results[("data", "summon-candidates.json")] = json.dumps(
+            candidates_meta,
+            ensure_ascii=False,
+            sort_keys=True,
+            indent=1,
+        ).encode("utf-8")
+    else:
+        results[("data", "summon-candidates.json")] = None
+
     return results
 
 

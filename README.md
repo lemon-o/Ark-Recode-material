@@ -147,7 +147,7 @@ catalog 里 7000+ 张 PNG 大半是 CG / 羁绊图（*_Sex_LoveTalk.png、Assets
     bg/          背景图鉴（BG.spriteatlas 里的切片，包含场景环境缩略图 *_Dialog 与图鉴道具小图标 Carnival###）
     videos/      招募/抽卡动画（videos/gacha/ 下收录裁切去除侧边栏与悬浮窗的出蓝/出紫/出金/出红视频）
     spine/       全角色 Spine 骨骼立绘三件套（spine/<ID>/<ID>.{skel,atlas,png}）
-    data/        静态数据与元数据（announcement.json 官方维护与卡池公告、current-pools.json 活跃卡池情报、heroes.json 全角色档案、bonds.json 羁绊表、item-meta.json 道具表、summon-pools.json 卡池表）
+    data/        静态数据与元数据（announcement.json 官方维护与卡池公告、current-pools.json 活跃卡池情报、heroes.json 全角色档案、bonds.json 羁绊表、item-meta.json 道具表、summon-pools.json 卡池表、summon-candidates.json 自选卡池候选人表）
     index.json   清单：分区 -> 键 -> 文件名 / 字节数 / sha256
     tools/       sync_smart.py（智能调度与定向抓取）、fetch_assets.py（抓小图标）、fetch_spine.py（抓 Spine 骨骼立绘）、build_heroes.py（构建角色档案）、build_current_pools.py（构建活跃卡池情报与看板）、build_index.py（生成清单）、update_readme.py（回写统计信息）、check_version.py（Catalog 版本探测与维护公告检查）、sync_assets.py（供读取 AVATAR_ID_REMAP）
     backend/     config.py：抓图脚本要用的四个端点常量（GAME_ROUTER / GAME_ORIGIN / GAME_REFERER / HTTP_TIMEOUT）
