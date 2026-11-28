@@ -48,6 +48,7 @@ _LABELS = {
     "bonds": "羁绊小图",
     "bg": "背景图鉴",
     "spine": "Spine立绘",
+    "data": "爱情通讯",
 }
 
 

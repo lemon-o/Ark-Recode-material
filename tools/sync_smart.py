@@ -229,8 +229,8 @@ def run_targeted_sync(hero_ids: list[str], dry_run: bool = False) -> int:
         return 0
 
     ids_str = ",".join(debut_heroes)
-    # 若有新活动，一并抓取 atlas 与 data（包含活动代币、活动商店兑换物图标）
-    families = "avatars,heads,skills,bonds,banner,atlas,data" if activity_info else "avatars,heads,skills,bonds,banner"
+    # 默认包含 data 元数据（道具、卡池、爱情通讯等静态表），有新活动则附带 atlas 图集
+    families = "avatars,heads,skills,bonds,banner,atlas,data" if activity_info else "avatars,heads,skills,bonds,banner,data"
 
     # 1. 定向抓取首发角色的头像、头像框、技能图标、卡池横幅、专属羁绊（及活动图集/商店代币）
     code = _run_cmd([

@@ -167,6 +167,8 @@ ITEM_TABLE_ADDRESS = "Assets/Game/StaticData/Item.txt"
 # 且 ID 列直接就是快照 `StoreRecordContainer` 的 StaticID。
 COMMODITY_TABLE_ADDRESS = "Assets/Game/StaticData/Commodity.txt"
 DROP_TABLE_ADDRESS = "Assets/Game/StaticData/Drop.txt"
+LINE_DIALOG_TABLE_ADDRESS = "Assets/Game/StaticData/LineDialog.txt"
+LINE_DRAMA_TABLE_ADDRESS = "Assets/Game/StaticData/LineDrama.txt"
 SUMMON_STORE_ID = "Summon"
 # 非卡池档位：测试用档（TestSummon1~9），不进产物。
 SUMMON_EXCLUDED_PREFIXES = ("TestSummon",)
@@ -1543,20 +1545,84 @@ def _distill_summon_candidates(
     }
 
 
+def _distill_line_dialog(text: str) -> bytes | None:
+    """LineDialog.txt -> data/linedialog.json。
+
+    保留字段：ID、DramaID、Type、NextDialogIDs、Energy
+    过滤掉 ID 为空的行，使用紧凑 JSON。
+    """
+    if not text:
+        return None
+    lines = text.splitlines()
+    if not lines:
+        return None
+    header = lines[0].split("@")
+    cols = ["ID", "DramaID", "Type", "NextDialogIDs", "Energy"]
+    rows: list[dict[str, str]] = []
+    for line in lines[1:]:
+        values = line.split("@")
+        if len(values) == len(header) + 1 and not values[-1]:
+            values.pop()
+        row = dict(zip(header, values))
+        cid = row.get("ID", "").strip()
+        if not cid:
+            continue
+        rows.append({col: row.get(col, "") for col in cols})
+    payload = {
+        "schema": 1,
+        "source": "sd_LineDialog.txt",
+        "rows": rows,
+    }
+    return json.dumps(payload, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
+
+
+def _distill_line_drama(text: str) -> bytes | None:
+    """LineDrama.txt -> data/linedrama.json。
+
+    保留字段：ID、RoleID、PreconditionID、ActivityIDs
+    过滤掉 ID 为空的行，使用紧凑 JSON。
+    """
+    if not text:
+        return None
+    lines = text.splitlines()
+    if not lines:
+        return None
+    header = lines[0].split("@")
+    cols = ["ID", "RoleID", "PreconditionID", "ActivityIDs"]
+    rows: list[dict[str, str]] = []
+    for line in lines[1:]:
+        values = line.split("@")
+        if len(values) == len(header) + 1 and not values[-1]:
+            values.pop()
+        row = dict(zip(header, values))
+        cid = row.get("ID", "").strip()
+        if not cid:
+            continue
+        rows.append({col: row.get(col, "") for col in cols})
+    payload = {
+        "schema": 1,
+        "source": "sd_LineDrama.txt",
+        "rows": rows,
+    }
+    return json.dumps(payload, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
+
+
 def _download_summon_banners(
     catalog: ContentCatalog,
     server: PatchServer,
     base: str,
     workers: int,
 ) -> dict[tuple[str, str], bytes | None]:
-    """取 StaticData/Commodity.txt，蒸馏成三份 data 产物：
+    """取 StaticData/Commodity.txt 等静态表，蒸馏成 data 产物：
 
       * data/summon-banners.json    —— {StaticID: banner 文件名}，供客户端出卡池横幅图
       * data/summon-pools.json      —— 卡池档位注册表，供客户端判定"排期里的真卡池"
       * data/summon-candidates.json —— 自选/组合卡池候选人与标签映射，供客户端免发版自动同步
+      * data/linedialog.json        —— 爱情通讯对话表（LineDialog）
+      * data/linedrama.json         —— 爱情通讯剧目表（LineDrama）
 
-    与 _download_data 并列、互不干扰：同一 bundle 里解析 Commodity、Item、Drop 的 TextAsset。
-    三份产物都在 data 分区（不进 index.json），客户端走 material_sync 的 HTTP 直拉 + TTL。
+    与 _download_data 并列、互不干扰：同一 bundle 里解析 Commodity、Item、Drop、LineDialog、LineDrama。
+    产物进入 data 分区，客户端走 material_sync 的 HTTP 直拉或 index.json 索引同步。
     """
     results: dict[tuple[str, str], bytes | None] = {}
     bundles = catalog.bundles_for(COMMODITY_TABLE_ADDRESS)
@@ -1565,6 +1631,8 @@ def _download_summon_banners(
         results[("data", "summon-banners.json")] = None
         results[("data", "summon-pools.json")] = None
         results[("data", "summon-candidates.json")] = None
+        results[("data", "linedialog.json")] = None
+        results[("data", "linedrama.json")] = None
         return results
     try:
         paths = [server.fetch_bundle(base, internal) for internal in bundles]
@@ -1573,6 +1641,8 @@ def _download_summon_banners(
         results[("data", "summon-banners.json")] = None
         results[("data", "summon-pools.json")] = None
         results[("data", "summon-candidates.json")] = None
+        results[("data", "linedialog.json")] = None
+        results[("data", "linedrama.json")] = None
         return results
 
     texts: dict[str, str] = {}
@@ -1583,7 +1653,7 @@ def _download_summon_banners(
                 continue
             data = obj.read()
             name = getattr(data, "m_Name", "")
-            if name in ("Commodity", "Item", "Drop"):
+            if name in ("Commodity", "Item", "Drop", "LineDialog", "LineDrama"):
                 raw = getattr(data, "m_Script", b"")
                 texts[name] = raw if isinstance(raw, str) else raw.decode("utf-8", "replace")
     except Exception as exc:  # UnityPy raises a wide range of errors
@@ -1591,6 +1661,8 @@ def _download_summon_banners(
         results[("data", "summon-banners.json")] = None
         results[("data", "summon-pools.json")] = None
         results[("data", "summon-candidates.json")] = None
+        results[("data", "linedialog.json")] = None
+        results[("data", "linedrama.json")] = None
         return results
 
     if "Item" not in texts:
@@ -1616,6 +1688,42 @@ def _download_summon_banners(
             except Exception as exc:
                 print(f"  summon-candidates: failed to load Drop bundle: {exc}", file=sys.stderr)
 
+    if "LineDialog" not in texts:
+        ld_bundles = catalog.bundles_for(LINE_DIALOG_TABLE_ADDRESS)
+        if ld_bundles:
+            try:
+                ld_paths = [server.fetch_bundle(base, internal) for internal in ld_bundles]
+                ld_env = _import_unitypy().load(*[str(p) for p in ld_paths])
+                for obj in ld_env.objects:
+                    if obj.type.name == "TextAsset":
+                        ld_data = obj.read()
+                        if getattr(ld_data, "m_Name", "") == "LineDialog":
+                            ld_raw = getattr(ld_data, "m_Script", b"")
+                            texts["LineDialog"] = (
+                                ld_raw if isinstance(ld_raw, str) else ld_raw.decode("utf-8", "replace")
+                            )
+                            break
+            except Exception as exc:
+                print(f"  line-dialog: failed to load LineDialog bundle: {exc}", file=sys.stderr)
+
+    if "LineDrama" not in texts:
+        ldr_bundles = catalog.bundles_for(LINE_DRAMA_TABLE_ADDRESS)
+        if ldr_bundles:
+            try:
+                ldr_paths = [server.fetch_bundle(base, internal) for internal in ldr_bundles]
+                ldr_env = _import_unitypy().load(*[str(p) for p in ldr_paths])
+                for obj in ldr_env.objects:
+                    if obj.type.name == "TextAsset":
+                        ldr_data = obj.read()
+                        if getattr(ldr_data, "m_Name", "") == "LineDrama":
+                            ldr_raw = getattr(ldr_data, "m_Script", b"")
+                            texts["LineDrama"] = (
+                                ldr_raw if isinstance(ldr_raw, str) else ldr_raw.decode("utf-8", "replace")
+                            )
+                            break
+            except Exception as exc:
+                print(f"  line-drama: failed to load LineDrama bundle: {exc}", file=sys.stderr)
+
     comm_text = texts.get("Commodity")
     distilled = _distill_summon_commodities(comm_text) if comm_text else None
     if not distilled:
@@ -1623,6 +1731,8 @@ def _download_summon_banners(
         results[("data", "summon-banners.json")] = None
         results[("data", "summon-pools.json")] = None
         results[("data", "summon-candidates.json")] = None
+        results[("data", "linedialog.json")] = None
+        results[("data", "linedrama.json")] = None
         return results
 
     banners, pools = distilled
@@ -1661,6 +1771,12 @@ def _download_summon_banners(
         ).encode("utf-8")
     else:
         results[("data", "summon-candidates.json")] = None
+
+    dialog_payload = _distill_line_dialog(texts.get("LineDialog", ""))
+    results[("data", "linedialog.json")] = dialog_payload
+
+    drama_payload = _distill_line_drama(texts.get("LineDrama", ""))
+    results[("data", "linedrama.json")] = drama_payload
 
     return results
 

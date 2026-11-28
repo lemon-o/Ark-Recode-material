@@ -78,6 +78,22 @@ def _spine_entries(folder: Path) -> dict[str, dict[str, object]]:
     return res
 
 
+def _data_entries(folder: Path) -> dict[str, dict[str, object]]:
+    """扫描 data/ 目录中的爱情通讯静态数据表（linedialog / linedrama），纳入 index.json 索引。"""
+    res: dict[str, dict[str, object]] = {}
+    if not folder.is_dir():
+        return res
+    for name in ["linedialog.json", "linedrama.json"]:
+        p = folder / name
+        if p.is_file():
+            res[p.stem] = {
+                "file": p.name,
+                "bytes": p.stat().st_size,
+                "sha256": _sha256(p),
+            }
+    return res
+
+
 def main() -> int:
     payload: dict[str, object] = {}
     changed = False
@@ -101,6 +117,14 @@ def main() -> int:
         if previous_all.get("spine") != spine_entries:
             changed = True
         print(f"spine: {len(spine_entries)} 套")
+
+    # 处理爱情通讯静态数据表
+    data_entries = _data_entries(ROOT / "data")
+    if data_entries:
+        payload["data"] = data_entries
+        if previous_all.get("data") != data_entries:
+            changed = True
+        print(f"data: {len(data_entries)} 份数据表")
 
     total = sum(len(v) for k, v in payload.items() if isinstance(v, dict))
     if not changed:
